@@ -1,0 +1,35 @@
+html, body, h1, h2, h3, p, ul, ol, li, main {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+main{
+    min-height: 100vh;
+}
+
+body {
+    color: $black;
+    background-color: $white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.overlay{
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    backdrop-filter: blur(6px);
+    &.active{
+        display: block;
+    }
+}
+
+.w-100{
+    width: 100%;
+}

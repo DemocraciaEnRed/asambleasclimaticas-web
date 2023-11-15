@@ -1,0 +1,115 @@
+.acerca-de-wrapper {
+    display: flex;
+    .banner-wrapper {
+        width: 100%;
+        height: 40vh;
+        position: absolute;
+        background-color: $primary-color;
+        
+    }
+
+    .static-info-wrapper {
+        width: 90%;
+        background-color: $white;
+        display: flex;
+        margin: auto;
+        margin-top: 24px;
+        padding: 80px 32px;
+        position: relative;
+        z-index: 1;
+
+        @media(max-width:700px) {
+            padding: 20px;
+        }
+
+        @media (min-width: 1024px) {
+            >section {
+                width: 95%;
+                padding-left: 5%;
+            }
+        }
+
+        .static-info-nav {
+            display: flex;
+            flex-direction: column;
+            width: 247px;
+
+            @media(max-width:700px) {
+                display: none;
+            }
+
+            padding-right: 15px;
+            border-right:1px solid $gray-light;
+
+            .button-section {
+                background: $white;
+                border: none;
+                font-size: 1.3rem;
+                text-align: left;
+                padding: 15px;
+                color: $gray;
+
+                &:hover {
+                    cursor: pointer;
+                    color: $primary-color-light;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: solid 1px $gray-light;
+                }
+
+                &.active {
+                    color: $gray;
+                }
+            }
+        }
+
+        .acerca-de ,.como-participar{
+            h1 {
+                font-size: 3rem;
+
+                @media(max-width:800px) {
+                    line-height: 7rem;
+                    margin-bottom: 30px;
+                }
+
+                text-transform: uppercase;
+                font-family: var(--bold);
+                line-height: 1.18rem;
+                color: $primary-color;
+                font-weight: bold;
+                margin-top:23px;
+                margin-bottom: 40px;
+            }
+
+            .static-info-wrapper-content {
+                
+                max-width: 850px;
+                padding: 0px 82px 55px 0px;
+            }
+
+            span {
+                font-size: 1.4rem;
+                line-height: 2rem;
+                color: $primary-color;
+                margin-bottom: 40px;
+            }
+
+            p {
+                font-size: 1rem;
+                color: $gray-dark;
+                max-width: 850px;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+            .logos-wrapper{
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                img{
+                    margin: 16px 0;
+                }
+            }
+        }
+    }
+}

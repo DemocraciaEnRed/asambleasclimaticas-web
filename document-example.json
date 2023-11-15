@@ -1,0 +1,598 @@
+{
+    "documento": {
+        "_id": "643e9f18448d400012fadfa7",
+        "published": true,
+        "commentsCount": 5,
+        "author": {
+            "_id": "5f89e135ddd69400185b78d5",
+            "roles": [
+                "accountable",
+                "offline_access",
+                "uma_authorization"
+            ],
+            "keycloak": "a84eccf6-84b6-408a-ae8a-2fdf1efbfad1",
+            "fullname": "Test DER",
+            "names": "Test",
+            "surnames": "DER",
+            "fields": {
+                "occupation": "Legislador",
+                "gender": "",
+                "birthday": "",
+                "province": "CABA",
+                "party": "Democracia en Red",
+                "tags": [
+                    "5f4907fc99527900114af680",
+                    "5f4907fc99527900114af681",
+                    "5f4907fc99527900114af682",
+                    "5f4907fc99527900114af683",
+                    "5f4907fc99527900114af684",
+                    "5f4907fc99527900114af685",
+                    "5f4907fc99527900114af686",
+                    "5f4907fc99527900114af688",
+                    "5f4907fc99527900114af689",
+                    "5f4907fc99527900114af68a",
+                    "5f4907fc99527900114af68b",
+                    "5f4907fc99527900114af68c",
+                    "5f4907fc99527900114af68d",
+                    "5f4907fc99527900114af68e",
+                    "5f4907fc99527900114af68f",
+                    "5f4907fc99527900114af690",
+                    "5f4907fc99527900114af691",
+                    "5f4907fc99527900114af692",
+                    "5f4907fc99527900114af694",
+                    "5f4907fc99527900114af695",
+                    "5f4907fc99527900114af697",
+                    "5f4907fc99527900114af698",
+                    "5f4907fc99527900114af699",
+                    "5f4907fc99527900114af69a",
+                    "60c276c20237f4001205d7ee",
+                    "643840b5448d400012fadfa3",
+                    "6438467a448d400012fadfa4",
+                    "649d8d2edf1f32001331d79b",
+                    "649d904fdf1f32001331d79c"
+                ],
+                "tagsNotification": true,
+                "popularNotification": true,
+                "authors": []
+            },
+            "createdAt": "2020-10-16T18:06:45.962Z",
+            "updatedAt": "2023-10-19T21:32:28.591Z",
+            "__v": 1
+        },
+        "customForm": "5dd7fce1551f2f001898703f",
+        "createdAt": "2023-04-18T13:46:00.927Z",
+        "updatedAt": "2023-10-19T21:32:28.386Z",
+        "__v": 0,
+        "currentVersion": {
+            "_id": "643e9f18448d400012fadfa8",
+            "contributions": [],
+            "document": "643e9f18448d400012fadfa7",
+            "version": 1,
+            "content": {
+                "title": "mi nuevo proyecto 2 (admin)",
+                "imageCover": null,
+                "youtubeId": "",
+                "customVideoId": null,
+                "sendTagsNotification": true,
+                "fundation": {
+                    "object": "value",
+                    "document": {
+                        "object": "document",
+                        "data": {},
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "data": {},
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Esta sección es un espacio para redactar un texto que sirve para presentar el proyecto, explicar el contexto (de donde surge, su importancia, etc.), e invitar la ciudadanía a participar. Es muy importante mencionar qué tipo de aportes ciudadanos se esperan. El proyecto tiene que estar explicado de manera muy simple, la redacción debe ser fácil de entender.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "articles": {
+                    "object": "value",
+                    "document": {
+                        "object": "document",
+                        "nodes": [
+                            {
+                                "object": "block",
+                                "type": "title",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Art. 1º.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed purus justo. Nam tempus ligula nec est scelerisque aliquet. Phasellus pretium rhoncus pharetra. Duis dapibus felis neque.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "title",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Art. 2°.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Fusce elementum posuere dolor id mattis. Sed magna arcu, rutrum eu pellentesque nec, feugiat sit amet lorem. Fusce volutpat, dolor a pretium fermentum, felis justo rhoncus nisl, vel mollis est diam mollis nisl. Sed aliquet erat sed ipsum lacinia, feugiat interdum ante pulvinar. Integer ut consectetur velit.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "title",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "Art. 3°.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "object": "block",
+                                "type": "paragraph",
+                                "nodes": [
+                                    {
+                                        "object": "text",
+                                        "leaves": [
+                                            {
+                                                "object": "leaf",
+                                                "text": "In id neque posuere, dictum arcu vitae, euismod nulla. Integer eu euismod ipsum. In aliquet nisl mi, nec vulputate urna hendrerit eu. Integer in mi at quam luctus posuere. Integer magna sem, viverra non ultrices vitae, varius in mi.",
+                                                "marks": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "closure": null,
+                "closingDate": "2025-05-18T03:00:00.000Z",
+                "author": "5f89e135ddd69400185b78d5",
+                "tags": [
+                    "5f4907fc99527900114af682",
+                    "5f4907fc99527900114af68a"
+                ]
+            },
+            "createdAt": "2023-04-18T13:46:00.933Z",
+            "updatedAt": "2023-06-29T14:09:53.720Z",
+            "__v": 0
+        },
+        "publishedMailSent": true,
+        "popularMailSent": false,
+        "closed": false,
+        "userIsApoyado": false,
+        "apoyosCount": 0
+    },
+    "esAutor": false,
+    "comentario":[
+        {
+            "resolved": false,
+            "_id": "644149313c265d00135ea287",
+            "user": {
+                "roles": [
+                    "accountable",
+                    "offline_access",
+                    "uma_authorization"
+                ],
+                "_id": "5f89e135ddd69400185b78d5",
+                "keycloak": "a84eccf6-84b6-408a-ae8a-2fdf1efbfad1",
+                "fullname": "Test DER",
+                "names": "Test",
+                "surnames": "DER",
+                "fields": {
+                    "occupation": "Legislador",
+                    "gender": "",
+                    "birthday": "",
+                    "province": "CABA",
+                    "party": "Democracia en Red",
+                    "tags": [
+                        "5f4907fc99527900114af680",
+                        "5f4907fc99527900114af681",
+                        "5f4907fc99527900114af682",
+                        "5f4907fc99527900114af683",
+                        "5f4907fc99527900114af684",
+                        "5f4907fc99527900114af685",
+                        "5f4907fc99527900114af686",
+                        "5f4907fc99527900114af688",
+                        "5f4907fc99527900114af689",
+                        "5f4907fc99527900114af68a",
+                        "5f4907fc99527900114af68b",
+                        "5f4907fc99527900114af68c",
+                        "5f4907fc99527900114af68d",
+                        "5f4907fc99527900114af68e",
+                        "5f4907fc99527900114af68f",
+                        "5f4907fc99527900114af690",
+                        "5f4907fc99527900114af691",
+                        "5f4907fc99527900114af692",
+                        "5f4907fc99527900114af694",
+                        "5f4907fc99527900114af695",
+                        "5f4907fc99527900114af697",
+                        "5f4907fc99527900114af698",
+                        "5f4907fc99527900114af699",
+                        "5f4907fc99527900114af69a",
+                        "60c276c20237f4001205d7ee",
+                        "643840b5448d400012fadfa3",
+                        "6438467a448d400012fadfa4",
+                        "649d8d2edf1f32001331d79b",
+                        "649d904fdf1f32001331d79c"
+                    ],
+                    "tagsNotification": true,
+                    "popularNotification": true,
+                    "authors": []
+                },
+                "createdAt": "2020-10-16T18:06:45.962Z",
+                "updatedAt": "2023-10-19T21:32:28.591Z",
+                "__v": 1
+            },
+            "document": "643e9f18448d400012fadfa7",
+            "version": "643e9f18448d400012fadfa8",
+            "field": "fundation",
+            "content": "EL mejor proyecto lejos",
+            "decoration": null,
+            "createdAt": "2023-04-20T14:16:17.344Z",
+            "updatedAt": "2023-04-20T14:16:17.344Z",
+            "__v": 0,
+            "when": "6 meses",
+            "likes": 0
+        },
+        {
+            "resolved": false,
+            "_id": "645d2025eac8670012d7d36a",
+            "user": {
+                "roles": [
+                    "accountable",
+                    "offline_access",
+                    "admin",
+                    "uma_authorization"
+                ],
+                "_id": "634845b5d07cfc0012f2527a",
+                "keycloak": "0846f892-84d9-43dc-b5c9-d45f171edba3",
+                "fullname": "Cristian Valdes",
+                "names": "Cristian",
+                "surnames": "Valdes",
+                "fields": {
+                    "occupation": "chichilo",
+                    "gender": "Otro",
+                    "birthday": "",
+                    "province": "",
+                    "party": "Bloque",
+                    "tags": [
+                        "5f4907fc99527900114af680",
+                        "5f4907fc99527900114af681",
+                        "5f4907fc99527900114af682",
+                        "5f4907fc99527900114af683",
+                        "5f4907fc99527900114af684",
+                        "5f4907fc99527900114af685",
+                        "5f4907fc99527900114af686",
+                        "5f4907fc99527900114af688",
+                        "5f4907fc99527900114af689",
+                        "5f4907fc99527900114af68a",
+                        "5f4907fc99527900114af68b",
+                        "5f4907fc99527900114af68c",
+                        "5f4907fc99527900114af68d",
+                        "5f4907fc99527900114af68e",
+                        "5f4907fc99527900114af68f",
+                        "5f4907fc99527900114af690",
+                        "5f4907fc99527900114af691",
+                        "5f4907fc99527900114af692",
+                        "5f4907fc99527900114af694",
+                        "5f4907fc99527900114af695",
+                        "5f4907fc99527900114af697",
+                        "5f4907fc99527900114af698",
+                        "5f4907fc99527900114af699",
+                        "5f4907fc99527900114af69a",
+                        "60c276c20237f4001205d7ee",
+                        "643840b5448d400012fadfa3",
+                        "6438467a448d400012fadfa4",
+                        "649d8d2edf1f32001331d79b",
+                        "649d904fdf1f32001331d79c"
+                    ],
+                    "tagsNotification": true,
+                    "popularNotification": true,
+                    "authors": []
+                },
+                "createdAt": "2022-10-13T17:07:01.726Z",
+                "updatedAt": "2023-10-19T21:32:28.606Z",
+                "__v": 0
+            },
+            "document": "643e9f18448d400012fadfa7",
+            "version": "643e9f18448d400012fadfa8",
+            "field": "fundation",
+            "content": "Buen proyecto!",
+            "decoration": null,
+            "createdAt": "2023-05-11T17:04:37.192Z",
+            "updatedAt": "2023-05-11T17:04:37.192Z",
+            "__v": 0,
+            "when": "5 meses",
+            "likes": 0
+        },
+        {
+            "resolved": false,
+            "_id": "645d207680a8f80012699974",
+            "user": {
+                "roles": [
+                    "accountable",
+                    "offline_access",
+                    "admin",
+                    "uma_authorization"
+                ],
+                "_id": "634845b5d07cfc0012f2527a",
+                "keycloak": "0846f892-84d9-43dc-b5c9-d45f171edba3",
+                "fullname": "Cristian Valdes",
+                "names": "Cristian",
+                "surnames": "Valdes",
+                "fields": {
+                    "occupation": "chichilo",
+                    "gender": "Otro",
+                    "birthday": "",
+                    "province": "",
+                    "party": "Bloque",
+                    "tags": [
+                        "5f4907fc99527900114af680",
+                        "5f4907fc99527900114af681",
+                        "5f4907fc99527900114af682",
+                        "5f4907fc99527900114af683",
+                        "5f4907fc99527900114af684",
+                        "5f4907fc99527900114af685",
+                        "5f4907fc99527900114af686",
+                        "5f4907fc99527900114af688",
+                        "5f4907fc99527900114af689",
+                        "5f4907fc99527900114af68a",
+                        "5f4907fc99527900114af68b",
+                        "5f4907fc99527900114af68c",
+                        "5f4907fc99527900114af68d",
+                        "5f4907fc99527900114af68e",
+                        "5f4907fc99527900114af68f",
+                        "5f4907fc99527900114af690",
+                        "5f4907fc99527900114af691",
+                        "5f4907fc99527900114af692",
+                        "5f4907fc99527900114af694",
+                        "5f4907fc99527900114af695",
+                        "5f4907fc99527900114af697",
+                        "5f4907fc99527900114af698",
+                        "5f4907fc99527900114af699",
+                        "5f4907fc99527900114af69a",
+                        "60c276c20237f4001205d7ee",
+                        "643840b5448d400012fadfa3",
+                        "6438467a448d400012fadfa4",
+                        "649d8d2edf1f32001331d79b",
+                        "649d904fdf1f32001331d79c"
+                    ],
+                    "tagsNotification": true,
+                    "popularNotification": true,
+                    "authors": []
+                },
+                "createdAt": "2022-10-13T17:07:01.726Z",
+                "updatedAt": "2023-10-19T21:32:28.606Z",
+                "__v": 0
+            },
+            "document": "643e9f18448d400012fadfa7",
+            "version": "643e9f18448d400012fadfa8",
+            "field": "fundation",
+            "content": "Algo bueno aqui",
+            "decoration": null,
+            "createdAt": "2023-05-11T17:05:58.782Z",
+            "updatedAt": "2023-05-11T17:05:58.782Z",
+            "__v": 0,
+            "when": "5 meses",
+            "likes": 0
+        },
+        {
+            "resolved": false,
+            "_id": "645d20d46ca0bf0012a75195",
+            "user": {
+                "roles": [
+                    "offline_access",
+                    "uma_authorization"
+                ],
+                "_id": "645d20c66ca0bf0012a75194",
+                "keycloak": "b7269ce6-111e-4c0b-b958-af1566eec7fc",
+                "fullname": "Mariano Pruebin",
+                "names": "Mariano",
+                "surnames": "Pruebin",
+                "fields": {
+                    "tagsNotification": true,
+                    "tags": [
+                        "5f4907fc99527900114af680",
+                        "5f4907fc99527900114af681",
+                        "5f4907fc99527900114af682",
+                        "5f4907fc99527900114af683",
+                        "5f4907fc99527900114af684",
+                        "5f4907fc99527900114af685",
+                        "5f4907fc99527900114af686",
+                        "5f4907fc99527900114af688",
+                        "5f4907fc99527900114af689",
+                        "5f4907fc99527900114af68a",
+                        "5f4907fc99527900114af68b",
+                        "5f4907fc99527900114af68c",
+                        "5f4907fc99527900114af68d",
+                        "5f4907fc99527900114af68e",
+                        "5f4907fc99527900114af68f",
+                        "5f4907fc99527900114af690",
+                        "5f4907fc99527900114af691",
+                        "5f4907fc99527900114af692",
+                        "5f4907fc99527900114af694",
+                        "5f4907fc99527900114af695",
+                        "5f4907fc99527900114af697",
+                        "5f4907fc99527900114af698",
+                        "5f4907fc99527900114af699",
+                        "5f4907fc99527900114af69a",
+                        "60c276c20237f4001205d7ee",
+                        "643840b5448d400012fadfa3",
+                        "6438467a448d400012fadfa4",
+                        "649d8d2edf1f32001331d79b",
+                        "649d904fdf1f32001331d79c"
+                    ],
+                    "popularNotification": true,
+                    "authors": []
+                },
+                "createdAt": "2023-05-11T17:07:18.638Z",
+                "updatedAt": "2023-10-19T21:32:28.616Z",
+                "__v": 0
+            },
+            "document": "643e9f18448d400012fadfa7",
+            "version": "643e9f18448d400012fadfa8",
+            "field": "fundation",
+            "content": "Bueno es este proyecto",
+            "decoration": null,
+            "createdAt": "2023-05-11T17:07:32.288Z",
+            "updatedAt": "2023-05-11T17:07:32.288Z",
+            "__v": 0,
+            "when": "5 meses",
+            "likes": 0
+        }
+    ],
+    "articulado":[
+        {
+            "resolved": false,
+            "_id": "643e9f8f448d400012fadfa9",
+            "user": {
+                "roles": [
+                    "offline_access",
+                    "uma_authorization"
+                ],
+                "_id": "5fa017c4897fc70018310b95",
+                "keycloak": "a6397210-2666-40b1-a368-c03181b0ff04",
+                "fullname": "Valeria Lisciani",
+                "names": "Valeria",
+                "surnames": "Lisciani",
+                "fields": {
+                    "occupation": "",
+                    "gender": "Femenino",
+                    "birthday": "31/08/1992",
+                    "province": "CABA",
+                    "party": "",
+                    "tags": [
+                        "5f4907fc99527900114af680",
+                        "5f4907fc99527900114af681",
+                        "5f4907fc99527900114af682",
+                        "5f4907fc99527900114af683",
+                        "5f4907fc99527900114af684",
+                        "5f4907fc99527900114af685",
+                        "5f4907fc99527900114af686",
+                        "5f4907fc99527900114af688",
+                        "5f4907fc99527900114af689",
+                        "5f4907fc99527900114af68a",
+                        "5f4907fc99527900114af68b",
+                        "5f4907fc99527900114af68c",
+                        "5f4907fc99527900114af68d",
+                        "5f4907fc99527900114af68e",
+                        "5f4907fc99527900114af68f",
+                        "5f4907fc99527900114af690",
+                        "5f4907fc99527900114af691",
+                        "5f4907fc99527900114af692",
+                        "5f4907fc99527900114af694",
+                        "5f4907fc99527900114af695",
+                        "5f4907fc99527900114af697",
+                        "5f4907fc99527900114af698",
+                        "5f4907fc99527900114af699",
+                        "5f4907fc99527900114af69a",
+                        "60c276c20237f4001205d7ee",
+                        "643840b5448d400012fadfa3",
+                        "6438467a448d400012fadfa4",
+                        "649d8d2edf1f32001331d79b",
+                        "649d904fdf1f32001331d79c"
+                    ],
+                    "tagsNotification": true,
+                    "popularNotification": true,
+                    "authors": []
+                },
+                "createdAt": "2020-11-02T14:29:24.121Z",
+                "updatedAt": "2023-10-19T21:32:28.594Z",
+                "__v": 0
+            },
+            "document": "643e9f18448d400012fadfa7",
+            "version": "643e9f18448d400012fadfa8",
+            "field": "articles",
+            "content": "opino que...",
+            "decoration": {
+                "focus": {
+                    "object": "point",
+                    "offset": 190,
+                    "path": [
+                        1,
+                        0
+                    ]
+                },
+                "anchor": {
+                    "object": "point",
+                    "offset": 13,
+                    "path": [
+                        1,
+                        0
+                    ]
+                },
+                "mark": {
+                    "type": "comment",
+                    "data": {
+                        "id": "643e9f8f448d400012fadfa9"
+                    }
+                }
+            },
+            "createdAt": "2023-04-18T13:47:59.790Z",
+            "updatedAt": "2023-04-18T13:47:59.790Z",
+            "__v": 0,
+            "when": "6 meses",
+            "likes": 0
+        }
+    ]
+}
