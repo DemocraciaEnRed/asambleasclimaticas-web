@@ -8,10 +8,18 @@ export default function BannerSobreProyecto(){
 
         </div>
         <div className="content">
-            <h1 className="title">Sobre el Proyecto</h1>
-            <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra.
-            <br/><br/>
-            Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.</p>
+            <div className="title is-size-2">Sobre el Proyecto
+            <p className="ml-2 has-text-weight-light is-italic is-size-5">
+            *Sobre o Projeto
+            </p>
+            </div>
+            <div className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra.
+                Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra, Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra.
+                <br /><br />
+                <p className="ml-2 has-text-weight-light is-italic is-size-6">
+                    *Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.
+                </p>
+            </div>
             <Link href="/acerca-de" className="button">Conoce más <FontAwesomeIcon className="ml-3" icon={faArrowRight}/></Link>
         </div>
     </div>

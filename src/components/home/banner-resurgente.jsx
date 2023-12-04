@@ -1,0 +1,21 @@
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+
+export default function BannerResurgente(){
+    return <div className="banner-re-surgente">
+        <div className="content">
+            <div className="title is-size-1">¿Qué es <br />
+            (re)surgentes <br />
+            y el pacto <br />
+            interciudad?
+            <p className="ml-2 has-text-weight-light is-italic is-size-3">
+            O que é (re)surgentes e o pacto intercidades?
+            </p>
+            </div>
+            
+        </div>
+        <div className="banner-image">
+        </div>
+    </div>
+}

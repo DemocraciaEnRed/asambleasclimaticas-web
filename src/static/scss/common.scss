@@ -52,8 +52,8 @@
 }
 
 .closing-date-wrapper{
-    display: block;
-    width:22%;
+    display: flex;
+    align-items: center;
     padding-right: 15px;
     border-right: 1px solid $gray-light;
     margin-right: 15px;
@@ -70,25 +70,57 @@
 }
 
 .progress-bar-wrapper{
-    margin-top: 20px;
-    background-color: #c6c8ca;
+    background-color: $pink-light;
     overflow: hidden;
-    height: 40px;
+    height: 48px;
     position:relative;
     .reaming-days{
         width:100%;
-        font-size: 14px;
+        font-size: 16px;
         font-family: var(--bold);
         text-align: center;
         position: absolute;
+        color: $white;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
     .progress-fill{
-        background-color:$primary-color-light;
-        height:40px;
+        background-color:$pink-base;
+        height:100%;
         margin: 0 0 0 -6px;
         transform: skewX(-15deg);
     }
 }
+
+.closing-project{
+    >.project-closed{
+        background-color: $oranje-base;
+    }
+    >.project-open{
+        background-color: $primary-color;
+    }
+}
+
+.atricle-comment-wrapper{
+    display: flex;
+    font-size: 18px;
+    padding: 0 35px 0 20px;
+    margin-right: 20px;
+    border-right: 1px solid $gray-light;
+    @include tablet{
+      display: none;
+    }
+    .counters{
+      color: $gray-dark;
+      p{
+        font-weight: 300;
+        font-size: 16px;
+        margin-bottom: 0;
+        &.text{
+          margin: 0 12px;
+
+        }
+      }
+    }
+  }

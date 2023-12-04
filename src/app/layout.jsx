@@ -10,6 +10,7 @@ import Navbar from "@/components/layout/navbar"
 import Footer from '@/components/layout/footer'
 import Overlay from '@/components/common/overlay'
 import { createTheme } from '@mui/material'
+import { AuthProvider } from '@/context/auth-context'
 
 
 const karla = Karla({
@@ -27,12 +28,15 @@ export default function RootLayout({ children }) {
     <html lang="es" className={karla.className}>
       <body>
         <Providers>
+          <AuthProvider>
           <Navbar/>
           <main>
             {children}
           </main>
           <Footer/>
           <Overlay/>
+
+          </AuthProvider>
         </Providers>
       </body>
     </html>

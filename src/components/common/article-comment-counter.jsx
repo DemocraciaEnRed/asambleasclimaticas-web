@@ -11,11 +11,11 @@ const ArticlesCommentsCounter = ({ commentsCount, apoyosCount, project }) => (
       <p className='text'>Aportes</p>
       <FontAwesomeIcon icon={faPencil}/>
     </div>
-    <p className='counters is-flex is-align-items-center'>
+    <div className='counters is-flex is-align-items-center'>
       <p>{apoyosCount}</p>
       <p className='text'>Apoyos</p>
       <FontAwesomeIcon icon={faHandHoldingHeart} />
-    </p>
+    </div>
   </div>
 )
 

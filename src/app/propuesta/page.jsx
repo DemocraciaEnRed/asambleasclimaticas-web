@@ -1,4 +1,4 @@
-import PropuestaComponent from "@/components/propuesta"
+import PropuestaComponent from "@/components/pacto"
 
 export default function Propuesta() {
 

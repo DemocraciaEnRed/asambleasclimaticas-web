@@ -1,25 +1,40 @@
 import Link from "next/link";
 
-const alianzas = ['extituto', 'der', 'delibera', 'sur']
+const alianzas = ['labicpa', 'open-society', 'ned', 'artemisas', 'friedrich', 'der', 'corona']
 
 export function AcercaDeInfo() {
     return <section className='acerca-de'>
     <h1>acerca de</h1>
     <div className='static-info-wrapper-content'>
       <span>
-      Sobre el proyecto
+      ¿Qué es Resurgentes?
       </span>
-      <p>
-      Latinoamerica apuesta por un nuevo modelo económico. Un modelo post-carbono, que integre la creación de valor económico, social y ambiental. Buscamos nuevas estrategias de desarrollo local basadas en la innovación, la colaboración y la creatividad, con modelos de producción y de consumo que reduzcan-reutilicen-reciclen-reparen-regeneren.
-      <br/><br/>
-      Agua, el aire, los rios , el suelo y los ecosistemas no son recursos. La diversidad biológica garantiza la calidad de vida humana. Nuestro bienestar depende de los servicios ambientales que nos brindan los ecosistemas abundantes, sanos y diversos y deben ser sujetos de derechos..
+      <p>       
+        El país pide un cambio político que nos permita hacerle frente a la crisis económica, de desigualdad, climática y de futuro.
+        <br /> <br />
+        Hoy tenemos frente a nosotras la oportunidad de entrar al Congreso y que nunca sea un espacio cerrado, alejado, inalcanzable e impenetrable que tome en nuestro nombre las decisiones que afectan nuestra vida cotidiana.
+        <br /> <br />
+        Desde Artemisas creemos que no hay otra forma posible de construir el país que queremos sin que sea de manera COLECTIVA.
+        <br /> <br />
+        Colectiva es la primera plataforma feminista en Latinoamérica para discutir, construir y movilizarnos alrededor de las iniciativas que afectarán la vida de las  niñas, jóvenes, mujeres y personas #LGBTIQ+ de nuestro país.
       </p>
       <span>
-        Alianzas
+      ¿Qué son las asambleas y el pacto inter-ciudad?
       </span>
-      
+      <p>       
+          El país pide un cambio político que nos permita hacerle frente a la crisis económica, de desigualdad, climática y de futuro.
+          <br /> <br />
+          Hoy tenemos frente a nosotras la oportunidad de entrar al Congreso y que nunca sea un espacio cerrado, alejado, inalcanzable e impenetrable que tome en nuestro nombre las decisiones que afectan nuestra vida cotidiana.
+          <br /> <br />
+          Desde Artemisas creemos que no hay otra forma posible de construir el país que queremos sin que sea de manera COLECTIVA.
+          <br /> <br />
+          Colectiva es la primera plataforma feminista en Latinoamérica para discutir, construir y movilizarnos alrededor de las iniciativas que afectarán la vida de las  niñas, jóvenes, mujeres y personas #LGBTIQ+ de nuestro país.
+      </p>
+      <span>
+      Alianzas / organizaciones participantes
+      </span>
       <div className="logos-wrapper">
-        {alianzas.map((alianza,idx) => <img key={idx} src={`images/logos/${alianza}.png`} alt="" />)}
+        {alianzas.map((alianza,idx) => <img key={idx} src={`images/logos/${alianza}.png`} alt={'logo ' + alianza} />)}
       </div>
      
     </div>

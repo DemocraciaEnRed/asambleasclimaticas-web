@@ -1,5 +1,5 @@
 .navbar-wrapper {
-    background-color: $primary-color;
+    background-color: $marron-base;
     display: flex;
     justify-content: space-between;
     .logo {
@@ -30,7 +30,7 @@
                 height: 100%;
                 list-style: none;
     
-                a {
+                >a {
                     height: 100%;
                     display: flex;
                     color: $white;
@@ -46,6 +46,16 @@
                 .login-link{
                     border: 2px solid $white;
                     border-radius: 999px;
+                }
+                .user-avatar{
+                    .dropdown-trigger{
+                        button{
+                            background-color: transparent;
+                            border: 2px solid $white;
+                            border-radius: 999px;
+                            color: #fff;
+                        }
+                    }
                 }
                
             }
@@ -89,6 +99,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
+    border-top: 6px solid $pink-base;
     .logo {
         
         margin: 8px 0 8px 22px;
@@ -106,7 +117,7 @@
     }
     .footer-rrss{
         svg{
-            color: $primary-color;
+            color: $black;
             height: 32px;
             margin: 0 2rem;
         }

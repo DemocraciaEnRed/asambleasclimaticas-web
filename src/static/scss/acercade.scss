@@ -51,7 +51,7 @@
 
                 &:hover {
                     cursor: pointer;
-                    color: $primary-color-light;
+                    color: $pink-light;
                 }
 
                 &:not(:last-child) {
@@ -59,12 +59,12 @@
                 }
 
                 &.active {
-                    color: $gray;
+                    color: $pink-base;
                 }
             }
         }
 
-        .acerca-de ,.como-participar{
+        .acerca-de ,.como-participar ,.contacto{
             h1 {
                 font-size: 3rem;
 
@@ -76,10 +76,41 @@
                 text-transform: uppercase;
                 font-family: var(--bold);
                 line-height: 1.18rem;
-                color: $primary-color;
+                color: $pink-base;
                 font-weight: bold;
                 margin-top:23px;
                 margin-bottom: 40px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                @media(max-width:800px) {
+                    line-height: 7rem;
+                    margin-bottom: 30px;
+                }
+                font-family: var(--bold);
+                line-height: 1.18rem;
+                color: $primary-color;
+                font-weight: bold;
+                margin-top:26px;
+                margin-bottom: 16px;
+            }
+            
+            .link-section{
+                padding-left: 1rem;
+                a{
+                    color: $black;
+                    display: flex;
+                    margin: .75rem;
+                    align-items: center;
+                    p{
+                        margin: 8px 0;
+                    }
+                    svg{
+                        font-size: 2rem;
+                        margin-right: 2rem;
+                    }
+                }
             }
 
             .static-info-wrapper-content {
@@ -92,7 +123,8 @@
                 font-size: 1.4rem;
                 line-height: 2rem;
                 color: $primary-color;
-                margin-bottom: 40px;
+                margin-top: 40px;
+                margin-bottom: 30px;
             }
 
             p {
@@ -102,12 +134,34 @@
                 margin-top: 2rem;
                 margin-bottom: 2rem;
             }
+            ul{
+                list-style: disc;
+                list-style-position: inside;
+                li {
+                    font-size: 1rem;
+                    color: $gray-dark;
+                    max-width: 850px;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+            ol{
+                list-style: decimal;
+                list-style-position: inside;
+                li {
+                    font-size: 1rem;
+                    color: $gray-dark;
+                    max-width: 850px;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
             .logos-wrapper{
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
                 img{
-                    margin: 16px 0;
+                    margin: 16px 8px;
                 }
             }
         }

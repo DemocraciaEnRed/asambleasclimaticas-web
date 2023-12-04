@@ -1,0 +1,38 @@
+.auth-wrapper{
+ min-height: 100vh;
+ background-image: url('/images/background.svg');
+ background-size: cover;
+ .login-form-wrapper{
+   
+    .actions{
+        
+        .confirm-button{
+            background-color: $marron-base;
+            color: $white;
+        }
+        .go-to-register-wrapper{
+            .register-button{
+                color: $marron-base;
+                border: 2px solid $marron-base;
+            }
+
+        }
+    }
+ }
+ .register-form-wrapper{
+    .actions{
+        .confirm-button{
+            background-color: $marron-base;
+            color: $white;
+        }
+    }
+    .go-to-login-wrapper{
+        .register-button{
+            color: $secondary-color;
+            background: transparent;
+            border: none
+        }
+
+    }
+ }
+}

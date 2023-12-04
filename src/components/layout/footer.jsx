@@ -3,17 +3,16 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faSquareTwitter, faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useEffect } from "react";
+import Logo from "../common/logo";
 
 
 export default function Footer() {
 
     return (
-        <footer className='footer-wrapper'>
+        <footer className='footer-wrapper py-6'>
             <div className='logo'>
                 <Link href="/" >
-                    <h1>
-                        ac
-                    </h1>
+                    <Logo  widthLogo='300'/>
                 </Link>
 
             </div>
@@ -43,7 +42,7 @@ export default function Footer() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="">
+                    <Link href="/sobre">
                         Acerca de este sitio
                     </Link>
                 </li>

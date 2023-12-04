@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { ComoParticiparInfo } from './como-participar'
 import { AcercaDeInfo } from './acercade'
+import { ContantInfo } from './contacto'
 
 const buttons = [
   {
@@ -14,14 +15,6 @@ const buttons = [
     'value': 'como-participar'
   },
   {
-    'name': 'Preguntas frecuentes',
-    'value': 'faq'
-  },
-  {
-    'name': 'Sobre el sitio',
-    'value': 'sobre-el-sitio'
-  },
-  {
     'name': 'Contacto',
     'value': 'contacto'
   }
@@ -30,9 +23,7 @@ const buttons = [
 const content = {
   'acerca-de': <AcercaDeInfo/>,
   'como-participar': <ComoParticiparInfo/>,
-  'faq': <div>preguntas frecuentes</div>,
-  'sobre-el-sitio': <div> sobre el sitio</div>,
-  'contacto': <div>contacto</div>
+  'contacto': <ContantInfo/>
 }
 
 export default function StaticInfo() {
@@ -48,7 +39,7 @@ export default function StaticInfo() {
         <div className='static-info-nav'>
           {buttons.map((button, i) => (
             <button
-              className='button-section'
+              className={`button-section ${section === button.value ? 'active' : ''}`}
               onClick={() => changeSection(button.value)}
               key={i}>
               {button.name}

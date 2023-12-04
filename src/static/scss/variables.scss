@@ -1,23 +1,25 @@
-$primary-color:			#2A5EB5;
-$primary-color-darker:            lighten($primary-color, 10.5%) !default; // #222
-$primary-color-dark:              lighten($primary-color, 20%) !default;   // #333
-$primary-color:                   lighten($primary-color, 33.5%) !default; // #555
-$primary-color-light:             lighten($primary-color, 75.7%) !default; // #777
-$primary-color-lighter:           lighten($primary-color, 93.5%) !default; // #eee
-$secondary-color:		#039950 !default;
-$crema-base:            #EDE4D5 !default;
-$marron-base:           #47322B !default;
 $success-color:         #46be8a !default;
 $info-color:            #57c7d4 !default;
 $warning-color:         #f2a654 !default;
 $danger-color:          #f96868 !default;
 $white:                 #FFF !default;
 $black:                 #000 !default;
-$gray-darker:            lighten($black, 10.5%) !default; // #222
-$gray-dark:              lighten($black, 20%) !default;   // #333
-$gray:                   lighten($black, 33.5%) !default; // #555
-$gray-light:             lighten($black, 75.7%) !default; // #777
-$gray-lighter:           lighten($black, 93.5%) !default; // #eee
+$gray-darker:           lighten($black, 10.5%) !default; // #222
+$gray-dark:             lighten($black, 20%) !default;   // #333
+$gray:                  lighten($black, 33.5%) !default; // #555
+$gray-light:            lighten($black, 75.7%) !default; // #777
+$gray-lighter:          lighten($black, 93.5%) !default; // #eee
 
 
-
+$primary-color:			#039950;
+$primary-color-darker:  lighten($primary-color, 10.5%) !default; // #222
+$primary-color-dark:    lighten($primary-color, 20%) !default;   // #333
+$primary-color:         lighten($primary-color, 33.5%) !default; // #555
+$primary-color-light:   lighten($primary-color, 75.7%) !default; // #777
+$primary-color-lighter: lighten($primary-color, 93.5%) !default; // #eee
+$secondary-color:		#039950 !default;
+$crema-base:            #EDE4D5 !default;
+$marron-base:           #47322B !default;
+$oranje-base:           #D43811 !default;
+$pink-base:             #D71D81 !default;
+$pink-light:             lighten($pink-base, 30%) !default;   // #333
