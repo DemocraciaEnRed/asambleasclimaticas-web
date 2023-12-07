@@ -1,4 +1,5 @@
 'use client'
+import axiosServices from '@/utils/axios';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -15,17 +16,9 @@ const AuthProvider = ({ children }) => {
   async function fetchUser() {
     if(token){
       try{
-          const response = await fetch('http://localhost:3000/user/me', {
-              method: 'GET',
-              headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json',
-                  // Otros encabezados necesarios
-              },
-              
-             })
-          const res = await response.json()
-          setUser(res)
+          const response = await axiosServices.get('/user/me')
+
+          setUser(response.data)
           
       }catch(err){
           console.log(err);

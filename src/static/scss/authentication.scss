@@ -34,5 +34,17 @@
         }
 
     }
- }
+}
+    .set-lang{
+        border: 1px solid $marron-base;
+        width: fit-content;
+        border-radius: 9999px;
+        .button{
+            border: none;
+        }
+        .active{
+            background-color: $marron-base;
+            color: $white;
+        }
+    }
 }

@@ -5,6 +5,7 @@ import ArticlesCommentsCounter from "../common/article-comment-counter"
 import ProjectHeaderVersion from "../pacto/header/preject-version"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
+import axiosServices from "@/utils/axios"
 
 const BannerPacto = () => {
     const [project, setProject] = useState(null)
@@ -14,9 +15,9 @@ const BannerPacto = () => {
     },[])
 
     const fetchProject =async () => {
-        const resp = await fetch('http://localhost:3000/project/6569ca2b4977d65550a1e94f')
-        const project = await resp.json()
-        setProject(project)
+        const resp = await axiosServices.get('/project')
+        const {projects} = await resp.data
+        setProject(projects[0])
     }
 
     const ClosedProjectcheck = (project) => {

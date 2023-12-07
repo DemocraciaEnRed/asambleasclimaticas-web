@@ -1,14 +1,27 @@
-import { useState } from "react"
+import axiosServices from "@/utils/axios"
+import { useEffect, useState } from "react"
 
 export default function Register({ changeLogin }) {
+    const [countryList, setCountryList] = useState([])
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    //const [lastName, setLastName] = useState('')
     const [country, setCountry] = useState('')
+    const [lang, setLang] = useState('esp')
     const [city, setCity] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
 
+
+    async function fetchCountry(){
+        const resp = await axiosServices.get('http://localhost:3000/country')
+        const countries = await resp.data
+        setCountryList(countries)
+    }
+
+    useEffect(()=>{
+        fetchCountry()
+    },[])
 
     function handleChangeRePassword(event){
         if(event.target.value !== password){
@@ -27,8 +40,9 @@ export default function Register({ changeLogin }) {
         if (document.getElementById('terms-and-conditions').checked && rePassword === password) {
             const body = {
                 email,
-                firstName,
-                lastName,
+                name:firstName,
+                //lastName,
+                lang,
                 country,
                 city,
                 password,
@@ -36,13 +50,10 @@ export default function Register({ changeLogin }) {
             }
             document.getElementById('tyc-warning').style.display = 'none'
             try{
-                const response = await fetch('http://localhost:3000/auth/register', {
-                    method: 'post',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify(body)
-                   })
-                const res = await response.json() 
-
+                const response = await axiosServices.post('/auth/register', 
+                    JSON.stringify(body)
+                   )
+                if (response.status === 200) changeLogin()
             }catch(err){
                 console.log(err);
             }
@@ -70,30 +81,30 @@ export default function Register({ changeLogin }) {
                             <input className="input" name="name" type="text" onChange={(event) => setFirstName(event.target.value)} />
                         </div>
                     </div>
-                    <div className="field">
+                    {/* <div className="field">
                         <label className="label has-text-weight-normal">Tu apellido  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *Seu nome</span></label>
                         <div className="control">
                             <input className="input" name="lastname" type="text" onChange={(event) => setLastName(event.target.value)} />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="field">
                         <label className="label has-text-weight-normal">País  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *país</span></label>
                         <div className="control">
                             <div className="select w-100">
-                                <select className="w-100" name="coutry" onChange={(event)=> setCountry(event.target.value)}>
-                                    <option>Argentina</option>
-                                    <option>Bolivia</option>
-                                    <option>Brasil</option>
-                                    <option>Chile</option>
-                                    <option>Colombia</option>
-                                    <option>Ecuador</option>
-                                    <option>Guyana</option>
-                                    <option>Perú</option>
-                                    <option>Surinam</option>
-                                    <option>Uruguay</option>
-                                    <option>Venezuela</option>
-
+                                <select className="w-100" name="coutry" defaultValue={''} onChange={(event)=> setCountry(event.target.value)}>
+                                    <option value="" selected disabled > Elegí un pais </option>
+                                    {countryList.map(country => <option value={country._id} key={country._id}> {country.name} {country.emoji} </option>)}
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="field">
+                        <label className="label has-text-weight-normal">lenguaje  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *linguagem</span></label>
+                        <div className="control">
+                            <div className="set-lang">
+                                <button className={`button is-rounded ${lang === 'esp' ? 'active': ''}`}  onClick={()=>setLang('esp')}>Español</button>  
+                                <button className={`button is-rounded ${lang === 'prt' ? 'active': ''}`}  onClick={()=>setLang('prt')}>Portugues</button>  
+
                             </div>
                         </div>
                     </div>

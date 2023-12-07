@@ -96,7 +96,7 @@ export default function Navbar() {
                         {user ?<div className="dropdown is-right is-hoverable mr-4 user-avatar">
                         <div className="dropdown-trigger">
                             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>{user.firstName}</span>
+                            <span>{user.name}</span>
                             
                             </button>
                         </div>

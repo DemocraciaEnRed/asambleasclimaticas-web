@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/auth-context"
 import { dispatch } from "@/store"
 import { handleToken } from "@/store/reducers/auth"
+import axiosServices from "@/utils/axios"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
@@ -23,14 +24,10 @@ export default function Login({changeLogin}) {
             password,
         }
         try{
-            const response = await fetch('http://localhost:3000/auth/login', {
-                method: 'post',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(body)
-               })
-            const res = await response.json() 
+            const response = await axiosServices.post('/auth/login', JSON.stringify(body))
+            const res = await response.data
             dispatch(handleToken(res.token))
-            window.location.reload(false);
+            if (response.status === 200) window.location.reload(false);
         }catch(err){
             console.log(err);
         }
