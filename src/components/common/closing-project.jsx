@@ -7,7 +7,7 @@ const formatDate = (createdAt) => {
 
 const ClosingProject = ({ closed }) => (
   <div className={`closing-project `} >
-      <div className={`has-text-white p-3 ${!closed ? 'project-open': 'project-closed'}`}>
+      <div className={`has-text-white p-3 ${!closed ? 'has-background-primary': 'has-background-orange'}`}>
         {!closed ? 'Abierto para Aportes':'Cerrado para Aportes'} 
       </div>
   </div>

@@ -1,8 +1,8 @@
-import PropuestaComponent from "@/components/pacto"
+import PropuestaResumenComponent from "@/components/pacto/resumen"
 
 export default function Propuesta() {
 
     return <div className="pacto-wrapper ">
-        <PropuestaComponent />
+        <PropuestaResumenComponent />
     </div>
 }

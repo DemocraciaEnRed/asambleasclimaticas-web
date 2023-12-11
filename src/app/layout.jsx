@@ -14,7 +14,7 @@ import { AuthProvider } from '@/context/auth-context'
 
 
 const karla = Karla({
-  weight: ['400','500','600','700','800'],
+  weight: ['200','300','400','500','600','700','800'],
   subsets: ['latin'],
   display: 'swap',
 })

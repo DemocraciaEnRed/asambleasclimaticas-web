@@ -7,13 +7,13 @@
     .actions{
         
         .confirm-button{
-            background-color: $marron-base;
+            background-color: $brown-base;
             color: $white;
         }
         .go-to-register-wrapper{
             .register-button{
-                color: $marron-base;
-                border: 2px solid $marron-base;
+                color: $brown-base;
+                border: 2px solid $brown-base;
             }
 
         }
@@ -22,7 +22,7 @@
  .register-form-wrapper{
     .actions{
         .confirm-button{
-            background-color: $marron-base;
+            background-color: $brown-base;
             color: $white;
         }
     }
@@ -36,14 +36,14 @@
     }
 }
     .set-lang{
-        border: 1px solid $marron-base;
+        border: 1px solid $brown-base;
         width: fit-content;
         border-radius: 9999px;
         .button{
             border: none;
         }
         .active{
-            background-color: $marron-base;
+            background-color: $brown-base;
             color: $white;
         }
     }

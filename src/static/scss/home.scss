@@ -12,7 +12,6 @@
     .banner {
         font-size: 1.3rem;
         padding: 3rem 1rem;
-        background-color: $primary-color;
         text-align: center;
 
         @include tablet {
@@ -22,7 +21,6 @@
     }
 
     .banner-participativo {
-        background-color: $crema-base;
         padding: 2rem 4rem;
         @include tablet{
             padding: 2rem 1rem;
@@ -67,7 +65,6 @@
     .banner-pacto{
         .card{
 
-            background-color: $crema-base;
             .card-image{
                 figure{
                     height: 100%;
@@ -93,7 +90,6 @@
         .content{
             width: 60%;
             padding: 4rem 7rem;
-            background-color: $oranje-base;
             color: $white;
             @include tablet{
                 width: 100%;
@@ -109,7 +105,6 @@
                 background-color: $white;
                 border-radius: 999px;
                 border: none;
-                color: $oranje-base;
                 padding: 0 2rem;
             }
         }
@@ -130,7 +125,6 @@
         .content{
             width: 60%;
             padding: 4rem 7rem;
-            background-color: $oranje-base;
             color: $white;
             margin-bottom: 0;
             @include tablet{
@@ -147,7 +141,6 @@
                 background-color: $white;
                 border-radius: 999px;
                 border: none;
-                color: $oranje-base;
                 padding: 0 2rem;
             }
         }

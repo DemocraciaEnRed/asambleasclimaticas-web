@@ -1,5 +1,8 @@
+
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Remark } from "react-remark";
+
 
 export default function ResumenBody({ project }) {
 
@@ -17,9 +20,10 @@ export default function ResumenBody({ project }) {
                 allowFullScreen
                 title="Embedded youtube"
             />
-                <p className="about-es my-4" dangerouslySetInnerHTML={{ __html: project.about_es.replace(/\n/g, "<br><br>") }}></p>
+                {/* <p className="about-es my-4" dangerouslySetInnerHTML={{ __html: project.about_es.replace(/\n/g, "<br><br>") }}></p> */}
+                <Remark>{project.about_es}</Remark>
 
-                <button className="contrib-button w-100 my-5 is-flex is-justify-content-space-between p-4 has-text-weight-bold has-text-white is-size-6">
+                <button className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 my-5 is-flex is-justify-content-space-between p-4 is-size-6">
                     Contribuye dejando tus aportes en las máximas del Pacto Interciudad
                     <FontAwesomeIcon icon={faArrowRight} />
                 </button>

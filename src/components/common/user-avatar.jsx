@@ -12,7 +12,7 @@ const UserAvatar = ({ projectView, userId, name, party, badge,cardUser }) => (
     </Link>
     <div className='text-wrapper is-flex is-flex-grow-1 is-flex-shrink-1 is-flex-direction-column'>
       <Link href={{ pathname: '/userprofile', query: { id: userId } }}>
-        <div className='name'>{name}</div>
+        <div className='name has-text-primary'>{name}</div>
       </Link>
       {window.location.pathname === '/admin' && <div className='user-party'>
         {badge && <div className='icon-wrapper'><FontAwesomeIcon icon={faCheckCircle} /></div>}

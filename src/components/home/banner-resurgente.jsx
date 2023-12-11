@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function BannerResurgente(){
     return <div className="banner-re-surgente">
-        <div className="content">
+        <div className="content has-background-orange">
             <div className="title is-size-1">¿Qué es <br />
             (re)surgentes <br />
             y el pacto <br />

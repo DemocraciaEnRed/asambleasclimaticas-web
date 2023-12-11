@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
 
-import { documento, comentario, articulado, esAutor } from '../../../../document-example.json'
+import { documento, comentario, articulado } from '../../../../document-example.json'
 import Link from "next/link"
 
 export default function BreadcrumbNav({ section, id, title }) {

@@ -28,7 +28,6 @@
     .text-wrapper{
         padding-left:20px;
         .name{
-            color: $primary-color;
             font-size: 20px;
             font-weight: bold;
             cursor: pointer;
@@ -93,14 +92,7 @@
     }
 }
 
-.closing-project{
-    >.project-closed{
-        background-color: $oranje-base;
-    }
-    >.project-open{
-        background-color: $primary-color;
-    }
-}
+
 
 .atricle-comment-wrapper{
     display: flex;

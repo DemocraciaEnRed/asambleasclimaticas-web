@@ -6,7 +6,7 @@ export function AcercaDeInfo() {
     return <section className='acerca-de'>
     <h1>acerca de</h1>
     <div className='static-info-wrapper-content'>
-      <span>
+      <span  className="has-text-primary">
       ¿Qué es Resurgentes?
       </span>
       <p>       
@@ -18,7 +18,7 @@ export function AcercaDeInfo() {
         <br /> <br />
         Colectiva es la primera plataforma feminista en Latinoamérica para discutir, construir y movilizarnos alrededor de las iniciativas que afectarán la vida de las  niñas, jóvenes, mujeres y personas #LGBTIQ+ de nuestro país.
       </p>
-      <span>
+      <span  className="has-text-primary">
       ¿Qué son las asambleas y el pacto inter-ciudad?
       </span>
       <p>       
@@ -30,7 +30,7 @@ export function AcercaDeInfo() {
           <br /> <br />
           Colectiva es la primera plataforma feminista en Latinoamérica para discutir, construir y movilizarnos alrededor de las iniciativas que afectarán la vida de las  niñas, jóvenes, mujeres y personas #LGBTIQ+ de nuestro país.
       </p>
-      <span>
+      <span  className="has-text-primary">
       Alianzas / organizaciones participantes
       </span>
       <div className="logos-wrapper">

@@ -34,7 +34,7 @@ export default function StaticInfo() {
   }
   return (
     <>
-      <div className='banner-wrapper'></div>
+      <div className='banner-wrapper has-background-primary'></div>
       <div className='static-info-wrapper'>
         <div className='static-info-nav'>
           {buttons.map((button, i) => (

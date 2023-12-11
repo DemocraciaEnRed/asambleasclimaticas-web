@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
 
 export function BannerParticipativo() {
-    return <div className="banner-participativo has-text-centered py-6">
+    return <div className="banner-participativo has-text-centered has-background-cream py-6">
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">¿Cómo Participar?</h1>
         <div className="card-group is-flex is-justify-content-center my-4">
             <div className="card m-3 py-4">

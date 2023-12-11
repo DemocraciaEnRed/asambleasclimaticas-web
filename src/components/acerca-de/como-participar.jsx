@@ -4,13 +4,13 @@ export function ComoParticiparInfo() {
   return <section className='como-participar'>
     <h1>¿Cómo participar?</h1>
     <div className='static-info-wrapper-content'>
-      <span>
+      <span className="has-text-primary">
         ¿QUÉ ES EL CONGRESO DE LA REPÚBLICA Y QUÉ FUNCIONES CUMPLE?
       </span>
       <p>
         "Colombia cuenta con un sistema legislativo bicameral conformado por un Senado y la Cámara de Representantes. Los congresistas son designados por un período de cuatro años que inicia y finaliza cada 20 de junio."
       </p>
-      <span>
+      <span className="has-text-primary">
         ¿QUÉ DIFERENCIAS EXISTEN ENTRE EL SENADO Y LA CÁMARA?
       </span>
       <ul>
@@ -18,7 +18,7 @@ export function ComoParticiparInfo() {
         <li>Los temas o proyectos que conocen.</li>
         <li>Los altos funcionarios que se designan.</li>
       </ul>
-      <span>
+      <span className="has-text-primary">
         Senado de la República:
       </span>
       <p>El Senado se elige con el voto en todo el territorio nacional y se compone por 108 senadores y senadoras, cuyas curules se distribuyen así: 100 electos por circunscripción nacional, dos por circunscripción especial indígena, cinco curules del partido resultado del Acuerdo de Paz y una curul para oposición.
@@ -47,7 +47,7 @@ export function ComoParticiparInfo() {
           </li>
         </ul>
       </p>
-      <span>
+      <span className="has-text-primary">
         Cámara de Representantes
       </span>
       <p>La Cámara de Representantes se elige por departamentos y por el Distrito Capital de Bogotá. Actualmente, son 172 representantes, 161 elegidos por voto popular,  cinco del partido resultado del Acuerdo de Paz, dos por representación afrodescendiente, una por representación indígena, una por colombianos en el exterior y una para la oposición.
@@ -69,7 +69,7 @@ export function ComoParticiparInfo() {
 
         </ul>
       </p>
-      <span>
+      <span className="has-text-primary">
       ¿CUÁL ES EL PROCEDIMIENTO PARA DISCUTIR Y APROBAR UNA LEY?
       </span>
       <ol>

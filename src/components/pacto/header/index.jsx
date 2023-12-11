@@ -7,9 +7,10 @@ import ProgressBar from "../../common/progresBar";
 import ClosingProject from "../../common/closing-project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 
-export default function HeaderPropuesta({project, section, setSection}) {
+export default function HeaderPropuesta({project, section }) {
 
     const ClosedProjectcheck = (project) => {
         var today = new Date();
@@ -21,7 +22,7 @@ export default function HeaderPropuesta({project, section, setSection}) {
                 <div className="top-bar-wrapper is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center w-100">
                     <div className="project-title w-50">
                         {project.title_es}
-                        <span className="ml-2 has-text-weight-light is-italic is-size-4">{project.title_pt}</span>
+                        <span className="has-text-weight-light is-italic is-size-4">{project.title_pt}</span>
                     </div>
                     <div className="is-flex is-justify-content-end">
                             <ClosingDate closingDate={project.closedAt} 
@@ -47,12 +48,12 @@ export default function HeaderPropuesta({project, section, setSection}) {
                 <div className="tab-section is-flex is-justify-content-space-between">
                     <div className="tabs ">
                     <ul>
-                        <li className={section === 'resumen' ? 'is-active' : ''} onClick={()=> setSection('resumen')}><a>Resumen</a></li>
-                        <li className={section === 'pacto' ? 'is-active' : ''} onClick={()=> setSection('pacto')}><a> Pacto</a></li>
-                        <li className={section === 'hoja' ? 'is-active' : ''} onClick={()=> setSection('hoja')}><a>Hoja de ruta</a></li>
+                        <li className={section === 'resumen' ? 'is-active' : ''}><Link href="/pacto" >Resumen</Link></li>
+                        <li className={section === 'pacto' ? 'is-active' : ''} ><Link href="/pacto/pacto" > Pacto</Link></li>
+                        <li className={section === 'hoja' ? 'is-active' : ''} ><Link href="/pacto/hoja-de-ruta" >Hoja de ruta</Link></li>
                     </ul>
                     </div>
-                    <button className="button shared-button px-3">Compartir proyecto <FontAwesomeIcon icon={faShareNodes}/></button>
+                    <button className="button has-text-primary shared-button px-3">Compartir proyecto <FontAwesomeIcon icon={faShareNodes}/></button>
                 </div>
             </div>
             

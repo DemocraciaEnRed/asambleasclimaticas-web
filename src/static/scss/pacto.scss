@@ -39,7 +39,6 @@
     }
   
     .project-header-container {
-      background-color: $primary-color;
       .project-header-wrapper {
         width: 100%;
         min-height: 215px;
@@ -83,7 +82,6 @@
           }
           .project-title{
             font-size: 2.5rem;
-            color: $black;
             margin-top: 15px;
             margin-bottom: 15px;
             flex: 1;
@@ -121,13 +119,13 @@
               ul{
                 border: none;
                 li{
-                  border-bottom: 3px solid $primary-color;
+                  border-bottom: 3px solid $primary;
                   a{
                     padding: 0.5em 2em ;
                     border: none;
                   }
                   &.is-active{
-                    background-color: $primary-color;
+                    background-color: $primary;
                     color: $white;
                       a{
                           color: $white;
@@ -143,11 +141,10 @@
             }
             .shared-button{
               height: auto;
-              border: 2px solid $primary-color;
+              border: 2px solid $primary;
               border-bottom: none;
               border-bottom-left-radius: 0;
               border-bottom-right-radius: 0;
-              color: $primary-color;
               svg{
                 margin-left: 4px;
               }
@@ -161,19 +158,16 @@
       padding: 3rem 4rem;
       .resumen-pacto{
         .contrib-button{
-          background-color: $primary-color;
           border: none;
         }
       }
       .articles-pacto{
-        .title-section{
-         color: $primary-color;
-        }
+        
         .description-section{
           background-color: $gray-lighter;
         }
         .card{
-          border: 1px solid $primary-color;
+          border: 1px solid $primary;
           border-radius: 10px;
           .card-content{
             .index{
@@ -184,12 +178,7 @@
             }
 
           }
-          .card-footer{
-            background-color: $primary-color;
-            button{
-              color: $primary-color;
-            }
-          }
+          
         }
       }
     }

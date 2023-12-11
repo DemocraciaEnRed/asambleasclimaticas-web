@@ -1,5 +1,5 @@
 .navbar-wrapper {
-    background-color: $marron-base;
+    background-color: $brown-base;
     display: flex;
     justify-content: space-between;
     .logo {
@@ -60,11 +60,7 @@
                
             }
     
-            /* .active a span {
-                border-radius: 50px;
-                color: $primary-color;
-            } */
-    
+            
             @include tablet {
                 flex-direction: column;
                 width: 100%;
@@ -109,11 +105,7 @@
         @include tablet {
             margin: 0;
         }
-        h1 {
-            font-size: 5rem;
-            color: $primary-color;
-            font-weight: 900;
-        }
+       
     }
     .footer-rrss{
         svg{

@@ -6,6 +6,7 @@ import ProjectHeaderVersion from "../pacto/header/preject-version"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
 import axiosServices from "@/utils/axios"
+import { Remark } from "react-remark"
 
 const BannerPacto = () => {
     const [project, setProject] = useState(null)
@@ -26,7 +27,7 @@ const BannerPacto = () => {
 
     return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">El pacto</h1>
-        {project && <div className="card is-flex w-75">
+        {project && <div className="card has-background-cream is-flex w-75">
             <div className="card-image">
                 <figure className="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
@@ -45,7 +46,10 @@ const BannerPacto = () => {
                 </div>
 
                 <div className="content px-5">
-                   {project.about_es}
+                    <Remark>
+                    {project.about_es}
+
+                    </Remark>
                    <div className="is-flex ">
 
                    <ClosingDate closingDate={project.closedAt} 
