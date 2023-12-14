@@ -1,0 +1,10 @@
+.pacto-form{
+
+  .article-wrapper{
+    .marked-deleted{
+      opacity: 0.3;
+      // disable interactivity
+      pointer-events: none;
+    }
+  }
+}
