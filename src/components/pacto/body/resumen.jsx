@@ -11,15 +11,15 @@ export default function ResumenBody({ project }) {
 
         <div className="columns">
             <div className="column is-9">
-            <iframe
-                width="100%"
-                height="480"
-                src={`https://www.youtube.com/embed/cQrNiQq4zE4`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-            />
+                <iframe
+                    width="100%"
+                    height="480"
+                    src={`https://www.youtube.com/embed/cQrNiQq4zE4`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Embedded youtube"
+                />
                 {/* <p className="about-es my-4" dangerouslySetInnerHTML={{ __html: project.about_es.replace(/\n/g, "<br><br>") }}></p> */}
                 <Remark>{project.about_es}</Remark>
 
@@ -30,5 +30,6 @@ export default function ResumenBody({ project }) {
 
             </div>
         </div>
+        
     </div>
 }

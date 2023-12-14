@@ -1,0 +1,84 @@
+.landing-wrapper{
+    .country-banner{
+        .card-group{
+            .card{
+                width: 45%;
+                background-color: transparent;
+                box-shadow: none;
+                .card-content{
+                    .title{
+                        position: relative;
+                        &::after{
+                            content: '';
+                            display: block;
+                            height: 5px;
+                            width: 20%;
+                            background-color: $pink-base;
+                            position: absolute;
+                            bottom: -5px;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            border-radius: 99999px;
+                        }
+                    }
+                    .content{
+                        ul{
+                            list-style: none;
+                            margin-left: 0;
+                        }
+                    }
+                }
+                .card-footer{
+                    border:none;
+                    .more-button{
+                        border-radius: 50%;
+                        padding: 1em;
+                    }
+                }
+            }
+        }
+    }
+    .slider-wrapper{
+        .swiper {
+            width: 100%;
+            height: 100%;
+            .swiper-wrapper{
+                align-items: center;
+                .swiper-slide {
+                  text-align: center;
+                  font-size: 18px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  .swiper-item{
+                      padding: 2.5em 14em;
+                  }
+                }
+            }
+            .swiper-button-prev, .swiper-button-next{
+                align-items: center;
+                justify-content: center;
+                &::after{
+                    color: $white;
+                    font-size: 1.25em;
+                    border: 2px solid $white;
+                    padding: 6px 10px;
+                    border-radius: 50%;
+                }
+            }
+          }
+
+    }
+    .banner-interciudad{
+        ol{
+            //list-style-position: inside;
+            li{
+                //display: inline-block;
+            }
+        }
+    }
+}

@@ -1,8 +1,9 @@
 import { faThumbsDown, faThumbsUp, faComment } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Remark } from "react-remark";
+import Comments from "./comments";
 
-export default function PactoBody({ articles }) {
+export default function PactoBody({ project }) {
 
     return <div className="articles-pacto">
         <div className="columns">
@@ -23,11 +24,11 @@ export default function PactoBody({ articles }) {
                         *Pode comentar cada máxima/artigo selecionando sobre o bloco de seu interesse, seja gerando um comentário ou deixando uma reação. Deixe o comentário no idioma de sua preferência e aquele com o qual se sinta mais confortável.
                     </p>
                 </div>
-                {articles.map((article) =>{
-                    const body = article.body_es
-                    return (<div className="card my-4" key={article.id}>
+                {project.articles.length > 0 && project.articles.map((article) => {
+                    const body = article.text_es
+                    return (<div className="card my-4" key={article._id}>
                         <div className="card-content is-size-5 columns" >
-                        <p className="column index pt-0">{article.position}.</p>
+                            <p className="column index pt-0">{article.position}.</p>
 
                             <Remark>
                                 {body}
@@ -39,14 +40,15 @@ export default function PactoBody({ articles }) {
                                 <button className="button is-white has-text-primary is-rounded mx-2"> <FontAwesomeIcon className="mr-3" icon={faThumbsDown} /> No me gusta (20) </button>
                             </div>
                             <div className="is-flex is-align-items-center">
-                                <span className="has-text-white">20 Comentarios</span>
+                                <span className="has-text-white"></span>
                                 <button className="button is-white has-text-primary is-rounded mx-2"><FontAwesomeIcon className="mr-3" icon={faComment} /> Comentar</button>
                             </div>
                         </footer>
                     </div>)
-                    }
+                }
                 )}
             </div>
         </div>
+        <Comments project={project}/>
     </div>
 }

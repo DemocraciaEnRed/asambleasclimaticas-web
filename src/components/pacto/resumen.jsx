@@ -17,14 +17,12 @@ export default function PropuestaResumenComponent() {
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get('/project')
-        const { projects } = await resp.data
-        setProject(projects[0])
+        const resp = await axiosServices.get('/projects/65775cadc6972f1d2fda9105?withComments=true')
+        setProject(resp.data)
     }
 
   
     return <>
-        {/* <BreadcrumbNav section={pathname} id={project.id} title={project.currentVersion.content.title}/> */}
         {project &&
             <>
                 <HeaderPropuesta project={project} section="resumen"  />

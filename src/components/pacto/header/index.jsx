@@ -6,11 +6,11 @@ import ProjectHeaderVersion from "./preject-version";
 import ProgressBar from "../../common/progresBar";
 import ClosingProject from "../../common/closing-project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 
-export default function HeaderPropuesta({project, section }) {
+export default function HeaderPropuesta({ project, section }) {
 
     const ClosedProjectcheck = (project) => {
         var today = new Date();
@@ -25,38 +25,38 @@ export default function HeaderPropuesta({project, section }) {
                         <span className="has-text-weight-light is-italic is-size-4">{project.title_pt}</span>
                     </div>
                     <div className="is-flex is-justify-content-end">
-                            <ClosingDate closingDate={project.closedAt} 
-                                        creationDate={project.createdAt}/>
-                        <ArticlesCommentsCounter commentsCount={10/* project.commentsCount */} 
-                                                apoyosCount={30/* project.apoyosCount */} 
-                                                project={project._id}/>
+                        {project.closedAt && <ClosingDate closingDate={project.closedAt}
+                            creationDate={project.createdAt} />}
+                        <ArticlesCommentsCounter commentsCount={project.comments.length/* project.commentsCount */}
+                            apoyosCount={30/* project.apoyosCount */}
+                            project={project._id} />
                         <ProjectHeaderVersion project={project._id}
-                                            version={1/* project.currentVersion.version */}
-                                            />
+                            version={1/* project.currentVersion.version */}
+                        />
                     </div>
                 </div>
-                <div className="project-progress-bar is-flex is-flex-wrap-wrap mb-6">
+                {project.closedAt && <div className="project-progress-bar is-flex is-flex-wrap-wrap mb-6">
                     <div className="progress-project">
-                    <ProgressBar closingDate={project.closedAt} 
-                                 creationDate={project.createdAt} 
-                                 closed={ClosedProjectcheck(project)}/>
+                        <ProgressBar closingDate={project.closedAt}
+                            creationDate={project.createdAt}
+                            closed={ClosedProjectcheck(project)} />
                     </div>
                     <div className="ml-2 is-hidden-touch">
                         <ClosingProject closed={ClosedProjectcheck(project)} />
                     </div>
-                </div>
+                </div>}
                 <div className="tab-section is-flex is-justify-content-space-between">
                     <div className="tabs ">
-                    <ul>
-                        <li className={section === 'resumen' ? 'is-active' : ''}><Link href="/pacto" >Resumen</Link></li>
-                        <li className={section === 'pacto' ? 'is-active' : ''} ><Link href="/pacto/pacto" > Pacto</Link></li>
-                        <li className={section === 'hoja' ? 'is-active' : ''} ><Link href="/pacto/hoja-de-ruta" >Hoja de ruta</Link></li>
-                    </ul>
+                        <ul>
+                            <li className={section === 'resumen' ? 'is-active' : ''}><Link href="/pacto" >Resumen</Link></li>
+                            <li className={section === 'pacto' ? 'is-active' : ''} ><Link href="/pacto/pacto" > Pacto</Link></li>
+                            <li className={section === 'hoja' ? 'is-active' : ''} ><Link href="/pacto/hoja-de-ruta" >Hoja de ruta</Link></li>
+                        </ul>
                     </div>
-                    <button className="button has-text-primary shared-button px-3">Compartir proyecto <FontAwesomeIcon icon={faShareNodes}/></button>
+                    <button className="button has-text-primary shared-button px-3">Compartir proyecto <FontAwesomeIcon icon={faShareNodes} /></button>
                 </div>
             </div>
-            
+
         </div>
     </div>
 

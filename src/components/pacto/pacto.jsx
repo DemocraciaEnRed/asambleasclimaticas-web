@@ -9,7 +9,6 @@ import PactoBody from "./body/pacto"
 
 export default function PropuestaPactoComponent() {
     const [project, setProject] = useState(null)
-    const [articles, setArticles] = useState(null)
 
     const [section, setSection] = useState('resumen')
 
@@ -18,23 +17,19 @@ export default function PropuestaPactoComponent() {
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get('/project')
-        const { projects } = await resp.data
-        setProject(projects[0])
-
-        const resp2 = await axiosServices.get('/article')
-        const { articles } = await resp2.data
-        setArticles(articles)
+        const resp = await axiosServices.get('/projects/65775cadc6972f1d2fda9105?withArticles=true&withComments=true')
+        const project = await resp.data
+        setProject(project)
     }
 
   
     return <>
         {/* <BreadcrumbNav section={pathname} id={project.id} title={project.currentVersion.content.title}/> */}
-        { project && articles &&
+        { project &&
             <>
                 <HeaderPropuesta project={project} section="pacto"  />
                 <div className="project-body-container">
-                    <PactoBody articles={articles} project={project}/>
+                    <PactoBody project={project}/>
                 </div>
             </>
         }
