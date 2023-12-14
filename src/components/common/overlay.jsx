@@ -9,9 +9,12 @@ export default function Overlay(props) {
     
 
   return (
-    
-      <div className={`overlay ${config.overlayOpen ? 'active':''}`} >
+    <>
+    <div className={`overlay `} >
       </div>
+      {/* <div className={`overlay ${config.overlayOpen ? 'active':''}`} >
+      </div> */}
+    </>
     
   );
 };

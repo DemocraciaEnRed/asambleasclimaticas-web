@@ -11,10 +11,11 @@ import Footer from '@/components/layout/footer'
 import Overlay from '@/components/common/overlay'
 import { createTheme } from '@mui/material'
 import { AuthProvider } from '@/context/auth-context'
+import { LandingProvider } from '@/context/landing-context'
 
 
 const karla = Karla({
-  weight: ['200','300','400','500','600','700','800'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
   subsets: ['latin'],
   display: 'swap',
 })
@@ -24,19 +25,23 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
- return (
+
+  return (
     <html lang="es" className={karla.className}>
       <body>
         <Providers>
-          <AuthProvider>
-          <Navbar/>
-          <main>
-            {children}
-          </main>
-          <Footer/>
-          <Overlay/>
+          <LandingProvider>
+            <AuthProvider>
+              <Navbar />
+              <main>
+                {children}
+              </main>
+              <Footer />
+              <Overlay />
 
-          </AuthProvider>
+            </AuthProvider>
+
+          </LandingProvider>
         </Providers>
       </body>
     </html>

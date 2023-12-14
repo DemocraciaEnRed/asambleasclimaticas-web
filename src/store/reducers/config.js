@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     overlayOpen:false,
+    landingSkip:false
 }
 
 export const configState = createSlice({
@@ -17,10 +18,16 @@ export const configState = createSlice({
         closeOverlay: (state)=>{
             state.overlayOpen = false
         },
+        landingSkip: (state)=>{
+            state.landingSkip = true
+        },
+        landingNoSkip: (state)=>{
+            state.landingSkip = false
+        },
     }
 
 })
 
-export const {handleOverlay, openOverlay, closeOverlay } = configState.actions
+export const {handleOverlay, openOverlay, closeOverlay,landingSkip ,landingNoSkip } = configState.actions
 
 export default configState.reducer

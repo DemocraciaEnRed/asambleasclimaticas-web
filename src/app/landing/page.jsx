@@ -4,7 +4,11 @@ import BannerPactoLanding from "@/components/landing/banner-pacto-landing";
 import CountriesBanner from "@/components/landing/countries-banner";
 import CountryBanner from "@/components/landing/country-banner";
 import SliderBanner from "@/components/landing/slider-banner";
+import { dispatch } from "@/store";
+import { landingSkip } from "@/store/reducers/config";
+import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 const countryList = [
     {
@@ -51,10 +55,21 @@ const countryList = [
 
 export default function Home() {
     const [countries, setCountries] = useState(countryList)
+    const config = useSelector((state)=>state.config)
+
+    const handleClick = () => {
+        dispatch(landingSkip())
+        window.location.href= "/"
+    }
+
+  
+  useEffect(()=>{
+    if (config.landingSkip) return redirect('/')
+  },[])
 
     return(
         <div className="landing-wrapper">
-            <BannerTitle/>
+            <BannerTitle image="/images/image-city.png" title="" subtitle="ASAMBLEAS CLIMÁTICAS" actionClick={handleClick} textButton="Comenzar"/>
             <CountriesBanner countries={countries}/>
             <SliderBanner />
             <BannerPactoLanding />

@@ -19,9 +19,9 @@ export default function PropuestaHojaComponent() {
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get('/projects')
-        const { projects } = await resp.data
-        setProject(projects[0])
+        const resp = await axiosServices.get('/projects/65775cadc6972f1d2fda9105?withComments=true')
+        const projects = await resp.data
+        setProject(projects)
     }
 
   

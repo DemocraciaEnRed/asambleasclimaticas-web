@@ -13,7 +13,12 @@ import authReducer from './auth'
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 const reducers = combineReducers({
-  config: configReducer,
+  config: persistReducer(
+    {
+      key: 'config',
+      storage,
+    },
+    configReducer),
   language: persistReducer(
     {
       key: 'Language',

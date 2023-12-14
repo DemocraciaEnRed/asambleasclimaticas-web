@@ -1,3 +1,4 @@
+'use client'
 import Banner from "@/components/home/banner";
 import BannerPacto from "@/components/home/banner-pacto";
 import { BannerParticipativo } from "@/components/home/banner-participativo";
@@ -6,10 +7,11 @@ import BannerSobreProyecto from "@/components/home/banner-sobre-proyecto";
 import BannerTitle from "@/components/common/banner-title";
 
 export default function Home() {
-    
+    const handleClick = () => {
+    }
     return(
         <div className="home-wrapper">
-            <BannerTitle/>
+            <BannerTitle image="/images/image-city.png" title="Pacto Inter-ciudad" subtitle="*PACTO INTERCIDADE" actionClick={handleClick} textButton="Participar"/>
             <Banner/>
             <BannerResurgente/>
             <BannerParticipativo/>
