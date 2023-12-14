@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
   async function fetchUser() {
     if(token){
       try{
-          const response = await axiosServices.get('/user/me')
+          const response = await axiosServices.get('/users/me')
 
           setUser(response.data)
           

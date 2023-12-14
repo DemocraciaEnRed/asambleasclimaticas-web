@@ -1,4 +1,4 @@
-import Logo from "../common/logo"
+import Logo from "./logo"
 
 const BannerTitle = () => <div className='banner-title is-flex is-justify-content-center is-align-items-center is-flex-direction-column'>
     <Logo color='#FFFFFF' widthLogo='50%'/>

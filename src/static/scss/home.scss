@@ -1,14 +1,5 @@
 .home-wrapper {
-    .banner-title{
-        background-image: url('/images/image-city.png');
-        padding: 13rem 9rem;
-        background-size: cover;
-        @include tablet {
-            padding: 2rem 1rem;
-            font-size: 1.2rem;
-        }
-
-    }
+   
     .banner {
         font-size: 1.3rem;
         padding: 3rem 1rem;

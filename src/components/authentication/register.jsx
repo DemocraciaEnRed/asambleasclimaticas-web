@@ -14,7 +14,7 @@ export default function Register({ changeLogin }) {
 
 
     async function fetchCountry(){
-        const resp = await axiosServices.get('http://localhost:3000/country')
+        const resp = await axiosServices.get('/misc/countries')
         const countries = await resp.data
         setCountryList(countries)
     }
