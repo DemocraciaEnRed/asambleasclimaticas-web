@@ -18,9 +18,9 @@ export default function PropuestaPactoComponent() {
 
     const fetchProject = async () => {
         const [project, articles, comments] = await Promise.all([
-            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc'),
-            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc/articles'),
-            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc/comments'),
+            axiosServices.get(`/projects/${process.env.PROJECTID}`),
+            axiosServices.get(`/projects/${process.env.PROJECTID}/articles`),
+            axiosServices.get(`/projects/${process.env.PROJECTID}/comments`),
 
         ])
         setProject(project.data)

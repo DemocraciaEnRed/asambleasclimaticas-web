@@ -16,7 +16,7 @@ const BannerPacto = () => {
     },[])
 
     const fetchProject =async () => {
-        const resp = await axiosServices.get('/projects/657b6108f7f2ae8cc057cedc')
+        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
         const project = await resp.data
         setProject(project)
     }
