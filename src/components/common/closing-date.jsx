@@ -6,7 +6,7 @@ const formatDate = (createdAt) => {
 }
 
 const ClosingDate = ({ closingDate, creationDate }) => {
-  return(
+  if(closingDate)return(
   <div className='closing-date-wrapper'>
     <div>
       <div className='closing-date-title has-text-centered'>Fecha de cierre: {formatDate(closingDate)}</div>
