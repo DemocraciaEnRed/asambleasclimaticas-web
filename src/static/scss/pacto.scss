@@ -180,6 +180,15 @@
           }
           
         }
+        .article{
+          .column-comment-article{
+            position: relative;
+            .card-comment-article{
+                position: sticky;
+                top: 70px;
+            }
+          }
+        }
       }
     }
   }

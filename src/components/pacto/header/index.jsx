@@ -27,7 +27,7 @@ export default function HeaderPropuesta({ project, section }) {
                     <div className="is-flex is-justify-content-end">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
-                        <ArticlesCommentsCounter commentsCount={project.comments.length/* project.commentsCount */}
+                        <ArticlesCommentsCounter commentsCount={project.commentsCount/* project.commentsCount */}
                             apoyosCount={30/* project.apoyosCount */}
                             project={project._id} />
                         <ProjectHeaderVersion project={project._id}

@@ -17,8 +17,10 @@ export default function PropuestaResumenComponent() {
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get('/projects/65775cadc6972f1d2fda9105?withComments=true')
-        setProject(resp.data)
+        const [project, comments] = await Promise.all([ 
+            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc'),
+        ])
+        setProject(project.data)
     }
 
   

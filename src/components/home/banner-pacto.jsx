@@ -16,9 +16,9 @@ const BannerPacto = () => {
     },[])
 
     const fetchProject =async () => {
-        const resp = await axiosServices.get('/projects')
-        const {projects} = await resp.data
-        setProject(projects[0])
+        const resp = await axiosServices.get('/projects/657b6108f7f2ae8cc057cedc')
+        const project = await resp.data
+        setProject(project)
     }
 
     const ClosedProjectcheck = (project) => {

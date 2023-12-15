@@ -9,17 +9,23 @@ import PactoBody from "./body/pacto"
 
 export default function PropuestaPactoComponent() {
     const [project, setProject] = useState(null)
-
-    const [section, setSection] = useState('resumen')
+    const [articles, setArticles] = useState(null)
+    const [comments, setComments] = useState(null)
 
     useEffect(() => {
         fetchProject()
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get('/projects/65775cadc6972f1d2fda9105?withArticles=true&withComments=true')
-        const project = await resp.data
-        setProject(project)
+        const [project, articles, comments] = await Promise.all([
+            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc'),
+            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc/articles'),
+            axiosServices.get('/projects/657b6108f7f2ae8cc057cedc/comments'),
+
+        ])
+        setProject(project.data)
+        setArticles(articles.data)
+        setComments(comments.data)
     }
 
   
@@ -29,7 +35,7 @@ export default function PropuestaPactoComponent() {
             <>
                 <HeaderPropuesta project={project} section="pacto"  />
                 <div className="project-body-container">
-                    <PactoBody project={project}/>
+                    <PactoBody project={project} articles={articles} comments={comments} />
                 </div>
             </>
         }

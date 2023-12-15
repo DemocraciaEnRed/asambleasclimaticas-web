@@ -20,8 +20,10 @@ export default function ResumenBody({ project }) {
                     allowFullScreen
                     title="Embedded youtube"
                 />
-                {/* <p className="about-es my-4" dangerouslySetInnerHTML={{ __html: project.about_es.replace(/\n/g, "<br><br>") }}></p> */}
-                <Remark>{project.about_es}</Remark>
+                <div className="content">
+                    <Remark>{project.about_es}</Remark>
+
+                </div>
 
                 <button className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 my-5 is-flex is-justify-content-space-between p-4 is-size-6">
                     Contribuye dejando tus aportes en las máximas del Pacto Interciudad
@@ -30,6 +32,6 @@ export default function ResumenBody({ project }) {
 
             </div>
         </div>
-        
+
     </div>
 }
