@@ -282,10 +282,12 @@ export default function NewProjectForm({}) {
   return (
     <>
       <div className="section has-background-black has-text-white">
-      <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} />&nbsp;Proyecto Nuevo</h1>
-        <p>Despues de crear el proyecto, el mismo quedara <u>oculto</u> hasta que lo publiques.</p>
-        <p>Una vez publicado, el proyecto sera visible para todos los usuarios. Aseguresé de que el proyecto este listo para ser publicado.</p>
-      </div>
+        <div className="container is-fluid">
+          <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} />&nbsp;Proyecto Nuevo</h1>
+            <p>Despues de crear el proyecto, el mismo quedara <u>oculto</u> hasta que lo publiques.</p>
+            <p>Una vez publicado, el proyecto sera visible para todos los usuarios. Aseguresé de que el proyecto este listo para ser publicado.</p>
+          </div>
+        </div>
       <div className="pacto-form section has-background-light">
         <div className="container is-fluid">
           {/* buttons, but they are disabled, its just decoration */}
