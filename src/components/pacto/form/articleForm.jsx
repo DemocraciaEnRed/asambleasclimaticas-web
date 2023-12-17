@@ -5,34 +5,52 @@ import dynamic from 'next/dynamic'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-const ArticleForm = forwardRef(({ article, moveUpArticle, moveDownArticle, deleteArticle }, ref) => {
+const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted }, ref) => {
   const [articleId] = useState(article._id || null);
   const [text_es, setText_es] = useState(article.text_es || '');
   const [text_pt, setText_pt] = useState(article.text_pt || '');
-  const [position, setPosition] = useState(article.position || 1);
+  // const [position, setPosition] = useState(article.position || 1);
   const summary_es_ref = useRef(null);
   const summary_pt_ref = useRef(null);
-  const [deleted, setDeleted] = useState(false);
+  const [deleted, setDeleted] = useState(article.deleted || false);
 
   useImperativeHandle(ref, () => ({
+    clientId: article.clientId,
     getOutput() {
       const output = {
         clientId: article.clientId,
         text_es: summary_es_ref.current.getMarkdown(),
         text_pt: summary_pt_ref.current.getMarkdown(),
-        position: position,
       }
       if(deleted) output.deleted = true
       if(articleId) output.articleId = articleId
       return output
+    },
+    getCurrentTextEs() {
+      return summary_es_ref.current.getMarkdown()
+    },
+    getCurrentTextPt() {
+      return summary_pt_ref.current.getMarkdown()
+    },
+    getCurrentDeleted() {
+      return deleted
     }
   }));
 
-  const handlePositionInput = (e) => {
-    setPosition(e.target.value)
+  function clickArticleUp() {
+    const text_es = summary_es_ref.current.getMarkdown()
+    const text_pt = summary_pt_ref.current.getMarkdown()
+    moveArticleUp(article.clientId, text_es, text_pt)
+  }
+
+  function clickArticleDown() {
+    const text_es = summary_es_ref.current.getMarkdown()
+    const text_pt = summary_pt_ref.current.getMarkdown()
+    moveArticleDown(article.clientId, text_es, text_pt)
   }
 
   const toggleDeleted = () => {
+    toggleArticleDeleted(article.clientId)
     setDeleted(!deleted)
   }
 
@@ -42,25 +60,26 @@ const ArticleForm = forwardRef(({ article, moveUpArticle, moveDownArticle, delet
         <div className="is-flex is-justify-content-space-between is-align-items-center is-justify-content-top">
           <h3 className="title is-5 mb-0">Artículo</h3>
           <div className="is-flex">
-            <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} /></div>
-            <div className="is-clickable mx-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} /></div>
+            <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} onClick={clickArticleUp}/></div>
+            <div className="is-clickable mx-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>
             <div className="is-clickable" onClick={toggleDeleted}><FontAwesomeIcon className="" icon={faTrashCan} /></div>
           </div>
         </div>
       </div>
       {
         deleted && <div className="notification is-warning px-2 py-2">
-          <p class="is-size-7">Este artículo será eliminado, puede deshacer esta acción si lo desea.</p>
+          <p className="is-size-7">Este artículo será eliminado, puede deshacer esta acción si lo desea.</p>
         </div>
       }
-      <div className={`columns is-mobile ${deleted && 'marked-deleted'}`}>
-        <div className="column is-12-tablet is-6-desktop">
+      <div className={`columns is-multiline is-mobile ${deleted && 'marked-deleted'}`}>
+        <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
           <EditorComp editorRef={summary_es_ref} markdown={text_es} es />
         </div>
-        <div className="column is-12-tablet is-6-desktop">
+        <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
           <EditorComp editorRef={summary_pt_ref} markdown={text_pt} pt />
         </div>
       </div>
+      <hr />
     </div>
   )
 })
