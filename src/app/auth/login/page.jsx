@@ -3,27 +3,19 @@ import { dispatch } from "@/store"
 import { handleToken, setUser } from "@/store/reducers/auth"
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { use, useEffect, useState } from "react"
+import { redirect } from "next/navigation"
+import { useLayoutEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 export default function Login(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { token } = useSelector((state) => state.auth)
-
     const { user } = useSelector((state) => state.auth)
-    const { push } = useRouter();
 
 
-
-
-    useEffect(() => {
-        console.log(user);
-        if (user) {
-            push('/')
-        }
-    }, [])
+    useLayoutEffect(() => {
+        if (user) redirect('/')
+    })
 
 
     async function handleLogin(event) {

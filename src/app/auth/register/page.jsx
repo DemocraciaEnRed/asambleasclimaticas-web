@@ -1,8 +1,8 @@
 "use client"
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { redirect } from "next/navigation"
+import { useEffect, useLayoutEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 export default function Register({ changeLogin }) {
@@ -16,17 +16,15 @@ export default function Register({ changeLogin }) {
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
     const { user } = useSelector((state) => state.auth)
-    const { push } = useRouter();
 
 
+    useLayoutEffect(() => {
+        if (user) redirect('/')
+    })
 
 
     useEffect(() => {
-        if (user) {
-            push('/')
-        } else {
-            fetchCountry()
-        }
+        fetchCountry()
     }, [])
 
     async function fetchCountry() {
