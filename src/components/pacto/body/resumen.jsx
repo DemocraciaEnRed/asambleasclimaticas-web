@@ -14,13 +14,13 @@ export default function ResumenBody({ project }) {
                 <iframe
                     width="100%"
                     height="480"
-                    src={`https://www.youtube.com/embed/cQrNiQq4zE4`}
+                    src={`https://www.youtube.com/embed/${project.youtubeUrl.split('?v=')[1].split('&list')[0]}`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title="Embedded youtube"
                 />
-                <div className="content">
+                <div className="content mt-6">
                     <Remark>{project.about_es}</Remark>
 
                 </div>

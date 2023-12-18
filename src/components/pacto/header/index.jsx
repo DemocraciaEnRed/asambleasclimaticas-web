@@ -27,11 +27,11 @@ export default function HeaderPropuesta({ project, section }) {
                     <div className="is-flex is-justify-content-end">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
-                        <ArticlesCommentsCounter commentsCount={project.commentsCount/* project.commentsCount */}
-                            apoyosCount={30/* project.apoyosCount */}
+                        <ArticlesCommentsCounter commentsCount={project.commentsCount}
+                            apoyosCount={project.likes}
                             project={project._id} />
                         <ProjectHeaderVersion project={project._id}
-                            version={1/* project.currentVersion.version */}
+                            version={project.version}
                         />
                     </div>
                 </div>
@@ -49,7 +49,7 @@ export default function HeaderPropuesta({ project, section }) {
                     <div className="tabs ">
                         <ul>
                             <li className={section === 'resumen' ? 'is-active' : ''}><Link href="/pacto" >Resumen</Link></li>
-                            <li className={section === 'pacto' ? 'is-active' : ''} ><Link href="/pacto/pacto" > Pacto</Link></li>
+                            <li className={section === 'pacto' ? 'is-active' : ''} ><Link href="/pacto/articulado" > Pacto</Link></li>
                             <li className={section === 'hoja' ? 'is-active' : ''} ><Link href="/pacto/hoja-de-ruta" >Hoja de ruta</Link></li>
                         </ul>
                     </div>
