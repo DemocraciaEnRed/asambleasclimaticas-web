@@ -6,12 +6,13 @@ import CommentModal from "@/components/common/comment-modal";
 import { useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import Comment from "./comment";
+import { useSelector } from "react-redux";
 
 
 export default function Comments({ project, comments }) {
     const [commentSelected, setCommentSelected] = useState(null)
     const [commentList, setCommensList] = useState(comments.comments)
-    const user = useAuth()
+    const { user } = useSelector((state) => state.auth)
 
     const handlesubmit = async (event) => {
         event.preventDefault()
@@ -21,10 +22,10 @@ export default function Comments({ project, comments }) {
         setCommensList([resp.data, ...commentList])
     }
 
-    const  handleLike = async() => {
+    const handleLike = async () => {
         console.log(this);
     }
-    
+
     return (
         <div className="comment-section">
             <h4 className="my-4">Comentarios:</h4>
@@ -37,7 +38,7 @@ export default function Comments({ project, comments }) {
             </div>}
             <div className="comment-list">
                 <div className="box">
-                    {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id}/>
+                    {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} />
                     )}
                 </div>
             </div>

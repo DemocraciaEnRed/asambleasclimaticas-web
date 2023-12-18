@@ -6,22 +6,22 @@ import { useSelector } from 'react-redux';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const {token} = useSelector((state)=>state.auth)
-  const [user, setUser] = useState() 
-  
-  useEffect(()=>{
-    fetchUser()
-  },[])
-  
-  async function fetchUser() {
-    if(token){
-      try{
-          const response = await axiosServices.get('/users/me')
+  const { token } = useSelector((state) => state.auth)
+  const [user, setUser] = useState()
 
-          setUser(response.data)
-          
-      }catch(err){
-          console.log(err);
+  useEffect(() => {
+    fetchUserMe()
+  }, [])
+
+  async function fetchUserMe() {
+    if (token) {
+      try {
+        const response = await axiosServices.get('/users/me')
+
+        setUser(response.data)
+
+      } catch (err) {
+        console.log(err);
       }
 
     }

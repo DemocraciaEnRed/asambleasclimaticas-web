@@ -5,15 +5,21 @@ import { faThumbsDown, faThumbsUp, faComment, faMessage } from "@fortawesome/fre
 import axiosServices from "@/utils/axios";
 import CommentModal from "@/components/common/comment-modal";
 import { useState } from "react";
-import { useAuth } from "@/context/auth-context";
+import { useSelector } from "react-redux";
 
 
 export default function Comment({ project, comment }) {
     const [commentSelected, setCommentSelected] = useState(null)
     const [likes, setLikes] = useState(comment.likes)
     const [dislikes, setDislikes] = useState(comment.dislikes)
-    const user = useAuth()
+    const { user } = useSelector((state) => state.auth)
+    const [replies, setReplies] = useState(null)
 
+    const handleComment = async () => {
+        setCommentSelected(comment._id)
+        const resp = await axiosServices.get(`/projects/${project._id}/comments/${comment._id}/replies`)
+        setReplies(resp.data.replies)
+    }
 
     const handleLike = async () => {
         //setLikes(likes + 1)
@@ -27,7 +33,7 @@ export default function Comment({ project, comment }) {
         <div >
             <div className="is-flex is-justify-content-space-between">
                 <div className="likes"> {likes > 0 && likes} <FontAwesomeIcon onClick={handleLike} color="grey" className="mx-1" icon={faThumbsUp} /><FontAwesomeIcon onClick={handleDislike} color="grey" className="mx-1" icon={faThumbsDown} /> {dislikes > 0 && dislikes} </div>
-                <div className="replies" onClick={() => setCommentSelected(comment._id)}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>
+                <div className="replies is-clickable" onClick={handleComment}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>
             </div>
             <div className="is-flex p-4 comment" >
                 <div className="py-2 pl-0 mr-3">
@@ -44,10 +50,11 @@ export default function Comment({ project, comment }) {
             {commentSelected && <CommentModal
                 postUrl={`/projects/${project._id}/comments/${comment._id}/replies`}
                 active={commentSelected === comment._id}
-                commentId={comment._id}
+                commentList={replies}
                 projectId={project._id}
                 closeCommentModal={() => setCommentSelected(null)}
-                user={user} />}
+                user={user}
+                isModal />}
         </div>
 
     )
