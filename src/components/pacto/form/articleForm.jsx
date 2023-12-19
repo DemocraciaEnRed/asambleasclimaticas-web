@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted }, ref) => {
+const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted, mode }, ref) => {
   const [articleId] = useState(article._id || null);
   const [text_es, setText_es] = useState(article.text_es || '');
   const [text_pt, setText_pt] = useState(article.text_pt || '');
@@ -50,6 +50,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   }
 
   const toggleDeleted = () => {
+    if(mode === 'edit') return
     toggleArticleDeleted(article.clientId)
     setDeleted(!deleted)
   }
@@ -61,8 +62,10 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
           <h3 className="title is-5 mb-0">Artículo</h3>
           <div className="is-flex">
             <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} onClick={clickArticleUp}/></div>
-            <div className="is-clickable mx-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>
-            <div className="is-clickable" onClick={toggleDeleted}><FontAwesomeIcon className="" icon={faTrashCan} /></div>
+            <div className="is-clickable ml-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>
+            {
+              mode === 'new' && <div className="is-clickable ml-4" onClick={toggleDeleted}><FontAwesomeIcon className="" icon={faTrashCan} /></div>
+            }
           </div>
         </div>
       </div>
