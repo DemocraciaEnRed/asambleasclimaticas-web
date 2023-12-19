@@ -104,10 +104,14 @@ export default function Navbar() {
                             </div>
                             <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div className="dropdown-content">
-                                    <div className="dropdown-item">
-                                        <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                                    </div>
-                                    <hr className="dropdown-divider" />
+                                    {user.role === 'admin' &&
+                                        <>
+                                            <div className="dropdown-item">
+                                                <Link href="/pacto/nuevo"> Nuevo pacto </Link>
+                                            </div>
+                                            <hr className="dropdown-divider" />
+                                        </>
+                                    }
                                     <a className="dropdown-item" onClick={logOut}>
                                         Cerrar sesión
                                     </a>

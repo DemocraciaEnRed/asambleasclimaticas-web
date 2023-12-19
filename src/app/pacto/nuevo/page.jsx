@@ -1,9 +1,9 @@
 "use client"
 import dynamic from 'next/dynamic'
-import { useEffect, useState, useRef, createRef, useMemo } from "react"
+import { useEffect, useState, useRef, createRef, useMemo, useLayoutEffect } from "react"
 // import { useAuth } from "@/context/auth-context"
 import axiosServices from "@/utils/axios"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 // asterisk fa icon
@@ -11,11 +11,12 @@ import { faPlus, faAsterisk, faCaretRight, faPaperPlane, faEyeSlash, faSave } fr
 import slugify from 'slugify'
 import { InputMask } from '@react-input/mask';
 import ArticleForm from '@/components/pacto/form/articleForm'
+import { useSelector } from 'react-redux'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-export default function NewProjectForm({}) {
-  
+export default function NewProjectForm({ }) {
+
   // UTILITY FUNCTIONS FOR INITIALIZATION
   // Utility function to generate a random clientId
   const getRandomClientId = () => {
@@ -41,7 +42,7 @@ export default function NewProjectForm({}) {
     }
   ]
   const closedAtInitial = getYearMonthDayIn30Days()
-  // const user = useAuth()
+
   // -------------------------------------
   // STATE AND REFS DECLARATIONS
   const [title_es, setTitle_es] = useState('')
@@ -66,13 +67,13 @@ export default function NewProjectForm({}) {
   const [articles, setArticles] = useState(initialArticles)
   const articlesRefs = useRef([])
   const [closedAt, setClosedAt] = useState(closedAtInitial)
-  
+
   // -------------------------------------
   // HOOKS
   // -------------------------------------
 
   // useEffect(() => {
-    
+
   //   // if there is no user, redirect to login
   //   if(!user) {
   //     push('/')
@@ -111,7 +112,7 @@ export default function NewProjectForm({}) {
     // Create a new ref for the ArticleForm
     articlesRefs.current.push(createRef());
   }
-  
+
   // function logArticlesOutput() {
   //   // for every ArticleForm that is dynamically added, get the output by calling getOutput from the ArticleForm component
   //   const output = articlesRefs.current.map((article) => {
@@ -165,7 +166,7 @@ export default function NewProjectForm({}) {
     article.text_es = articlesRefs.current[index].getCurrentTextEs();
     article.text_pt = articlesRefs.current[index].getCurrentTextPt();
     const articleDeleted = articlesRefs.current[index].getCurrentDeleted();
-    if(articleDeleted) {
+    if (articleDeleted) {
       article.deleted = true
     }
     // get the article that is above the article that needs to be moved
@@ -174,7 +175,7 @@ export default function NewProjectForm({}) {
     articleAbove.text_es = articlesRefs.current[index - 1].getCurrentTextEs();
     articleAbove.text_pt = articlesRefs.current[index - 1].getCurrentTextPt();
     const articleAboveDeleted = articlesRefs.current[index - 1].getCurrentDeleted();
-    if(articleAboveDeleted) {
+    if (articleAboveDeleted) {
       articleAbove.deleted = true
     }
     // swap the articles in the articles array
@@ -195,7 +196,7 @@ export default function NewProjectForm({}) {
     article.text_es = articlesRefs.current[index].getCurrentTextEs();
     article.text_pt = articlesRefs.current[index].getCurrentTextPt();
     const articleDeleted = articlesRefs.current[index].getCurrentDeleted();
-    if(articleDeleted) {
+    if (articleDeleted) {
       article.deleted = true
     }
     // get the article that is below the article that needs to be moved
@@ -204,7 +205,7 @@ export default function NewProjectForm({}) {
     articleBelow.text_es = articlesRefs.current[index + 1].getCurrentTextEs();
     articleBelow.text_pt = articlesRefs.current[index + 1].getCurrentTextPt();
     const articleBelowDeleted = articlesRefs.current[index + 1].getCurrentDeleted();
-    if(articleBelowDeleted) {
+    if (articleBelowDeleted) {
       articleBelow.deleted = true
     }
     // swap the articles in the articles array
@@ -247,11 +248,11 @@ export default function NewProjectForm({}) {
       })
     }
     // set up closedAt at the end of the day
-    if(closedAt) {
+    if (closedAt) {
       const closedAtAux = closedAt + ' 23:59:59'
       payload.closedAt = (new Date(closedAtAux)).toISOString()
     }
-    if(isPublished) {
+    if (isPublished) {
       payload.publishedAt = (new Date()).toISOString()
     }
     return payload
@@ -278,16 +279,22 @@ export default function NewProjectForm({}) {
         console.log(err)
       })
   }
-  
+
+  const { user } = useSelector((state) => state.auth)
+  useLayoutEffect(() => {
+    if (user.role !== 'admin') redirect('/')
+  })
+
+
   return (
     <>
       <div className="section has-background-black has-text-white">
         <div className="container is-fluid">
           <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} />&nbsp;Proyecto Nuevo</h1>
-            <p>Despues de crear el proyecto, el mismo quedara <u>oculto</u> hasta que lo publiques.</p>
-            <p>Una vez publicado, el proyecto sera visible para todos los usuarios. Aseguresé de que el proyecto este listo para ser publicado.</p>
-          </div>
+          <p>Despues de crear el proyecto, el mismo quedara <u>oculto</u> hasta que lo publiques.</p>
+          <p>Una vez publicado, el proyecto sera visible para todos los usuarios. Aseguresé de que el proyecto este listo para ser publicado.</p>
         </div>
+      </div>
       <div className="pacto-form section has-background-light">
         <div className="container is-fluid">
           {/* buttons, but they are disabled, its just decoration */}
@@ -329,7 +336,7 @@ export default function NewProjectForm({}) {
                 <div className="field">
                   <label className="label">Slug</label>
                   <div className="control">
-                    <input className={`input ${!isSlugValid && 'is-danger' }`} type="text" placeholder="Slug del proyecto" value={slug} onChange={handleSlug} />
+                    <input className={`input ${!isSlugValid && 'is-danger'}`} type="text" placeholder="Slug del proyecto" value={slug} onChange={handleSlug} />
                   </div>
                   {
                     !isSlugValid && (
@@ -396,8 +403,8 @@ export default function NewProjectForm({}) {
           {/* Project About */}
           <div className="box">
             <div className="content">
-            <h4 className="title is-4 mb-2"><FontAwesomeIcon icon={faCaretRight} /> Acerca del proyecto</h4>
-            <p>Ingrese la introducción delproyecto. El campo se versiona y guarda en el historial de versiones. Durante una version se puede editar, pero una vez que se cree una nueva versión, la misma no se puede editar.</p>
+              <h4 className="title is-4 mb-2"><FontAwesomeIcon icon={faCaretRight} /> Acerca del proyecto</h4>
+              <p>Ingrese la introducción delproyecto. El campo se versiona y guarda en el historial de versiones. Durante una version se puede editar, pero una vez que se cree una nueva versión, la misma no se puede editar.</p>
             </div>
 
             <div className="columns is-multiline is-mobile">
@@ -416,9 +423,9 @@ export default function NewProjectForm({}) {
             <div className="field">
               <label className="label">Fecha de cierre</label>
               <div className="control">
-                <InputMask mask="yyyy-mm-dd" showMask separate 
-                replacement={{ d: /\d/, m: /\d/, y: /\d/ }} 
-                ref={slugInput} className="input" value={closedAt} onChange={handleClosedAt} />
+                <InputMask mask="yyyy-mm-dd" showMask separate
+                  replacement={{ d: /\d/, m: /\d/, y: /\d/ }}
+                  ref={slugInput} className="input" value={closedAt} onChange={handleClosedAt} />
               </div>
               {
                 !isClosedAtValid && (
@@ -433,19 +440,19 @@ export default function NewProjectForm({}) {
             <p>Ingrese los articulos del proyecto.</p>
             <hr />
             {/* Articles Forms dynamically added */}
-              {articles.map((article, index) => {
-                if(!article) return null
-                return (
-                  <ArticleForm
-                    key={article.clientId}
-                    article={article}
-                    ref={(el) => (articlesRefs.current[index] = el)}
-                    moveArticleUp={moveArticleUp}
-                    moveArticleDown={moveArticleDown}
-                    toggleArticleDeleted={toggleArticleDeleted}
-                  />
-                );
-              })}
+            {articles.map((article, index) => {
+              if (!article) return null
+              return (
+                <ArticleForm
+                  key={article.clientId}
+                  article={article}
+                  ref={(el) => (articlesRefs.current[index] = el)}
+                  moveArticleUp={moveArticleUp}
+                  moveArticleDown={moveArticleDown}
+                  toggleArticleDeleted={toggleArticleDeleted}
+                />
+              );
+            })}
             <div className="buttons">
               <button className="button is-black is-outlined is-fullwidth" onClick={addNewArticle}><FontAwesomeIcon icon={faPlus} />&nbsp;Agregar articulo</button>
             </div>
@@ -458,7 +465,7 @@ export default function NewProjectForm({}) {
             <div className="buttons mt-3">
               <button className="button is-black" onClick={handleSave}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar borrador</button>
               <button className="button is-black" onClick={handleSaveAndPublish}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar y&nbsp;<FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar</button>
-              
+
             </div>
           </div>
         </div>
