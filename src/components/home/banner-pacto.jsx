@@ -28,7 +28,7 @@ const BannerPacto = () => {
     return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">El pacto</h1>
         {project && <div className="card has-background-cream is-flex w-75">
-            <div className="card-image w-25" style={{ backgroundImage: `url('${project.coverUrl}')` }}>
+            <div className="card-image" style={{ backgroundImage: `url('${project.coverUrl}')` }}>
 
             </div>
             <div className="card-content p-0 pt-5 w-75">
