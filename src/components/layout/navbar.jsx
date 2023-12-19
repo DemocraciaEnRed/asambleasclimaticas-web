@@ -10,7 +10,6 @@ import { faAngleDown, faBars, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Logo from "../common/logo";
 import { handleOverlay } from "@/store/reducers/config";
 import { handleLanguage } from "@/store/reducers/language";
-import { useAuth } from "@/context/auth-context";
 import { deleteUser, handleToken } from "@/store/reducers/auth";
 
 
@@ -40,87 +39,72 @@ export default function Navbar() {
         else setNavbarFixed(false)
     }
 
-    const logOut = () => {
-        dispatch(handleToken(''))
-        dispatch(deleteUser())
-        window.location.reload(false);
-    }
-
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', controlNavbar);
-
+        window.addEventListener('scroll', controlNavbar);
+        /* if (typeof window !== 'undefined') {
             // cleanup function
             return () => {
                 window.removeEventListener('scroll', controlNavbar);
             };
-        }
+        } */
     }, []);
 
 
     return (
-        <nav className={`navbar-wrapper ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
-            <div className='logo'>
+        <nav className={`navbar-wrapper has-background-primary is-align-items-center ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
+            <div className='logo w-25 py-2'>
                 <Link href="/" className="is-flex is-align-items-center">
-                    <Logo color='#FFFFFF' widthLogo={window.innerWidth < 768 ? '150' : '300'} />
+                    <Logo color='#FFFFFF' widthLogo={window.innerWidth < 768 ? '150' : '250'} />
                 </Link>
 
             </div>
             <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5" onClick={handleOpenMenu}>
                 <FontAwesomeIcon icon={faBars} />
             </div>
-            <div className={`navbar-links ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
+            <div className={`navbar-links w-50 has-text-white is-justify-content-center is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
                 {config.landingSkip && <ul >
                     <li className={pathname == "/" ? 'active' : ""}>
-                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/" >
+                        <Link onClick={handleOpenMenu} className='link-navbar' href="/#" >
                             <span>
                                 Inicio
                             </span>
                         </Link>
                     </li>
                     <li className={pathname == "/pacto" ? 'active' : ""}>
-                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/pacto" >
+                        <Link onClick={handleOpenMenu} className='link-navbar' href="#countries-banner" >
                             <span>
-                                Pacto
+                                asambleas
                             </span>
                         </Link>
                     </li>
                     <li className={pathname == "/acerca-de" ? 'active' : ""}>
-                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/sobre" >
+                        <Link onClick={handleOpenMenu} className='link-navbar' href="#banner-interciudad" >
                             <span>
-                                Sobre
+                                sobre
                             </span>
                         </Link>
                     </li>
 
 
-                    <li>
-                        {user ? <div className="dropdown is-right is-hoverable mr-4 user-avatar">
-                            <div className="dropdown-trigger">
-                                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                    <span>{user.name}</span>
 
-                                </button>
-                            </div>
-                            <div className="dropdown-menu" id="dropdown-menu4" role="menu">
-                                <div className="dropdown-content">
-                                    <div className="dropdown-item">
-                                        <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                                    </div>
-                                    <hr className="dropdown-divider" />
-                                    <a className="dropdown-item" onClick={logOut}>
-                                        Cerrar sesión
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                            :
-                            <Link href="/auth/login" className="link-navbar has-text-weight-bold login-link">
-                                login</Link>}
-
-                    </li>
                 </ul>}
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
+            </div>
+            <div className="language-wrapper mr-3 w-25 has-text-right">
+                <div className="dropdown is-hoverable ">
+                    <div className="dropdown-trigger">
+                        <button className="button is-uppercase has-text-white has-background-primary" aria-haspopup="true" aria-controls="dropdown-menu4">
+                            <span>{language}</span>
+                        </button>
+                    </div>
+                    <div className="dropdown-menu" id="dropdown-menu4" role="menu">
+                        <div className="dropdown-content has-background-primary">
+                            <div className="dropdown-item is-size-6 is-uppercase has-text-white has-text-centered p-0 is-clickable" onClick={() => handleChangeLanguage(language === 'esp' ? 'prt' : 'esp')}>
+                                <p>{language === 'esp' ? 'prt' : 'esp'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
     )

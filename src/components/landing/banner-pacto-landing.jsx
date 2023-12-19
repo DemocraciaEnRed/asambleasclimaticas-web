@@ -2,7 +2,7 @@
 
 export default function BannerPactoLanding() {
 
-    return (<div className="banner-interciudad has-background-cream p-6">
+    return (<div className="banner-interciudad has-background-cream p-6" id="banner-interciudad">
         <h1 className="has-text-centered is-size-2"> Pacto Inter-Ciudad</h1>
         <div className="has-text-centered py-5">
             <img src="/images/image-pacto-interciudad.png" alt="pacto inter-ciudad" />

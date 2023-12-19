@@ -6,19 +6,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import axiosServices from "@/utils/axios";
+import Link from "next/link";
 
 
 
-export default function CountriesBanner({countries}) {
-    return <div className="country-banner has-text-centered has-background-cream p-6">
+export default function CountriesBanner({ countries }) {
+    return <div className="countries-banner has-text-centered has-background-cream p-6" id="countries-banner">
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">¿Cómo Participar?</h1>
         <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4 px-6">
             {countries.map(country =>
                 <div className="card p-4 my-5" key={country.code}>
                     <div className="image-card is-flex is-justify-content-center pb-4">
-                    <figure className="image is-96x96">
-                        <img className="" src={country.image}/>
-                    </figure>
+                        <figure className="image is-96x96">
+                            <img className="" src={country.image} />
+                        </figure>
                         {/* <div className="p-6" style={{backgroundImage:`url('${country.image}')`}}/> */}
                     </div>
                     <div className="card-content py-0 has-text-centered">
@@ -34,13 +35,13 @@ export default function CountriesBanner({countries}) {
                         </div>
                     </div>
                     <footer className="card-footer is-justify-content-center py-4">
-                        <button className="button more-button has-background-pink has-text-white has-text-weight-bold is-size-4 ">+</button>
+                        <Link href={'/#' + country.code} scroll={true} className="button more-button has-background-pink has-text-white has-text-weight-bold is-size-4 ">+</Link>
                     </footer>
                 </div>
-                )}
+            )}
 
 
-            
+
         </div>
 
     </div>
