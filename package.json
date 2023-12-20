@@ -1,5 +1,6 @@
 {
   "name": "asambleasclimaticas-web",
+  "homepage": "https://resurgentes.org",
   "version": "0.1.0",
   "private": true,
   "scripts": {
