@@ -1,0 +1,60 @@
+{
+    "bannerTitle": {
+        "title": "Unindo Vozes para Despertar a Mudança Climática.",
+        "subtitle": "Forjamos Futuros Sustentáveis, Cidade por Cidade."
+    },
+    "countriesBanner": {
+        "title": "Assembleias",
+        "countries": [
+            {
+                "name": "México",
+                "code": "MX",
+                "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
+                "city": "Monterrey (área metropolitana)",
+                "date": "fevereiro a março de 2024",
+                "topic": "Mudanças Climáticas na área metropolitana. Programa Estadual de Mudanças Climáticas",
+                "leader": "SUR, Instituto del Sur Urbano",
+                "description": "A Assembleia Climática de Nuevo León é formada por 50 cidadãos e cidadãs selecionados aleatoriamente, através de um Sorteio Cívico, que se reúnem para deliberar e fazer recomendações para as políticas urbanas ambientais da região metropolitana de Monterrey."
+            },
+            {
+                "name": "Brasil",
+                "code": "BR",
+                "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
+                "city": "Bujaru",
+                "date": "março a maio de 2024",
+                "topic": "a ser definido",
+                "leader": "IDEEMOS",
+                "description": ""
+            },
+            {
+                "name": "Colômbia",
+                "code": "CO",
+                "image": "https://cdn-icons-png.flaticon.com/512/197/197575.png",
+                "city": "Buenaventura",
+                "date": "maio a julho de 2024",
+                "topic": "a ser definido",
+                "leader": "Extituto",
+                "description": ""
+            },
+            {
+                "name": "Argentina",
+                "code": "AR",
+                "image": "https://cdn-icons-png.flaticon.com/512/197/197573.png",
+                "city": "a ser definido",
+                "date": "julho a setembro de 2024",
+                "topic": "a ser definido",
+                "leader": "Democracia en Red",
+                "description": ""
+            }
+        ]
+    },
+    "sliderBanner": [
+        "<strong class='has-text-white'>(Re)surgentes</strong> é um programa criado por organizações que promovem a  democracia deliberativa na América Latina para integrar a cidadania, governos locais, especialistas e ativistas com um ciclo de Assembleias Cidadãs e um Pacto Intercidades",
+        "v<strong class='has-text-white'>Nosso objetivo</strong> é fortalecer os processos de democratização e descentralização da tomada de decisões públicas para o enfrentamento da crise climática na América Latina.",
+        "<strong class='has-text-white'>As Assembleias Climáticas </strong>  - são grupos de pessoas, sorteadas na população, que trabalham coletivamente para compreender o contexto, deliberar e assumir um papel central na tomada de decisões sobre políticas climáticas."
+    ],
+    "pactoBannerSecction": {
+        "image": "",
+        "description": "<p>O <strong>pacto</strong> eé uma iniciativa de incidência pública onde pessoas e cidades definem uma visão estratégica para enfrentar a crise climática, da América Latina para o mundo.</p><p class='py-3 has-text-weight-bold'>Como funciona:</p><ol class='px-6'><li>Cada Assembleia Cidadã  decide sobre pelo menos 4 propostas de princípios para o pacto.</li><li>As propostas são publicadas na plataforma para receber contribuições e comentários de cidadãs/ãos em geral, que devem se cadastrar com nome e cidade para participar.</li><li>Durante o processo são geradas versões atualizadas e aprimoradas do Pacto Intercidades, graças às contribuições das pessoas.</li><li>Um documento final é colocado à consideração das pessoas participantes da plataforma para validação final.</li><li>O Pacto Inter-cidades é divulgado, apresentado e discutido em diferentes fóruns latino-americanos governamentais</li></ol>"
+    }
+}

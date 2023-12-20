@@ -1,18 +1,11 @@
-'use client'
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faPenToSquare, faSquarePollHorizontal } from "@fortawesome/free-solid-svg-icons";
-import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
-import axiosServices from "@/utils/axios";
 import Link from "next/link";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 
 
-export default function CountriesBanner({ countries }) {
+export default function CountriesBanner({ countries, title }) {
     return <div className="countries-banner has-text-centered has-background-cream p-6" id="countries-banner">
-        <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">¿Cómo Participar?</h1>
+        <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">{title}</h1>
         <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4 px-6">
             {countries.map(country =>
                 <div className="card p-4 my-5" key={country.code}>

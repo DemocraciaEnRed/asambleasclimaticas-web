@@ -1,9 +1,7 @@
-'use client'
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faSquareTwitter, faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
-import { useEffect } from "react";
-import Logo from "../common/logo";
+import Logo from "@/app/_components/common/logo";
 
 
 export default function Footer() {
@@ -12,7 +10,7 @@ export default function Footer() {
         <footer className='footer-wrapper py-6'>
             <div className='logo'>
                 <Link href="/" >
-                    <Logo  widthLogo='300'/>
+                    <Logo widthLogo='300' />
                 </Link>
 
             </div>
@@ -33,39 +31,39 @@ export default function Footer() {
                     </Link>
                 </li>
             </ul>
-            <div className="footer-links">
+            {/* <div className="footer-links">
 
-            <ul >
-                <li>
-                    <Link href="">
-                        ¿Como funciona?
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/sobre">
-                        Acerca de este sitio
-                    </Link>
-                </li>
-                <li>
-                    <Link href="">
-                        Contacto
-                    </Link>
-                </li>
-            </ul>
+                <ul >
+                    <li>
+                        <Link href="">
+                            ¿Como funciona?
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/sobre">
+                            Acerca de este sitio
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="">
+                            Contacto
+                        </Link>
+                    </li>
+                </ul>
 
-            <ul>
-                <li>
-                    <Link href="">
-                        Terminos y condiciones
-                    </Link>
-                </li>
-                <li>
-                    <Link href="">
-                        Politica de privacidad
-                    </Link>
-                </li>
-            </ul>
-            </div>
+                <ul>
+                    <li>
+                        <Link href="">
+                            Terminos y condiciones
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="">
+                            Politica de privacidad
+                        </Link>
+                    </li>
+                </ul>
+            </div> */}
 
         </footer>
     )
