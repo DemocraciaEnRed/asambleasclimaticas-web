@@ -6,6 +6,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { useLayoutEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { setCookie } from "cookies-next"
 
 export default function Login(props) {
     const [email, setEmail] = useState('')
@@ -28,6 +29,7 @@ export default function Login(props) {
             const response = await axiosServices.post('/auth/login', JSON.stringify(body))
             const res = await response.data
             dispatch(handleToken(res.token))
+            setCookie('auth', res.token, {});
             dispatch(setUser(res.user))
             if (response.status === 200) window.location.reload(false);
         } catch (err) {

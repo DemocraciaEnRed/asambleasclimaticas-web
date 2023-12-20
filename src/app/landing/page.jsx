@@ -57,7 +57,7 @@ export default function Home() {
     const [countries, setCountries] = useState(countryList)
     const config = useSelector((state)=>state.config)
 
-    const handleClick = () => {
+    /* const handleClick = () => {
         dispatch(landingSkip())
         window.location.href= "/"
     }
@@ -65,7 +65,7 @@ export default function Home() {
   
   useEffect(()=>{
     if (config.landingSkip) return redirect('/')
-  },[])
+  },[]) */
 
     return(
         <div className="landing-wrapper">

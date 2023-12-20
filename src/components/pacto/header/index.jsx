@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import UserAvatar from "../../common/user-avatar";
 import ClosingDate from "../../common/closing-date";
 import ArticlesCommentsCounter from "../../common/article-comment-counter";

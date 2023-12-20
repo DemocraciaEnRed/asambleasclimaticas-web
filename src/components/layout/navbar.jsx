@@ -17,7 +17,6 @@ import { deleteUser, handleToken } from "@/store/reducers/auth";
 export default function Navbar() {
     const { user } = useSelector((state) => state.auth)
     const { language } = useSelector((state) => state.language)
-    const config = useSelector((state) => state.config)
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
 
@@ -70,7 +69,7 @@ export default function Navbar() {
                 <FontAwesomeIcon icon={faBars} />
             </div>
             <div className={`navbar-links ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
-                {config.landingSkip && <ul >
+                <ul >
                     <li className={pathname == "/" ? 'active' : ""}>
                         <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/" >
                             <span>
@@ -123,7 +122,7 @@ export default function Navbar() {
                                 login</Link>}
 
                     </li>
-                </ul>}
+                </ul>
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
             </div>
         </nav>

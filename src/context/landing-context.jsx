@@ -11,9 +11,9 @@ const LandingProvider = ({ children }) => {
     const pathname = usePathname()
 
   
-  useEffect(()=>{
+  /* useEffect(()=>{
     if (pathname !== '/landing' && !config.landingSkip) return redirect('/landing')
-  },[])
+  },[]) */
   
   
 
