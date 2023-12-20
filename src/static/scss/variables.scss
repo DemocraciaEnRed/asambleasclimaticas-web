@@ -1,0 +1,129 @@
+@import "bulma/sass/utilities/_all";
+
+
+$primary: #039950;
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+
+
+$orange-base: #D43811 !default;
+$orange-light: findLightColor($orange-base);
+$orange-dark: findDarkColor($orange-base);
+$orange-invert: findColorInvert($orange-base);
+
+$cream-base: #EDE4D5 !default;
+$cream-light: findLightColor($cream-base);
+$cream-dark: findDarkColor($cream-base);
+$cream-invert: findColorInvert($cream-base);
+
+$brown-base: #47322B !default;
+$brown-light: findLightColor($brown-base);
+$brown-dark: #2B1B18;
+$brown-invert: findColorInvert($brown-base);
+
+$pink-base: #D71D81 !default;
+$pink-light: findLightColor($pink-base);
+$pink-dark: findDarkColor($pink-base);
+$pink-invert: findColorInvert($pink-base);
+
+$text: $brown-base;
+$text-light: $brown-light;
+$text-strong: $brown-base ;
+$text-invert: findColorInvert($brown-base);
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(("text":($text,
+                $text-light,
+                $text-strong,
+                $text-invert ),
+
+            "white": ($white,
+                $black,
+            ),
+            "black": ($black,
+                $white,
+            ),
+            "light": ($light,
+                $light-invert,
+            ),
+            "dark": ($dark,
+                $dark-invert,
+            ),
+            "primary": ($primary,
+                $primary-invert,
+                $primary-light,
+                $primary-dark,
+            ),
+            "link": ($link,
+                $link-invert,
+                $link-light,
+                $link-dark,
+            ),
+            "info": ($info,
+                $info-invert,
+                $info-light,
+                $info-dark,
+            ),
+            "success": ($success,
+                $success-invert,
+                $success-light,
+                $success-dark,
+            ),
+            "warning": ($warning,
+                $warning-invert,
+                $warning-light,
+                $warning-dark,
+            ),
+            "danger": ($danger,
+                $danger-invert,
+                $danger-light,
+                $danger-dark,
+            ),
+            "orange":($orange-base,
+                $orange-light,
+                $orange-dark,
+                $orange-invert ),
+            "cream":($cream-base,
+                $cream-light,
+                $cream-dark,
+                $cream-invert ),
+            "brown":($brown-base,
+                $brown-invert,
+                $brown-light,
+                $brown-dark ),
+            "pink":($pink-base,
+                $pink-light,
+                $pink-dark,
+                $pink-invert ),
+        ),
+        $custom-colors);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "bulma";
+
+
+
+
+
+
+
+
+
+$gray-darker: lighten($black, 10.5%) !default; // #222
+$gray-dark: lighten($black, 20%) !default; // #333
+$gray: lighten($black, 33.5%) !default; // #555
+$gray-light: lighten($black, 75.7%) !default; // #777
+$gray-lighter: lighten($black, 93.5%) !default; // #eee
+
+
+
+$secondary-color: #039950 !default;

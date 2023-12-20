@@ -1,0 +1,38 @@
+$screen-mobile: 768px;
+$screen-tablet: 769px;
+$screen-desktop: 1024px;
+$screen-widescreen: 1216px;
+$screen-fullhd: 1408px;
+
+
+@mixin mobile {
+  @debug "pasa por sm";
+  @media (max-width: #{$screen-mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @debug "pasa por md";
+  @media (max-width: #{$screen-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: #{$screen-desktop}) {
+    @content;
+  }
+}
+
+@mixin widescreen {
+  @media (max-width: #{$screen-widescreen}) {
+    @content;
+  }
+}
+
+@mixin fullhd {
+  @media (max-width: #{$screen-fullhd}) {
+    @content;
+  }
+}
