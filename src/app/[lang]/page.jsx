@@ -5,6 +5,11 @@ import CountryBanner from "@/app/_components/landing/country-banner";
 import SliderBanner from "@/app/_components/landing/slider-banner";
 import { getDictionary } from "./dictionaries";
 
+export async function generateStaticParams() {
+    return ['es','pt'].map((lang) => {
+      return { lang }
+    })
+  }
 
 
 export default async function Landing({ params: { lang } }) {
