@@ -6,9 +6,9 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 export default function CountriesBanner({ countries, title }) {
     return <div className="countries-banner has-text-centered has-background-cream p-6" id="countries-banner">
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">{title}</h1>
-        <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4 px-6">
+        <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4">
             {countries.map(country =>
-                <div className="card p-4 my-5" key={country.code}>
+                <div className="card  my-5" key={country.code}>
                     <div className="image-card is-flex is-justify-content-center pb-4">
                         <figure className="image is-96x96">
                             <img className="" src={country.image} />

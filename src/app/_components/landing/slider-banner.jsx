@@ -18,7 +18,7 @@ export default function App({ textsSlider }) {
         loop={true}
         className="mySwiper has-text-white has-background-primary">
         {textsSlider.map((text, idx) =>
-          <SwiperSlide key={idx}><div className='swiper-item is-size-4' dangerouslySetInnerHTML={{ __html: text }}></div></SwiperSlide>
+          <SwiperSlide key={idx}><div className='swiper-item is-size-4 is-size-5-touch' dangerouslySetInnerHTML={{ __html: text }}></div></SwiperSlide>
         )}
       </Swiper>
     </div>
