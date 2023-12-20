@@ -135,6 +135,10 @@
   padding: 13rem 9rem;
   background-size: cover;
 
+  .is-overlay {
+    background-color: #ffffff52;
+  }
+
   .content {
     position: relative;
     z-index: 1;
