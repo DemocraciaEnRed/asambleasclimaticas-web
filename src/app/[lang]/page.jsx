@@ -9,12 +9,27 @@ import { getDictionary } from "./dictionaries";
 
 export default async function Landing({ params: { lang } }) {
     const dict = await getDictionary(lang)
+
+
+
     return (
         <div className="landing-wrapper">
-            <BannerTitle image="/images/image-city.png" title={dict.bannerTitle.title} subtitle={dict.bannerTitle.subtitle} />
-            <CountriesBanner countries={dict.countriesBanner.countries} title={dict.countriesBanner.title} />
-            <SliderBanner textsSlider={dict.sliderBanner} />
-            <BannerPactoLanding description={dict.pactoBannerSecction.description} />
+            <BannerTitle
+                image="/images/image-city.png"
+                title={dict.bannerTitle.title}
+                linkButton="#banner-interciudad"
+                textButton={dict.bannerTitle.button}
+                subtitle={dict.bannerTitle.subtitle}
+            />
+            <CountriesBanner
+                countries={dict.countriesBanner.countries}
+                title={dict.countriesBanner.title}
+            />
+            <SliderBanner
+                textsSlider={dict.sliderBanner}
+            />
+            <BannerPactoLanding
+                description={dict.pactoBannerSecction.description} />
             <div className="country-banner">
                 {dict.countriesBanner.countries.map(country => <CountryBanner key={country.code} country={country} />)}
             </div>
