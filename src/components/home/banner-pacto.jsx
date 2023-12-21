@@ -5,9 +5,14 @@ import axiosServices from "@/utils/axios"
 import MkdFormatter from "./mkd-formatter"
 
 const getData = async ()=> {
-    const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
-    const project = await resp.data
-    return project
+    try{
+        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
+        const project = await resp.data
+        return project
+
+    }catch(err){
+        console.log(err);
+    }
 }
 
 const BannerPacto = async () => {
@@ -17,7 +22,7 @@ const BannerPacto = async () => {
         var today = new Date();
     }
 
-    return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
+    if(project)return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">El pacto</h1>
         {project && <div className="card has-background-cream is-flex w-75">
             <div className="card-image" style={{ backgroundImage: `url('${project.coverUrl}')` }}>

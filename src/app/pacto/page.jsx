@@ -4,24 +4,27 @@ import HeaderPropuesta from "@/components/pacto/header";
 import axiosServerServices from '@/utils/axiosServer';
 
 async function getData() {
-    const res = await axiosServerServices(`/projects/${process.env.PROJECTID}`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-    if (res.status !== 200) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
+    try{
+        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
+        const project = await resp.data
+        return project
+
+    }catch(err){
+        console.log(err);
     }
-    
-    return res.data
+
 }
 
 export default async function Propuesta() {
     const project = await getData()
-    return <div className="pacto-wrapper ">
+    if(project) return (<div className="pacto-wrapper ">
        
                 <HeaderPropuesta project={project} section="resumen"  />
                 <div className="project-body-container">
                     <ResumenBody project={project} />
                 </div>
-    </div>
+    </div>)
+    else return(<div className="content pacto-wrapper has-text-centered">
+        <h1 className='my-6'>Todavia no hay pacto</h1>       
+</div>)
 }

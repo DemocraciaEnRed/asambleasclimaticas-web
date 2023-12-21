@@ -1,16 +1,21 @@
 'use client'
 import { dispatch } from "@/store"
-import { handleToken, setUser } from "@/store/reducers/auth"
+import { setUser } from "@/store/reducers/auth"
+
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { redirect } from "next/navigation"
-import { useLayoutEffect, useState } from "react"
+import { use, useState } from "react"
+
 import { useSelector } from "react-redux"
 import { setCookie } from "cookies-next"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
+import { faLock } from "@fortawesome/free-solid-svg-icons"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const { user } = useSelector((state) => state.auth)
 
     async function handleLogin(event) {
@@ -39,14 +44,23 @@ export default function LoginForm(props) {
                     <div className="login-form mt-6">
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
-                            <div className="control">
-                                <input className="input" type="text" onChange={(event) => setEmail(event.target.value)} />
+                            <div className="control has-icons-left ">
+                                <input className="input" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
+                                <span className="icon is-small is-left">
+                                    <FontAwesomeIcon icon={faEnvelope}/>
+                                </span>
                             </div>
                         </div>
                         <div className="field">
                             <label className="label has-text-weight-normal">Contraseña</label>
-                            <div className="control">
-                                <input className="input" type="password" onChange={(event) => setPassword(event.target.value)} />
+                            <div className="control has-icons-left has-icons-right">
+                                <input className="input" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                 <span className="icon is-small is-left">
+                                    <FontAwesomeIcon icon={faLock}/>
+                                </span>
+                                <span className="icon is-small is-right is-clickable" onClick={()=>{setShowPassword(!showPassword)}}>
+                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
+                                </span>
                             </div>
                         </div>
                     </div>

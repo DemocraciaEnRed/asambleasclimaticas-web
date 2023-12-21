@@ -1,11 +1,10 @@
 "use client"
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { redirect } from "next/navigation"
-import { useEffect, useLayoutEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { redirect, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
-export default function RegisterForm({ changeLogin }) {
+export default function RegisterForm() {
     const [countryList, setCountryList] = useState([])
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')
@@ -15,12 +14,8 @@ export default function RegisterForm({ changeLogin }) {
     const [city, setCity] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
-    const { user } = useSelector((state) => state.auth)
 
-
-    useLayoutEffect(() => {
-        if (user) redirect('/')
-    })
+    const router = useRouter()
 
 
     useEffect(() => {
@@ -63,7 +58,7 @@ export default function RegisterForm({ changeLogin }) {
                 const response = await axiosServices.post('/auth/register',
                     JSON.stringify(body)
                 )
-                if (response.status === 200) changeLogin()
+                if (response.status === 200) return router.push('/auth/login')
             } catch (err) {
                 console.log(err);
             }
