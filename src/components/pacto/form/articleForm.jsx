@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted, mode }, ref) => {
+const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted, mode, published }, ref) => {
   const [articleId] = useState(article._id || null);
   const [text_es, setText_es] = useState(article.text_es || '');
   const [text_pt, setText_pt] = useState(article.text_pt || '');
@@ -14,6 +14,13 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   const summary_pt_ref = useRef(null);
   const [deleted, setDeleted] = useState(article.deleted || false);
 
+  let canDelete = true
+  if(mode === 'edit') {
+    if(published) {
+      canDelete = false
+    }
+  }
+  
   useImperativeHandle(ref, () => ({
     clientId: article.clientId,
     getOutput() {
@@ -23,7 +30,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
         text_pt: summary_pt_ref.current.getMarkdown(),
       }
       if(deleted) output.deleted = true
-      if(articleId) output.articleId = articleId
+      if(articleId) output._id = articleId
       return output
     },
     getCurrentTextEs() {
@@ -50,7 +57,11 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   }
 
   const toggleDeleted = () => {
-    if(mode === 'edit') return
+    if(mode === 'edit') {
+      if(published) {
+        return
+      }
+    }
     toggleArticleDeleted(article.clientId)
     setDeleted(!deleted)
   }
@@ -64,7 +75,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
             <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} onClick={clickArticleUp}/></div>
             <div className="is-clickable ml-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>
             {
-              mode === 'new' && <div className="is-clickable ml-4" onClick={toggleDeleted}><FontAwesomeIcon className="" icon={faTrashCan} /></div>
+              canDelete && <div className="is-clickable ml-4" onClick={toggleDeleted}><FontAwesomeIcon className="" icon={faTrashCan} /></div>
             }
           </div>
         </div>

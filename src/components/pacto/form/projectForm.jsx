@@ -55,15 +55,14 @@ export default function ProjectFormComponent({project}) {
   const init_title_es = project ? project.title_es : ''
   const init_title_pt = project ? project.title_pt : ''
   const init_slug = project ? project.slug : ''
-  const init_coverUrl = project ? project.coverUrl : ''
-  const init_youtubeUrl = project ? project.youtubeUrl : ''
+  const init_coverUrl = project && project.coverUrl ? project.coverUrl : ''
+  const init_youtubeUrl = project && project.youtubeUrl ? project.youtubeUrl : ''
   const youtubeIdMatch = project && project.youtubeUrl ? project.youtubeUrl.match(/https:\/\/www.youtube.com\/embed\/(.*)/) : ''
-  const init_youtubeId = youtubeIdMatch ? youtubeIdMatch[1] : ''
+  const init_youtubeId = youtubeIdMatch && youtubeIdMatch[1] ? youtubeIdMatch[1] : ''
   const init_stage = project ? project.stage : 'MX'
   const init_about_es = project ? project.about_es : projectFormUtils.getPlaceholderAboutEs()
   const init_about_pt = project ? project.about_pt : projectFormUtils.getPlaceholderAboutPt()
   if(project && project.articles){
-    console.log(project.articles)
     init_articles = project.articles.map(article => {
       return {
         _id: article._id,
@@ -88,7 +87,7 @@ export default function ProjectFormComponent({project}) {
       country: project.author.country
     }
   }
-    
+  let init_publishedAt = project.publishedAt ? project.publishedAt : null
 
   // -------------------------------------
   // STATE AND REFS DECLARATIONS
@@ -98,8 +97,8 @@ export default function ProjectFormComponent({project}) {
   const slugInput = useRef(null)
   const [coverUrl, setCoverUrl] = useState(init_coverUrl)
   const [youtubeUrl, setYoutubeUrl] = useState(init_youtubeUrl)
-  const [youtubeId, setYoutubeId] = useState('')
-  const [stage, setStage] = useState('MX')
+  const [youtubeId, setYoutubeId] = useState(init_youtubeId)
+  const [stage, setStage] = useState(init_stage)
   const [about_es, setAbout_es] = useState(init_about_es)
   const [about_pt, setAbout_pt] = useState(init_about_pt)
   const [author, setAuthor] = useState(init_author)
@@ -109,6 +108,8 @@ export default function ProjectFormComponent({project}) {
   const [articles, setArticles] = useState(init_articles)
   const articlesRefs = useRef([])
   const [closedAt, setClosedAt] = useState(init_closedAt)
+  const [publishNow, setPublishNow] = useState(false)
+  const [publishedAt, setPublishedAt] = useState(init_publishedAt)
   const [isLoading, setIsLoading] = useState(false)
 
   
@@ -149,7 +150,7 @@ export default function ProjectFormComponent({project}) {
   // METHODS
   // -------------------------------------
   function addNewArticle() {
-    if(mode === 'edit') return
+    if(mode === 'edit' && publishedAt) return
     // create a clientId for the new article
     const clientId = getRandomClientId();
     // Create a new ArticleForm reference
@@ -161,13 +162,17 @@ export default function ProjectFormComponent({project}) {
   // -------------------------------------
   // HANDLERS
   // -------------------------------------
-
+  const slugifyOptions = {
+    lower: true,
+    replacement: '-',
+  }
   function handleTitle_es(e) {
     setTitle_es(e.target.value)
   }
 
   function handleFocusOutTitle_es(e) {
-    setSlug(slugify(e.target.value, { lower: true, replacement: '-' }))
+    if(slug) return
+    setSlug(slugify(e.target.value, slugifyOptions))
   }
 
   function handleTitle_pt(e) {
@@ -175,7 +180,11 @@ export default function ProjectFormComponent({project}) {
   }
 
   function handleSlug(e) {
-    setSlug(slugify(e.target.value, { lower: true, replacement: '-' })) 
+    setSlug(e.target.value) 
+  }
+
+  function handleFocusOutSlug(e) {
+    setSlug(slugify(e.target.value, slugifyOptions))
   }
 
   function handleCoverUrl(e) {
@@ -184,6 +193,10 @@ export default function ProjectFormComponent({project}) {
 
   function handleYoutubeUrl(e) {
     setYoutubeUrl(e.target.value)
+  }
+
+  function handlePublishNow(e) {
+    setPublishNow(e.target.checked)
   }
 
   function handleFocusOutYoutubeUrl(e) {
@@ -206,7 +219,7 @@ export default function ProjectFormComponent({project}) {
   }
 
   function moveArticleUp(clientId) {
-    if(mode === 'edit') return
+    //if(mode === 'edit') return
     // find the index of the article that needs to be moved
     const index = articles.findIndex((article) => article.clientId === clientId);
     // if the article is the first one, do nothing
@@ -237,7 +250,7 @@ export default function ProjectFormComponent({project}) {
   }
 
   function moveArticleDown(clientId) {
-    if(mode === 'edit') return
+    // if(mode === 'edit') return
     // find the index of the article that needs to be moved
     const index = articles.findIndex((article) => article.clientId === clientId);
     // if the article is the last one, do nothing
@@ -268,7 +281,12 @@ export default function ProjectFormComponent({project}) {
   }
 
   function toggleArticleDeleted(clientId) {
-    if(mode === 'edit') return
+    if(mode === 'edit') {
+      // if the project has been published, no way you can delete it.
+      // if the project has already been created, then the article
+      // will stay but it will be marked as deleted
+      return
+    }
     // in this mode "new", the article, if it's deleted, it's deleted forever
     // find the index of the article that needs to be moved
     const index = articles.findIndex((article) => article.clientId === clientId);
@@ -312,14 +330,17 @@ export default function ProjectFormComponent({project}) {
     if(isPublished) {
       payload.publishedAt = (new Date()).toISOString()
     }
-    const selectedAuthor = authorFieldRef.current.getAuthor()
-    if(selectedAuthor) {
-      payload.author = selectedAuthor._id
+    if(authorFieldRef.current) {
+      const selectedAuthor = authorFieldRef.current.getAuthor()
+      if(selectedAuthor) {
+        payload.author = selectedAuthor._id
+      }
     }
     return payload
   }
 
-  function handleSave(publish = false) {
+  function handleSave() {
+    const publish = publishNow || false
     setIsLoading(true)
     const payload = makePayload(publish)
     console.log(payload)
@@ -327,6 +348,19 @@ export default function ProjectFormComponent({project}) {
   }
 
   function submitProject(payload) {
+    if(mode === 'edit') {
+      axiosServices.put(`/projects/${project._id}`, payload)
+        .then(res => {
+          router.push(`/pacto/${project._id}/editar/exito`)
+        })
+        .catch(err => {
+          console.error(err)
+        }).
+        finally(() => {
+          setIsLoading(false)
+        })
+      return
+    }
     axiosServices.post('/projects', payload)
       .then(res => {
         router.push('/pacto/nuevo/exito')
@@ -342,11 +376,55 @@ export default function ProjectFormComponent({project}) {
   return (
     <>
       {/* buttons, but they are disabled, its just decoration */}
-      <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Controles</h4>
-      <p className="help">Se habilitarán una vez creado el proyecto</p>
-      <div className="buttons mt-3">
-        <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar proyecto</button>
-        <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faEyeSlash} />&nbsp;Ocultar proyecto</button>
+      {
+        mode === 'edit' && publishedAt && (<>
+            <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Controles</h4>
+            <p className="help">Se habilitarán una vez creado el proyecto</p>
+            <div className="buttons mt-3">
+              <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar proyecto</button>
+              <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faEyeSlash} />&nbsp;Ocultar proyecto</button>
+            </div>
+          </>
+        )
+      }
+      {/* If not published yet, says its a "draft" */}
+      <div className="box py-3">
+        <div className="field is-grouped is-grouped-multiline">
+          <div className="control">
+            <div className="tags has-addons">
+              <span className="tag is-dark">Estado</span>
+              {
+                publishedAt ? (
+                  <span className="tag is-success">Publicado</span>
+                ) : (
+                  <span className="tag is-light">Borrador</span>
+                )
+              }
+            </div>
+          </div>
+          {
+            !publishedAt && (
+              <div className="control">
+                <div className="tags has-addons">
+                  <span className="tag is-dark">Visibilidad</span>
+                  {
+                    project.hidden ? (
+                      <span className="tag is-light">Oculto</span>
+                    ) : (
+                      <span className="tag is-success">Visible</span>
+                    )
+                  }
+                </div>
+              </div>
+            )
+          }
+          <div className="control">
+            <div className="tags has-addons">
+              <span className="tag is-dark">Versión</span>
+              <span className="tag is-link">{project.version}</span>
+            </div>
+          </div>
+        </div>
       </div>
       {/* Project Title */}
       <div className="box">
@@ -380,7 +458,7 @@ export default function ProjectFormComponent({project}) {
             <div className="field">
               <label className="label">Slug</label>
               <div className="control">
-                <input className={`input ${!isSlugValid && 'is-danger' }`} type="text" placeholder="Slug del proyecto" value={slug} onChange={handleSlug} />
+                <input className={`input ${!isSlugValid && 'is-danger' }`} type="text" placeholder="Slug del proyecto" value={slug} onChange={handleSlug} onBlur={handleFocusOutSlug} />
               </div>
               {
                 !isSlugValid && (
@@ -392,7 +470,11 @@ export default function ProjectFormComponent({project}) {
           </div>
         </div>
       </div>
-      <AuthorField author={author} ref={authorFieldRef} />
+      {
+        userIsAdmin && (
+          <AuthorField author={author} ref={authorFieldRef} />
+        )
+      }
       {/* Project Cover */}
       <div className="box">
         <div className="columns my-1">
@@ -509,11 +591,12 @@ export default function ProjectFormComponent({project}) {
                 moveArticleDown={moveArticleDown}
                 toggleArticleDeleted={toggleArticleDeleted}
                 mode={mode}
+                published={publishedAt}
               />
             );
           })}
           {
-            mode === 'new' && (
+            (mode === 'new' || (mode === 'edit' && !publishedAt)) && (
               <div className="buttons">
                 <button className="button is-black is-outlined is-fullwidth" disabled={isLoading} onClick={addNewArticle}><FontAwesomeIcon icon={faPlus} />&nbsp;Agregar articulo</button>
               </div>
@@ -523,12 +606,33 @@ export default function ProjectFormComponent({project}) {
       {/* Project Save */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Guardar proyecto</h4>
-        <p>Puede optar por <b>guardar</b> el proyecto como <b>borrador</b> para editarlo luego y publicarlo cuando este listo.</p>
-        <p>O puede <b>guardar y publicar</b> el proyecto (el proyecto quedara visible para que los usuarios participen)</p>
-        <div className="buttons mt-3">
-          <button className={`button is-black ${isLoading && 'is-loading'}`} disabled={isLoading} onClick={() => handleSave(false)}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar borrador</button>
-          <button className={`button is-black ${isLoading && 'is-loading'}`} disabled={isLoading} onClick={() => handleSave(true)}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar y&nbsp;<FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar</button>
-          
+        {
+          mode === 'new' && (
+            <p>Puede optar por <b>Guardar</b> el proyecto como <b>borrador</b> para editarlo luego y publicarlo más adelante.</p>
+          )
+        }
+        {
+          mode === 'edit' && (
+              <p>Al guardar el proyecto, los cambios pasarán a formar parte de la versión actual del proyecto.</p>
+          )
+        }
+        {
+          !publishedAt && (
+            <>
+              <p>Tambien puede <b>Guardar y publicar</b> el proyecto (el proyecto quedara visible para que los usuarios participen)</p>
+              <div className="field my-3">
+                <div className="control">
+                  <label className="checkbox">
+                    <input type="checkbox" checked={publishNow} onChange={handlePublishNow} />
+                    &nbsp;Publicar proyecto ahora
+                  </label>
+                </div>
+              </div>
+            </>
+          )
+        }
+        <div className="buttons is-right mt-3">
+          <button className={`button is-black ${isLoading && 'is-loading'}`} disabled={isLoading} onClick={handleSave}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>
         </div>
       </div>
     </>
