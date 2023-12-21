@@ -6,14 +6,16 @@ const axiosServerServices = axios.create({ baseURL: 'http://localhost:3000' })
 
 axiosServerServices.interceptors.request.use(
     (config) => {
-        const token = cookies().get('auth').value;
+        const token = cookies().get('auth')
         if (token) {
-            config.headers['Authorization'] = 'Bearer ' + token;
+            const tokenValue = token.value;
+            config.headers['Authorization'] = 'Bearer ' + tokenValue;
         }
         config.headers['Content-Type'] = 'application/json';
         return config;
     }
 );
+
 
 
 

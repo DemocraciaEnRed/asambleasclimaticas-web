@@ -1,25 +1,17 @@
-'use client'
-import { useEffect, useState } from "react"
-import Logo from "../common/logo"
 import ArticlesCommentsCounter from "../common/article-comment-counter"
-import ProjectHeaderVersion from "../pacto/header/preject-version"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
 import axiosServices from "@/utils/axios"
-import { Remark } from "react-remark"
+import MkdFormatter from "./mkd-formatter"
 
-const BannerPacto = () => {
-    const [project, setProject] = useState(null)
+const getData = async ()=> {
+    const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
+    const project = await resp.data
+    return project
+}
 
-    useEffect(() => {
-        fetchProject()
-    }, [])
-
-    const fetchProject = async () => {
-        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
-        const project = await resp.data
-        setProject(project)
-    }
+const BannerPacto = async () => {
+    const project = await getData()
 
     const ClosedProjectcheck = (project) => {
         var today = new Date();
@@ -40,10 +32,7 @@ const BannerPacto = () => {
                 </div>
 
                 <div className="content px-5">
-                    <Remark>
-                        {project.about_es}
-
-                    </Remark>
+                    <MkdFormatter source={project.about_es}/>
                     <div className="is-flex ">
 
                         <ClosingDate closingDate={project.closedAt}

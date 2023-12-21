@@ -1,11 +1,13 @@
 import axios from 'axios';
+import { getCookie } from 'cookies-next';
+
 
 const axiosServices = axios.create({ baseURL: 'http://localhost:3000' })
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 
 axiosServices.interceptors.request.use(
     (config) => {
-        const token = JSON.parse(localStorage.getItem('persist:token')).token.replace(/['"]+/g, '');
+        const token = getCookie('auth');
         if (token) {
             config.headers['Authorization'] = 'Bearer ' + token;
         }

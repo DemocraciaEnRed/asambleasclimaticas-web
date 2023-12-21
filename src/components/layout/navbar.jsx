@@ -10,8 +10,8 @@ import { faAngleDown, faBars, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Logo from "../common/logo";
 import { handleOverlay } from "@/store/reducers/config";
 import { handleLanguage } from "@/store/reducers/language";
-import { useAuth } from "@/context/auth-context";
 import { deleteUser, handleToken } from "@/store/reducers/auth";
+import { deleteCookie } from 'cookies-next';
 
 
 export default function Navbar() {
@@ -40,7 +40,8 @@ export default function Navbar() {
     }
 
     const logOut = () => {
-        dispatch(handleToken(''))
+        //dispatch(handleToken(''))
+        deleteCookie('auth')
         dispatch(deleteUser())
         window.location.reload(false);
     }

@@ -1,5 +1,4 @@
-
-
+'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp, faComment, faMessage } from "@fortawesome/free-regular-svg-icons";
 import axiosServices from "@/utils/axios";

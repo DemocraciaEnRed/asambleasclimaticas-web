@@ -1,12 +1,12 @@
 'use client'
 import axiosServices from '@/utils/axios';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { getCookie } from 'cookies-next';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const { token } = useSelector((state) => state.auth)
+  const token = getCookie('auth')
   const [user, setUser] = useState()
 
   useEffect(() => {
