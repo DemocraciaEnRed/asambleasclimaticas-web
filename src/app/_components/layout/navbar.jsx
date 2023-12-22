@@ -12,7 +12,7 @@ import Logo from "@/app/_components/common/logo";
 import LangSwitch from "../common/lang-switch";
 
 
-export default function Navbar({ lang }) {
+export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
     const pathname = usePathname()
@@ -79,7 +79,7 @@ export default function Navbar({ lang }) {
                 </ul>
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
             </div>
-            <LangSwitch lang={lang} />
+            <LangSwitch />
             <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5" onClick={handleOpenMenu}>
                 <FontAwesomeIcon icon={faBars} />
             </div>

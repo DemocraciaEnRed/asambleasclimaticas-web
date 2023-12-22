@@ -1,17 +1,20 @@
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
-export default function LangSwitch({ lang }) {
+export default function LangSwitch() {
     const router = useRouter()
     const pathname = usePathname()
+    const [lang, setLang] = useState(pathname.split('/')[1])
 
     const switchLang = (langToGo) => {
         const rutaActual = pathname;
 
-
         const routeWhitOutLang = '/' + rutaActual.split('/')[2] + rutaActual.split(pathname.split('/')[2])[1]
         if (pathname.split('/')[2]) {
+            setLang(langToGo)
             return router.push('/' + langToGo + routeWhitOutLang)
         }
+        setLang(langToGo)
         return router.push('/' + langToGo)
     }
 
