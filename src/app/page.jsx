@@ -17,8 +17,6 @@ export default function Page(){
     }
 
     // If the user hits the root path, redirect based on the browser's language
-    
-    console.log(pathname);
     if (pathname === '/') {
       router.replace(`/${detectedLocale}`);
     }
