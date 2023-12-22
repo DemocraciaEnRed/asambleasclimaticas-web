@@ -8,7 +8,7 @@ const BannerTitle = ({urlAction,title,subtitle,image, actionClick, textButton}) 
       <p className='has-text-centered has-text-white is-uppercase '>{title}</p>
       <p  className="has-text-weight-light is-size-7 has-text-white ">{subtitle}</p>
     </div>
-    <button onClick={actionClick} className="button is-white is-rounded px-6 is-uppercase">{textButton}</button>
+    {textButton && <button onClick={actionClick} className="button is-white is-rounded px-6 is-uppercase">{textButton}</button>}
 </div>
 
 export default BannerTitle

@@ -1,19 +1,9 @@
 import LoginForm from "@/components/auth/login"
-import axiosServerServices from "@/utils/axiosServer"
+import { fetchUserMe } from "@/utils/data"
 import { redirect } from "next/navigation"
 
-async function getData(){
-    try{
-        const res = await axiosServerServices.get('/users/me')
-        const user = await res.data
-        if(user) return user
-    }catch(err){
-        console.log(err);
-    }
-}
-
 export default async function Login(props) {
-    const user = await getData()
+    const user = await fetchUserMe()
     if (user) {
         redirect('/')
     }

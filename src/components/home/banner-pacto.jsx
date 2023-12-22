@@ -1,22 +1,11 @@
 import ArticlesCommentsCounter from "../common/article-comment-counter"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
-import axiosServices from "@/utils/axios"
-import MkdFormatter from "./mkd-formatter"
-
-const getData = async ()=> {
-    try{
-        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
-        const project = await resp.data
-        return project
-
-    }catch(err){
-        console.log(err);
-    }
-}
+import MkdFormatter from "../common/mkd-formatter"
+import { fetchProject } from "@/utils/data"
 
 const BannerPacto = async () => {
-    const project = await getData()
+    const project = await fetchProject()
 
     const ClosedProjectcheck = (project) => {
         var today = new Date();

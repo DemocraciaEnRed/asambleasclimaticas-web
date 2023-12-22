@@ -4,6 +4,8 @@ import { BannerParticipativo } from "@/components/home/banner-participativo";
 import BannerResurgente from "@/components/home/banner-resurgente";
 import BannerSobreProyecto from "@/components/home/banner-sobre-proyecto";
 import BannerTitle from "@/components/common/banner-title";
+import { Suspense } from "react";
+import Skeleton from "@/components/common/skeleton";
 
 export default async function Home() {
     return (
@@ -12,7 +14,9 @@ export default async function Home() {
             <Banner />
             <BannerResurgente />
             <BannerParticipativo />
-            <BannerPacto />
+            <Suspense fallback={<Skeleton height={500}/>}>
+                <BannerPacto />
+            </Suspense>
             <BannerSobreProyecto />
         </div>
     )

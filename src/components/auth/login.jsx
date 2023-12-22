@@ -27,7 +27,9 @@ export default function LoginForm(props) {
         try {
             const response = await axiosServices.post('/auth/login', JSON.stringify(body))
             const res = await response.data
-            setCookie('auth', res.token, {});
+            var expires = new Date();
+            expires.setDate(expires.getDate() + 3600000);  
+            setCookie('auth', res.token, {expires});
             dispatch(setUser(res.user))
             if (response.status === 200) window.location.reload(false);
         } catch (err) {
