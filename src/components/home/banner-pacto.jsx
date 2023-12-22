@@ -1,7 +1,7 @@
 import ArticlesCommentsCounter from "../common/article-comment-counter"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
-import MkdFormatter from "./mkd-formatter"
+import MkdFormatter from "../common/mkd-formatter"
 import { fetchProject } from "@/utils/data"
 
 const BannerPacto = async () => {

@@ -2,7 +2,6 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPenToSquare, faSquarePollHorizontal } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "@mui/material";
 
 export function BannerParticipativo() {
     return <div className="banner-participativo has-text-centered has-background-cream py-6">
