@@ -50,16 +50,13 @@
 
                 &:hover {
                     cursor: pointer;
-                    color: $pink-light;
+                    color: $pink-base;
                 }
 
                 &:not(:last-child) {
                     border-bottom: solid 1px $gray-light;
                 }
-
-                &.active {
-                    color: $pink-base;
-                }
+                
             }
         }
 
