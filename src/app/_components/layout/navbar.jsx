@@ -8,8 +8,6 @@ import { faAngleDown, faBars, faXmark } from "@fortawesome/free-solid-svg-icons"
 
 
 import { handleOverlay } from "@/store/reducers/config";
-import { handleLanguage } from "@/store/reducers/language";
-import { deleteUser, handleToken } from "@/store/reducers/auth";
 import Logo from "@/app/_components/common/logo";
 import LangSwitch from "../common/lang-switch";
 
@@ -17,7 +15,6 @@ import LangSwitch from "../common/lang-switch";
 export default function Navbar({ lang }) {
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
-    const router = useRouter()
     const pathname = usePathname()
     const dispatch = useDispatch()
 

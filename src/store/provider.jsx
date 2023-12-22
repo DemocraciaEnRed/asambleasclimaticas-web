@@ -7,9 +7,7 @@ import { store, persister } from ".";
 
 export function Providers({ children }) {
     return <Provider store={store}>
-        <PersistGate loading={null} persistor={persister}>
             {children}
 
-        </PersistGate>
     </Provider>
 }
