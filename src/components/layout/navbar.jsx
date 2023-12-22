@@ -62,7 +62,7 @@ export default function Navbar() {
         <nav className={`navbar-wrapper ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
             <div className='logo'>
                 <Link href="/" className="is-flex is-align-items-center">
-                    <Logo color='#FFFFFF' widthLogo={window.innerWidth < 768 ? '150' : '300'} />
+                    <Logo color='#FFFFFF' />
                 </Link>
 
             </div>

@@ -7,10 +7,14 @@
         text-transform: uppercase;
         display: flex;
         align-items: center;
-        h1 {
-            font-size: 3rem;
-            color: $white;
-            font-weight: 800;
+        a{
+            svg{
+                width: 250px;
+                @include tablet{
+                    width: 150px;
+                    padding: .75rem 0;
+                }
+            }
         }
     }
     .menu-navbar{

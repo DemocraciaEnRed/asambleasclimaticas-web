@@ -14,16 +14,18 @@ const progress = (total, remaining) => {
   return remaining * 100 / total
 }
 
-const ProgressBar = ({ closingDate, creationDate, closed, remaining }) => (
-  <div className='progress-bar-wrapper'>
-    {closed ? <div className='reaming-days'>Finalizó el periodo para aportes</div>
-      : <>
-        <div className='progress-fill' style={{width:`${progress(RemainingDate(closingDate, creationDate), RemainingDate(new Date(), closingDate))}%`}} />
-        <div className='reaming-days'>Dias restantes: {RemainingDate(new Date(), closingDate)} </div>
-      </>
-    }
-  </div>
-)
+const ProgressBar = ({ closingDate, creationDate, closed, remaining }) => {
+  if(closingDate) return (
+    <div className='progress-bar-wrapper'>
+      {closed ? <div className='reaming-days'>Finalizó el periodo para aportes</div>
+        : <>
+          <div className='progress-fill' style={{ width: `${progress(RemainingDate(closingDate, creationDate), RemainingDate(new Date(), closingDate))}%` }} />
+          <div className='reaming-days'>Dias restantes: {RemainingDate(new Date(), closingDate)} </div>
+        </>
+      }
+    </div>
+  )
+}
 
 
 export default ProgressBar

@@ -27,11 +27,15 @@ export default function LoginForm(props) {
         try {
             const response = await axiosServices.post('/auth/login', JSON.stringify(body))
             const res = await response.data
-            var expires = new Date();
-            expires.setDate(expires.getDate() + 3600000);  
-            setCookie('auth', res.token, {expires});
-            dispatch(setUser(res.user))
-            if (response.status === 200) window.location.reload(false);
+            if (response.status === 200) {
+                if (res.token) {
+                    var expires = new Date();
+                    expires.setDate(expires.getDate() + 3600000);
+                    setCookie('auth', res.token, { expires });
+                    dispatch(setUser(res.user))
+                }
+                window.location.reload(false);
+            }
         } catch (err) {
             console.log(err);
         }
@@ -49,7 +53,7 @@ export default function LoginForm(props) {
                             <div className="control has-icons-left ">
                                 <input className="input" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
                                 <span className="icon is-small is-left">
-                                    <FontAwesomeIcon icon={faEnvelope}/>
+                                    <FontAwesomeIcon icon={faEnvelope} />
                                 </span>
                             </div>
                         </div>
@@ -57,11 +61,11 @@ export default function LoginForm(props) {
                             <label className="label has-text-weight-normal">Contraseña</label>
                             <div className="control has-icons-left has-icons-right">
                                 <input className="input" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
-                                 <span className="icon is-small is-left">
-                                    <FontAwesomeIcon icon={faLock}/>
+                                <span className="icon is-small is-left">
+                                    <FontAwesomeIcon icon={faLock} />
                                 </span>
-                                <span className="icon is-small is-right is-clickable" onClick={()=>{setShowPassword(!showPassword)}}>
-                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye}/>
+                                <span className="icon is-small is-right is-clickable" onClick={() => { setShowPassword(!showPassword) }}>
+                                    <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                                 </span>
                             </div>
                         </div>

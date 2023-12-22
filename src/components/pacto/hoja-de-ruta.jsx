@@ -19,7 +19,7 @@ export default function PropuestaHojaComponent() {
     }, [])
 
     const fetchProject = async () => {
-        const resp = await axiosServices.get(`/projects/${process.env.PROJECTID}`)
+        const resp = await axiosServices.get(`/projects/${process.env.CLIENT_SIDE_PROJECTID}`)
         const projects = await resp.data
         setProject(projects)
     }

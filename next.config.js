@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    PROJECTID: 'pacto-inter-ciudad',
+    CLIENT_SIDE_PROJECTID: process.env.PROJECTID,
+    CLIENT_SIDE_APIURL: process.env.APIURL
   },
 }
 
