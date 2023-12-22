@@ -8,8 +8,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 3000
+EXPOSE 4000
 
-CMD [ "npx", "serve@14.2.1", "out"]
+CMD [ "npm", "run", "dev"]
+# CMD [ "npx", "serve@14.2.1", "out"]
