@@ -8,9 +8,8 @@ RUN npm install
 
 COPY . .
 
-# RUN npm run build
+RUN npm run build
 
 EXPOSE 4000
 
-CMD [ "npm", "run", "dev"]
-# CMD [ "npx", "serve@14.2.1", "out"]
+CMD [ "npm", "start", "--", "--port", "4000"]
