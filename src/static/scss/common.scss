@@ -126,8 +126,70 @@
 }
 
 .comment-modal-wrapper{
-  .content{
-    .swiper-slide{
+  .card{
+    .card-content{
+     .content{
+        .swiper {
+            .swiper-wrapper{
+              max-height: 60vh;
+              .swiper-slide {
+                  display: flex;
+                  align-items: center;
+                  overflow: auto;
+                  &::-webkit-scrollbar {
+                    width: 5px;
+                  }
+                  
+                  /* Track */
+                  &::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                  }
+                  
+                  /* Handle */
+                  &::-webkit-scrollbar-thumb {
+                    background: #888;
+                  }
+                  
+                  /* Handle on hover */
+                  &::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                  }
+                  .swiper-item{
+                      padding: 2.5em 14em;
+                  }
+                }
+            }
+            
+          }
+
+     }
+    }
+    .card-footer{
+      button{
+        background-color: transparent;
+        border: none;
+        &:not(:last-child){
+          border-right: 1px solid $grey-lighter;
+
+        }
+      }
     }
   }
+}
+
+.skeleton {
+  .message-header {
+    background-color: #e2e2e2;
+    animation: loading .5s infinite alternate;
+  }
+}
+
+@keyframes loading {
+  from {background-color:#b8b3b3;}
+  to {background-color: hsl(0, 5%, 78%);}
+}
+
+.is-stick-top{
+  position: sticky;
+  top: 10%;
 }

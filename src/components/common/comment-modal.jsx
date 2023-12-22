@@ -9,19 +9,24 @@ import axiosServices from '@/utils/axios';
 export default function CommentModal({ postUrl, active, commentList, addCommentDefault, closeCommentModal, user, isModal }) {
     const [addComment, setAddComment] = useState(false)
     const [newComment, setNewComment] = useState('')
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         if (addCommentDefault) setAddComment(true)
     }, [])
 
     const sendComment = () => {
-        axiosServices.post(postUrl, { body: newComment })
-        closeCommentModal()
+        if(newComment){
+            axiosServices.post(postUrl, { body: newComment })
+            closeCommentModal()
+        }else{
+            setError(true)
+        }
 
     }
 
     return (
-        <div className={`${isModal ? 'modal' : ''} comment-modal-wrapper ${active ? 'is-active' : ''}`}>
+        <div className={`${isModal ? 'modal' : 'is-stick-top'} comment-modal-wrapper ${active ? 'is-active' : ''}`}>
             {isModal && <div className="modal-background" onClick={closeCommentModal}></div>}
             <div className={`${isModal ? "modal-content" : ''}`} >
 
@@ -50,13 +55,13 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
                             {(addComment || commentList.length === 0) && user &&
                                 <div>
                                     <p>{user.name}</p>
-                                    <textarea className="textarea" placeholder="Agregue su comentario aqui...." onChange={(e) => setNewComment(e.target.value)}></textarea>
+                                    <textarea className={`textarea ${error?'is-danger':''}`} placeholder="Agregue su comentario aqui...." onChange={(e) => setNewComment(e.target.value)}></textarea>
                                 </div>}
                         </div>
                     </div>
                     <footer className="card-footer">
-                        {commentList.length > 0 && <a href="#" className="card-footer-item" onClick={() => setAddComment(!addComment)}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</a>}
-                        {(addComment || commentList.length === 0) && <a href="#" className="card-footer-item" onClick={sendComment}> enviar comentario  </a>}
+                        {commentList.length > 0 && <button href="#" className="card-footer-item has-text-primary" onClick={() => setAddComment(!addComment)}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</button>}
+                        {(addComment || commentList.length === 0) && <button href="#" className="card-footer-item has-text-primary" onClick={sendComment}> enviar comentario  </button>}
                     </footer>
                 </div>}
             </div>
