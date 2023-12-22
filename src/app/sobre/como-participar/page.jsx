@@ -7,7 +7,7 @@ export default function Acercade() {
         ¿QUÉ ES EL CONGRESO DE LA REPÚBLICA Y QUÉ FUNCIONES CUMPLE?
       </span>
       <p>
-        "Colombia cuenta con un sistema legislativo bicameral conformado por un Senado y la Cámara de Representantes. Los congresistas son designados por un período de cuatro años que inicia y finaliza cada 20 de junio."
+      Colombia cuenta con un sistema legislativo bicameral conformado por un Senado y la Cámara de Representantes. Los congresistas son designados por un período de cuatro años que inicia y finaliza cada 20 de junio.
       </p>
       <span className="has-text-primary">
         ¿QUÉ DIFERENCIAS EXISTEN ENTRE EL SENADO Y LA CÁMARA?
