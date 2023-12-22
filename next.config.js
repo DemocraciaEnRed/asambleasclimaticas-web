@@ -2,7 +2,6 @@
 const nextConfig = {
   env: {
     PROJECTID: 'pacto-inter-ciudad',
-    APIURL:'http://localhost:3000'
   },
 }
 
