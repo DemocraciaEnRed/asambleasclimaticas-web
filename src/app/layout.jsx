@@ -3,13 +3,13 @@ import { Karla } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 
-import './themes.scss'
+import '@/app/themes.scss'
 
 
 import Overlay from '@/app/_components/common/overlay'
 import { createTheme } from '@mui/material'
-import Navbar from '../_components/layout/navbar'
-import Footer from '../_components/layout/footer'
+import Navbar from '@/app/_components/layout/navbar'
+import Footer from '@/app/_components/layout/footer'
 
 
 const karla = Karla({
