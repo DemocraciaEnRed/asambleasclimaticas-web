@@ -50,9 +50,6 @@ export default function Navbar({ lang }) {
                 </Link>
 
             </div>
-            <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5" onClick={handleOpenMenu}>
-                <FontAwesomeIcon icon={faBars} />
-            </div>
             <div className={`navbar-links has-text-white is-justify-content-center is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
                 <ul >
                     <li className={pathname == "/" ? 'active' : ""}>
@@ -83,6 +80,9 @@ export default function Navbar({ lang }) {
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
             </div>
             <LangSwitch lang={lang} />
+            <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5" onClick={handleOpenMenu}>
+                <FontAwesomeIcon icon={faBars} />
+            </div>
         </nav>
     )
 
