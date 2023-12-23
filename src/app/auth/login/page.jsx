@@ -1,5 +1,5 @@
 import LoginForm from "@/components/auth/login"
-import { fetchUserMe } from "@/utils/data"
+import { fetchUserMe } from "@/utils/get-data"
 import { redirect } from "next/navigation"
 
 export default async function Login(props) {

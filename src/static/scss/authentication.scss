@@ -47,4 +47,18 @@
             color: $white;
         }
     }
+    .verify-form-wrapper{
+        width: 50%;
+        @include tablet{
+            width: 90%;
+        }
+        .box{
+            .content{
+                padding: 3rem;
+                @include tablet{
+                    padding: .25rem;
+                }       
+            }
+        }
+    }
 }

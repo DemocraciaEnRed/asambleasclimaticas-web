@@ -1,7 +1,7 @@
 import Skeleton from "@/components/common/skeleton";
 import ResumenBody from "@/components/pacto/body/resumen";
 import HeaderPropuesta from "@/components/pacto/header";
-import { fetchProject } from '@/utils/data';
+import { fetchProject } from '@/utils/get-data';
 import { Suspense } from "react";
 
 

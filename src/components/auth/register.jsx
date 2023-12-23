@@ -58,7 +58,7 @@ export default function RegisterForm() {
                 const response = await axiosServices.post('/auth/register',
                     JSON.stringify(body)
                 )
-                if (response.status === 200) return router.push('/auth/login')
+                if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
                 console.log(err);
             }

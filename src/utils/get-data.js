@@ -1,3 +1,4 @@
+import axiosServices from "./axios";
 import axiosServerServices from "./axiosServer";
 
 export const fetchProject = async ()=> {
@@ -40,4 +41,12 @@ export const fetchUserMe = async  () => {
     }catch(err){
         console.log(err);
     }
+}
+
+export const verifyToken=async (token)=>{
+    const res = await axiosServices.get(`/auth/verify/${token}`)
+    return {
+        status:res.status,
+        message:res.data.message
+        }
 }
