@@ -8,8 +8,8 @@ import { fetchProjectArticle, fetchProjectComment } from "@/utils/get-data";
 export default async function ArticuladoBody({ project }) {
 
     const [articles, comments] = await Promise.all([
-        fetchProjectArticle(),
-        fetchProjectComment()
+        fetchProjectArticle(project._id),
+        fetchProjectComment(project._id)
     ])
 
     return <div className="articles-pacto">

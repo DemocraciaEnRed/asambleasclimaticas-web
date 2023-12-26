@@ -5,8 +5,8 @@ import { fetchProject } from '@/utils/get-data';
 import { Suspense } from "react";
 
 
-export default async function Propuesta() {
-    const project = await fetchProject()
+export default async function Propuesta({params:{id}}) {
+    const project = await fetchProject(id)
     if (project) return (<div className="pacto-wrapper ">
         <Suspense fallback={<Skeleton height={700} column/>}>
             <HeaderPropuesta project={project} section="resumen" />

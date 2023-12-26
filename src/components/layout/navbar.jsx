@@ -79,7 +79,7 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li className={pathname == "/pacto" ? 'active' : ""}>
-                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/pacto" >
+                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/pacto/pacto-inter-ciudad" >
                             <span>
                                 Pacto
                             </span>

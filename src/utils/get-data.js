@@ -1,9 +1,9 @@
 import axiosServices from "./axios";
 import axiosServerServices from "./axiosServer";
 
-export const fetchProject = async ()=> {
+export const fetchProject = async (projectId)=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}`)
+        const resp = await axiosServerServices.get(`/projects/${projectId}`)
         const project = await resp.data
         return project
     }catch(err){
@@ -11,11 +11,11 @@ export const fetchProject = async ()=> {
     }
 }
 
-export const fetchProjectArticle = async ()=> {
+export const fetchProjectArticle = async (projectId)=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
         
-        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/articles`)
+        const resp = await axiosServerServices.get(`/projects/${projectId}/articles`)
         const articles = await resp.data
         return articles
     }catch(err){
@@ -23,9 +23,9 @@ export const fetchProjectArticle = async ()=> {
     }
 }
 
-export const fetchProjectComment = async ()=> {
+export const fetchProjectComment = async (projectId)=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/comments`)
+        const resp = await axiosServerServices.get(`/projects/${projectId}/comments`)
         const comments = await resp.data
         return comments
     }catch(err){
@@ -33,10 +33,10 @@ export const fetchProjectComment = async ()=> {
     }
 }
 
-export const fetchProjectEvents = async ()=> {
+export const fetchProjectEvents = async (projectId)=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
-        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/events`)
+        const resp = await axiosServerServices.get(`/projects/${projectId}/events`)
         const articles = await resp.data
         return articles
     }catch(err){

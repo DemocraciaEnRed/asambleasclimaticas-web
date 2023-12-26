@@ -1,7 +1,7 @@
 import { fetchProjectEvents } from "@/utils/get-data"
 
 export default async function HojaBody({project}) {
-    const events = await fetchProjectEvents()
+    const events = await fetchProjectEvents(project._id)
     return <>
         <div>
             <div className="my-4">

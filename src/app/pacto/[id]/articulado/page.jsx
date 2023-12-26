@@ -5,8 +5,8 @@ import { fetchProject } from "@/utils/get-data"
 import { Suspense } from "react"
 
 
-export default async function PropuestaPactoComponent() {
-    const project = await fetchProject()
+export default async function PropuestaPactoComponent({params:{id}}) {
+    const project = await fetchProject(id)
 
     return <div className="pacto-wrapper">
         {/* <BreadcrumbNav section={pathname} id={project.id} title={project.currentVersion.content.title}/> */}
