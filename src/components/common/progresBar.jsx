@@ -14,7 +14,14 @@ const progress = (total, remaining) => {
   return remaining * 100 / total
 }
 
-const ProgressBar = ({ closingDate, creationDate, closed, remaining }) => {
+const ClosedProjectcheck = (closedAt) => {
+  const today = new Date();
+  const ClosedDate = new Date(closedAt)
+  return ClosedDate <= today  
+}
+const ProgressBar = ({ closingDate, creationDate, remaining }) => {
+  const closed = ClosedProjectcheck(closingDate)
+
   if(closingDate) return (
     <div className='progress-bar-wrapper'>
       {closed ? <div className='reaming-days'>Finalizó el periodo para aportes</div>

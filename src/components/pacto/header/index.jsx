@@ -11,9 +11,6 @@ import Link from "next/link";
 
 export default function HeaderPropuesta({ project, section }) {
 
-    const ClosedProjectcheck = (project) => {
-        var today = new Date();
-    }
 
     return <div className="project-header-container is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-flex-end w-100">
         <div className="project-header-wrapper is-block">
@@ -38,10 +35,10 @@ export default function HeaderPropuesta({ project, section }) {
                     <div className="progress-project">
                         <ProgressBar closingDate={project.closedAt}
                             creationDate={project.createdAt}
-                            closed={ClosedProjectcheck(project)} />
+                            />
                     </div>
                     <div className="ml-2 is-hidden-touch">
-                        <ClosingProject closed={ClosedProjectcheck(project)} />
+                        <ClosingProject closingDate={project.closedAt} />
                     </div>
                 </div>}
                 <div className="tab-section is-flex is-justify-content-space-between">
