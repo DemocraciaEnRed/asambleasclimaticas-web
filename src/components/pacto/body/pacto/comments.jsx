@@ -11,9 +11,9 @@ import { useSelector } from "react-redux";
 
 
 export default function Comments({ project, comments }) {
-    const [commentSelected, setCommentSelected] = useState(null)
     const [commentList, setCommensList] = useState(comments.comments)
     const { user } = useSelector((state) => state.auth)
+
 
     const handlesubmit = async (event) => {
         event.preventDefault()
@@ -23,9 +23,7 @@ export default function Comments({ project, comments }) {
         setCommensList([resp.data, ...commentList])
     }
 
-    const handleLike = async () => {
-        console.log(this);
-    }
+    
 
     return (
         <div className="comment-section">

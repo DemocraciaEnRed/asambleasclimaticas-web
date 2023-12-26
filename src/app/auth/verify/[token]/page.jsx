@@ -6,7 +6,6 @@ import Link from "next/link";
 export default async function VerifyToken({ params: { token } }) {
 
     const res = await verifyToken(token)
-    console.log(res);
     if(res.status===200) return (<div className="auth-wrapper is-flex is-justify-content-center is-align-items-center">
         <div className="verify-form-wrapper">
             <div className="box">
