@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 
-
-const axiosServices = axios.create({ baseURL: process.env.NEXT_PUBLIC_APIURL })
+const axiosServices = axios.create({ baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.resurgentes.org'  })
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 
 axiosServices.interceptors.request.use(
