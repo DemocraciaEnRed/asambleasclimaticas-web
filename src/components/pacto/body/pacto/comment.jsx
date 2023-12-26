@@ -5,6 +5,7 @@ import axiosServices from "@/utils/axios";
 import CommentModal from "@/components/common/comment-modal";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { toDislike, toLike } from "@/utils/post-data";
 
 
 export default function Comment({ project, comment }) {
@@ -21,17 +22,29 @@ export default function Comment({ project, comment }) {
     }
 
     const handleLike = async () => {
-        //setLikes(likes + 1)
+        const resp = await toLike(`/projects/${project._id}/comments/${comment._id}`)
+        if(resp.status === 200) setLikes(likes+1)
+        if(resp.type === 'changed') setDislikes(dislikes-1)
+        if(resp.type === 'removed') setLikes(likes-1)
+
     }
     const handleDislike = async () => {
-        //setDislikes(dislikes + 1)
+        const resp = await toDislike(`/projects/${project._id}/comments/${comment._id}`)
+        if(resp.status === 200) setDislikes(dislikes+1)
+        if(resp.type === 'changed') setLikes(likes-1)
+        if(resp.type === 'removed') setDislikes(dislikes-1)
+
     }
+
 
     return (
 
         <div >
             <div className="is-flex is-justify-content-space-between">
-                <div className="likes"> {likes > 0 && likes} <FontAwesomeIcon onClick={handleLike} color="grey" className="mx-1" icon={faThumbsUp} /><FontAwesomeIcon onClick={handleDislike} color="grey" className="mx-1" icon={faThumbsDown} /> {dislikes > 0 && dislikes} </div>
+                <div className="likes"> 
+                {likes > 0 && likes} <FontAwesomeIcon  onClick={handleLike} color="grey" className="mx-1 is-clickable" icon={faThumbsUp} />
+                <FontAwesomeIcon  onClick={handleDislike} color="grey" className="mx-1 is-clickable" icon={faThumbsDown} /> {dislikes > 0 && dislikes} 
+                </div>
                 <div className="replies is-clickable" onClick={handleComment}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>
             </div>
             <div className="is-flex p-4 comment" >

@@ -6,26 +6,33 @@ import axiosServices from "@/utils/axios";
 import { useRef, useState } from "react";
 import CommentModal from "@/components/common/comment-modal";
 import { useSelector } from "react-redux";
+import { toDislike, toLike } from "@/utils/post-data";
 
 export default function Article({ project, article }) {
     const windowSize = useRef([window.innerWidth, window.innerHeight]);
     const [likes,setLikes] = useState(article.likes)
-    const [dislikes,setDisLikes] = useState(article.dislikes)
+    const [userLikeThis, setUserLikeThis] = useState(article.userLikeThis)
+    const [userDislikeThis, setUserDislikeThis] = useState(article.userDislikeThis)
+    const [dislikes, setDislikes] = useState(article.dislikes)
     const [showComments, setShowComments] = useState(false)
     const [comments, setComments] = useState(null)
     const [newComment, setNewComment] = useState(false)
     const { user } = useSelector((state) => state.auth)
 
     const handleLike = async () => {
-        const resp = await axiosServices.post(`/projects/${project._id}/articles/${article._id}/like`)
-        if(resp.status === 200) setLikes(likes+1)
-        if(resp.data.result === 'changed') setDisLikes(dislikes-1)
+        const resp = await toLike(`/projects/${project._id}/articles/${article._id}`)
+        if(resp.status === 200) {setLikes(likes+1); setUserLikeThis(!userLikeThis)}
+        if(resp.type === 'changed') {setDislikes(dislikes-1); setUserDislikeThis(!userDislikeThis)}
+        if(resp.type === 'removed') {setLikes(likes-1); setUserLikeThis(!userLikeThis)}
+
 
     }
     const handleDislike = async () => {
-        const resp = await axiosServices.post(`/projects/${project._id}/articles/${article._id}/dislike`)
-        if(resp.status === 200) setDisLikes(dislikes+1)
-        if(resp.data.result === 'changed') setLikes(likes-1)
+        const resp = await toDislike(`/projects/${project._id}/articles/${article._id}`)
+        if(resp.status === 200) {setDislikes(dislikes+1); setUserDislikeThis(!userDislikeThis)}
+        if(resp.type === 'changed') {setLikes(likes-1); setUserLikeThis(!userLikeThis)}
+        if(resp.type === 'removed') {setDislikes(dislikes-1); setUserDislikeThis(!userDislikeThis)}
+
     }
 
     const fetchComments = async () => {
@@ -65,8 +72,8 @@ export default function Article({ project, article }) {
                     </div>
                     <footer className="card-footer has-background-primary is-flex is-justify-content-space-between py-2 px-4">
                         <div>
-                            <button className="button is-white has-text-primary is-rounded mx-2" onClick={handleLike}> <FontAwesomeIcon className="mr-3" icon={faThumbsUp} /> Me gusta ({likes}) </button>
-                            <button className="button is-white has-text-primary is-rounded mx-2" onClick={handleDislike}> <FontAwesomeIcon className="mr-3" icon={faThumbsDown} /> No me gusta ({dislikes}) </button>
+                            <button className={`button is-rounded mx-2 ${userLikeThis ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon className="mr-3" icon={faThumbsUp} /> Me gusta ({likes}) </button>
+                            <button className={`button is-rounded mx-2 ${userDislikeThis ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon className="mr-3" icon={faThumbsDown} /> No me gusta ({dislikes}) </button>
                         </div>
                         <div className="is-flex is-align-items-center">
                             <span className="has-text-white is-clickable" onClick={handleShowComments}> {article.commentsCount} Comentarios </span>
