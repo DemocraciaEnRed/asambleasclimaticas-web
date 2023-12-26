@@ -1,8 +1,17 @@
-import PropuestaHojaComponent from "@/components/pacto/hoja-de-ruta"
+import HojaBody from "@/components/pacto/body/hoja"
+import HeaderPropuesta from "@/components/pacto/header"
+import { fetchProject } from "@/utils/get-data"
 
-export default function Propuesta() {
-
+export default async function Propuesta() {
+    const project = await fetchProject()
     return <div className="pacto-wrapper ">
-        <PropuestaHojaComponent />
+        {project &&
+            <>
+                <HeaderPropuesta project={project} section="hoja"  />
+                <div className="project-body-container">
+                    <HojaBody project={project} />
+                </div>
+            </>
+        }
     </div>
 }

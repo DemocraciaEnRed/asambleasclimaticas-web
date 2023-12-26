@@ -33,6 +33,17 @@ export const fetchProjectComment = async ()=> {
     }
 }
 
+export const fetchProjectEvents = async ()=> {
+    try{
+        //await new Promise((resolve) => setTimeout(resolve, 3000))
+        const resp = await axiosServerServices.get(`/projects/${process.env.PROJECTID}/events`)
+        const articles = await resp.data
+        return articles
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export const fetchUserMe = async  () => {
     try{
         const res = await axiosServerServices.get('/users/me')
