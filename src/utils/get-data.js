@@ -3,7 +3,7 @@ import axiosServerServices from "./axiosServer";
 
 export const fetchProject = async ()=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${process.env.PROJECTID}`)
+        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}`)
         const project = await resp.data
         return project
     }catch(err){
@@ -15,7 +15,7 @@ export const fetchProjectArticle = async ()=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
         
-        const resp = await axiosServerServices.get(`/projects/${process.env.PROJECTID}/articles`)
+        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/articles`)
         const articles = await resp.data
         return articles
     }catch(err){
@@ -25,7 +25,7 @@ export const fetchProjectArticle = async ()=> {
 
 export const fetchProjectComment = async ()=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${process.env.PROJECTID}/comments`)
+        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/comments`)
         const comments = await resp.data
         return comments
     }catch(err){
@@ -36,7 +36,7 @@ export const fetchProjectComment = async ()=> {
 export const fetchProjectEvents = async ()=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
-        const resp = await axiosServerServices.get(`/projects/${process.env.PROJECTID}/events`)
+        const resp = await axiosServerServices.get(`/projects/${process.env.NEXT_PUBLIC_PROJECTID}/events`)
         const articles = await resp.data
         return articles
     }catch(err){
