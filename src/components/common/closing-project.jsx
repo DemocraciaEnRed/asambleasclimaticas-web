@@ -1,9 +1,6 @@
 import React from 'react'
 
 
-const formatDate = (createdAt) => {
-  return (createdAt.substring(0, 10).split('-').reverse().join('/'))
-}
 
 const ClosedProjectcheck = (closedAt) => {
   const today = new Date();

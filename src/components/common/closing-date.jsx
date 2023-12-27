@@ -1,9 +1,7 @@
+import { formatDate } from '@/utils/format'
 import React from 'react'
 
 
-const formatDate = (createdAt) => {
-  return (createdAt.substring(0, 10).split('-').reverse().join('/'))
-}
 
 const ClosingDate = ({ closingDate, creationDate }) => {
   if(closingDate)return(
