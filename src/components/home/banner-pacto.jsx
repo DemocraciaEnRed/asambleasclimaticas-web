@@ -5,7 +5,7 @@ import MkdFormatter from "../common/mkd-formatter"
 import { fetchProject } from "@/utils/get-data"
 
 const BannerPacto = async () => {
-    const project = await fetchProject()
+    const project = await fetchProject('pacto-inter-ciudad')
 
     const ClosedProjectcheck = (project) => {
         var today = new Date();
