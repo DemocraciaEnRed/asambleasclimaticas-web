@@ -5,14 +5,21 @@ import { SwiperSlide } from "swiper/react";
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import axiosServices from '@/utils/axios';
+import { useRouter } from 'next/navigation';
 
 export default function CommentModal({ postUrl, active, commentList, addCommentDefault, closeCommentModal, user, isModal }) {
     const [addComment, setAddComment] = useState(false)
     const [newComment, setNewComment] = useState('')
     const [error, setError] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
-        if (addCommentDefault) setAddComment(true)
+        if (addCommentDefault) {
+            if(!user) router.push('/auth/login')
+
+            setAddComment(true)
+            
+        }
     }, [])
 
     const sendComment = () => {
@@ -23,6 +30,11 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
             setError(true)
         }
 
+    }
+
+    const handleNewComment = () => {
+        if(!addComment && !user) router.push('/auth/login')
+        setAddComment(!addComment)
     }
 
     return (
@@ -60,7 +72,7 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
                         </div>
                     </div>
                     <footer className="card-footer">
-                        {commentList.length > 0 && <button href="#" className="card-footer-item has-text-primary" onClick={() => setAddComment(!addComment)}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</button>}
+                        {commentList.length > 0 && <button href="#" className="card-footer-item has-text-primary" onClick={handleNewComment}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</button>}
                         {(addComment || commentList.length === 0) && <button href="#" className="card-footer-item has-text-primary" onClick={sendComment}> enviar comentario  </button>}
                     </footer>
                 </div>}
