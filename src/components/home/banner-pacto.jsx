@@ -13,7 +13,7 @@ const BannerPacto = async () => {
 
     if(project)return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">El pacto</h1>
-        {project && <div className="card has-background-cream is-flex w-75">
+        {project && <div className="card card-project has-background-cream is-flex ">
             <div className="card-image" style={{ backgroundImage: `url('${project.coverUrl}')` }}>
 
             </div>

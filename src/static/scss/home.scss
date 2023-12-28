@@ -60,8 +60,11 @@
     }
 
     .banner-pacto {
-        .card {
-
+        .card-project {
+            width: 75%;
+            @include tablet{
+                width: 90%;
+            }
             .card-image {
                 width: 20%;
                 background-size: cover;

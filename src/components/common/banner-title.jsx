@@ -3,7 +3,7 @@ import Logo from "./logo"
 const BannerTitle = ({urlAction,title,subtitle,image, actionClick, textButton}) => 
 <div className='banner-title is-flex is-justify-content-center is-align-items-center is-flex-direction-column' 
      style={{backgroundImage:`url('${image}')`}}>
-    <Logo color='#FFFFFF' widthLogo='50%'/>
+    <Logo color='#FFFFFF' />
     <div className="my-5 has-text-centered">
       <p className='has-text-centered has-text-white is-uppercase '>{title}</p>
       <p  className="has-text-weight-light is-size-7 has-text-white ">{subtitle}</p>
