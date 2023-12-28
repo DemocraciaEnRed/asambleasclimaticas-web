@@ -3,17 +3,15 @@ import { handleOverlay } from '@/store/reducers/config';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-export default function Overlay(props) {
+export default function Overlay({show}) {
     const config = useSelector((state)=>state.config)
 
     
 
   return (
     <>
-    <div className={`overlay `} >
-      </div>
-      {/* <div className={`overlay ${config.overlayOpen ? 'active':''}`} >
-      </div> */}
+      {<div className={`overlay is-hidden-tablet ${show ? 'active':''}`} >
+      </div>}
     </>
     
   );

@@ -12,6 +12,7 @@ import { handleOverlay } from "@/store/reducers/config";
 import { handleLanguage } from "@/store/reducers/language";
 import { deleteUser, handleToken } from "@/store/reducers/auth";
 import { deleteCookie } from 'cookies-next';
+import Overlay from "../common/overlay";
 
 
 export default function Navbar() {
@@ -19,6 +20,7 @@ export default function Navbar() {
     const { language } = useSelector((state) => state.language)
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
+    const [showOverlay, setShowOverlay] = useState(false)
 
     const pathname = usePathname()
     const dispatch = useDispatch()
@@ -30,7 +32,8 @@ export default function Navbar() {
     const handleOpenMenu = () => {
         if (window.innerWidth < 768) {
             setMenuOpen(!menuOpen)
-            dispatch(handleOverlay())
+            setShowOverlay(!showOverlay)
+            /* dispatch(handleOverlay()) */
         }
     }
 
@@ -58,7 +61,7 @@ export default function Navbar() {
     }, []);
 
 
-    return (
+    return (<>
         <nav className={`navbar-wrapper ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
             <div className='logo'>
                 <Link href="/" className="is-flex is-align-items-center">
@@ -94,7 +97,7 @@ export default function Navbar() {
                     </li>
 
 
-                    <li>
+                    <li className="is-flex is-align-items-center">
                         {user ? <div className="dropdown is-right is-hoverable mr-4 user-avatar">
                             <div className="dropdown-trigger">
                                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
@@ -119,7 +122,7 @@ export default function Navbar() {
                             </div>
                         </div>
                             :
-                            <Link href="/auth/login" className="link-navbar has-text-weight-bold login-link">
+                            <Link onClick={handleOpenMenu} href="/auth/login" className="link-navbar has-text-weight-bold login-link ">
                                 login</Link>}
 
                     </li>
@@ -127,6 +130,8 @@ export default function Navbar() {
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
             </div>
         </nav>
+    <Overlay show={showOverlay} />
+    </>
     )
 
 }
