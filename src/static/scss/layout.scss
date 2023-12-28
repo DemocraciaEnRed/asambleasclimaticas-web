@@ -96,21 +96,26 @@
 .footer-wrapper{
     background-color: $gray-lighter;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
     border-top: 6px solid $pink-base;
+    @include tablet{
+        flex-direction: column;
+    }
     .logo {
         
         margin: 8px 0 8px 22px;
         text-transform: uppercase;
         display: flex;
         align-items: center;
+        justify-content: center;
         @include tablet {
-            margin: 0;
+            margin: 1rem 0;
         }
-       
+       svg{
+        width: 70%;
+       }
     }
     .footer-rrss{
         svg{

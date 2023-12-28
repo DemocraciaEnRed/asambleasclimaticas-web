@@ -11,8 +11,8 @@ export default function Footer() {
     return (
         <footer className='footer-wrapper py-6'>
             <div className='logo'>
-                <Link href="/" >
-                    <Logo  widthLogo='300'/>
+                <Link href="/" className="has-text-centered" >
+                    <Logo  />
                 </Link>
 
             </div>
