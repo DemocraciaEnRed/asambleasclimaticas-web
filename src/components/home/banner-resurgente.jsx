@@ -2,11 +2,11 @@
 export default function BannerResurgente(){
     return <div className="banner-re-surgente">
         <div className="content has-background-orange">
-            <div className="title is-size-1">¿Qué es <br />
+            <div className="title is-size-1 is-size-3-touch">¿Qué es <br />
             (re)surgentes <br />
             y el pacto <br />
             interciudad?
-            <p className="ml-2 has-text-weight-light is-italic is-size-3">
+            <p className="has-text-weight-light is-italic is-size-3">
             O que é (re)surgentes e o pacto intercidades?
             </p>
             </div>

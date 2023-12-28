@@ -105,9 +105,9 @@ $colors: mergeColorMaps(
         ),
         "cream":(
             $cream-base,
-            $cream-invert
-            $cream-light,
             $cream-dark,
+            $cream-light,
+            $cream-invert
         ),
         "brown":(
             $brown-base,

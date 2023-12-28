@@ -62,13 +62,34 @@
     .banner-pacto {
         .card-project {
             width: 75%;
-            @include tablet{
+
+            @include tablet {
                 width: 90%;
+                flex-direction: column;
             }
+
             .card-image {
                 width: 20%;
                 background-size: cover;
                 background-position: center;
+
+                @include tablet {
+                    width: 100%;
+                    padding: 30% 0;
+                }
+            }
+
+            .card-content {
+                width: 75%;
+
+                @include tablet {
+                    width: 100%;
+                }
+
+                .content {
+                    height: 50vh;
+                    overflow: auto;
+                }
             }
         }
     }

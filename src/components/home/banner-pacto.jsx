@@ -11,23 +11,21 @@ const BannerPacto = async () => {
         var today = new Date();
     }
 
-    if(project)return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
-        <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">El pacto</h1>
+    if (project) return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
+        <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold my-3">El pacto</h1>
         {project && <div className="card card-project has-background-cream is-flex ">
             <div className="card-image" style={{ backgroundImage: `url('${project.coverUrl}')` }}>
 
             </div>
-            <div className="card-content p-0 pt-5 w-75">
-                <div className="media px-5">
+            <div className="card-content p-0 pt-5 is-flex-grow-1">
 
-                    <div className="media-content">
-                        <p className="title is-4">{project.title_es}</p>
+                <div className="px-2 my-3">
+                    <p className="title is-4">{project.title_es}</p>
+                    <div className="has-background-cream-light pl-3 py-2 mb-3">
+
+                        <MkdFormatter source={project.about_es} />
                     </div>
-                </div>
-
-                <div className="content px-5">
-                    <MkdFormatter source={project.about_es}/>
-                    <div className="is-flex ">
+                    <div className="is-flex px-3">
 
                         <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />

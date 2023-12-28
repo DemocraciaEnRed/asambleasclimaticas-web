@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function BannerParticipativo() {
     return <div className="banner-participativo has-text-centered has-background-cream py-6">
-        <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">¿Cómo Participar?</h1>
+        <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold">¿Cómo Participar?</h1>
         <div className="card-group is-flex is-justify-content-center my-4">
             <div className="card m-3 py-4">
                 <div className="card-image pt-5 has-text-centered">
                     <FontAwesomeIcon icon={faWhatsapp} color="white" />
                 </div>
                 <div className="card-content py-0 has-text-centered">
-                    <p className="title is-size-4">
+                    <p className="title is-size-4 is-size-5-touch">
                         Comunidad de <br/> Whatsapp
                     </p>
                     <div className="content">
@@ -30,7 +30,7 @@ export function BannerParticipativo() {
                     <FontAwesomeIcon icon={faComment} color="white"/>
                 </div>
                 <div className="card-content py-0 has-text-centered">
-                    <p className="title is-size-4">
+                    <p className="title is-size-4 is-size-5-touch">
                         Comentarios <br/>Generales
                     </p>
                     <div className="content">
@@ -49,7 +49,7 @@ export function BannerParticipativo() {
                     <FontAwesomeIcon icon={faPenToSquare} color="white"/>
                 </div>
                 <div className="card-content py-0 has-text-centered">
-                    <p className="title is-size-4">
+                    <p className="title is-size-4 is-size-5-touch">
                         Comentarios <br/>ESpecificos
                     </p>
                     <div className="content">
@@ -68,7 +68,7 @@ export function BannerParticipativo() {
                     <FontAwesomeIcon icon={faSquarePollHorizontal} color="white"/>
                 </div>
                 <div className="card-content py-0 has-text-centered">
-                    <p className="title is-size-4">
+                    <p className="title is-size-4 is-size-5-touch">
                         Completa las <br/>encuestas
                     </p>
                     <div className="content">
