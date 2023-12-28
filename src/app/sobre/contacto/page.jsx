@@ -12,7 +12,7 @@ export default function Acercade() {
                 ¿Perteneces a una organización de la sociedad civil o movimiento social? Agendemos una llamada para activar tu propuesta en COLECTIVA
             </p>
 
-            <button className="my-3 button is-rounded is-brown is-uppercase px-6">Conoce más</button>
+            <button className="my-3 button is-rounded is-brown is-uppercase has-text-white px-6">Conoce más</button>
             <div className="link-section">
                 <h2 className="has-text-primary">Escríbenos tus comentario</h2>
                 <Link target="_blank" href="https://www.artemisas.org/"><FontAwesomeIcon icon={faLaptop} /><p>https://www.artemisas.org/</p></Link>

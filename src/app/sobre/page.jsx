@@ -34,7 +34,7 @@ export default function Acercade() {
       Alianzas / organizaciones participantes
       </span>
       <div className="logos-wrapper">
-        {alianzas.map((alianza,idx) =><Image key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} width={150} height={70}/> )}
+        {alianzas.map((alianza,idx) =><Image key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} width={110} height={70}/> )}
       </div>
      
     </div>
