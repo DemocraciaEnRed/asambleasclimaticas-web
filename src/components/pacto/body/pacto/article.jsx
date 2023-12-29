@@ -64,7 +64,7 @@ export default function Article({ project, article }) {
             <div className={`column  ${showComments ? 'is-8' : 'is-11'}`}>
                 <div className="card card-article">
                     <div className="card-content is-size-5 columns" >
-                        <div className="content w-100">
+                        <div className="content w-100 is-size-7-touch">
                             <Remark>
                                 {article.text_es}
                             </Remark>
