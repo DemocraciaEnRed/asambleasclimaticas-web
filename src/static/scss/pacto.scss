@@ -202,6 +202,33 @@
       .contrib-button {
         border: none;
       }
+      .stage-wrapper{
+        .stage{
+          width: 25%;
+          position: relative;
+          @include mobile{
+            width: 50%;
+          }
+          figure{
+            margin-right: -.75rem;
+          }
+          .name-country{
+            border-bottom-right-radius: 999px;
+            border-top-right-radius: 999px;
+
+          }
+          &:not(.active){
+            &::after{
+              content: '';
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              background-color: #ffffff99;
+            }
+
+          }
+        }
+      }
     }
 
     .articles-pacto {
