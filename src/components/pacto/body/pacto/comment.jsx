@@ -23,16 +23,16 @@ export default function Comment({ project, comment }) {
 
     const handleLike = async () => {
         const resp = await toLike(`/projects/${project._id}/comments/${comment._id}`)
-        if(resp.status === 200) setLikes(likes+1)
-        if(resp.type === 'changed') setDislikes(dislikes-1)
-        if(resp.type === 'removed') setLikes(likes-1)
+        if (resp.status === 200) setLikes(likes + 1)
+        if (resp.type === 'changed') setDislikes(dislikes - 1)
+        if (resp.type === 'removed') setLikes(likes - 1)
 
     }
     const handleDislike = async () => {
         const resp = await toDislike(`/projects/${project._id}/comments/${comment._id}`)
-        if(resp.status === 200) setDislikes(dislikes+1)
-        if(resp.type === 'changed') setLikes(likes-1)
-        if(resp.type === 'removed') setDislikes(dislikes-1)
+        if (resp.status === 200) setDislikes(dislikes + 1)
+        if (resp.type === 'changed') setLikes(likes - 1)
+        if (resp.type === 'removed') setDislikes(dislikes - 1)
 
     }
 
@@ -41,19 +41,27 @@ export default function Comment({ project, comment }) {
 
         <div >
             <div className="is-flex is-justify-content-space-between">
-                <div className="likes"> 
-                {likes > 0 && likes} <FontAwesomeIcon  onClick={handleLike} color="grey" className="mx-1 is-clickable" icon={faThumbsUp} />
-                <FontAwesomeIcon  onClick={handleDislike} color="grey" className="mx-1 is-clickable" icon={faThumbsDown} /> {dislikes > 0 && dislikes} 
+                <div className="likes">
+                    {likes > 0 && likes} <FontAwesomeIcon onClick={handleLike} color="grey" className="mx-1 is-clickable" icon={faThumbsUp} />
+                    <FontAwesomeIcon onClick={handleDislike} color="grey" className="mx-1 is-clickable" icon={faThumbsDown} /> {dislikes > 0 && dislikes}
                 </div>
                 <div className="replies is-clickable" onClick={handleComment}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>
             </div>
             <div className="is-flex p-4 comment" >
-                <div className="py-2 pl-0 mr-3">
+                <div className="py-2 pl-0 mr-3 is-hidden-touch">
                     <div className='avatar' />
                 </div>
                 <div className="is-flex-grow-1 is-flex-shrink-1">
-                    <div className="user-name is-size-5 " ><p className="is-inline">{comment.user.country.emoji} </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
-                    <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
+                    <div className="is-flex">
+                        <div className="py-2 pl-0 mr-1 is-hidden-desktop">
+                            <div className='avatar' />
+                        </div>
+                        <div>
+                            <div className="user-name is-size-5 " ><p className="is-inline">{comment.user.country.emoji} </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
+                            <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
+
+                        </div>
+                    </div>
                     <p className="has-text-grey my-2">{comment.text}</p>
 
                 </div>

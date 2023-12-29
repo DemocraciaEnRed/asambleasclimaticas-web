@@ -12,15 +12,15 @@ import Link from "next/link";
 export default function HeaderPropuesta({ project, section }) {
 
 
-    return <div className="project-header-container is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-flex-end w-100">
+    return <div className="project-header-container is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-flex-end w-100 has-background-cream-light">
         <div className="project-header-wrapper is-block">
             <div className="info-header">
-                <div className="top-bar-wrapper is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center w-100">
-                    <div className="project-title w-50">
+                <div className="top-bar-wrapper is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
+                    <div className="project-title is-size-3 my-3">
                         {project.title_es}
                         <span className="has-text-weight-light is-italic is-size-4">{project.title_pt}</span>
                     </div>
-                    <div className="is-flex is-justify-content-end">
+                    <div className="is-flex is-justify-content-end project-info">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
                         <ArticlesCommentsCounter commentsCount={project.commentsCount}

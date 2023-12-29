@@ -8,10 +8,6 @@
     background-position: center;
     cursor: pointer;
     border: 1px solid #CACACA;
-    @include tablet{
-      margin-bottom: -20px;
-    }
-    margin-bottom:-20px;
 }
 .user-avatar-wrapper{
     padding-right: 15px;

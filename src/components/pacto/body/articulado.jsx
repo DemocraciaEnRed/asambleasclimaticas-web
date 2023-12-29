@@ -12,10 +12,12 @@ export default async function ArticuladoBody({ project }) {
         fetchProjectComment(project._id)
     ])
 
-    return <div className="articles-pacto">
+    return <>
+     <div className="articles-pacto">
         
         {articles.length > 0 && articles.map((article) => <Article key={article._id} project={project} article={article} />
         )}
-        <Comments project={project} comments={comments} />
     </div>
+        <Comments project={project} comments={comments} />
+    </>
 }

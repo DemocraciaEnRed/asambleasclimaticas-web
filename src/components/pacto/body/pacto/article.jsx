@@ -62,7 +62,7 @@ export default function Article({ project, article }) {
     return (
         <div className="columns article my-4">
             <div className={`column  ${showComments ? 'is-8' : 'is-11'}`}>
-                <div className="card ">
+                <div className="card card-article">
                     <div className="card-content is-size-5 columns" >
                         <div className="content w-100">
                             <Remark>
@@ -70,14 +70,14 @@ export default function Article({ project, article }) {
                             </Remark>
                         </div>
                     </div>
-                    <footer className="card-footer has-background-primary is-flex is-justify-content-space-between py-2 px-4">
-                        <div>
-                            <button className={`button is-rounded mx-2 ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon className="mr-3" icon={faThumbsUp} /> Me gusta ({likes}) </button>
-                            <button className={`button is-rounded mx-2 ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon className="mr-3" icon={faThumbsDown} /> No me gusta ({dislikes}) </button>
+                    <footer className="card-footer has-background-primary is-flex is-justify-content-space-between">
+                        <div className="is-flex likes">
+                            <button className={`button is-rounded ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon icon={faThumbsUp} /> <p className="is-hidden-touch">Me gusta </p>  ({likes}) </button>
+                            <button className={`button is-rounded ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon icon={faThumbsDown} /> <p className="is-hidden-touch"> No me gusta </p>  ({dislikes}) </button>
                         </div>
-                        <div className="is-flex is-align-items-center">
-                            <span className="has-text-white is-clickable" onClick={handleShowComments}> {article.commentsCount} Comentarios </span>
-                            <button className="button is-white has-text-primary is-rounded mx-2" onClick={handleNewShowComments}><FontAwesomeIcon className="mr-3" icon={faComment} /> Comentar</button>
+                        <div className="is-flex is-align-items-center comments">
+                            <span className="has-text-white is-clickable is-hidden-mobile" onClick={handleShowComments}> {article.commentsCount} Comentarios </span>
+                            <button className="button is-white has-text-primary is-rounded" onClick={handleNewShowComments}><FontAwesomeIcon  icon={faComment} /> Comentar</button>
                         </div>
                     </footer>
                 </div>
