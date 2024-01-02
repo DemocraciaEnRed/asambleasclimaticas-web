@@ -49,9 +49,7 @@
     padding-right: 15px;
     border-right: 1px solid $gray-light;
     margin-right: 15px;
-    @include tablet{
-      display: none;
-    }
+
     .closing-date-title{
         font-weight: 300;
         font-size:14px;
@@ -66,6 +64,9 @@
     overflow: hidden;
     height: 48px;
     position:relative;
+    @include tablet{
+      height: 32px;
+    }
     .reaming-days{
         width:100%;
         font-size: 16px;
@@ -93,7 +94,10 @@
     margin-right: 20px;
     border-right: 1px solid $gray-light;
     @include tablet{
-      display: none;
+      margin-right: 0;
+      border-right: none;
+
+
     }
     .counters{
       color: $gray-dark;
