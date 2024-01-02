@@ -76,14 +76,16 @@ export default function NewVersionProjectForm({params}) {
   }
   return (
     <>
-      <div className="section has-background-black has-text-white">
+      <div className="section has-background-link has-text-white">
         <div className="container is-fluid">
-          <div className="is-flex is-flex-direction-row is-justify-content-space-between">
+          <div className="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-flex-start">
             <div className="">
-              <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} />&nbsp;Nueva versión del Proyecto</h1>
-              <p>Aquí puede crear una nueva versión del proyecto. Los articulos de la versión actual </p>
+              <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} />&nbsp;Crear nueva versión</h1>
+              <p>Aquí puede crear una nueva versión del proyecto.</p>
+              <p>Los articulos de la versión actual quedarán guardados en el historial del proyecto.</p>
+              <p>Puede crear nuevos articulos, editar los existentes y eliminar los que no desee. Tenga en cuenta que aunque elimine un articulo, el mismo quedará guardado en el historial del proyecto.</p>
             </div>
-            <div className="box m-0 px-4 py-2 has-background-dark has-text-centered has-text-white is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+            <div className="box m-0 px-4 py-2 has-text-centered has-text-black" style={{minWidth: '140px'}} >
               <p>Versión</p>
               <p className="is-size-2"><b>{project.version}<FontAwesomeIcon icon={faArrowRight} fixedWidth />{project.version + 1}</b></p>
             </div>  
