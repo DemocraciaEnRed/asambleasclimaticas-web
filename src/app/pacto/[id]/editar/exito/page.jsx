@@ -6,9 +6,11 @@ import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faHome, faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 
-export default function SuccessEditProjectForm({}) {
+export default function SuccessEditProjectForm({params}) {
   // get the user from store
   const { user } = useSelector(state => state.auth)
+  const projectId = params.id
+
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
@@ -23,11 +25,15 @@ export default function SuccessEditProjectForm({}) {
       <div className="hero is-fullheight is-bold is-primary">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} />&nbsp;Proyecto editado</h1>
+            <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} /><br/>Proyecto editado</h1>
             <h2 className="subtitle has-text-white">El proyecto fue editado con éxito.</h2>
             <Link href="/"
               className="button is-white is-rounded"
             ><FontAwesomeIcon icon={faHome} />&nbsp;Ir al inicio</Link>
+            {/* <Link href={`/pacto/${projectId}`}
+              className="button is-white is-rounded">
+              <FontAwesomeIcon icon={faPencil} />&nbsp;Ver proyecto
+            </Link> */}
           </div>
         </div>
       </div>
