@@ -33,7 +33,7 @@ export default function ResumenBody({ project }) {
 
                 <div className="m-0 mt-6 is-flex is-flex-wrap-wrap is-justify-content-center stage-wrapper">
                     {stageCountryList.map(country =>
-                        <div className={`stage is-flex is-align-items-center  my-3 pr-3 ${project.stage === country.code ? 'active' : ''}`}>
+                        <div key={country.code} className={`stage is-flex is-align-items-center  my-3 pr-3 ${project.stage === country.code ? 'active' : ''}`}>
                             <figure className="image is-48x48">
                                 <img className="" src={country.image} />
                             </figure>
