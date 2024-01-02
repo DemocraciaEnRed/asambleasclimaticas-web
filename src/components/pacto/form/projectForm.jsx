@@ -3,13 +3,13 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState, useRef, createRef, useMemo } from "react"
 import { useRouter } from "next/navigation"
-
+import Link from 'next/link'
 // import { useAuth } from "@/context/auth-context"
 import axiosServices from "@/utils/axios"
 // import { useRouter } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-regular-svg-icons";
-import { faPlus, faAsterisk, faCaretRight, faPaperPlane, faEyeSlash, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faFile } from "@fortawesome/free-regular-svg-icons";
+import { faPlus, faAsterisk, faCaretRight, faPaperPlane, faEyeSlash, faSave, faTimes, faCheck, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import slugify from 'slugify'
 import { InputMask } from '@react-input/mask';
 import ArticleForm from '@/components/pacto/form/articleForm'
@@ -87,7 +87,8 @@ export default function ProjectFormComponent({project}) {
       country: project.author.country
     }
   }
-  let init_publishedAt = project.publishedAt ? project.publishedAt : null
+  let init_publishedAt = project && project.publishedAt ? project.publishedAt : null
+  let init_hidden = project && project.hidden ? project.hidden : false
 
   // -------------------------------------
   // STATE AND REFS DECLARATIONS
@@ -109,10 +110,15 @@ export default function ProjectFormComponent({project}) {
   const articlesRefs = useRef([])
   const [closedAt, setClosedAt] = useState(init_closedAt)
   const [publishNow, setPublishNow] = useState(false)
+  const [hidden, setHidden] = useState(init_hidden)
   const [publishedAt, setPublishedAt] = useState(init_publishedAt)
   const [isLoading, setIsLoading] = useState(false)
-
-  
+  const [showErrorResponse, setShowErrorResponse] = useState(false)
+  const [errorResponse, setErrorResponse] = useState(null)
+  const [showControlSuccessMessage, setShowControlSuccessMessage] = useState(false)
+  const [controlSuccessMessage, setControlSuccessMessage] = useState(null)
+  const [showControlErrorMessage, setShowControlErrorMessage] = useState(false)
+  const [controlErrorMessage, setControlErrorMessage] = useState(null)
 
   // -------------------------------------
   // HOOKS
@@ -146,6 +152,7 @@ export default function ProjectFormComponent({project}) {
     const dateValid = date instanceof Date && !isNaN(date)
     return patternValid && dateValid
   }, [closedAt])
+
   // -------------------------------------
   // METHODS
   // -------------------------------------
@@ -348,12 +355,16 @@ export default function ProjectFormComponent({project}) {
   }
 
   function submitProject(payload) {
+    setErrorResponse(null)
+    setShowErrorResponse(false)
     if(mode === 'edit') {
       axiosServices.put(`/projects/${project._id}`, payload)
         .then(res => {
           router.push(`/pacto/${project._id}/editar/exito`)
         })
         .catch(err => {
+          setShowErrorResponse(true)
+          setErrorResponse(err.response.data)
           console.error(err)
         }).
         finally(() => {
@@ -363,9 +374,12 @@ export default function ProjectFormComponent({project}) {
     }
     axiosServices.post('/projects', payload)
       .then(res => {
-        router.push('/pacto/nuevo/exito')
+        const projectId = res.data._id
+        router.push(`/pacto/nuevo/exito?projectId=${projectId}`)
       })
       .catch(err => {
+        setShowErrorResponse(true)
+        setErrorResponse(err.response.data)
         console.error(err)
       }).
       finally(() => {
@@ -373,64 +387,181 @@ export default function ProjectFormComponent({project}) {
       })
   }
 
+  function publishProject(){
+    if(mode !== 'edit'){
+      return
+    }
+    setIsLoading(true)
+    setControlErrorMessage(null)
+    setControlSuccessMessage(null)
+    setShowControlErrorMessage(false)
+    setShowControlSuccessMessage(false)
+    axiosServices.post(`/projects/${project._id}/publish`)
+    .then(res => {
+      setPublishedAt(res.data.publishedAt)
+      setShowControlSuccessMessage(true)
+      setControlSuccessMessage('El proyecto se ha publicado')
+      setTimeout(() => {
+        setShowControlSuccessMessage(false)
+      }, 5000);
+    }).catch(err => {
+      setShowControlErrorMessage(true)
+      setControlErrorMessage('Hubo un error al publicar el proyecto')
+      setTimeout(() => {
+        setShowControlErrorMessage(false)
+      }, 5000);
+      console.error(err)
+    }).finally(() => {
+      setIsLoading(false)
+    })
+  }
+
+  function toggleHidden() {
+    if(mode !== 'edit') {
+      return
+    }
+    setIsLoading(true)
+    setControlErrorMessage(null)
+    setControlSuccessMessage(null)
+    setShowControlErrorMessage(false)
+    setShowControlSuccessMessage(false)
+    axiosServices.post(`/projects/${project._id}/hide`)
+    .then(res => {
+      setHidden(res.data.hidden)
+      if(res.data.hidden) {
+        setControlSuccessMessage('El proyecto se ha ocultado')
+      } else {
+        setControlSuccessMessage('El proyecto es visible al público')        
+      }
+      setShowControlSuccessMessage(true)
+      setTimeout(() => {
+        setShowControlSuccessMessage(false)
+      }, 5000);
+    }).catch(err => {
+      setControlErrorMessage('Hubo un error al ocultar el proyecto')
+      setShowControlErrorMessage(true)
+      setTimeout(() => {
+        setShowControlErrorMessage(false)
+      }, 5000);
+      console.error(err)
+    }).
+    finally(() => {
+      setIsLoading(false)
+    })
+  }
+
+  function closeErrorMessage() {
+    setShowErrorResponse(false)
+    setErrorResponse(null)
+  }
+
+  function goToCreateNewVersion() {
+    router.push(`/pacto/${project._id}/nueva-version`)
+  }
+
   return (
     <>
+      {
+        mode === 'edit' && !publishedAt && (
+          <div className="notification is-warning py-2">
+            <p><FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;<b>Atención:</b> El proyecto se encuentra en modo <b>borrador</b> y aun no ha sido publicado. Para publicar el proyecto, haga click en el botón <b>Publicar proyecto</b>.</p>
+          </div>
+        )
+      }
+      {
+        mode === 'edit' && publishedAt && hidden && (
+          <div className="notification is-warning py-2">
+            <p><FontAwesomeIcon icon={faEyeSlash} />&nbsp;<b>Atención:</b> El proyecto se encuentra <b>oculto</b>. Para que el proyecto sea visible, haga click en el botón <b>Mostrar proyecto</b>.</p>
+          </div>
+        )
+      }
       {/* buttons, but they are disabled, its just decoration */}
       {
-        mode === 'edit' && publishedAt && (<>
-            <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Controles</h4>
-            <p className="help">Se habilitarán una vez creado el proyecto</p>
-            <div className="buttons mt-3">
-              <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar proyecto</button>
-              <button className="button is-black is-outlined" disabled><FontAwesomeIcon icon={faEyeSlash} />&nbsp;Ocultar proyecto</button>
+        mode === 'edit' && (<>
+            <h4 className="title is-4 mb-4"><FontAwesomeIcon icon={faCaretRight} /> Control del proyecto</h4>
+            <div className="buttons my-2">
+              {
+                !publishedAt && (
+                  <button className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={publishProject}><FontAwesomeIcon icon={faPaperPlane} />&nbsp;Publicar proyecto</button>
+                )
+              }
+              {
+                publishedAt && hidden && (
+                  <button className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={toggleHidden}><FontAwesomeIcon icon={faEye} />&nbsp;Mostrar proyecto</button>
+                )
+              }
+              {
+                publishedAt && !hidden && (
+                  <button className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={toggleHidden}><FontAwesomeIcon icon={faEyeSlash} />&nbsp;Ocultar proyecto</button>
+                )
+              }
+              {
+                publishedAt && !hidden && (
+                  <Link href={`/pacto/${project._id}/nueva-version`} className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={goToCreateNewVersion}><FontAwesomeIcon icon={faAsterisk} />&nbsp;Crear nueva versión</Link>
+                )
+              }
             </div>
+            {
+              showControlSuccessMessage && (
+                <p className="mt-2 mb-4 has-text-success"><FontAwesomeIcon icon={faCheck} />&nbsp;{controlSuccessMessage}</p>
+              )
+            }
+            {
+              showControlErrorMessage && (
+                <p className="mt-2 mb-4 has-text-danger"><FontAwesomeIcon icon={faTimes} />&nbsp;{controlErrorMessage}</p>
+              )
+            }
           </>
         )
       }
       {/* If not published yet, says its a "draft" */}
-      <div className="box py-3">
-        <div className="field is-grouped is-grouped-multiline">
-          <div className="control">
-            <div className="tags has-addons">
-              <span className="tag is-dark">Estado</span>
-              {
-                publishedAt ? (
-                  <span className="tag is-success">Publicado</span>
-                ) : (
-                  <span className="tag is-light">Borrador</span>
-                )
-              }
-            </div>
-          </div>
-          {
-            !publishedAt && (
+      {
+        mode === 'edit' && (
+          <div className="box py-3">
+            <div className="field is-grouped is-grouped-multiline">
               <div className="control">
                 <div className="tags has-addons">
-                  <span className="tag is-dark">Visibilidad</span>
+                  <span className="tag is-dark">Estado</span>
                   {
-                    project.hidden ? (
-                      <span className="tag is-light">Oculto</span>
+                    publishedAt ? (
+                      <span className="tag is-success">Publicado</span>
                     ) : (
-                      <span className="tag is-success">Visible</span>
+                      <span className="tag is-light">Borrador</span>
                     )
                   }
                 </div>
               </div>
-            )
-          }
-          <div className="control">
-            <div className="tags has-addons">
-              <span className="tag is-dark">Versión</span>
-              <span className="tag is-link">{project.version}</span>
+              {
+                publishedAt && (
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Visibilidad</span>
+                      {
+                        hidden ? (
+                          <span className="tag is-light">Oculto</span>
+                        ) : (
+                          <span className="tag is-success">Visible</span>
+                        )
+                      }
+                    </div>
+                  </div>
+                )
+              }
+              <div className="control">
+                <div className="tags has-addons">
+                  <span className="tag is-dark">Versión</span>
+                  <span className="tag is-info">{project.version}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )
+      }
       {/* Project Title */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Título del proyecto</h4>
         <p><b>Note:</b> No se versiona el título del proyecto.</p>
-        <div className="columns my-1">
+        <div className="columns">
           <div className="column">
             <div className="field">
               <label className="label">Español</label>
@@ -452,8 +583,8 @@ export default function ProjectFormComponent({project}) {
       {/* Project Slug */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Slug del proyecto</h4>
-        <p><b><span className="has-text-danger">IMPORTANTE:</span></b> Defina un slug para la url del proyecto. El mismo será utilizado para generar la url del proyecto. Aunque se pueda editar, se recomienda no cambiar el slug una vez que el proyecto este publicado.</p>
-        <div className="columns my-1">
+        <p><b><span className="has-text-danger">IMPORTANTE:</span></b> Defina un slug para la url del proyecto. El mismo será utilizado para generar la url del proyecto. Aunque se pueda editar, se recomienda no cambiar el slug una vez que el proyecto haya sido publicado.</p>
+        <div className="columns">
           <div className="column">
             <div className="field">
               <label className="label">Slug</label>
@@ -477,7 +608,7 @@ export default function ProjectFormComponent({project}) {
       }
       {/* Project Cover */}
       <div className="box">
-        <div className="columns my-1">
+        <div className="columns">
           <div className="column">
             <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Imagen de portada del proyecto</h4>
             <p><b>Note:</b> No se versiona la imagen de portada del proyecto.</p>
@@ -501,7 +632,7 @@ export default function ProjectFormComponent({project}) {
       </div>
       {/* Project Youtube */}
       <div className="box">
-        <div className="columns my-1">
+        <div className="columns">
           <div className="column">
             <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Video de youtube</h4>
             <p><b>Note:</b> No se versiona el video de youtube.</p>
@@ -577,7 +708,25 @@ export default function ProjectFormComponent({project}) {
       {/* Project Articles */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Articulos del proyecto</h4>
-        <p>Ingrese los articulos del proyecto.</p>
+        {
+          mode === 'new' && <p>Ingrese los articulos del proyecto. Puede agregar, editar o quitar los articulos que desee. Si guarda el proyecto en modo borrador, podrá seguir agregando, editando o quitando los articulos. Una vez que el proyecto sea publicado, podrá editarlos si quisiere pero <b>no borrarlos</b>.</p>
+        }
+        {
+          mode === 'edit' && !publishedAt && (
+            <p>Como el proyecto se encuentra en modo borrador, puede editar, agregar o quitar los articulos que desee. Una vez que el proyecto sea publicado, podrá editarlos si quisiere pero <b>no borrarlos</b>.</p>
+          )
+        }
+        {
+          mode === 'edit' && publishedAt && (
+            <>
+              <p className="mb-2">El proyecto se encuentra <b><u>publicado</u></b>. No puede borrar los articulos. Pero puede editarlos o cambiar de orden si lo quisiere. El guardado <b><u>no creará</u></b> una <u>nueva versión</u>.</p>
+              <div className="notification is-warning py-2 px-4">
+                Considere realizar modificaciones <b><u>minimas</u></b> y de <b><u>ortografía</u></b>. Recomendamos que si pretende realizar cambios mayores, cree una nueva versión del proyecto para mantener el historial de los articulos entre versiones.
+              </div>
+            </>
+
+          )
+        }
         <hr />
         {/* Articles Forms dynamically added */}
           {articles.map((article, index) => {
@@ -605,6 +754,23 @@ export default function ProjectFormComponent({project}) {
       </div>
       {/* Project Save */}
       <div className="box">
+        {/* Error message */}
+        {
+          showErrorResponse && (
+            <div class="message is-danger">
+              <div class="message-header">
+                <p>Error</p>
+                <button class="delete" aria-label="delete" onClick={closeErrorMessage}></button>
+              </div>
+              <div class="message-body">
+                Hubo un error al guardar el proyecto. El servidor respondio con el siguiente mensaje: <br />
+                <pre>
+                  {JSON.stringify(errorResponse, null, 2)}
+                </pre>
+              </div>
+            </div>
+          )
+        }
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Guardar proyecto</h4>
         {
           mode === 'new' && (
@@ -613,11 +779,11 @@ export default function ProjectFormComponent({project}) {
         }
         {
           mode === 'edit' && (
-              <p>Al guardar el proyecto, los cambios pasarán a formar parte de la versión actual del proyecto.</p>
+            <p>Al guardar el proyecto, los cambios pasarán a formar parte de la versión actual del proyecto.</p>
           )
         }
         {
-          !publishedAt && (
+          !publishedAt && mode == 'new' && (
             <>
               <p>Tambien puede <b>Guardar y publicar</b> el proyecto (el proyecto quedara visible para que los usuarios participen)</p>
               <div className="field my-3">
