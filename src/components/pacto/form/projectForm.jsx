@@ -19,7 +19,7 @@ import AuthorField from './authorField';
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-export default function ProjectFormComponent({project}) {
+export default function ProjectFormComponent({project, newVersion}) {
   // UTILITY FUNCTIONS FOR INITIALIZATION
   // Utility function to generate a random clientId
   const getRandomClientId = () => {
@@ -50,6 +50,8 @@ export default function ProjectFormComponent({project}) {
   // const user = useAuth()
   // const { push } = useRouter();
   let init_closedAt = getYearMonthDayIn30Days()
+  let init_daysUntilClosed = 30
+  let init_projectIsClosed = false
   // -------------------------------------
   // INITIALIZATIONS FOR EDIT MODE
   const init_title_es = project ? project.title_es : ''
@@ -78,6 +80,21 @@ export default function ProjectFormComponent({project}) {
     const month = (closedAtDate.getMonth() + 1).toString().padStart(2, '0');
     const day = closedAtDate.getDate().toString().padStart(2, '0');
     init_closedAt = `${year}-${month}-${day}`
+
+    // calculate init_daysUntilClosed (days until closed).
+    // If closedAt is in the past, then daysUntilClosed is 0
+    const today = new Date()
+    const todayYear = today.getFullYear();
+    const todayMonth = (today.getMonth() + 1).toString().padStart(2, '0');
+    const todayDay = today.getDate().toString().padStart(2, '0');
+    const todayString = `${todayYear}-${todayMonth}-${todayDay}`
+    const todayDate = new Date(todayString)
+    const diffTime = closedAtDate - todayDate
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    init_daysUntilClosed = diffDays < 0 ? 0 : diffDays
+
+    // calculate init_projectIsClosed
+    init_projectIsClosed = todayDate > closedAtDate
   }
   let init_author = null
   if(project && project.author) {
@@ -109,6 +126,7 @@ export default function ProjectFormComponent({project}) {
   const [articles, setArticles] = useState(init_articles)
   const articlesRefs = useRef([])
   const [closedAt, setClosedAt] = useState(init_closedAt)
+  const [daysUntilClosed, setDaysUntilClosed] = useState(init_daysUntilClosed)
   const [publishNow, setPublishNow] = useState(false)
   const [hidden, setHidden] = useState(init_hidden)
   const [publishedAt, setPublishedAt] = useState(init_publishedAt)
@@ -157,7 +175,7 @@ export default function ProjectFormComponent({project}) {
   // METHODS
   // -------------------------------------
   function addNewArticle() {
-    if(mode === 'edit' && publishedAt) return
+    if(mode === 'edit' && publishedAt && !newVersion) return
     // create a clientId for the new article
     const clientId = getRandomClientId();
     // Create a new ArticleForm reference
@@ -288,7 +306,7 @@ export default function ProjectFormComponent({project}) {
   }
 
   function toggleArticleDeleted(clientId) {
-    if(mode === 'edit') {
+    if(mode === 'edit' || newVersion) {
       // if the project has been published, no way you can delete it.
       // if the project has already been created, then the article
       // will stay but it will be marked as deleted
@@ -354,10 +372,34 @@ export default function ProjectFormComponent({project}) {
     submitProject(payload)
   }
 
+  function validateProject() {
+    // title_es, title_pt, slug, stage, about_es, about_pt cannot be empty
+    if(!title_es || !title_pt || !slug || !stage || !about_es || !about_pt) {
+      setErrorResponse('Los campos título, slug, etapa y resumen no pueden estar vacios')
+      setShowErrorResponse(true)
+      return false
+    }
+    // articles cannot be empty
+    if(articles.length === 0) {
+      setErrorResponse('Debe agregar al menos un artículo')
+      setShowErrorResponse(true)
+      return false
+    }
+    
+    // check if there are any articles that are empty
+    const emptyArticles = articles.filter(article => !article.text_es && !article.text_pt)
+    if(emptyArticles.length > 0) {
+      setErrorResponse('Hay artículos vacios')
+      setShowErrorResponse(true)
+      return false
+    }
+
+  }
+
   function submitProject(payload) {
     setErrorResponse(null)
     setShowErrorResponse(false)
-    if(mode === 'edit') {
+    if(mode === 'edit' && !newVersion) {
       axiosServices.put(`/projects/${project._id}`, payload)
         .then(res => {
           router.push(`/pacto/${project._id}/editar/exito`)
@@ -372,23 +414,44 @@ export default function ProjectFormComponent({project}) {
         })
       return
     }
+    if(mode === 'edit' && newVersion) {
+      axiosServices.post(`/projects/${project._id}/versions`, payload)
+        .then(res => {
+          router.push(`/pacto/${project._id}/nueva-version/exito`)
+        })
+        .catch(err => {
+          setShowErrorResponse(true)
+          setErrorResponse(err.response.data)
+          console.error(err)
+        }).
+        finally(() => {
+          setIsLoading(false)
+        })
+        return
+    }
+    // mode === 'new'
     axiosServices.post('/projects', payload)
-      .then(res => {
-        const projectId = res.data._id
-        router.push(`/pacto/nuevo/exito?projectId=${projectId}`)
-      })
-      .catch(err => {
-        setShowErrorResponse(true)
-        setErrorResponse(err.response.data)
-        console.error(err)
-      }).
-      finally(() => {
-        setIsLoading(false)
-      })
+    .then(res => {
+      const projectId = res.data._id
+      router.push(`/pacto/nuevo/exito?projectId=${projectId}`)
+    })
+    .catch(err => {
+      setShowErrorResponse(true)
+      setErrorResponse(err.response.data)
+      console.error(err)
+    }).
+    finally(() => {
+      setIsLoading(false)
+    })
   }
 
   function publishProject(){
     if(mode !== 'edit'){
+      // You can't publish a new during a new project edition
+      return
+    }
+    if(newVersion) {
+      // You can't publish the project during a new version edition
       return
     }
     setIsLoading(true)
@@ -418,6 +481,11 @@ export default function ProjectFormComponent({project}) {
 
   function toggleHidden() {
     if(mode !== 'edit') {
+      // You can't hide a new project
+      return
+    }
+    if(newVersion) {
+      // You can't hide the project during a new version edition
       return
     }
     setIsLoading(true)
@@ -456,6 +524,14 @@ export default function ProjectFormComponent({project}) {
   }
 
   function goToCreateNewVersion() {
+    if(mode === 'new') {
+      // Cant go to create a new version if you are creating a new project
+      return
+    }
+    if(newVersion) {
+      // Can't go to create a new version if you are already creating a new version
+      return
+    }
     router.push(`/pacto/${project._id}/nueva-version`)
   }
 
@@ -475,10 +551,16 @@ export default function ProjectFormComponent({project}) {
           </div>
         )
       }
-      {/* buttons, but they are disabled, its just decoration */}
       {
-        mode === 'edit' && (<>
-            <h4 className="title is-4 mb-4"><FontAwesomeIcon icon={faCaretRight} /> Control del proyecto</h4>
+        mode === 'edit' && init_projectIsClosed && !newVersion && (
+          <div className="notification is-warning py-2">
+            <p><FontAwesomeIcon icon={faExclamationTriangle} />&nbsp;<b>Atención:</b> El proyecto se encuentra <b>cerrado</b> para recibir nuevas contribuciones de los usuarios. Por lo tanto, no podrá editar los articulos del proyecto. Puede, en caso de que desee <u>extender la participación</u>, cambiar la fecha de cierre del proyecto.</p>
+          </div>
+        )
+      }
+      {
+        mode === 'edit' && !newVersion && (<>
+            <h4 className="title is-4 mb-4"><FontAwesomeIcon icon={faCaretRight} /> Panel de control del proyecto</h4>
             <div className="buttons my-2">
               {
                 !publishedAt && (
@@ -486,8 +568,8 @@ export default function ProjectFormComponent({project}) {
                 )
               }
               {
-                publishedAt && hidden && (
-                  <button className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={toggleHidden}><FontAwesomeIcon icon={faEye} />&nbsp;Mostrar proyecto</button>
+                publishedAt && !hidden && (
+                  <Link href={`/pacto/${project._id}/nueva-version`} className={`button is-link is-outlined ${isLoading && 'is-loading'}` } onClick={goToCreateNewVersion}><FontAwesomeIcon icon={faAsterisk} />&nbsp;Crear nueva versión</Link>
                 )
               }
               {
@@ -496,8 +578,8 @@ export default function ProjectFormComponent({project}) {
                 )
               }
               {
-                publishedAt && !hidden && (
-                  <Link href={`/pacto/${project._id}/nueva-version`} className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={goToCreateNewVersion}><FontAwesomeIcon icon={faAsterisk} />&nbsp;Crear nueva versión</Link>
+                publishedAt && hidden && (
+                  <button className={`button is-black is-outlined ${isLoading && 'is-loading'}` } onClick={toggleHidden}><FontAwesomeIcon icon={faEye} />&nbsp;Mostrar proyecto</button>
                 )
               }
             </div>
@@ -524,7 +606,7 @@ export default function ProjectFormComponent({project}) {
                   <span className="tag is-dark">Estado</span>
                   {
                     publishedAt ? (
-                      <span className="tag is-success">Publicado</span>
+                      <span className="tag is-light">Publicado</span>
                     ) : (
                       <span className="tag is-light">Borrador</span>
                     )
@@ -540,9 +622,36 @@ export default function ProjectFormComponent({project}) {
                         hidden ? (
                           <span className="tag is-light">Oculto</span>
                         ) : (
-                          <span className="tag is-success">Visible</span>
+                          <span className="tag is-light">Visible</span>
                         )
                       }
+                    </div>
+                  </div>
+                )
+              }
+              {
+                publishedAt && (
+                  <div className="control">
+                    <div className="tags has-addons">
+                      {/* Show if the project is closed or not */}
+                      <span className="tag is-dark">Contribuciones</span>
+                      {
+                        init_projectIsClosed ? (
+                          <span className="tag is-light">Cerrado</span>
+                        ) : (
+                          <span className="tag is-light">Abierto</span>
+                        )
+                      }
+                    </div>
+                  </div>
+                )
+              }
+              {
+                publishedAt && (
+                  <div className="control">
+                    <div className="tags has-addons">
+                      <span className="tag is-dark">Dias restantes</span>
+                      <span className="tag is-light">{daysUntilClosed}</span>
                     </div>
                   </div>
                 )
@@ -550,7 +659,7 @@ export default function ProjectFormComponent({project}) {
               <div className="control">
                 <div className="tags has-addons">
                   <span className="tag is-dark">Versión</span>
-                  <span className="tag is-info">{project.version}</span>
+                  <span className="tag is-light">{project.version}</span>
                 </div>
               </div>
             </div>
@@ -654,6 +763,24 @@ export default function ProjectFormComponent({project}) {
           }
         </div>
       </div>
+      {/* Project Closed At */}
+      <div className="box">
+        <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Cierre del proyecto</h4>
+        <p>Ingrese la fecha de cierre del proyecto. Si no se ingresa una fecha, el proyecto no se cerrará.</p>
+        <div className="field">
+          <label className="label">Fecha de cierre</label>
+          <div className="control">
+            <InputMask mask="yyyy-mm-dd" showMask separate 
+            replacement={{ d: /\d/, m: /\d/, y: /\d/ }} 
+            ref={slugInput} className="input" value={closedAt} onChange={handleClosedAt} />
+          </div>
+          {
+            !isClosedAtValid && (
+              <p className="help is-danger"><FontAwesomeIcon icon={faAsterisk} /> La fecha debe tener el formato <code>yyyy-mm-dd</code> y ser una fecha real</p>
+            )
+          }
+        </div>
+      </div>
       {/* Project Stage: MX or BR or CH or AR */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Etapa del proyecto</h4>
@@ -674,8 +801,8 @@ export default function ProjectFormComponent({project}) {
       {/* Project About */}
       <div className="box">
         <div className="content">
-        <h4 className="title is-4 mb-2"><FontAwesomeIcon icon={faCaretRight} /> Acerca del proyecto</h4>
-        <p>Ingrese la introducción delproyecto. El campo se versiona y guarda en el historial de versiones. Durante una version se puede editar, pero una vez que se cree una nueva versión, la misma no se puede editar.</p>
+        <h4 className="title is-4 mb-2"><FontAwesomeIcon icon={faCaretRight} /> Resumen del proyecto</h4>
+        <p>Escriba un resumen del proyecto. Este campo se versiona y guarda en el historial de versiones. Durante una version activa, puede editarlo, pero una vez que se cree una nueva versión, la misma se guardara en el historial.</p>
         </div>
 
         <div className="columns is-multiline is-mobile">
@@ -687,24 +814,6 @@ export default function ProjectFormComponent({project}) {
           </div>
         </div>
       </div>
-      {/* Project Closed At */}
-      <div className="box">
-        <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Cierre del proyecto</h4>
-        <p>Ingrese la fecha de cierre del proyecto. Si no se ingresa una fecha, el proyecto no se cerrará.</p>
-        <div className="field">
-          <label className="label">Fecha de cierre</label>
-          <div className="control">
-            <InputMask mask="yyyy-mm-dd" showMask separate 
-            replacement={{ d: /\d/, m: /\d/, y: /\d/ }} 
-            ref={slugInput} className="input" value={closedAt} onChange={handleClosedAt} />
-          </div>
-          {
-            !isClosedAtValid && (
-              <p className="help is-danger"><FontAwesomeIcon icon={faAsterisk} /> La fecha debe tener el formato <code>yyyy-mm-dd</code> y ser una fecha real</p>
-            )
-          }
-        </div>
-      </div>
       {/* Project Articles */}
       <div className="box">
         <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Articulos del proyecto</h4>
@@ -712,12 +821,12 @@ export default function ProjectFormComponent({project}) {
           mode === 'new' && <p>Ingrese los articulos del proyecto. Puede agregar, editar o quitar los articulos que desee. Si guarda el proyecto en modo borrador, podrá seguir agregando, editando o quitando los articulos. Una vez que el proyecto sea publicado, podrá editarlos si quisiere pero <b>no borrarlos</b>.</p>
         }
         {
-          mode === 'edit' && !publishedAt && (
+          mode === 'edit' && !newVersion && !publishedAt && (
             <p>Como el proyecto se encuentra en modo borrador, puede editar, agregar o quitar los articulos que desee. Una vez que el proyecto sea publicado, podrá editarlos si quisiere pero <b>no borrarlos</b>.</p>
           )
         }
         {
-          mode === 'edit' && publishedAt && (
+          mode === 'edit' && !newVersion && publishedAt && (
             <>
               <p className="mb-2">El proyecto se encuentra <b><u>publicado</u></b>. No puede borrar los articulos. Pero puede editarlos o cambiar de orden si lo quisiere. El guardado <b><u>no creará</u></b> una <u>nueva versión</u>.</p>
               <div className="notification is-warning py-2 px-4">
@@ -725,6 +834,17 @@ export default function ProjectFormComponent({project}) {
               </div>
             </>
 
+          )
+        }
+        {
+          mode === 'edit' && newVersion && (
+            <>
+              <p className="">Puede crear, reordenar, editar o quitar los articulos que desee.</p>
+              <p className="">Los articulos que modifique mantendrán sus comentarios, likes y respuestas. Los comentarios destacados en esta versión serán visibles en el historial de versiones.</p>
+              <p className="">Si elimina un articulo, el mismo no conformará parte de la nueva versión, pero se podrá ver en la versión anterior.</p>
+
+
+            </>
           )
         }
         <hr />
@@ -740,12 +860,13 @@ export default function ProjectFormComponent({project}) {
                 moveArticleDown={moveArticleDown}
                 toggleArticleDeleted={toggleArticleDeleted}
                 mode={mode}
+                newVersion={newVersion}
                 published={publishedAt}
               />
             );
           })}
           {
-            (mode === 'new' || (mode === 'edit' && !publishedAt)) && (
+            (mode === 'new' || (mode === 'edit' && !publishedAt) || (mode === 'edit' && publishedAt && newVersion)) && (
               <div className="buttons">
                 <button className="button is-black is-outlined is-fullwidth" disabled={isLoading} onClick={addNewArticle}><FontAwesomeIcon icon={faPlus} />&nbsp;Agregar articulo</button>
               </div>

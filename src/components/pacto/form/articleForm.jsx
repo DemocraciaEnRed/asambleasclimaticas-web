@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
-const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted, mode, published }, ref) => {
+const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggleArticleDeleted, mode, newVersion, published }, ref) => {
   const [articleId] = useState(article._id || null);
   const [text_es, setText_es] = useState(article.text_es || '');
   const [text_pt, setText_pt] = useState(article.text_pt || '');
@@ -15,7 +15,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   const [deleted, setDeleted] = useState(article.deleted || false);
 
   let canDelete = true
-  if(mode === 'edit') {
+  if(mode === 'edit' && !newVersion) {
     if(published) {
       canDelete = false
     }
@@ -57,7 +57,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   }
 
   const toggleDeleted = () => {
-    if(mode === 'edit') {
+    if(mode === 'edit' && !newVersion) {
       if(published) {
         return
       }
