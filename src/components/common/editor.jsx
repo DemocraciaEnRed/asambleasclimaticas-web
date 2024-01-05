@@ -43,7 +43,7 @@ const Editor = ({ markdown, editorRef, es, pt }) => {
     }
     <MDXEditor 
       className={hasLangHeader()}
-      ref={editorRef} 
+      ref={editorRef}
       markdown={markdown}
       contentEditableClassName='content'
       plugins={[

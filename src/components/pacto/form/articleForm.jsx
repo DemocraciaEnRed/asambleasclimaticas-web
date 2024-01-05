@@ -70,7 +70,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
     <div className='article-wrapper'>
       <div className='mb-4'>
         <div className="is-flex is-justify-content-space-between is-align-items-center is-justify-content-top">
-          <h3 className="title is-5 mb-0">Artículo</h3>
+          <h3 className="title is-5 mb-0">Artículo {!articleId && <span className="tag is-primary">Nuevo</span> }</h3>
           <div className="is-flex">
             <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} onClick={clickArticleUp}/></div>
             <div className="is-clickable ml-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>

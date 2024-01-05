@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from 'next/dynamic'
-import { useEffect, useState, useRef, createRef, useMemo } from "react"
+import { useEffect, useState, useRef, createRef, useMemo, Suspense } from "react"
 import { useRouter } from "next/navigation"
 import Link from 'next/link'
 // import { useAuth } from "@/context/auth-context"
@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 import AuthorField from './authorField';
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
+
 
 export default function ProjectFormComponent({project, newVersion}) {
   // UTILITY FUNCTIONS FOR INITIALIZATION
@@ -306,7 +307,15 @@ export default function ProjectFormComponent({project, newVersion}) {
   }
 
   function toggleArticleDeleted(clientId) {
-    if(mode === 'edit' || newVersion) {
+    const index = articles.findIndex((article) => article.clientId === clientId);
+    const article = articles[index];
+    if(mode === 'edit' && newVersion && article._id) {
+      // if the article has an _id, then it's already been created
+      // if during creating a new version this article was added, then
+      // there is no need to mark it as deleted, just remove it from the array
+      return
+    }
+    if(mode === 'edit' && !newVersion && publishedAt && article._id) {
       // if the project has been published, no way you can delete it.
       // if the project has already been created, then the article
       // will stay but it will be marked as deleted
@@ -314,9 +323,6 @@ export default function ProjectFormComponent({project, newVersion}) {
     }
     // in this mode "new", the article, if it's deleted, it's deleted forever
     // find the index of the article that needs to be moved
-    const index = articles.findIndex((article) => article.clientId === clientId);
-    // remove the ref from the articlesRefs array
-    const article = articles[index];
     // remove the article from the articles array
     articles.splice(index, 1);
     // update the state
@@ -326,6 +332,8 @@ export default function ProjectFormComponent({project, newVersion}) {
   }
 
   function makePayload(isPublished) {
+    console.log(about_es_ref.current.getMarkdown())
+    console.log(about_pt_ref.current.getMarkdown())
     const payload = {
       title_es,
       title_pt,
