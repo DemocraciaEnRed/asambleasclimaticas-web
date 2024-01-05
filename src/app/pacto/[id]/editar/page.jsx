@@ -81,6 +81,7 @@ export default function EditProjectForm({params}) {
           <div className="is-flex is-flex-direction-row is-justify-content-space-between">
             <div className="">
               <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} />&nbsp;Editar Proyecto</h1>
+              <h2 className="subtitle is-4 has-text-white is-italic">{project.title_es}</h2>
                 <p>Puede editar el proyecto las veces que quiera. La edición de un proyecto no genera una nueva versión.</p>
             </div>
             <div className="box m-0 px-4 py-2 has-background-dark has-text-centered has-text-white is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
