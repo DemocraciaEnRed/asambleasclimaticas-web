@@ -1,5 +1,6 @@
 "use client"
-import { redirect, useRouter } from "next/navigation"
+import { redirect, useSearchParams } from "next/navigation"
+
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
@@ -10,8 +11,8 @@ export default function SuccessProjectForm({}) {
   // get the user from store
   const { user } = useSelector(state => state.auth)
   // get from the query string "projectId"
-  const router = useRouter()
-  const projectId = router.query.projectId
+  const searchParams = useSearchParams()
+  const projectId = searchParams.get('projectId')
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
