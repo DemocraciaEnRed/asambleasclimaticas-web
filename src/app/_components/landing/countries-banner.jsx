@@ -4,7 +4,7 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 
 
 export default function CountriesBanner({ countries, title }) {
-    return <div className="countries-banner has-text-centered has-background-cream p-6" id="countries-banner">
+    return <div className="countries-banner has-text-centered has-background-cream py-6" id="countries-banner">
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">{title}</h1>
         <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4">
             {countries.map(country =>
@@ -28,7 +28,7 @@ export default function CountriesBanner({ countries, title }) {
                         </div>
                     </div>
                     <footer className="card-footer is-justify-content-center py-4">
-                        <Link href={'/#' + country.code} scroll={true} className="button more-button has-background-pink has-text-white has-text-weight-bold is-size-4 ">+</Link>
+                        <Link href={'#' + country.code} scroll={true} className="button more-button has-background-pink has-text-white has-text-weight-bold is-size-4 ">+</Link>
                     </footer>
                 </div>
             )}

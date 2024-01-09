@@ -50,23 +50,23 @@ export default function Navbar() {
                 </Link>
 
             </div>
-            <div className={`navbar-links has-text-white is-justify-content-center is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
+            <div className={`navbar-links has-text-white is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
                 <ul >
-                    <li className={pathname == "/" ? 'active' : ""}>
+                    <li >
                         <Link onClick={handleOpenMenu} className='link-navbar' href="/" >
                             <span>
                                 Inicio
                             </span>
                         </Link>
                     </li>
-                    <li className={pathname == "/pacto" ? 'active' : ""}>
+                    <li >
                         <Link onClick={handleOpenMenu} className='link-navbar' href="#countries-banner" >
                             <span>
                                 asambleas
                             </span>
                         </Link>
                     </li>
-                    <li className={pathname == "/acerca-de" ? 'active' : ""}>
+                    <li >
                         <Link onClick={handleOpenMenu} className='link-navbar' href="#banner-interciudad" >
                             <span>
                                 sobre
@@ -78,8 +78,8 @@ export default function Navbar() {
 
                 </ul>
                 <FontAwesomeIcon icon={faXmark} className="is-hidden-tablet" onClick={handleOpenMenu} />
-            </div>
             <LangSwitch />
+            </div>
             <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5" onClick={handleOpenMenu}>
                 <FontAwesomeIcon icon={faBars} />
             </div>

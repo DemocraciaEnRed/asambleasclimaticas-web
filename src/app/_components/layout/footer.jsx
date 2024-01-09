@@ -7,26 +7,26 @@ import Logo from "@/app/_components/common/logo";
 export default function Footer() {
 
     return (
-        <footer className='footer-wrapper py-6'>
-            <div className='logo'>
+        <footer className='footer-wrapper py-5'>
+            <div className='logo py-4'>
                 <Link href="/" >
-                    <Logo widthLogo='300' />
+                    <Logo />
                 </Link>
 
             </div>
-            <ul className="footer-rrss">
+            <ul className="footer-rrss py-4">
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://twitter.com/fundacionDER" target="_blank" >
+                    <Link className='link-footer ' href="https://twitter.com/fundacionDER" target="_blank" >
                         <FontAwesomeIcon icon={faSquareTwitter} />
                     </Link>
                 </li>
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://www.instagram.com/democraciaenred" target="_blank"  >
+                    <Link className='link-footer ' href="https://www.instagram.com/democraciaenred" target="_blank"  >
                         <FontAwesomeIcon icon={faInstagram} />
                     </Link>
                 </li>
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://www.facebook.com/democraciaenred" target="_blank"  >
+                    <Link className='link-footer ' href="https://www.facebook.com/democraciaenred" target="_blank"  >
                         <FontAwesomeIcon icon={faSquareFacebook} />
                     </Link>
                 </li>

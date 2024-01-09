@@ -149,13 +149,13 @@
         width: 60%;
       }
     }
-    .title {
+    /* .title {
       font-size: 4rem;
       font-weight: 900;
       @include tablet {
         font-size: 3rem;
       }
-    }
+    } */
     @include tablet {
       width: 100%;
       text-align: center;

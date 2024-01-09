@@ -99,10 +99,10 @@
     }
 
     .banner-interciudad {
-        padding: 3rem;
+        /* padding: 3rem;
         @include tablet{
             padding: .5rem;
-        }
+        } */
         .content{
             width: 75%;
             @include tablet{
@@ -112,9 +112,9 @@
             }
         }
         ol {
-            padding: 3rem;
+            padding: 0 3rem;
             @include tablet{
-                padding: .75rem;
+                padding: 0 .75rem;
             }
            
         }
