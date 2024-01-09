@@ -658,7 +658,7 @@ export default function ProjectFormComponent({project, newVersion}) {
                 publishedAt && (
                   <div className="control">
                     <div className="tags has-addons">
-                      <span className="tag is-dark">Dias restantes</span>
+                      <span className="tag is-dark">Días restantes</span>
                       <span className="tag is-light">{daysUntilClosed}</span>
                     </div>
                   </div>

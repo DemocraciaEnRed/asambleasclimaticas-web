@@ -50,7 +50,7 @@ export function BannerParticipativo() {
                 </div>
                 <div className="card-content py-0 has-text-centered">
                     <p className="title is-size-4 is-size-5-touch">
-                        Comentarios <br/>ESpecificos
+                        Comentarios <br/> Específicos
                     </p>
                     <div className="content">
                         Comentários Específicos

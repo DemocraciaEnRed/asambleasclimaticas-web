@@ -38,7 +38,7 @@ export default function Footer() {
             <ul >
                 <li>
                     <Link href="">
-                        ¿Como funciona?
+                        ¿Cómo funciona?
                     </Link>
                 </li>
                 <li>
@@ -56,12 +56,12 @@ export default function Footer() {
             <ul>
                 <li>
                     <Link href="">
-                        Terminos y condiciones
+                        Términos y condiciones
                     </Link>
                 </li>
                 <li>
                     <Link href="">
-                        Politica de privacidad
+                        Políticas de privacidad
                     </Link>
                 </li>
             </ul>
