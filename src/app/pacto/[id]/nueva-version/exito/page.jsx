@@ -25,8 +25,8 @@ export default function SuccessEditProjectForm({params}) {
       <div className="hero is-fullheight is-bold is-primary">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} /><br/>Proyecto editado</h1>
-            <h2 className="subtitle has-text-white">El proyecto fue editado con éxito.</h2>
+            <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} /><br/>Nueva versión</h1>
+            <h2 className="subtitle has-text-white">¡El proyecto ahora tiene nueva versión!</h2>
             <Link href="/"
               className="button is-white is-rounded"
             ><FontAwesomeIcon icon={faHome} />&nbsp;Ir al inicio</Link>

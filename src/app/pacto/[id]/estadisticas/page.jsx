@@ -6,8 +6,10 @@ import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import axiosServices from "@/utils/axios";
-import ProjectFormComponent from "@/components/pacto/form/projectForm";
+import ProjectStats from "@/components/pacto/stats/projectStats";
 import { useEffect } from "react";
+
+
 
 export default function EditProjectForm({params}) {
   const router = useRouter()
@@ -24,6 +26,7 @@ export default function EditProjectForm({params}) {
   }
 
   const [project, setProject] = useState(null)
+  const [countries, setCountries] = useState([])
   const [isAuthor, setIsAuthor] = useState(false)
   
   async function getProjectWithArticlesData(projectId) {
@@ -31,11 +34,15 @@ export default function EditProjectForm({params}) {
       console.log(projectId)
       const promises = [
         axiosServices.get(`/projects/${projectId}`),
-        axiosServices.get(`/projects/${projectId}/articles`)
+        axiosServices.get(`/projects/${projectId}/articles`),
+        axiosServices.get(`/projects/${projectId}/stats`),
+        axiosServices.get(`/misc/countries`)
       ]
-      const [projectRes, projectArticlesRes] = await Promise.all(promises)
+      const [projectRes, projectArticlesRes, projectCurrentStatsRes, countriesRes] = await Promise.all(promises)
       const projectData = projectRes.data
       const articlesData = projectArticlesRes.data
+      const projectCurrentStatsData = projectCurrentStatsRes.data
+      const countriesData = countriesRes.data
       // check if author is the same as the user
       console.log('user', user._id)
       console.log('project', projectData.author._id)
@@ -50,7 +57,9 @@ export default function EditProjectForm({params}) {
       }
       const projectAux = projectData
       projectAux.articles = articlesData
+      projectAux.stats = projectCurrentStatsData
       setProject(projectAux)
+      setCountries(countriesData)
       setIsAuthor(true)
     } catch (error) {
       router.push('/')
@@ -80,9 +89,9 @@ export default function EditProjectForm({params}) {
         <div className="container is-fluid">
           <div className="is-flex is-flex-direction-row is-justify-content-space-between">
             <div className="">
-              <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} /> <FontAwesomeIcon icon={faFile} />&nbsp;Editar Proyecto</h1>
+              <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPencil} />&nbsp;Estadisticas</h1>
               <h2 className="subtitle is-4 has-text-white is-italic">{project.title_es}</h2>
-                <p>Puede editar el proyecto las veces que quiera. La edición de un proyecto no genera una nueva versión.</p>
+              {/* <p>Puede editar el proyecto las veces que quiera. La edición de un proyecto no genera una nueva versión.</p> */}
             </div>
             <div className="box m-0 px-4 py-2 has-background-dark has-text-centered has-text-white is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
               <p>Versión</p>
@@ -91,9 +100,9 @@ export default function EditProjectForm({params}) {
           </div>
         </div>
       </div>
-      <div className="pacto-form section has-background-light">
-        <div className="container is-fluid">
-          <ProjectFormComponent project={project} />
+      <div className="section has-background-light">
+        <div className="container">
+          <ProjectStats project={project} countries={countries} />
         </div>
       </div>
     </>
