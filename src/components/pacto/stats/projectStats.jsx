@@ -73,7 +73,7 @@ export default function ProjectFormComponent({project, countries}) {
             <tr>
               <td>
                 <p>Cantidad de usuarios unicos que interactuaron de alguna forma con le proyecto</p>
-                <p className="is-size-7 is-italic">Se valora como interacción desde comentar, responder, o dar un "me gusta/no me gusta" en un comentario, respuesta o like en un proyecto, comentario, respuesta o articulo.</p>
+                <p className="is-size-7 is-italic">Se valora como interacción desde comentar, responder, o dar un &quot; me gusta/no me gusta &quot; en un comentario, respuesta o like en un proyecto, comentario, respuesta o articulo.</p>
               </td>
               <td>{project.stats.uniqueUsersWhoInteracted}</td>
             </tr>
