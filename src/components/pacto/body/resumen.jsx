@@ -26,10 +26,10 @@ export default function ResumenBody({ project }) {
 
                 </div>
 
-                <button className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 mt-5 is-flex is-justify-content-space-between p-4 is-size-6">
+                <a href={`/pacto/${project.slug}/articulado`} className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 mt-5 is-flex is-justify-content-space-between p-4 is-size-6">
                     Contribuye dejando tus aportes en las máximas del Pacto Interciudad
                     <FontAwesomeIcon icon={faArrowRight} />
-                </button>
+                </a>
 
                 <div className="m-0 mt-6 is-flex is-flex-wrap-wrap is-justify-content-center stage-wrapper">
                     {stageCountryList.map(country =>

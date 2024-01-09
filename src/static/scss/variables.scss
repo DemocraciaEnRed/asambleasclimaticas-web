@@ -23,7 +23,7 @@ $brown-dark: findDarkColor($brown-base);
 $brown-invert: findColorInvert($brown-base);
 
 $pink-base:             #D71D81 !default;
-$pink-light: findLightColor($pink-base);
+$pink-light: lighten($pink-base, 25%);
 $pink-dark: findDarkColor($pink-base);
 $pink-invert: findColorInvert($pink-base);
 

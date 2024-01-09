@@ -1,6 +1,6 @@
 
 export default function BannerResurgente(){
-    return <div className="banner-re-surgente">
+    return <div className=" banner-re-surgente">
         <div className="content has-background-orange">
             <div className="title is-size-1 is-size-3-touch">¿Qué es <br />
             (re)surgentes <br />

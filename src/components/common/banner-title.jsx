@@ -1,7 +1,7 @@
 import Logo from "./logo"
 
 const BannerTitle = ({urlAction,title,subtitle,image, actionClick, textButton}) => 
-<div className='banner-title is-flex is-justify-content-center is-align-items-center is-flex-direction-column' 
+<div className='hero is-fullheight banner-title is-flex is-justify-content-center is-align-items-center is-flex-direction-column' 
      style={{backgroundImage:`url('${image}')`}}>
     <Logo color='#FFFFFF' />
     <div className="my-5 has-text-centered">

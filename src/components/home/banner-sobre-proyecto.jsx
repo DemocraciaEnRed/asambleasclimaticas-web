@@ -20,7 +20,7 @@ export default function BannerSobreProyecto(){
                     *Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.
                 </p>
             </div>
-            <Link href="/acerca-de" className="button has-text-orange">Conoce más <FontAwesomeIcon className="ml-3" icon={faArrowRight}/></Link>
+            <Link href="/sobre" className="button has-text-orange">Conoce más <FontAwesomeIcon className="ml-3" icon={faArrowRight}/></Link>
         </div>
     </div>
 }

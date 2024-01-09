@@ -50,14 +50,14 @@ export default function HeaderPropuesta({ project, section }) {
                         
                     </div>
                 <div className="tab-section is-flex is-justify-content-space-between is-align-items-flex-end">
-                    <div className="tabs is-size-7-touch">
+                    <div className="tabs">
                         <ul>
                             <li className={section === 'resumen' ? 'is-active' : ''}><Link href={`/pacto/${project.slug}`} >Resumen</Link></li>
                             <li className={section === 'pacto' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/articulado`} > Pacto</Link></li>
                             <li className={section === 'hoja' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/hoja-de-ruta`} >Hoja de ruta</Link></li>
                         </ul>
                     </div>
-                    <button className="button shared-button px-3 is-size-7-touch">Compartir proyecto <FontAwesomeIcon className="is-hidden-touch" icon={faShareNodes} /></button>
+                    <button className="button shared-button px-3 "> <span className="is-hidden-touch" >Compartir proyecto </span> <span className="is-hidden-desktop" >Compartir</span> <FontAwesomeIcon className="is-hidden-touch" icon={faShareNodes} /></button>
                 </div>
             </div>
 

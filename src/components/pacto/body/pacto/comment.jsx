@@ -39,7 +39,7 @@ export default function Comment({ project, comment }) {
 
     return (
 
-        <div >
+        <div className="comment-wrapper pt-3">
             <div className="is-flex is-justify-content-space-between">
                 <div className="likes">
                     {likes > 0 && likes} <FontAwesomeIcon onClick={handleLike} color="grey" className="mx-1 is-clickable" icon={faThumbsUp} />
