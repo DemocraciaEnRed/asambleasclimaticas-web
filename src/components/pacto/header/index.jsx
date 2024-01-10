@@ -7,6 +7,7 @@ import ClosingProject from "../../common/closing-project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import StageProject from "@/components/common/stage-project";
 
 
 export default function HeaderPropuesta({ project, section }) {
@@ -39,6 +40,9 @@ export default function HeaderPropuesta({ project, section }) {
                     </div>
                     <div className="ml-2 is-hidden-touch">
                         <ClosingProject closingDate={project.closedAt} />
+                    </div>
+                    <div className="ml-2 is-hidden-touch ">
+                        <StageProject stage={project.stage} />
                     </div>
                 </div>}
                 <div className="is-flex is-justify-content-end project-info is-hidden-desktop mb-3">

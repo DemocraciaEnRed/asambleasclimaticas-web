@@ -7,7 +7,8 @@ export const stageCountryList = [
         date: "febrero–marzo 2024",
         topic: "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
         leader:'SUR, Instituto del Sur Urbano',
-        description:'La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un mecanismo de sorteo cívico, que se reúnen para deliberar mejoras a las políticas ambientales urbanas para la Zona Metropolitana de Monterrey, en forma de desafío público.'
+        description:'La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un mecanismo de sorteo cívico, que se reúnen para deliberar mejoras a las políticas ambientales urbanas para la Zona Metropolitana de Monterrey, en forma de desafío público.',
+        progress: 25
     },
     {
         name: "Brasil",
@@ -17,7 +18,8 @@ export const stageCountryList = [
         date: "marzo-mayo 2024",
         topic: "Por definir",
         leader:'IDEEMOS',
-        description:''
+        description:'',
+        progress: 50
     },
     {
         name: "Colombia",
@@ -27,7 +29,8 @@ export const stageCountryList = [
         date: "mayo-julio 2024",
         topic: "Por definir",
         leader:'Extituto',
-        description:''
+        description:'',
+        progress: 75
     },
     {
         name: "Argentina",
@@ -37,6 +40,7 @@ export const stageCountryList = [
         date: "febrero–marzo 2024",
         topic: "Por definir",
         leader:'Democracia en Red',
-        description:''
+        description:'',
+        progress: 100
     },
 ]
