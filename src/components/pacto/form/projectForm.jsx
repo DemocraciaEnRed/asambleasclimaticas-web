@@ -410,14 +410,13 @@ export default function ProjectFormComponent({project, newVersion}) {
     if(mode === 'edit' && !newVersion) {
       axiosServices.put(`/projects/${project._id}`, payload)
         .then(res => {
-          router.push(`/pacto/${project._id}/editar/exito`)
+          const projectId = project._id
+          router.push(`/pacto/${project._id}/editar/exito?projectId=${projectId}`)
         })
         .catch(err => {
           setShowErrorResponse(true)
           setErrorResponse(err.response.data)
           console.error(err)
-        }).
-        finally(() => {
           setIsLoading(false)
         })
       return
@@ -425,31 +424,47 @@ export default function ProjectFormComponent({project, newVersion}) {
     if(mode === 'edit' && newVersion) {
       axiosServices.post(`/projects/${project._id}/versions`, payload)
         .then(res => {
-          router.push(`/pacto/${project._id}/nueva-version/exito`)
+          let isPublished = project.publishedAt ? true : false
+          // if the project is not published, check if the user wants to publish it now
+          if(!isPublished) {
+            // checking publishNow and payload.publishedAt
+            if(publishNow) {
+              isPublished = true
+            }
+            if(payload.publishedAt) {
+              isPublished = true
+            }
+          }
+          const queryString = new URLSearchParams({published: isPublished}).toString()
+          router.push(`/pacto/${project._id}/nueva-version/exito?${queryString}`)
         })
         .catch(err => {
           setShowErrorResponse(true)
           setErrorResponse(err.response.data)
           console.error(err)
-        }).
-        finally(() => {
           setIsLoading(false)
         })
-        return
+      return
     }
     // mode === 'new'
     axiosServices.post('/projects', payload)
     .then(res => {
       const projectId = res.data._id
-      router.push(`/pacto/nuevo/exito?projectId=${projectId}`)
+      const published = res.data.publishedAt ? true : false
+      const queryParams = {
+        projectId,
+        published
+      }
+      const queryString = new URLSearchParams(queryParams).toString()
+      router.push(`/pacto/nuevo/exito?${queryString}`)
+      return
     })
     .catch(err => {
       setShowErrorResponse(true)
       setErrorResponse(err.response.data)
       console.error(err)
-    }).
-    finally(() => {
       setIsLoading(false)
+      return
     })
   }
 
