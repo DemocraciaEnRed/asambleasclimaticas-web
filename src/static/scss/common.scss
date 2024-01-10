@@ -198,3 +198,14 @@
   position: sticky;
   top: 10%;
 }
+
+.language-selector{
+  .language-selector-buttons{
+    border: 2px solid $pink-base;
+    border-radius: 9999px;
+    width: fit-content;
+    button{
+      border: none;
+    }
+  }
+}

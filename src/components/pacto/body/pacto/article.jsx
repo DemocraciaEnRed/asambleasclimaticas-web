@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
 
 export default function Article({ project, article }) {
-    const windowSize = useRef([window.innerWidth, window.innerHeight]);
     const [likes,setLikes] = useState(article.likes)
     const [liked, setLiked] = useState(article.liked)
     const [disliked, setDisliked] = useState(article.disliked)
@@ -18,6 +17,7 @@ export default function Article({ project, article }) {
     const [comments, setComments] = useState(null)
     const [newComment, setNewComment] = useState(false)
     const { user } = useSelector((state) => state.auth)
+    const {language} = useSelector((state)=>state.language)
 
     const handleLike = async () => {
         const resp = await toLike(`/projects/${project._id}/articles/${article._id}`)
@@ -61,12 +61,12 @@ export default function Article({ project, article }) {
 
     return (
         <div className="columns article my-4">
-            <div className={`column  ${showComments ? 'is-8' : 'is-11'}`}>
+            <div className="column  is-11">
                 <div className="card card-article">
                     <div className="card-content is-size-5 columns" >
                         <div className="content w-100 is-size-7-touch">
                             <Remark>
-                                {article.text_es}
+                                {language === 'pt' ?  article.text_pt : article.text_es}
                             </Remark>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function Article({ project, article }) {
                     addCommentDefault={newComment}
                     closeCommentModal={() => setShowComments(false)}
                     user={user}
-                    isModal={windowSize.current[0] < 980} />}
+                    isModal />}
 
             </div>
         </div>

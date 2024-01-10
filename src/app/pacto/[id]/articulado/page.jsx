@@ -1,3 +1,4 @@
+import LanguageSelector from "@/components/common/language-selector"
 import Skeleton from "@/components/common/skeleton"
 import ArticuladoBody from "@/components/pacto/body/articulado"
 import HeaderPropuesta from "@/components/pacto/header"
@@ -14,6 +15,7 @@ export default async function PropuestaPactoComponent({params:{id}}) {
             <>
                 <HeaderPropuesta project={project} section="pacto" />
                 <div className="project-body-container">
+                    <LanguageSelector />
                     <div className="columns">
                         <div className="column is-9">
                             <div className="title-section has-text-primary">

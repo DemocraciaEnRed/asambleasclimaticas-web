@@ -62,6 +62,10 @@
 
         .acerca-de ,.como-participar ,.contacto{
             padding: 1rem;
+            width: 80%;
+            @include tablet{
+                width: 100%;
+            }
             h1 {
                 font-size: 3rem;
 

@@ -31,7 +31,7 @@ export default function HeaderPropuesta({ project, section }) {
                         />
                     </div>
                 </div>
-                {project.closedAt && <div className="project-progress-bar is-flex is-flex-wrap-wrap mb-3">
+                {project.closedAt && <div className="project-progress-bar is-flex is-flex-wrap-wrap mb-6">
                     <div className="progress-project">
                         <ProgressBar closingDate={project.closedAt}
                             creationDate={project.createdAt}
