@@ -106,7 +106,7 @@ export default function RegisterForm() {
                             <div className="control">
                                 <div className="set-lang">
                                     <button className={`button is-rounded ${lang === 'esp' ? 'active' : ''}`} onClick={() => setLang('esp')}>Español</button>
-                                    <button className={`button is-rounded ${lang === 'prt' ? 'active' : ''}`} onClick={() => setLang('prt')}>Portugues</button>
+                                    <button className={`button is-rounded ${lang === 'prt' ? 'active' : ''}`} onClick={() => setLang('prt')}>Portugués</button>
 
                                 </div>
                             </div>

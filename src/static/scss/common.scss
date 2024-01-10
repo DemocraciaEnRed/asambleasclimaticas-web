@@ -59,10 +59,14 @@
     }
 }
 
+.closing-project{
+  height: 40px;
+}
+
 .progress-bar-wrapper{
     background-color: $pink-light;
     overflow: hidden;
-    height: 48px;
+    height: 40px;
     position:relative;
     @include tablet{
       height: 32px;
@@ -201,11 +205,15 @@
 
 .language-selector{
   .language-selector-buttons{
-    border: 2px solid $pink-base;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 9999px;
     width: fit-content;
     button{
       border: none;
     }
   }
+}
+.stage-project{
+  height: 40px;
 }

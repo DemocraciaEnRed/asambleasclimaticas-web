@@ -15,7 +15,7 @@ export default async function PropuestaPactoComponent({params:{id}}) {
             <>
                 <HeaderPropuesta project={project} section="pacto" />
                 <div className="project-body-container">
-                    <LanguageSelector />
+                    <LanguageSelector color="pink" />
                     <div className="columns">
                         <div className="column is-9">
                             <div className="title-section has-text-primary">

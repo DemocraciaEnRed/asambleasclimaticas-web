@@ -4,7 +4,7 @@ import { handleLanguage } from "@/store/reducers/language"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
-const LanguageSelector = () => {
+const LanguageSelector = ({color}) => {
     const { user } = useSelector((state) => state.auth)
     const {language, switched} = useSelector((state)=>state.language)
 
@@ -17,9 +17,9 @@ const LanguageSelector = () => {
     },[])
     return (<div className="language-selector">   
         Cambiar idioma maximas
-        <div className="language-selector-buttons my-3"> 
-            <button className={`button is-rounded ${language === 'es' ? 'is-pink has-text-white' :'has-text-pink'}`} onClick={()=>dispatch(handleLanguage('es'))}>Español</button>
-            <button className={`button is-rounded ${language === 'pt' ? 'is-pink has-text-white' :'has-text-pink'}`} onClick={()=>dispatch(handleLanguage('pt'))}>Portugués</button>
+        <div className={`language-selector-buttons my-3 border-color-${color}`} > 
+            <button className={`button is-rounded ${language === 'es' ? `is-${color} has-text-white` : `has-text-${color}`}`} onClick={()=>dispatch(handleLanguage('es'))}>Español</button>
+            <button className={`button is-rounded ${language === 'pt' ? `is-${color} has-text-white` : `has-text-${color}`}`} onClick={()=>dispatch(handleLanguage('pt'))}>Portugués</button>
         </div>
     </div>)
 }
