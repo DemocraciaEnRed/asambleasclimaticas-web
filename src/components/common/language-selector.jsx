@@ -11,6 +11,8 @@ const LanguageSelector = () => {
     useEffect(()=>{
         if (user) {
             if (!switched && user.lang !== language) dispatch(handleLanguage(user.lang))
+        }else{
+            if(!switched) dispatch(handleLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0]))
         }
     },[])
     return (<div className="language-selector">   

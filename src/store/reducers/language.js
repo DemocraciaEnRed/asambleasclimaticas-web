@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import auth from "./auth";
 
 const initialState = {
-    language: navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0],
+    language: 'es',
     switched:false
 }
 export const languageState = createSlice({

@@ -27,7 +27,7 @@ const ProgressBar = ({ closingDate, creationDate, remaining }) => {
       {closed ? <div className='reaming-days'>Finalizó el periodo para aportes</div>
         : <>
           <div className='progress-fill' style={{ width: `${progress(RemainingDate(closingDate, creationDate), RemainingDate(new Date(), closingDate))}%` }} />
-          <div className='reaming-days'>Días restantes: {RemainingDate(new Date(), closingDate)} </div>
+          <div className='reaming-days has-text-white'>Días restantes: {RemainingDate(new Date(), closingDate)} </div>
         </>
       }
     </div>
