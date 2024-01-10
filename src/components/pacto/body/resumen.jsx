@@ -2,6 +2,7 @@
 import { stageCountryList } from "@/utils/data";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { Remark } from "react-remark";
 
 
@@ -33,10 +34,10 @@ export default function ResumenBody({ project }) {
                     </div>
                 </div>
 
-                <a href={`/pacto/${project.slug}/articulado`} className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 mt-5 is-flex is-justify-content-space-between p-4 is-size-6">
+                <Link href={`/pacto/${project.slug}/articulado`} className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 mt-5 is-flex is-justify-content-space-between is-align-items-center p-4 is-size-6">
                     Contribuye dejando tus aportes en las máximas del Pacto Interciudad
                     <FontAwesomeIcon icon={faArrowRight} />
-                </a>
+                </Link>
 
                 <div className="m-0 mt-6 is-flex is-flex-wrap-wrap is-justify-content-center stage-wrapper">
                     {stageCountryList.map(country =>

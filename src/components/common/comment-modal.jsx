@@ -6,34 +6,26 @@ import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import axiosServices from '@/utils/axios';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function CommentModal({ postUrl, active, commentList, addCommentDefault, closeCommentModal, user, isModal }) {
-    const [addComment, setAddComment] = useState(false)
+    const [addComment, setAddComment] = useState(addCommentDefault)
     const [newComment, setNewComment] = useState('')
     const [error, setError] = useState(false)
     const router = useRouter()
 
-    useEffect(() => {
-        if (addCommentDefault) {
-            if(!user) router.push('/auth/login')
-
-            setAddComment(true)
-            
-        }
-    }, [])
-
+    
     const sendComment = () => {
-        if(newComment){
+        if (newComment) {
             axiosServices.post(postUrl, { body: newComment })
             closeCommentModal()
-        }else{
+        } else {
             setError(true)
         }
 
     }
 
     const handleNewComment = () => {
-        if(!addComment && !user) router.push('/auth/login')
         setAddComment(!addComment)
     }
 
@@ -64,11 +56,15 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
                                     </SwiperComponent>}
 
                             </div>}
-                            {(addComment || commentList.length === 0) && user &&
+                            {(addComment || commentList.length === 0) && user ?
                                 <div>
                                     <p>{user.name}</p>
-                                    <textarea className={`textarea ${error?'is-danger':''}`} placeholder="Agregue su comentario aqui...." onChange={(e) => setNewComment(e.target.value)}></textarea>
-                                </div>}
+                                    <textarea className={`textarea ${error ? 'is-danger' : ''}`} placeholder="Agregue su comentario aqui...." onChange={(e) => setNewComment(e.target.value)}></textarea>
+                                </div> : (addComment || commentList.length === 0) && !user && <div className='has-text-centered'>
+                                    <p>Inicia sesion <Link href="/auth/login"> aqui</Link> para poder comentar</p>
+                                    
+                                </div>
+                            }
                         </div>
                     </div>
                     <footer className="card-footer">

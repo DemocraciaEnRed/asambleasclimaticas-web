@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAuth } from "@/context/auth-context";
 import Comment from "./comment";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 
 export default function Comments({ project, comments }) {
@@ -23,18 +24,24 @@ export default function Comments({ project, comments }) {
         setCommensList([resp.data, ...commentList])
     }
 
-    
+
 
     return (
         <div className="comment-section">
             <h4 className="my-4">Comentarios:</h4>
-            {user && <div className="comment-form">
+            {user ? <div className="comment-form">
                 <h2 className="has-text-primary has-text-weight-bold ">Puede dejar sus comentarios sobre la presentación del proyecto aquí</h2>
                 <form action="submit" className="my-4" onSubmit={handlesubmit}>
                     <textarea className="textarea my-4" placeholder="Comience a escribir su comentario.."></textarea>
                     <button className="button is-primary is-rounded">Enviar comentario</button>
                 </form>
-            </div>}
+            </div>
+                :
+                <div >
+                    <p>Inicia sesion <Link href="/auth/login"> aqui</Link> para poder comentar</p>
+                </div>
+            }
+            <hr/>
             <div className="comment-list">
                 <div className="box">
                     {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} />
