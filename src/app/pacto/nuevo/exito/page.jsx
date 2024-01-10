@@ -13,6 +13,7 @@ export default function SuccessProjectForm({}) {
   // get from the query string "projectId"
   const searchParams = useSearchParams()
   const projectId = searchParams.get('projectId')
+  const published = searchParams.get('published') === 'true'
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
@@ -27,15 +28,34 @@ export default function SuccessProjectForm({}) {
       <div className="hero is-fullheight is-bold is-primary">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} /><br/>Proyecto creado</h1>
-            <h2 className="subtitle has-text-white">El proyecto fue creado con éxito.</h2>
+            { published ? (
+                <>
+                  <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} /><br/>Proyecto creado</h1>
+                  <p class="my-5 is-italic">El proyecto se encuentra publicado y visible a los usuarios</p>
+                </>
+              )
+              : (
+                <>
+                  <h1 className="title is-2 has-text-white"><FontAwesomeIcon icon={faPlus} /> <FontAwesomeIcon icon={faFile} /><br/>Borrador de proyecto creado</h1>
+                  <p class="my-5 is-italic">El proyecto se encuentra sin publicar.<br />Recuerde que deberá publicarlo para que sea visible a los usuarios</p>
+                </>
+              )
+            }
+            <div className="buttons is-centered mt-3">
+            { published ? (
+                <>
+                  <Link href={`/pacto/${projectId}`}
+                    className="button is-white is-rounded">
+                    <FontAwesomeIcon icon={faFile} />&nbsp;Ir al proyecto
+                  </Link>
+                </>
+              )
+              : null
+            }
             <Link href="/"
-              className="button is-white is-rounded"
-            ><FontAwesomeIcon icon={faHome} />&nbsp;Ir al inicio</Link>
-            {/* <Link href={`/pacto/${projectId}`}
-              className="button is-white is-rounded">
-              <FontAwesomeIcon icon={faFile} />&nbsp;Ver proyecto
-            </Link> */}
+                className="button is-white is-rounded is-outlined"
+                ><FontAwesomeIcon icon={faHome} />&nbsp;Ir al inicio</Link>
+            </div>
           </div>
         </div>
       </div>
