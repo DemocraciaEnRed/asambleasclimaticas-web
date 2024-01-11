@@ -30,3 +30,14 @@ export const toDislike = async (url) => {
         console.log(err);
     }
 }
+
+export const postComments = async (url, content) => {
+
+    try{
+        const resp = await axiosServices.post(url, content)
+        return resp.data
+    }catch(err){
+        if(err.response.status===401) window.location.href= '/auth/login'
+        console.log(err);
+    }
+}

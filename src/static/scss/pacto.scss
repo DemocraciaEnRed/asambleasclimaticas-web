@@ -203,7 +203,7 @@
   }
 
   .project-body-container {
-    padding: 3rem 4rem;
+    padding: 2rem 3rem;
 
     @include tablet {
       padding: .5rem;
@@ -280,12 +280,7 @@
                   margin: 0 0.25rem;
                   padding: .75rem ;
                 }
-                svg{
-                  margin-right: .75REM;
-                  @include tablet{
-                    margin-right: .25rem;
-                  }
-                }
+                
               }
             }
             .comments{ 
@@ -312,6 +307,37 @@
             position: sticky;
             top: 70px;
           }
+        }
+        .article-modal{
+
+          .modal-card{
+            width: 75%;
+            @include tablet{
+              width: 95%;
+            }
+            .modal-card-body{
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+
+            .content{
+              padding: 1rem 3rem;
+              max-height: 40vh;
+              overflow: auto;
+              @include tablet{
+                padding: 1rem 1rem;
+
+              }
+            }
+            .comment-box{
+              max-height: 30vh;
+              overflow: auto;
+              .comment-modal-wrapper{
+                .content{
+                  max-height: 90vh;
+                }
+              }
+            }
+          }}
         }
       }
     }

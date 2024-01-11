@@ -3,10 +3,11 @@ import { faThumbsDown, faThumbsUp, faComment } from "@fortawesome/free-regular-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Remark } from "react-remark";
 import axiosServices from "@/utils/axios";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import CommentModal from "@/components/common/comment-modal";
 import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
+import ArticleModal from "./article-modal";
 
 export default function Article({ project, article }) {
     const [likes,setLikes] = useState(article.likes)
@@ -14,9 +15,6 @@ export default function Article({ project, article }) {
     const [disliked, setDisliked] = useState(article.disliked)
     const [dislikes, setDislikes] = useState(article.dislikes)
     const [showComments, setShowComments] = useState(false)
-    const [comments, setComments] = useState(null)
-    const [newComment, setNewComment] = useState(false)
-    const { user } = useSelector((state) => state.auth)
     const {language} = useSelector((state)=>state.language)
 
     const handleLike = async () => {
@@ -35,54 +33,49 @@ export default function Article({ project, article }) {
 
     }
 
-    const fetchComments = async () => {
-        const resp = await axiosServices.get(`/projects/${project._id}/articles/${article._id}/comments`)
-        setComments(resp.data.comments);
-    }
-
     const handleShowComments = () => {
-        setShowComments(false)
-        setTimeout(() => {
-            setNewComment(false)
-            fetchComments()
-            setShowComments(true)
-        }, 300);
+        setShowComments(true)
+        
     }
 
-    const handleNewShowComments = () => {
-        setShowComments(false)
-        setTimeout(() => {
-            setNewComment(true)
-            fetchComments()
-            setShowComments(true)
-        }, 300);
-    }
+  
 
 
     return (
-        <div className="columns article my-4">
-            <div className="column  is-11">
+        <div className="columns mx-0 article my-4">
+            <div className="column  is-11 is-12-touch">
                 <div className="card card-article">
-                    <div className="card-content is-size-5 columns" >
+                    <div className="card-content is-size-5 columns mx-0" >
                         <div className="content w-100 is-size-7-touch">
                             <Remark>
                                 {language === 'pt' ?  article.text_pt : article.text_es}
                             </Remark>
                         </div>
                     </div>
-                    <footer className="card-footer has-background-primary is-flex is-justify-content-space-between">
+                    <footer className="card-footer has-background-primary is-flex is-justify-content-space-between ">
                         <div className="is-flex likes">
-                            <button className={`button is-rounded ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon icon={faThumbsUp} /> <p className="is-hidden-touch">Me gusta </p>  ({likes}) </button>
-                            <button className={`button is-rounded ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon icon={faThumbsDown} /> <p className="is-hidden-touch"> No me gusta </p>  ({dislikes}) </button>
+                            <button className={`button is-rounded is-size-6-tablet is-size-7-mobile ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon icon={faThumbsUp} className="mr-1" /> <p className="is-hidden-touch mr-1">Me gusta </p>  ({likes}) </button>
+                            <button className={`button is-rounded is-size-6-tablet is-size-7-mobile ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon icon={faThumbsDown} className="mr-1" /> <p className="is-hidden-touch mr-1"> No me gusta </p>  ({dislikes}) </button>
                         </div>
-                        <div className="is-flex is-align-items-center comments">
+                        <div className="is-flex is-align-items-center comments ">
                             <span className="has-text-white is-clickable is-hidden-mobile" onClick={handleShowComments}> {article.commentsCount} Comentarios </span>
-                            <button className="button is-white has-text-primary is-rounded" onClick={handleNewShowComments}><FontAwesomeIcon  icon={faComment} /> Comentar</button>
+                            <button className="button is-white has-text-primary is-rounded is-size-6-tablet is-size-7-mobile" onClick={handleShowComments}><FontAwesomeIcon  icon={faComment} /> Comentar</button>
                         </div>
                     </footer>
                 </div>
             </div>
-            <div className={`column column-comment-article ${showComments ? ' is-4' : 'is-hidden'}`} >
+            {showComments && <ArticleModal 
+                                article={article} 
+                                active={showComments} 
+                                closeCommentModal={() => setShowComments(false)}
+                                likes={likes}
+                                dislikes={dislikes}
+                                liked={liked}
+                                disliked={disliked}
+                                handleDislike={handleDislike}
+                                handleLike={handleLike}
+                                projectId={project._id}/>}
+            {/* <div className={`column column-comment-article ${showComments ? ' is-4' : 'is-hidden'}`} >
                 {showComments && <CommentModal
                     postUrl={`/projects/${project._id}/articles/${article._id}/comments`}
                     active={showComments}
@@ -93,7 +86,7 @@ export default function Article({ project, article }) {
                     user={user}
                     isModal />}
 
-            </div>
+            </div> */}
         </div>
 
     )

@@ -1,185 +1,211 @@
-.avatar{
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-    border-radius:50%;
-    background-image: url('/images/userdefault.png');
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    border: 1px solid #CACACA;
-}
-.user-avatar-wrapper{
-    padding-right: 15px;
-    margin-right: 15px;
-    min-width:150px;
-    @include tablet{
-      border-right: 0px;
-      margin-right: 0px; 
-    }
-
-    .text-wrapper{
-        padding-left:20px;
-        .name{
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            min-width:100px;
-        }
-        .user-party{
-            font-size: 12px;
-            color: $gray;
-            text-transform:uppercase;
-            display:flex;
-            margin-top:.9rem;
-            align-items:center;
-            @include tablet{
-            font-size:10px
-            }
-            .icon-wrapper{
-                padding-right:.5rem;
-            }
-        }
-    }
+.avatar {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border-radius: 50%;
+  background-image: url('/images/userdefault.png');
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 1px solid #CACACA;
 }
 
-.closing-date-wrapper{
-    display: flex;
-    align-items: center;
-    padding-right: 15px;
-    border-right: 1px solid $gray-light;
-    margin-right: 15px;
+.user-avatar-wrapper {
+  padding-right: 15px;
+  margin-right: 15px;
+  min-width: 150px;
 
-    .closing-date-title{
-        font-weight: 300;
-        font-size:14px;
-        color: $gray;
-        letter-spacing: .5px;
-        margin-bottom:8px
+  @include tablet {
+    border-right: 0px;
+    margin-right: 0px;
+  }
+
+  .text-wrapper {
+    padding-left: 20px;
+
+    .name {
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      min-width: 100px;
     }
-}
 
-.closing-project{
-  height: 40px;
-}
+    .user-party {
+      font-size: 12px;
+      color: $gray;
+      text-transform: uppercase;
+      display: flex;
+      margin-top: .9rem;
+      align-items: center;
 
-.progress-bar-wrapper{
-    background-color: $pink-light;
-    overflow: hidden;
-    height: 40px;
-    position:relative;
-    @include tablet{
-      height: 32px;
-    }
-    .reaming-days{
-        width:100%;
-        font-size: 16px;
-        font-family: var(--bold);
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .progress-fill{
-        background-color:$pink-base;
-        height:100%;
-        margin: 0 0 0 -6px;
-        transform: skewX(-15deg);
-    }
-}
+      @include tablet {
+        font-size: 10px
+      }
 
-
-
-.atricle-comment-wrapper{
-    display: flex;
-    font-size: 18px;
-    padding: 0 35px 0 20px;
-    margin-right: 20px;
-    border-right: 1px solid $gray-light;
-    @include tablet{
-      margin-right: 0;
-      border-right: none;
-
-
-    }
-    .counters{
-      color: $gray-dark;
-      p{
-        font-weight: 300;
-        font-size: 16px;
-        margin-bottom: 0;
-        &.text{
-          margin: 0 12px;
-
-        }
+      .icon-wrapper {
+        padding-right: .5rem;
       }
     }
   }
+}
+
+.closing-date-wrapper {
+  display: flex;
+  align-items: center;
+  padding-right: 15px;
+  border-right: 1px solid $gray-light;
+  margin-right: 15px;
+
+  .closing-date-title {
+    font-weight: 300;
+    font-size: 14px;
+    color: $gray;
+    letter-spacing: .5px;
+    margin-bottom: 8px
+  }
+}
+
+.closing-project {
+  height: 40px;
+}
+
+.progress-bar-wrapper {
+  background-color: $pink-light;
+  overflow: hidden;
+  height: 40px;
+  position: relative;
+
+  @include tablet {
+    height: 32px;
+  }
+
+  .reaming-days {
+    width: 100%;
+    font-size: 16px;
+    font-family: var(--bold);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .progress-fill {
+    background-color: $pink-base;
+    height: 100%;
+    margin: 0 0 0 -6px;
+    transform: skewX(-15deg);
+  }
+}
 
 
-  .banner-title{
-    padding: 13rem 9rem;
-    background-size: cover;
-    @include tablet {
-        padding: 2rem 1rem;
-        font-size: 1.2rem;
-    }
-    svg{
-      width: 50%;
-      @include tablet{
-        width: 75%;
+
+.atricle-comment-wrapper {
+  display: flex;
+  font-size: 18px;
+  padding: 0 35px 0 20px;
+  margin-right: 20px;
+  border-right: 1px solid $gray-light;
+
+  @include tablet {
+    margin-right: 0;
+    border-right: none;
+
+
+  }
+
+  .counters {
+    color: $gray-dark;
+
+    p {
+      font-weight: 300;
+      font-size: 16px;
+      margin-bottom: 0;
+
+      &.text {
+        margin: 0 12px;
+
       }
     }
+  }
+}
+
+
+.banner-title {
+  padding: 13rem 9rem;
+  background-size: cover;
+
+  @include tablet {
+    padding: 2rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  svg {
+    width: 50%;
+
+    @include tablet {
+      width: 75%;
+    }
+  }
 
 }
 
-.comment-modal-wrapper{
-  .card{
-    .card-content{
-     .content{
-        .swiper {
-            .swiper-wrapper{
+.comment-modal-wrapper {
+  .modal-content {
+    @include tablet{
+      width: 95%;
+    }
+    .card {
+      .card-content {
+        .content {
+          .swiper {
+            .swiper-wrapper {
               max-height: 60vh;
+
               .swiper-slide {
-                  display: flex;
-                  align-items: center;
-                  overflow: auto;
-                  &::-webkit-scrollbar {
-                    width: 5px;
-                  }
-                  
-                  /* Track */
-                  &::-webkit-scrollbar-track {
-                    background: #f1f1f1;
-                  }
-                  
-                  /* Handle */
-                  &::-webkit-scrollbar-thumb {
-                    background: #888;
-                  }
-                  
-                  /* Handle on hover */
-                  &::-webkit-scrollbar-thumb:hover {
-                    background: #555;
-                  }
-                  .swiper-item{
-                      padding: 2.5em 14em;
-                  }
+                display: flex;
+                align-items: center;
+                overflow: auto;
+
+                &::-webkit-scrollbar {
+                  width: 5px;
                 }
+
+                /* Track */
+                &::-webkit-scrollbar-track {
+                  background: #f1f1f1;
+                }
+
+                /* Handle */
+                &::-webkit-scrollbar-thumb {
+                  background: #888;
+                }
+
+                /* Handle on hover */
+                &::-webkit-scrollbar-thumb:hover {
+                  background: #555;
+                }
+
+                .swiper-item {
+                  padding: 2.5em 14em;
+                }
+              }
             }
-            
+
           }
 
-     }
-    }
-    .card-footer{
-      button{
-        background-color: transparent;
-        border: none;
-        &:not(:last-child){
-          border-right: 1px solid $grey-lighter;
+        }
+      }
 
+      .card-footer {
+        button {
+          background-color: transparent;
+          border: none;
+
+          &:not(:last-child) {
+            border-right: 1px solid $grey-lighter;
+
+          }
         }
       }
     }
@@ -194,26 +220,33 @@
 }
 
 @keyframes loading {
-  from {background-color:#b8b3b3;}
-  to {background-color: hsl(0, 5%, 78%);}
+  from {
+    background-color: #b8b3b3;
+  }
+
+  to {
+    background-color: hsl(0, 5%, 78%);
+  }
 }
 
-.is-stick-top{
+.is-stick-top {
   position: sticky;
   top: 10%;
 }
 
-.language-selector{
-  .language-selector-buttons{
+.language-selector {
+  .language-selector-buttons {
     border-width: 2px;
     border-style: solid;
     border-radius: 9999px;
     width: fit-content;
-    button{
+
+    button {
       border: none;
     }
   }
 }
-.stage-project{
+
+.stage-project {
   height: 40px;
 }
