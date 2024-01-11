@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
 
 
-export default function Comment({ project, comment }) {
+export default function Comment({ projectId, comment, urlComment }) {
     const [commentSelected, setCommentSelected] = useState(null)
     const [likes, setLikes] = useState(comment.likes)
     const [dislikes, setDislikes] = useState(comment.dislikes)
@@ -17,19 +17,19 @@ export default function Comment({ project, comment }) {
 
     const handleComment = async () => {
         setCommentSelected(comment._id)
-        const resp = await axiosServices.get(`/projects/${project._id}/comments/${comment._id}/replies`)
+        const resp = await axiosServices.get(`${urlComment}/replies`)
         setReplies(resp.data.replies)
     }
 
     const handleLike = async () => {
-        const resp = await toLike(`/projects/${project._id}/comments/${comment._id}`)
+        const resp = await toLike(`${urlComment}`)
         if (resp.status === 200) setLikes(likes + 1)
         if (resp.type === 'changed') setDislikes(dislikes - 1)
         if (resp.type === 'removed') setLikes(likes - 1)
 
     }
     const handleDislike = async () => {
-        const resp = await toDislike(`/projects/${project._id}/comments/${comment._id}`)
+        const resp = await toDislike(`${urlComment}`)
         if (resp.status === 200) setDislikes(dislikes + 1)
         if (resp.type === 'changed') setLikes(likes - 1)
         if (resp.type === 'removed') setDislikes(dislikes - 1)
@@ -62,16 +62,16 @@ export default function Comment({ project, comment }) {
 
                         </div>
                     </div>
-                    <p className="has-text-grey my-2">{comment.text}</p>
+                    <p className="has-text-grey my-2 is-size-7-touch">{comment.text}</p>
 
                 </div>
 
             </div>
             {commentSelected && <CommentModal
-                postUrl={`/projects/${project._id}/comments/${comment._id}/replies`}
+                postUrl={`${urlComment}/replies`}
                 active={commentSelected === comment._id}
                 commentList={replies}
-                projectId={project._id}
+                projectId={projectId}
                 closeCommentModal={() => setCommentSelected(null)}
                 user={user}
                 isModal />}

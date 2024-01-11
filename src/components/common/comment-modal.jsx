@@ -39,7 +39,6 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
                         <p className="card-header-title is-uppercase has-text-white is-justify-content-center">
                             comentarios
                         </p>
-                        <button className="button p-0 mr-5 is-primary has-text-weight-bold" aria-label="close" onClick={closeCommentModal}>x</button>
                     </header>
                     <div className="card-content">
                         <div className="content">
@@ -68,8 +67,8 @@ export default function CommentModal({ postUrl, active, commentList, addCommentD
                         </div>
                     </div>
                     <footer className="card-footer">
-                        {commentList.length > 0 && <button href="#" className="card-footer-item has-text-primary" onClick={handleNewComment}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</button>}
-                        {(addComment || commentList.length === 0) && <button href="#" className="card-footer-item has-text-primary" onClick={sendComment}> enviar comentario  </button>}
+                        {commentList.length > 0 && <button href="#" className="card-footer-item has-text-primary  is-clickable" onClick={handleNewComment}>{addComment ? 'Ver comentarios' : 'Agregar comentario'}</button>}
+                        {(addComment || commentList.length === 0) && <button href="#" className="card-footer-item has-text-primary  is-clickable" onClick={sendComment}> enviar comentario  </button>}
                     </footer>
                 </div>}
             </div>

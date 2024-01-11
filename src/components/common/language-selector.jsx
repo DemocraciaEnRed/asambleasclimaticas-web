@@ -15,7 +15,7 @@ const LanguageSelector = ({color}) => {
             if(!switched) dispatch(handleLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0]))
         }
     },[])
-    return (<div className="language-selector">   
+    return (<div className="language-selector p-3">   
         Cambiar idioma maximas
         <div className={`language-selector-buttons my-3 border-color-${color}`} > 
             <button className={`button is-rounded ${language === 'es' ? `is-${color} has-text-white` : `has-text-${color}`}`} onClick={()=>dispatch(handleLanguage('es'))}>Español</button>

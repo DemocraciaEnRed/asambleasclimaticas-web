@@ -44,7 +44,7 @@ export default function Comments({ project, comments }) {
             <hr/>
             <div className="comment-list">
                 <div className="box">
-                    {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} />
+                    {commentList.length > 0 && commentList.map(comment => <Comment projectId={project._id} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} />
                     )}
                 </div>
             </div>
