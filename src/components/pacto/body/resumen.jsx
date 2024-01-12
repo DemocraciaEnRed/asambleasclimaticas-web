@@ -27,7 +27,7 @@ export default function ResumenBody({ project }) {
                 </div>
 
                 <div className="content mt-6 resumen-about-pt is-italic  is-size-6 is-size-7-touch is-flex">
-                    <span className="is-size-4">* </span>
+                    <span className="is-size-4 mr-2">* </span>
                     <div>
                     <Remark>{project.about_pt}</Remark>
 

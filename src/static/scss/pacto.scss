@@ -197,6 +197,13 @@
               margin-left: 4px;
             }
           }
+          .dropdown{
+            .dropdown-menu{
+              min-width: 19rem;
+              left:auto;
+              right: 0;
+            }
+          }
         }
       }
     }
