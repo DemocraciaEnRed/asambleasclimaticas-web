@@ -13,15 +13,18 @@ export default function ResumenBody({ project }) {
 
         <div className="columns">
             <div className="column is-10">
-                {project.youtubeUrl && <iframe
-                    width="100%"
-                    height="480"
-                    src={`https://www.youtube.com/embed/${project.youtubeUrl.split('?v=')[1].split('&list')[0]}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title="Embedded youtube"
-                />}
+                {project.youtubeUrl && <div className="resumen-video">
+                    <iframe
+                        width="100%"
+                        height="100%"
+                        src={project.youtubeUrl}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="Embedded youtube"
+                    />
+                </div>
+                }
                 <div className="resumen-about-es content mt-6 is-size-5 is-size-6-touch">
                     <Remark>{project.about_es}</Remark>
                 </div>
