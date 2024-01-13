@@ -19,7 +19,7 @@ export default function HeaderPropuesta({ project, section }) {
         <div className="project-header-wrapper is-block">
             <div className="info-header">
                 <div className="top-bar-wrapper is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
-                    <div className="project-title is-size-3 my-3 is-size-5-touch">
+                    <div className="has-text-weight-bold project-title is-size-3 my-3 is-size-4-touch">
                         {project.title_es}
                         <span className="has-text-weight-light is-italic is-size-4 is-size-6-touch">{project.title_pt}</span>
                     </div>
@@ -34,7 +34,7 @@ export default function HeaderPropuesta({ project, section }) {
                         />
                     </div>
                 </div>
-                {project.closedAt && <div className="project-progress-bar is-flex is-flex-wrap-wrap mb-6">
+                {project.closedAt && <div className="project-progress-bar is-flex is-flex-wrap-wrap ">
                     <div className="progress-project">
                         <ProgressBar closingDate={project.closedAt}
                             creationDate={project.createdAt}
@@ -47,7 +47,7 @@ export default function HeaderPropuesta({ project, section }) {
                         <StageProject stage={project.stage} />
                     </div>
                 </div>}
-                <div className="is-flex is-justify-content-end project-info is-hidden-desktop mb-3">
+                <div className="is-flex is-justify-content-center project-info is-hidden-desktop mb-3">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
                         <ArticlesCommentsCounter commentsCount={project.commentsCount}

@@ -886,12 +886,12 @@ export default function ProjectFormComponent({project, newVersion}) {
         {/* Error message */}
         {
           showErrorResponse && (
-            <div class="message is-danger">
-              <div class="message-header">
+            <div className="message is-danger">
+              <div className="message-header">
                 <p>Error</p>
-                <button class="delete" aria-label="delete" onClick={closeErrorMessage}></button>
+                <button className="delete" aria-label="delete" onClick={closeErrorMessage}></button>
               </div>
-              <div class="message-body">
+              <div className="message-body">
                 Hubo un error al guardar el proyecto. El servidor respondio con el siguiente mensaje: <br />
                 <pre>
                   {JSON.stringify(errorResponse, null, 2)}

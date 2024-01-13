@@ -29,7 +29,7 @@ const SharedProjectButton = ({ project }) => {
                     <div className="dropdown-item has-text-centered">
                         <p>Compartí este proyecto en </p>
                     </div>
-                    <hr class="dropdown-divider"/>
+                    <hr className="dropdown-divider"/>
                     <div className="is-flex is-justify-content-space-evenly">
 
                         <FacebookShareButton
