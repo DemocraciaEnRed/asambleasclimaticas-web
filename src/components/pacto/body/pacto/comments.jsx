@@ -1,18 +1,14 @@
 'use client'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsDown, faThumbsUp, faComment, faMessage } from "@fortawesome/free-regular-svg-icons";
-import axios from "axios";
 import axiosServices from "@/utils/axios";
-import CommentModal from "@/components/common/comment-modal";
 import { useState } from "react";
-import { useAuth } from "@/context/auth-context";
 import Comment from "./comment";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import ReactPaginate from "react-paginate";
 
 
 export default function Comments({ project, comments }) {
-    const [commentList, setCommensList] = useState(comments.comments)
+    const [commentList, setCommensList] = useState(comments)
     const { user } = useSelector((state) => state.auth)
 
 
@@ -23,7 +19,21 @@ export default function Comments({ project, comments }) {
         resp.data.user = user
         setCommensList([resp.data, ...commentList])
     }
+    
+    const fetchMoreComments = async (page) =>{
+        try{
+            const resp = await axiosServices.get(`/projects/${project._id}/comments?page=${page}`)
+            const comments = await resp.data
+            setCommensList(comments)
+        }catch(err){
+            console.log(err);
+        }
+    }
 
+    const handlePageClick = (event) => {
+        const newOffset = event.selected + 1;
+        fetchMoreComments(newOffset)
+    }
 
 
     return (
@@ -41,12 +51,22 @@ export default function Comments({ project, comments }) {
                     <p>Inicia sesion <Link href="/auth/login"> aqui</Link> para poder comentar</p>
                 </div>
             }
-            <hr/>
+            <hr />
             <div className="comment-list">
                 <div className="box">
-                    {commentList.length > 0 && commentList.map(comment => <Comment projectId={project._id} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} />
+                    {commentList.comments.length > 0 && commentList.comments.map(comment => <Comment projectId={project._id} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} />
                     )}
                 </div>
+                <ReactPaginate
+                    className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={Math.ceil(comments.total / comments.limit)}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                />
             </div>
         </div>
     )

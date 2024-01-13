@@ -29,13 +29,13 @@
             flex-direction: column;
             width: 247px;
             padding-right: 15px;
-            border-right:1px solid $gray-light;
+            border-right:1px solid $grey-light;
 
             @include tablet {
                 padding: 0 1rem;
                 width: 100%;
                 border-right:none;
-                border-bottom:1px solid $gray-light;
+                border-bottom:1px solid $grey-light;
 
             }
 
@@ -46,7 +46,7 @@
                 font-size: 1.3rem;
                 text-align: left;
                 padding: 15px;
-                color: $gray;
+                color: $grey;
 
                 &:hover {
                     cursor: pointer;
@@ -54,7 +54,7 @@
                 }
 
                 &:not(:last-child) {
-                    border-bottom: solid 1px $gray-light;
+                    border-bottom: solid 1px $grey-light;
                 }
                 
             }
@@ -138,7 +138,7 @@
 
             p {
                 font-size: 1rem;
-                color: $gray-dark;
+                color: $grey-dark;
                 max-width: 850px;
                 margin-top: 2rem;
                 margin-bottom: 2rem;
@@ -148,7 +148,7 @@
                 list-style-position: inside;
                 li {
                     font-size: 1rem;
-                    color: $gray-dark;
+                    color: $grey-dark;
                     max-width: 850px;
                     margin-top: 1rem;
                     margin-bottom: 1rem;
@@ -159,7 +159,7 @@
                 list-style-position: inside;
                 li {
                     font-size: 1rem;
-                    color: $gray-dark;
+                    color: $grey-dark;
                     max-width: 850px;
                     margin-top: 1rem;
                     margin-bottom: 1rem;

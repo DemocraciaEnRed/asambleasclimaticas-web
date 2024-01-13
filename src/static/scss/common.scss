@@ -32,7 +32,7 @@
 
     .user-party {
       font-size: 12px;
-      color: $gray;
+      color: $grey;
       text-transform: uppercase;
       display: flex;
       margin-top: .9rem;
@@ -53,13 +53,13 @@
   display: flex;
   align-items: center;
   padding-right: 15px;
-  border-right: 1px solid $gray-light;
+  border-right: 1px solid $grey-light;
   margin-right: 15px;
 
   .closing-date-title {
     font-weight: 300;
     font-size: 14px;
-    color: $gray;
+    color: $grey;
     letter-spacing: .5px;
     margin-bottom: 8px
   }
@@ -105,7 +105,7 @@
   font-size: 18px;
   padding: 0 35px 0 20px;
   margin-right: 20px;
-  border-right: 1px solid $gray-light;
+  border-right: 1px solid $grey-light;
 
   @include tablet {
     margin-right: 0;
@@ -115,7 +115,7 @@
   }
 
   .counters {
-    color: $gray-dark;
+    color: $grey-dark;
 
     p {
       font-weight: 300;
