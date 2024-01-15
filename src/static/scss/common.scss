@@ -150,52 +150,21 @@
 
 }
 
-.comment-modal-wrapper {
+.replies-modal-wrapper {
   .modal-content {
+    width: 75%;
     @include tablet{
       width: 95%;
     }
+    max-height: none;
+    overflow: inherit;
     .card {
-      .card-content {
-        .content {
-          .swiper {
-            .swiper-wrapper {
-              max-height: 60vh;
-
-              .swiper-slide {
-                display: flex;
-                align-items: center;
-                overflow: auto;
-
-                &::-webkit-scrollbar {
-                  width: 5px;
-                }
-
-                /* Track */
-                &::-webkit-scrollbar-track {
-                  background: #f1f1f1;
-                }
-
-                /* Handle */
-                &::-webkit-scrollbar-thumb {
-                  background: #888;
-                }
-
-                /* Handle on hover */
-                &::-webkit-scrollbar-thumb:hover {
-                  background: #555;
-                }
-
-                .swiper-item {
-                  padding: 2.5em 14em;
-                }
-              }
-            }
-
-          }
-
+      
+        .replies-comment-box {
+          overflow: auto;
+          max-height: 70vh;
         }
-      }
+      
 
       .card-footer {
         button {
@@ -249,4 +218,20 @@
 
 .stage-project {
   height: 40px;
+}
+
+.pagination{
+  gap: 8px;
+  li{
+    width: 5%;
+    a{
+      padding: 4px 8px;
+      color: $brown-base;
+    }
+    &.selected{
+      a{
+        color: $primary;
+      }
+    }
+  }
 }

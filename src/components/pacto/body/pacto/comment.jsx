@@ -1,24 +1,20 @@
 'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsDown, faThumbsUp, faComment, faMessage } from "@fortawesome/free-regular-svg-icons";
-import axiosServices from "@/utils/axios";
-import CommentModal from "@/components/common/comment-modal";
+import RepliesModal from "@/components/common/replies-modal";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
 
 
-export default function Comment({ projectId, comment, urlComment }) {
+export default function Comment({ projectId, comment, urlComment,answerable }) {
     const [commentSelected, setCommentSelected] = useState(null)
-    const [likes, setLikes] = useState(comment.likes)
-    const [dislikes, setDislikes] = useState(comment.dislikes)
+    const [likes, setLikes] = useState(comment.likes ||0)
+    const [dislikes, setDislikes] = useState(comment.dislikes ||0)
     const { user } = useSelector((state) => state.auth)
-    const [replies, setReplies] = useState(null)
 
     const handleComment = async () => {
         setCommentSelected(comment._id)
-        const resp = await axiosServices.get(`${urlComment}/replies`)
-        setReplies(resp.data.replies)
     }
 
     const handleLike = async () => {
@@ -45,7 +41,7 @@ export default function Comment({ projectId, comment, urlComment }) {
                     {likes > 0 && likes} <FontAwesomeIcon onClick={handleLike} color="grey" className="mx-1 is-clickable" icon={faThumbsUp} />
                     <FontAwesomeIcon onClick={handleDislike} color="grey" className="mx-1 is-clickable" icon={faThumbsDown} /> {dislikes > 0 && dislikes}
                 </div>
-                <div className="replies is-clickable" onClick={handleComment}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>
+                {answerable && <div className="replies is-clickable" onClick={handleComment}> {comment.repliesCount} Respuesta{comment.repliesCount > 1 && 's'} <FontAwesomeIcon color="grey" className="mx-2" icon={faMessage} /></div>}
             </div>
             <div className="is-flex p-4 comment" >
                 <div className="py-2 pl-0 mr-3 is-hidden-touch">
@@ -67,10 +63,9 @@ export default function Comment({ projectId, comment, urlComment }) {
                 </div>
 
             </div>
-            {commentSelected && <CommentModal
-                postUrl={`${urlComment}/replies`}
+            {commentSelected && <RepliesModal
+                commentUrl={`${urlComment}/replies`}
                 active={commentSelected === comment._id}
-                commentList={replies}
                 projectId={projectId}
                 closeCommentModal={() => setCommentSelected(null)}
                 user={user}

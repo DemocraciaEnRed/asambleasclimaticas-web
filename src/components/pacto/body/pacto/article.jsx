@@ -2,9 +2,7 @@
 import { faThumbsDown, faThumbsUp, faComment } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Remark } from "react-remark";
-import axiosServices from "@/utils/axios";
 import { useState } from "react";
-import CommentModal from "@/components/common/comment-modal";
 import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
 import ArticleModal from "./article-modal";
@@ -75,18 +73,6 @@ export default function Article({ project, article }) {
                                 handleDislike={handleDislike}
                                 handleLike={handleLike}
                                 projectId={project._id}/>}
-            {/* <div className={`column column-comment-article ${showComments ? ' is-4' : 'is-hidden'}`} >
-                {showComments && <CommentModal
-                    postUrl={`/projects/${project._id}/articles/${article._id}/comments`}
-                    active={showComments}
-                    commentList={comments}
-                    projectId={project._id}
-                    addCommentDefault={newComment}
-                    closeCommentModal={() => setShowComments(false)}
-                    user={user}
-                    isModal />}
-
-            </div> */}
         </div>
 
     )

@@ -373,10 +373,25 @@
               .comment-box {
                 max-height: 30vh;
                 overflow: auto;
-
-                .comment-modal-wrapper {
+                .comment-wrapper {
+                  &:not(:last-of-type) {
+                    border-bottom: 1px solid $grey-light;
+                  }
+      
+                  .comment {
+      
+                    @include tablet {
+                      padding: .50rem;
+                    }
+                  }
+                }
+                .replies-modal-wrapper {
                   .content {
                     max-height: 90vh;
+                  }
+                  .replies-comment-box{
+                    max-height: 70vh;
+                    overflow: auto;
                   }
                 }
               }
@@ -495,21 +510,7 @@
           }
         }
       }
-      .pagination{
-        gap: 8px;
-        li{
-          padding: 4px 8px;
-          width: 5%;
-          a{
-            color: $brown-base;
-          }
-          &.selected{
-            a{
-              color: $primary;
-            }
-          }
-        }
-      }
+      
     }
   }
 }
