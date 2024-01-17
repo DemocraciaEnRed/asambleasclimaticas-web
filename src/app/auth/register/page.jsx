@@ -11,7 +11,7 @@ export default async function Register() {
     return (
         <div className="auth-wrapper is-flex is-justify-content-center is-align-items-center">
 
-            <div className="register-form-wrapper w-50 my-6">
+            <div className="register-form-wrapper my-6">
 
                 <h1 className="is-size-4 is-uppercase has-text-centered mb-6">  Registro con correo electrónico </h1>
                 <RegisterForm/>

@@ -12,6 +12,7 @@ import Overlay from '@/components/common/overlay'
 import { createTheme } from '@mui/material'
 import { AuthProvider } from '@/context/auth-context'
 import { LandingProvider } from '@/context/landing-context'
+import Message from '@/components/common/message'
 
 
 const karla = Karla({
@@ -37,7 +38,7 @@ export default function RootLayout({ children }) {
                 {children}
               </main>
               <Footer />
-
+              <Message/>
             </AuthProvider>
 
           </LandingProvider>

@@ -3,7 +3,10 @@
  background-image: url('/images/background.svg');
  background-size: cover;
  .login-form-wrapper{
-   
+    width: 75%;
+    @include tablet{
+        width: 90%;
+    }
     .actions{
         
         .confirm-button{
@@ -20,6 +23,10 @@
     }
  }
  .register-form-wrapper{
+    width: 75%;
+    @include tablet{
+        width: 90%;
+    }
     .actions{
         .confirm-button{
             background-color: $brown-base;
@@ -48,10 +55,6 @@
         }
     }
     .verify-form-wrapper{
-        width: 50%;
-        @include tablet{
-            width: 90%;
-        }
         .box{
             .content{
                 padding: 3rem;

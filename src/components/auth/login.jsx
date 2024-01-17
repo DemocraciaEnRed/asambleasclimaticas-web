@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { useSearchParams } from "next/navigation"
+import { setMessage } from "@/store/reducers/alert"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
@@ -42,6 +43,7 @@ export default function LoginForm(props) {
                 window.location.reload(false);
             }
         } catch (err) {
+            setMessage({message: err.response.status ===422 ? 'Ingrese un email valido ' : err.response.data.message, type:'is-danger'})
             console.log(err);
         }
     }
@@ -49,7 +51,7 @@ export default function LoginForm(props) {
 
     return (
         <div className="auth-wrapper is-flex is-justify-content-center is-align-items-center">
-            <div className="login-form-wrapper w-50">
+            <div className="login-form-wrapper">
                 <form action="SUBMIT" onSubmit={handleLogin}>
                     <h1 className="is-size-4 is-uppercase has-text-centered mb-6">Ingresar </h1>
                     <div className="login-form mt-6">

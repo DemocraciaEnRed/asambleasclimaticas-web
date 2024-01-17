@@ -10,6 +10,7 @@ import Cookies from 'cookies-js'
 import configReducer from "./config";
 import languageReducer from './language';
 import authReducer from './auth'
+import alertReducer from './alert'
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 const reducers = combineReducers({
@@ -31,7 +32,8 @@ const reducers = combineReducers({
     storage,
   },
   authReducer
-)
+),
+alert: alertReducer
 
 });
 

@@ -1,4 +1,5 @@
 "use client"
+import { setMessage } from "@/store/reducers/alert"
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
@@ -10,7 +11,7 @@ export default function RegisterForm() {
     const [firstName, setFirstName] = useState('')
     //const [lastName, setLastName] = useState('')
     const [country, setCountry] = useState('')
-    const [lang, setLang] = useState('esp')
+    const [lang, setLang] = useState('es')
     const [city, setCity] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
@@ -60,6 +61,7 @@ export default function RegisterForm() {
                 )
                 if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
+                setMessage({message: err.response.data.message, type:'is-danger'})
                 console.log(err);
             }
         } else {
@@ -71,7 +73,7 @@ export default function RegisterForm() {
     return (
         <>
                 <form action="POST" onSubmit={handleRegister}>
-                    <div className="login-form mt-6">
+                    <div className="register-form-wrapper mt-6 mx-auto">
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control">
@@ -84,12 +86,6 @@ export default function RegisterForm() {
                                 <input className="input" name="name" type="text" onChange={(event) => setFirstName(event.target.value)} />
                             </div>
                         </div>
-                        {/* <div className="field">
-                        <label className="label has-text-weight-normal">Tu apellido  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *Seu nome</span></label>
-                        <div className="control">
-                            <input className="input" name="lastname" type="text" onChange={(event) => setLastName(event.target.value)} />
-                        </div>
-                    </div> */}
                         <div className="field">
                             <label className="label has-text-weight-normal">País  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *país</span></label>
                             <div className="control">
@@ -105,8 +101,8 @@ export default function RegisterForm() {
                             <label className="label has-text-weight-normal">lenguaje  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *linguagem</span></label>
                             <div className="control">
                                 <div className="set-lang">
-                                    <button className={`button is-rounded ${lang === 'esp' ? 'active' : ''}`} onClick={() => setLang('esp')}>Español</button>
-                                    <button className={`button is-rounded ${lang === 'prt' ? 'active' : ''}`} onClick={() => setLang('prt')}>Portugués</button>
+                                    <button className={`button is-rounded ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>Español</button>
+                                    <button className={`button is-rounded ${lang === 'pt' ? 'active' : ''}`} onClick={() => setLang('pt')}>Portugués</button>
 
                                 </div>
                             </div>

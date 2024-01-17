@@ -263,3 +263,14 @@
     }
   }
 }
+
+.alert-message{
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 50%;
+  z-index: 1000;
+  @include tablet{
+    width: 90%;
+  }
+}
