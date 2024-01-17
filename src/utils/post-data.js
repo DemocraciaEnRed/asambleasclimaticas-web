@@ -1,6 +1,4 @@
-import { useRouter } from "next/router";
 import axiosServices from "./axios";
-import { getCookie } from 'cookies-next';
 
 
 export const toLike = async (url) => {
@@ -12,7 +10,8 @@ export const toLike = async (url) => {
             type: resp.data.result 
         }
     }catch(err){
-        if(err.response.status===401) window.location.href= '/auth/login'
+        const pathname = window.location.pathname
+        if(err.response.status===401) window.location.href= '/auth/login?next='+pathname
         console.log(err);
     }
 }
@@ -26,7 +25,8 @@ export const toDislike = async (url) => {
             type: resp.data.result 
         }
     }catch(err){
-        if(err.response.status===401) window.location.href= '/auth/login'
+        const pathname = window.location.pathname
+        if(err.response.status===401) window.location.href= '/auth/login?next='+pathname
         console.log(err);
     }
 }
@@ -37,7 +37,8 @@ export const postComments = async (url, content) => {
         const resp = await axiosServices.post(url, content)
         return resp.data
     }catch(err){
-        if(err.response.status===401) window.location.href= '/auth/login'
+        const pathname = window.location.pathname
+        if(err.response.status===401) window.location.href= '/auth/login?next='+pathname
         console.log(err);
     }
 }
@@ -47,7 +48,8 @@ export const highlighteComment = async (url) => {
         const resp = await axiosServices.post(`${url}/highlight`)
         return resp.data
     }catch(err){
-        if(err.response.status===401) window.location.href= '/auth/login'
+        const pathname = window.location.pathname
+        if(err.response.status===401) window.location.href= '/auth/login?next='+pathname
         console.log(err);
     }
 
@@ -58,7 +60,8 @@ export const resolveComment = async (url) => {
         const resp = await axiosServices.post(`${url}/resolve`)
         return resp.data
     }catch(err){
-        if(err.response.status===401) window.location.href= '/auth/login'
+        const pathname = window.location.pathname
+        if(err.response.status===401) window.location.href= '/auth/login?next='+pathname
         console.log(err);
     }
 

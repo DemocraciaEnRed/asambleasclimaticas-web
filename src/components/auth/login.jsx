@@ -11,12 +11,16 @@ import { setCookie } from "cookies-next"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
+import { useSearchParams } from "next/navigation"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const { user } = useSelector((state) => state.auth)
+    const searchParams = useSearchParams()
+    const next = searchParams.get('next')
+
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -34,6 +38,7 @@ export default function LoginForm(props) {
                     setCookie('auth', res.token, { expires });
                     dispatch(setUser(res.user))
                 }
+                if(next) return window.location.href = next
                 window.location.reload(false);
             }
         } catch (err) {
