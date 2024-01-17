@@ -222,16 +222,13 @@
 
 .pagination{
   gap: 8px;
-  li{
-    width: 5%;
-    a{
-      padding: 4px 8px;
-      color: $brown-base;
-    }
+  button, span{
+    padding: 4px 8px;
+    font-size: 1.25rem;
+    color: $brown-base;
+    font-weight: 700;
     &.selected{
-      a{
         color: $primary;
-      }
     }
   }
 }

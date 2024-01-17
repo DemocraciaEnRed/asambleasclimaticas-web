@@ -8,10 +8,10 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { postComments } from "@/utils/post-data"
 import axiosServices from "@/utils/axios"
-import ReactPaginate from "react-paginate"
+import Pagination from "@/components/common/pagination"
 
 const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, handleDislike, handleLike, likes, dislikes, project }) => {
-    const [textNewComment, setTextNewComment] = useState(null)
+    const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
     const { language } = useSelector((state) => state.language)
     const { user } = useSelector((state) => state.auth)
@@ -22,10 +22,10 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
     }, [])
 
     const fetchComments = async (page) => {
-        try{
+        try {
             const resp = await axiosServices.get(`/projects/${project._id}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
             setComments(resp.data);
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
@@ -60,13 +60,15 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                     </div>
                 </div>
                 <div className="comment-box px-3 my-2">
-                    {comments && (comments.comments.length > 0 ? comments.comments.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`/projects/${project._id}/articles/${article._id}/comments/${comment._id}`} answerable/>)
-                        : comments.comments.length === 0 && <div className="has-text-centered p-3">Esta maxima todavia no tiene comentarios</div>)
-                    }
+                    <div>
+                        {comments && (comments.comments.length > 0 ? comments.comments.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`/projects/${project._id}/articles/${article._id}/comments/${comment._id}`} answerable />)
+                            : comments.comments.length === 0 && <div className="has-text-centered p-3">Esta maxima todavia no tiene comentarios</div>)
+                        }
+                    </div>
                     {
                         comments &&
-                        <ReactPaginate
-                            className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
+                        <Pagination
+                            className="is-flex is-justify-content-center pagination"
                             breakLabel="..."
                             nextLabel=">"
                             onPageChange={(e) => fetchComments(e.selected + 1)}

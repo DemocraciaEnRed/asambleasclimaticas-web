@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import axiosServices from '@/utils/axios';
 import Link from 'next/link';
 import Comment from '../pacto/body/pacto/comment';
-import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { postComments } from '@/utils/post-data';
+import Pagination from './pagination';
 
-export default function RepliesModal({ commentUrl, active,  addCommentDefault, closeCommentModal, user, project, isModal }) {
+export default function RepliesModal({ commentUrl, active, addCommentDefault, closeCommentModal, user, project, isModal }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
@@ -55,14 +55,16 @@ export default function RepliesModal({ commentUrl, active,  addCommentDefault, c
                         </p>
                     </header>
                     <div className="replies-comment-box px-3 my-2">
-                        {comments && (comments.replies.length > 0 ? comments.replies.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`${commentUrl}/${comment._id}`} />)
-                            : comments.replies.length === 0 && <div className="has-text-centered p-3">Este comentario no tiene respuestas</div>)
-                        }
+                        <div>
+                            {comments && (comments.replies.length > 0 ? comments.replies.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`${commentUrl}/${comment._id}`} />)
+                                : comments.replies.length === 0 && <div className="has-text-centered p-3">Este comentario no tiene respuestas</div>)
+                            }
+                        </div>
                         {
                             comments &&
 
-                            <ReactPaginate
-                                className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
+                            <Pagination
+                                className="is-flex is-justify-content-center pagination"
                                 breakLabel="..."
                                 nextLabel=">"
                                 onPageChange={(e) => fetchComents(e.selected + 1)}

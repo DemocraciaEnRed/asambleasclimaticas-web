@@ -4,7 +4,7 @@ import { useState } from "react";
 import Comment from "./comment";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import ReactPaginate from "react-paginate";
+import Pagination from "@/components/common/pagination";
 
 
 export default function Comments({ project, comments }) {
@@ -46,7 +46,7 @@ export default function Comments({ project, comments }) {
                         className="textarea my-4" 
                         placeholder="Comience a escribir su comentario.."  
                         value={textNewComment} 
-                        onChange={(e) => setTextNewComment(e.target.value)} />
+                        onChange={(e) => setTextNewComment(e.target.value)}/>
                     <button className="button is-primary is-rounded">Enviar comentario</button>
                 </form>
             </div>
@@ -61,8 +61,8 @@ export default function Comments({ project, comments }) {
                     {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} answerable />
                     )}
                 </div>
-                <ReactPaginate
-                    className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
+                <Pagination
+                    className="is-flex is-justify-content-center pagination"
                     breakLabel="..."
                     nextLabel=">"
                     onPageChange={(e) => fetchComments(e.selected + 1)}
