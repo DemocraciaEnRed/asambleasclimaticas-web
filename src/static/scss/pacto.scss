@@ -373,23 +373,13 @@
               .comment-box {
                 max-height: 30vh;
                 overflow: auto;
-                .comment-wrapper {
-                  &:not(:last-of-type) {
-                    border-bottom: 1px solid $grey-light;
-                  }
-      
-                  .comment {
-      
-                    @include tablet {
-                      padding: .50rem;
-                    }
-                  }
-                }
+
                 .replies-modal-wrapper {
                   .content {
                     max-height: 90vh;
                   }
-                  .replies-comment-box{
+
+                  .replies-comment-box {
                     max-height: 70vh;
                     overflow: auto;
                   }
@@ -496,21 +486,10 @@
             padding: .50rem;
           }
 
-          .comment-wrapper {
-            &:not(:last-of-type) {
-              border-bottom: 1px solid $grey-light;
-            }
-
-            .comment {
-
-              @include tablet {
-                padding: .50rem;
-              }
-            }
-          }
+          
         }
       }
-      
+
     }
   }
 }

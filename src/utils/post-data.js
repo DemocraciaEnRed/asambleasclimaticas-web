@@ -41,3 +41,25 @@ export const postComments = async (url, content) => {
         console.log(err);
     }
 }
+
+export const highlighteComment = async (url) => {
+    try{
+        const resp = await axiosServices.post(`${url}/highlight`)
+        return resp.data
+    }catch(err){
+        if(err.response.status===401) window.location.href= '/auth/login'
+        console.log(err);
+    }
+
+}
+
+export const resolveComment = async (url) => {
+    try{
+        const resp = await axiosServices.post(`${url}/resolve`)
+        return resp.data
+    }catch(err){
+        if(err.response.status===401) window.location.href= '/auth/login'
+        console.log(err);
+    }
+
+}

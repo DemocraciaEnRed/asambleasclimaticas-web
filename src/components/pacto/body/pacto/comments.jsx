@@ -9,34 +9,30 @@ import ReactPaginate from "react-paginate";
 
 export default function Comments({ project, comments }) {
     const [commentList, setCommensList] = useState(comments.comments)
+    const [textNewComment, setTextNewComment] = useState('')
     const { user } = useSelector((state) => state.auth)
 
 
     const handlesubmit = async (event) => {
         try {
             event.preventDefault()
-            const resp = await axiosServices.post(`/projects/${project._id}/comments`, { body: event.target[0].value })
+            const resp = await axiosServices.post(`/projects/${project._id}/comments`, { body: textNewComment })
             resp.data.user = user
-            setCommensList([resp.data, ...commentList])
-            event.target[0].value = ''
+            fetchComments()
+            setTextNewComment('')
         } catch (err) {
             console.log(err);
         }
     }
 
-    const fetchMoreComments = async (page) => {
+    const fetchComments = async (page) => {
         try {
-            const resp = await axiosServices.get(`/projects/${project._id}/comments?page=${page}`)
+            const resp = await axiosServices.get(`/projects/${project._id}/comments${page ? '?page=' + page : ''}`)
             const comments = await resp.data
             setCommensList(comments.comments)
         } catch (err) {
             console.log(err);
         }
-    }
-
-    const handlePageClick = (event) => {
-        const newOffset = event.selected + 1;
-        fetchMoreComments(newOffset)
     }
 
 
@@ -46,7 +42,11 @@ export default function Comments({ project, comments }) {
             {user ? <div className="comment-form">
                 <h2 className="has-text-primary has-text-weight-bold ">Puede dejar sus comentarios sobre la presentación del proyecto aquí</h2>
                 <form action="submit" className="my-4" onSubmit={handlesubmit}>
-                    <textarea className="textarea my-4" placeholder="Comience a escribir su comentario.."  ></textarea>
+                    <textarea 
+                        className="textarea my-4" 
+                        placeholder="Comience a escribir su comentario.."  
+                        value={textNewComment} 
+                        onChange={(e) => setTextNewComment(e.target.value)} />
                     <button className="button is-primary is-rounded">Enviar comentario</button>
                 </form>
             </div>
@@ -58,14 +58,14 @@ export default function Comments({ project, comments }) {
             <hr />
             <div className="comment-list">
                 <div className="box">
-                    {commentList.length > 0 && commentList.map(comment => <Comment projectId={project._id} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} answerable />
+                    {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} answerable />
                     )}
                 </div>
                 <ReactPaginate
                     className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
                     breakLabel="..."
                     nextLabel=">"
-                    onPageChange={handlePageClick}
+                    onPageChange={(e) => fetchComments(e.selected + 1)}
                     pageRangeDisplayed={comments.limit}
                     pageCount={Math.ceil(comments.total / comments.limit)}
                     previousLabel="<"

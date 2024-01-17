@@ -7,8 +7,9 @@ import Comment from '../pacto/body/pacto/comment';
 import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { postComments } from '@/utils/post-data';
 
-export default function RepliesModal({ commentUrl, active,  addCommentDefault, closeCommentModal, user, projectId, isModal }) {
+export default function RepliesModal({ commentUrl, active,  addCommentDefault, closeCommentModal, user, project, isModal }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
@@ -32,14 +33,10 @@ export default function RepliesModal({ commentUrl, active,  addCommentDefault, c
     const handlesubmit = async (event) => {
         event.preventDefault()
         if (textNewComment) {
-            const resp = await postComments(`/projects/${projectId}/articles/${article._id}/comments`, { body: textNewComment })
-            resp.user = user
-            resp.likes = 0
-            resp.dislikes = 0
-            setComments([resp, ...comments])
-
+            const resp = await postComments(`${commentUrl}`, { body: textNewComment })
+            fetchComents()
+            setTextNewComment('')
         }
-
     }
 
     const handleNewComment = () => {
@@ -58,7 +55,7 @@ export default function RepliesModal({ commentUrl, active,  addCommentDefault, c
                         </p>
                     </header>
                     <div className="replies-comment-box px-3 my-2">
-                        {comments && (comments.replies.length > 0 ? comments.replies.map(comment => <Comment key={comment._id} projectId={projectId} comment={comment} urlComment={`${commentUrl}/${comment._id}`} />)
+                        {comments && (comments.replies.length > 0 ? comments.replies.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`${commentUrl}/${comment._id}`} />)
                             : comments.replies.length === 0 && <div className="has-text-centered p-3">Este comentario no tiene respuestas</div>)
                         }
                         {
@@ -79,7 +76,7 @@ export default function RepliesModal({ commentUrl, active,  addCommentDefault, c
                     <footer className="modal-card-foot has-background-white">
                         {user ? <form action="submit" className="w-100" onSubmit={handlesubmit}>
                             <p className="control has-icons-right ">
-                                <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." onChange={(e) => setTextNewComment(e.target.value)} />
+                                <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." value={textNewComment} onChange={(e) => setTextNewComment(e.target.value)} />
                                 <span className="icon is-small is-right is-clickable" onClick={handlesubmit}>
                                     <FontAwesomeIcon icon={faPaperPlane} />
                                 </span>

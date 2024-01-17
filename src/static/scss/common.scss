@@ -235,3 +235,34 @@
     }
   }
 }
+
+.comment-wrapper {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $grey-light;
+  }
+
+  .highlighted {
+    .is-relative {
+      &:hover {
+        span {
+          display: block;
+        }
+      }
+
+      span {
+        display: none;
+        position: absolute;
+        top: -100%;
+        left: 0;
+        border-radius: 999px;
+      }
+    }
+  }
+
+  .comment {
+
+    @include tablet {
+      padding: .50rem;
+    }
+  }
+}

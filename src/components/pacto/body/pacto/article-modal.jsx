@@ -10,7 +10,7 @@ import { postComments } from "@/utils/post-data"
 import axiosServices from "@/utils/axios"
 import ReactPaginate from "react-paginate"
 
-const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, handleDislike, handleLike, likes, dislikes, projectId }) => {
+const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, handleDislike, handleLike, likes, dislikes, project }) => {
     const [textNewComment, setTextNewComment] = useState(null)
     const [comments, setComments] = useState(null)
     const { language } = useSelector((state) => state.language)
@@ -18,12 +18,12 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
 
 
     useEffect(() => {
-        getComments()
+        fetchComments()
     }, [])
 
-    const getComments = async (page) => {
+    const fetchComments = async (page) => {
         try{
-            const resp = await axiosServices.get(`/projects/${projectId}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
+            const resp = await axiosServices.get(`/projects/${project._id}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
             setComments(resp.data);
         }catch(err){
             console.log(err);
@@ -33,11 +33,9 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
     const handlesubmit = async (event) => {
         event.preventDefault()
         if (textNewComment) {
-            const resp = await postComments(`/projects/${projectId}/articles/${article._id}/comments`, { body: textNewComment })
-            resp.user = user
-            resp.likes = 0
-            resp.dislikes = 0
-            setComments([resp, ...comments])
+            const resp = await postComments(`/projects/${project._id}/articles/${article._id}/comments`, { body: textNewComment })
+            fetchComments()
+            setTextNewComment('')
 
         }
     }
@@ -62,7 +60,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                     </div>
                 </div>
                 <div className="comment-box px-3 my-2">
-                    {comments && (comments.comments.length > 0 ? comments.comments.map(comment => <Comment key={comment._id} projectId={projectId} comment={comment} urlComment={`/projects/${projectId}/articles/${article._id}/comments/${comment._id}`} answerable/>)
+                    {comments && (comments.comments.length > 0 ? comments.comments.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`/projects/${project._id}/articles/${article._id}/comments/${comment._id}`} answerable/>)
                         : comments.comments.length === 0 && <div className="has-text-centered p-3">Esta maxima todavia no tiene comentarios</div>)
                     }
                     {
@@ -71,7 +69,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                             className="is-flex is-justify-content-center pagination has-text-weight-bold is-size-5"
                             breakLabel="..."
                             nextLabel=">"
-                            onPageChange={(e) => getComments(e.selected + 1)}
+                            onPageChange={(e) => fetchComments(e.selected + 1)}
                             pageRangeDisplayed={5}
                             pageCount={Math.ceil(comments.total / comments.limit)}
                             previousLabel="<"
@@ -83,7 +81,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
             <footer className="modal-card-foot has-background-white">
                 {user ? <form action="submit" className="w-100" onSubmit={handlesubmit}>
                     <p className="control has-icons-right ">
-                        <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." onChange={(e) => setTextNewComment(e.target.value)} />
+                        <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." value={textNewComment} onChange={(e) => setTextNewComment(e.target.value)} />
                         <span className="icon is-small is-right is-clickable" onClick={handlesubmit}>
                             <FontAwesomeIcon icon={faPaperPlane} />
                         </span>

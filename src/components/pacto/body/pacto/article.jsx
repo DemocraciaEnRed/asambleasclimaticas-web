@@ -72,7 +72,7 @@ export default function Article({ project, article }) {
                                 disliked={disliked}
                                 handleDislike={handleDislike}
                                 handleLike={handleLike}
-                                projectId={project._id}/>}
+                                project={project}/>}
         </div>
 
     )
