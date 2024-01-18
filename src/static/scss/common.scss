@@ -155,7 +155,6 @@
       letter-spacing: 4px;
     }
   }
- 
   .actions {
     width: 25%;
 
@@ -290,12 +289,23 @@
 
 .alert-message {
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
+  bottom: -10%;
+  left: 50%;
+  transform: translate(-50%, 0);
   width: 50%;
   z-index: 1000;
 
   @include tablet {
     width: 90%;
+  }
+
+  &.is-active {
+    bottom: 1rem;
+    transition: bottom 0.5s ease-in-out;
+
+  }
+
+  .message-body {
+    border-width: 0 0 0 7px;
   }
 }

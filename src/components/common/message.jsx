@@ -2,16 +2,17 @@
 import { store } from "@/store";
 import { setMessage } from "@/store/reducers/alert";
 import { useSelector } from "react-redux";
+import { Remark } from "react-remark";
 
 const Message = () => {
   const alert  = useSelector(state => state.alert)
 
   if (alert.show) return (
-    <article className={`alert-message message ${alert.type}`}>
+    <article className={`alert-message message ${alert.show ? 'is-active' :''} is-${alert.type}`}>
 
       <div className="message-body is-flex is-justify-content-space-between has-background-white">
-        <p>{alert.message}</p>
-        <button onClick={() => setMessage({ message: '' })} className="delete has-text-danger" aria-label="delete"></button>
+          <p>{alert.message}</p>
+        <button onClick={() => setMessage({ message: '' })} className={`delete has-background-${alert.type}`} aria-label="delete"></button>
       </div>
     </article>
   )

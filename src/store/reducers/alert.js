@@ -20,7 +20,7 @@ export const alertState = createSlice({
 
 })
 
-export function setMessage({message,type, time = 30000}) {
+export function setMessage({message,type, time = 3000}) {
     dispatch(handleAlert({message, type }));
     if(!!message) setTimeout(() => dispatch(handleAlert({message:'', type:'' })), time);
   }

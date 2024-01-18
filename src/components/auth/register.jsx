@@ -61,7 +61,7 @@ export default function RegisterForm() {
                 )
                 if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
-                setMessage({message: err.response.data.message, type:'is-danger'})
+                setMessage({message: err.response.data.message, type:'danger'})
                 console.log(err);
             }
         } else {
@@ -101,8 +101,8 @@ export default function RegisterForm() {
                             <label className="label has-text-weight-normal">lenguaje  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *linguagem</span></label>
                             <div className="control">
                                 <div className="set-lang">
-                                    <button className={`button is-rounded ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>Español</button>
-                                    <button className={`button is-rounded ${lang === 'pt' ? 'active' : ''}`} onClick={() => setLang('pt')}>Portugués</button>
+                                    <button type="button" className={`button is-rounded ${lang === 'es' ? 'active' : ''}`} onClick={() => setLang('es')}>Español</button>
+                                    <button type="button" className={`button is-rounded ${lang === 'pt' ? 'active' : ''}`} onClick={() => setLang('pt')}>Portugués</button>
 
                                 </div>
                             </div>
@@ -153,7 +153,7 @@ export default function RegisterForm() {
                         <button className="button is-rounded confirm-button mb-3 is-uppercase w-50" type="submit">Ingresar</button>
                     </div>
                 </form>
-                <hr className="w-25" />
+                <hr className="w-25 mx-auto" />
                 <div className="go-to-login-wrapper has-text-centered w-100 is-flex is-flex-direction-column is-align-items-center">
                     <h3 className=" has-text-weight-normal is-size-5">Si ya tenés una cuenta</h3>
                     <h4 className=" has-text-weight-normal is-size-7">*Se já tiver uma conta</h4>
