@@ -1,7 +1,14 @@
 .navbar-wrapper {
+    &.navbar-fixed{
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    transition: top .5s ease-in-out;
     background-color: $brown-base;
     display: flex;
     justify-content: space-between;
+    top: -10%;
     .logo {
         margin: 8px 0 8px 22px;
         text-transform: uppercase;

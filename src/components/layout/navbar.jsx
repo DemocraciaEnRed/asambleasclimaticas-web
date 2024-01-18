@@ -38,7 +38,7 @@ export default function Navbar() {
     }
 
     const controlNavbar = () => {
-        if (window.scrollY > 1) setNavbarFixed(true)
+        if (window.scrollY > 300) setNavbarFixed(true)
         else setNavbarFixed(false)
     }
 
@@ -62,7 +62,7 @@ export default function Navbar() {
 
 
     return (<>
-        <nav className={`navbar-wrapper ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
+        <nav className={`navbar-wrapper ${navbarFixed ? 'navbar-fixed' : ''}`}>
             <div className='logo py-3'>
                 <Link href="/" className="is-flex is-align-items-center">
                     <img src="/images/logoSimple.svg" alt="" />
