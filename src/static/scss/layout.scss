@@ -122,12 +122,11 @@
         }
        img{
         width: 70%;
-        filter: brightness(0.1);
+        filter: brightness(0.2) sepia(0.5);
        }
     }
     .footer-rrss{
         svg{
-            color: $black;
             height: 32px;
             margin: 0 2rem;
         }
@@ -140,11 +139,6 @@
         display: flex;
         ul{
             margin: 0 2rem;
-            li{
-                a{
-                    color: $black;
-                }
-            }
         }
     }
     @include tablet {

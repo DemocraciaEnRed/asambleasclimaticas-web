@@ -18,17 +18,17 @@ export default function Footer() {
             </div>
             <ul className="footer-rrss">
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://twitter.com/fundacionDER" target="_blank" >
+                    <Link className='link-footer has-text-weight-bold has-text-brown' href="https://twitter.com/fundacionDER" target="_blank" >
                         <FontAwesomeIcon icon={faSquareTwitter} />
                     </Link>
                 </li>
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://www.instagram.com/democraciaenred" target="_blank"  >
+                    <Link className='link-footer has-text-weight-bold has-text-brown' href="https://www.instagram.com/democraciaenred" target="_blank"  >
                         <FontAwesomeIcon icon={faInstagram} />
                     </Link>
                 </li>
                 <li >
-                    <Link className='link-footer has-text-weight-bold' href="https://www.facebook.com/democraciaenred" target="_blank"  >
+                    <Link className='link-footer has-text-weight-bold has-text-brown' href="https://www.facebook.com/democraciaenred" target="_blank"  >
                         <FontAwesomeIcon icon={faSquareFacebook} />
                     </Link>
                 </li>
@@ -37,17 +37,17 @@ export default function Footer() {
 
             <ul >
                 <li>
-                    <Link href="">
+                    <Link className="has-text-brown" href="">
                         ¿Cómo funciona?
                     </Link>
                 </li>
                 <li>
-                    <Link href="/sobre">
+                    <Link className="has-text-brown" href="/sobre">
                         Acerca de este sitio
                     </Link>
                 </li>
                 <li>
-                    <Link href="">
+                    <Link className="has-text-brown" href="">
                         Contacto
                     </Link>
                 </li>
@@ -55,12 +55,12 @@ export default function Footer() {
 
             <ul>
                 <li>
-                    <Link href="">
+                    <Link className="has-text-brown" href="">
                         Términos y condiciones
                     </Link>
                 </li>
                 <li>
-                    <Link href="">
+                    <Link className="has-text-brown" href="">
                         Políticas de privacidad
                     </Link>
                 </li>
