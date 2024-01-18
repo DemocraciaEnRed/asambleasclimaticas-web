@@ -65,7 +65,8 @@ export default function Navbar() {
         <nav className={`navbar-wrapper ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
             <div className='logo py-3'>
                 <Link href="/" className="is-flex is-align-items-center">
-                    <Logo color='#FFFFFF' />
+                    <img src="/images/logoSimple.svg" alt="" />
+                    {/* <Logo color='#FFFFFF' /> */}
                 </Link>
 
             </div>

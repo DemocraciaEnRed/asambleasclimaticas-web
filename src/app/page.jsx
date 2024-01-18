@@ -8,9 +8,10 @@ import { Suspense } from "react";
 import Skeleton from "@/components/common/skeleton";
 
 export default async function Home() {
+
     return (
         <div className="home-wrapper">
-            <BannerTitle image="/images/image-city.png" title="Pacto Inter-ciudad" subtitle="*PACTO INTERCIDADE"/*  actionClick={handleClick} textButton="Participar" */ />
+            <BannerTitle image="/images/image-city.png" title="Pacto Inter-ciudad" subtitle="*PACTO INTERCIDADE" urlButton='asd' textButton="Participar" />
             <Banner />
             <BannerResurgente />
             <BannerParticipativo />

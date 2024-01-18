@@ -8,11 +8,11 @@
         display: flex;
         align-items: center;
         a{
-            svg{
+            img{
                 width: 250px;
                 @include tablet{
                     width: 150px;
-                    padding: .75rem 0;
+                    padding: .5rem 0;
                 }
             }
         }
@@ -113,8 +113,9 @@
         @include tablet {
             margin: 1rem 0;
         }
-       svg{
+       img{
         width: 70%;
+        filter: brightness(0.1);
        }
     }
     .footer-rrss{

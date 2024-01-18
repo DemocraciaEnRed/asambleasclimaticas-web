@@ -12,7 +12,7 @@ export default function Footer() {
         <footer className='footer-wrapper py-6'>
             <div className='logo'>
                 <Link href="/" className="has-text-centered" >
-                    <Logo  />
+                    <img src="/images/logoSimple.svg" alt="" />
                 </Link>
 
             </div>
