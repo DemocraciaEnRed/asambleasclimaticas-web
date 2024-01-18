@@ -92,7 +92,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                 </form>
                     :
                     <div >
-                        <p>Inicia sesion <Link href="/auth/login"> aqui</Link> para poder comentar</p>
+                        <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
                     </div>
                 }
             </footer>

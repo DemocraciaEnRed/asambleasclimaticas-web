@@ -52,7 +52,7 @@ export default function Comments({ project, comments }) {
             </div>
                 :
                 <div >
-                    <p>Inicia sesion <Link href="/auth/login"> aqui</Link> para poder comentar</p>
+                    <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
                 </div>
             }
             <hr />
