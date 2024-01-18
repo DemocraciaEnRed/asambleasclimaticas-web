@@ -12,7 +12,7 @@ const BannerPacto = async () => {
         var today = new Date();
     }
 
-    if (project) return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 '>
+    if (project) return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 ' id="banner-pacto">
         <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold my-3">El pacto</h1>
         {project && <a href="/pacto/pacto-inter-ciudad/" className=" card-project">
         <div className="card has-background-cream is-flex ">

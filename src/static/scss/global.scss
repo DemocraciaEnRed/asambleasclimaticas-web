@@ -5,6 +5,15 @@ html, body, h1, h2, h3, p, ul, ol, li, main {
     margin: 0;
     padding: 0;
     border: 0;
+    
+}
+
+html {
+  scroll-behavior: smooth;
+
+}
+*{
+  scroll-margin-top: 60px;
 }
 
 main{
@@ -12,8 +21,6 @@ main{
 }
 
 body {
-
-  
     font-family: var(--font-karla), sans-serif;
     background-color: $white;
 }
