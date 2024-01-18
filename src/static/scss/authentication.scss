@@ -56,6 +56,11 @@
     }
     .verify-form-wrapper{
         .box{
+            width: 75%;
+            margin: auto;
+            @include tablet{
+                width: 90%;
+            }
             .content{
                 padding: 3rem;
                 @include tablet{

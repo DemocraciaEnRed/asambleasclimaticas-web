@@ -29,7 +29,7 @@
                     width: 45%;
                 }
 
-                @include mobile {
+                @include tablet {
                     width: 100%;
                 }
 
@@ -62,33 +62,69 @@
     .banner-pacto {
         .card-project {
             width: 75%;
-
             @include tablet {
                 width: 90%;
-                flex-direction: column;
             }
-
-            .card-image {
-                width: 20%;
-                background-size: cover;
-                background-position: center;
+            .card{
 
                 @include tablet {
-                    width: 100%;
-                    padding: 30% 0;
+                    flex-direction: column;
                 }
-            }
-
-            .card-content {
-                width: 75%;
-
-                @include tablet {
-                    width: 100%;
+    
+                .card-image {
+                    width: 20%;
+                    background-size: cover;
+                    background-position: center;
+    
+                    @include tablet {
+                        width: 100%;
+                        padding: 30% 0;
+                    }
                 }
-
-                .content {
-                    height: 50vh;
-                    overflow: auto;
+    
+                .card-content {
+                    width: 75%;
+    
+                    @include tablet {
+                        width: 100%;
+                    }
+    
+                    .content {
+                        height: 50vh;
+                        overflow: auto;
+                    }
+                    .info-pacto{
+                        align-items: center;
+                        @include tablet{
+                            flex-direction: column;
+                        }
+                        .closing-date-wrapper{
+                            @include tablet{
+                                border-right: none;
+                                border-bottom: 1px solid $grey;
+                                padding: 0;
+                                margin: 0;
+                                width: 100%;
+                                text-align: center;
+                                div{
+                                    width: 100%;
+                                }
+                            }
+                        }
+                        .atricle-comment-wrapper{
+                            @include tablet{
+                                width: 100%;
+                                border-bottom: 1px solid $grey;
+                                align-items: center;
+                                div{
+                                    padding: 0.4rem 0;
+                                }
+                            }
+                        }
+                        .stage-project{
+                            background-color: transparent;
+                        }
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
 import MkdFormatter from "../common/mkd-formatter"
 import { fetchProject } from "@/utils/get-data"
+import StageProject from "../common/stage-project"
 
 const BannerPacto = async () => {
     const project = await fetchProject('pacto-inter-ciudad')
@@ -26,13 +27,14 @@ const BannerPacto = async () => {
 
                         <MkdFormatter source={project.about_es} />
                     </div>
-                    <div className="is-flex px-3">
+                    <div className="is-flex info-pacto px-3">
 
                         <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />
                         <ArticlesCommentsCounter commentsCount={10/* project.commentsCount */}
                             apoyosCount={30/* project.apoyosCount */}
                             project={project._id} />
+                        <StageProject stage={project.stage}/>
 
                     </div>
                 </div>
