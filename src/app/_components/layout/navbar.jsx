@@ -46,7 +46,7 @@ export default function Navbar() {
         <nav className={`navbar-wrapper has-background-primary is-align-items-center ${navbarFixed ? 'navbar is-fixed-top' : ''}`}>
             <div className='logo w-25 py-2'>
                 <Link href="/" className="is-flex is-align-items-center">
-                    <Logo color='#FFFFFF'/>
+                    <img src="/images/logoSimple.svg" alt="" />
                 </Link>
 
             </div>

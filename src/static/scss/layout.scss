@@ -8,7 +8,7 @@
         display: flex;
         align-items: center;
         a{
-            svg{
+            img{
                 width: 250px;
                 @include tablet{
                     width: 150px;
@@ -157,8 +157,9 @@
             margin: 0;
         }
         a{
-            svg{
+            img{
                 width: 250px;
+                filter: brightness(0) saturate(100%) invert(8%) sepia(18%) saturate(1421%) hue-rotate(322deg) brightness(98%) contrast(91%);      
                 @include tablet{
                     width: 200px;
                 }
@@ -169,7 +170,7 @@
 
     .footer-rrss {
         svg {
-            color: $black;
+            color: $brown-dark;
             height: 32px;
             margin: 0 2rem;
         }

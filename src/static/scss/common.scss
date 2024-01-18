@@ -143,9 +143,9 @@
     position: relative;
     z-index: 1;
     width: 75%;
-    svg{
+    img{
       width: 30%;
-      @include tablet{
+      filter: brightness(0) saturate(100%) invert(8%) sepia(18%) saturate(1421%) hue-rotate(322deg) brightness(98%) contrast(91%);      @include tablet{
         width: 60%;
       }
     }

@@ -10,7 +10,7 @@ export default function Footer() {
         <footer className='footer-wrapper py-5'>
             <div className='logo py-4'>
                 <Link href="/" >
-                    <Logo />
+                    <img src="/images/logoSimple.svg" alt="" />
                 </Link>
 
             </div>
