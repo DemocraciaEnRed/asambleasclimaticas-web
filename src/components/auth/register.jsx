@@ -77,7 +77,7 @@ export default function RegisterForm() {
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control">
-                                <input className="input" name="email" type="text" onChange={(event) => setEmail(event.target.value)} />
+                                <input className="input" name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
                             </div>
                         </div>
                         <div className="field">
