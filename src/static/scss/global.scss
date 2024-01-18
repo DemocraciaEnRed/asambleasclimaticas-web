@@ -11,8 +11,15 @@ main {
   margin: 0;
   padding: 0;
   border: 0;
+}
+
+html{
   scroll-behavior: smooth
 }
+*{
+  scroll-margin-top: 75px;
+}
+
 
 main {
   min-height: 100vh;

@@ -1,5 +1,6 @@
 .landing-wrapper {
     .countries-banner {
+        scroll-margin-top: 105px;
         .card-group {
             padding: 0 3rem;
             .card {
@@ -103,6 +104,8 @@
         @include tablet{
             padding: .5rem;
         } */
+        scroll-margin-top: 105px;
+          
         .content{
             width: 75%;
             @include tablet{
