@@ -19,7 +19,7 @@ $cream-invert: findColorInvert($cream-base);
 
 $brown-base:           #47322B !default;
 $brown-light: findLightColor($brown-base);
-$brown-dark: findDarkColor($brown-base);
+$brown-dark: darken($brown-base, 9%);
 $brown-invert: findColorInvert($brown-base);
 
 $pink-base:             #D71D81 !default;
