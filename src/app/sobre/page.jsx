@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const alianzas = ['labicpa', 'open-society', 'ned', 'artemisas', 'friedrich', 'der', 'corona']
+const alianzas = ['delibera', 'extituto', 'sur', 'demos', 'der']
 
 export default function Acercade() {
     return (<section className='acerca-de'>
@@ -33,10 +33,10 @@ export default function Acercade() {
       <span  className="has-text-primary">
       Alianzas / organizaciones participantes
       </span>
-      <div className="logos-wrapper">
-        {alianzas.map((alianza,idx) =><Image key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} width={110} height={70}/> )}
-      </div>
      
+      <div className="columns is-flex-wrap-wrap my-3">
+        {alianzas.map((alianza,idx) =><img className="column is-4 my-2 mx-auto" key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} /> )}
+      </div>
     </div>
   </section>)
 }
