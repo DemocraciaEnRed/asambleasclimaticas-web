@@ -11,6 +11,16 @@ export const fetchProject = async (projectId)=> {
     }
 }
 
+export const fetchProjectVersion = async (projectId, version)=> {
+    try{
+        const resp = await axiosServerServices.get(`/projects/${projectId}/versions/${version}`)
+        const projectVersion = await resp.data
+        return projectVersion
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export const fetchProjectArticle = async (projectId)=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))

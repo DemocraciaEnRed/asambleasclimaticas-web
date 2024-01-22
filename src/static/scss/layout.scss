@@ -58,6 +58,7 @@
         .link-list {
             display: flex;
             justify-content: center;
+            align-items: center;
             @include tablet{
                 margin: 10%;
             }
