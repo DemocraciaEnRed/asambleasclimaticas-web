@@ -66,7 +66,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                         }
                     </div>
                     {
-                        comments &&
+                        comments && comments.total / comments.limit > 1 &&
                         <Pagination
                             className="is-flex is-justify-content-center pagination"
                             breakLabel="..."

@@ -12,7 +12,6 @@ export default function Comments({ project, comments }) {
     const [textNewComment, setTextNewComment] = useState('')
     const { user } = useSelector((state) => state.auth)
 
-
     const handlesubmit = async (event) => {
         try {
             event.preventDefault()
@@ -37,9 +36,9 @@ export default function Comments({ project, comments }) {
 
 
     return (
-        <div className="comment-section">
+        <div className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
             <h4 className="my-4">Comentarios:</h4>
-            {user ? <div className="comment-form">
+            {user && project.version === project.currentVersion ? <div className="comment-form">
                 <h2 className="has-text-primary has-text-weight-bold ">Puede dejar sus comentarios sobre la presentación del proyecto aquí</h2>
                 <form action="submit" className="my-4" onSubmit={handlesubmit}>
                     <textarea 
@@ -61,7 +60,7 @@ export default function Comments({ project, comments }) {
                     {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} answerable />
                     )}
                 </div>
-                <Pagination
+                {comments.total / comments.limit > 1 &&<Pagination
                     className="is-flex is-justify-content-center pagination"
                     breakLabel="..."
                     nextLabel=">"
@@ -70,7 +69,7 @@ export default function Comments({ project, comments }) {
                     pageCount={Math.ceil(comments.total / comments.limit)}
                     previousLabel="<"
                     renderOnZeroPageCount={null}
-                />
+                />}
             </div>
         </div>
     )
