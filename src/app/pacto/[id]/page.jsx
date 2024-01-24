@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 
 export default async function Propuesta({params:{id}, searchParams:{version}}) {
-    const project = version ? await fetchProjectVersion(id,version) : await fetchProject(id)
+    const project = await fetchProject(id,version)
     if (project) return (<div className="pacto-wrapper ">
         <Suspense fallback={<Skeleton height={700} column/>}>
             <HeaderPropuesta project={project} section="resumen" />

@@ -29,7 +29,7 @@ export default function HeaderPropuesta({ project, section }) {
                         <ArticlesCommentsCounter commentsCount={project.commentsCount}
                             apoyosCount={project.likes}
                             project={project._id} />
-                        <ProjectHeaderVersion project={project._id}
+                        <ProjectHeaderVersion project={project}
                             version={project.version}
                         />
                     </div>
@@ -58,9 +58,9 @@ export default function HeaderPropuesta({ project, section }) {
                 <div className="tab-section is-flex is-justify-content-space-between is-align-items-flex-end">
                     <div className="tabs">
                         <ul>
-                            <li className={section === 'resumen' ? 'is-active' : ''}><Link href={`/pacto/${project.slug}/`} >Resumen</Link></li>
-                            <li className={section === 'pacto' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/articulado`} > Pacto</Link></li>
-                            <li className={section === 'hoja' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/hoja-de-ruta`} >Hoja de ruta</Link></li>
+                            <li className={section === 'resumen' ? 'is-active' : ''}><Link href={`/pacto/${project.slug}${project.currentVersion !== project.version ? `?version=${project.version}`:''}`} >Resumen</Link></li>
+                            <li className={section === 'pacto' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/articulado${project.currentVersion !== project.version ? `?version=${project.version}`:''}`} > Pacto</Link></li>
+                            <li className={section === 'hoja' ? 'is-active' : ''} ><Link href={`/pacto/${project.slug}/hoja-de-ruta${project.currentVersion !== project.version ? `?version=${project.version}`:''}`} >Hoja de ruta</Link></li>
                         </ul>
                     <EditProject project={project}/>
                     </div>

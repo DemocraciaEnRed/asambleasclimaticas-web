@@ -2,8 +2,8 @@ import HojaBody from "@/components/pacto/body/hoja"
 import HeaderPropuesta from "@/components/pacto/header"
 import { fetchProject } from "@/utils/get-data"
 
-export default async function Propuesta({params:{id}}) {
-    const project = await fetchProject(id)
+export default async function Propuesta({params:{id},searchParams:{version}}) {
+    const project = await fetchProject(id,version)
     return <div className="pacto-wrapper ">
         {project &&
             <>

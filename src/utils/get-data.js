@@ -1,9 +1,11 @@
 import axiosServices from "./axios";
 import axiosServerServices from "./axiosServer";
 
-export const fetchProject = async (projectId)=> {
+export const fetchProject = async (projectId,version)=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${projectId}`)
+        let url = `/projects/${projectId}`
+        if(version) url += `/versions/${version}`
+        const resp = await axiosServerServices.get(url)
         const project = await resp.data
         return project
     }catch(err){
@@ -11,21 +13,14 @@ export const fetchProject = async (projectId)=> {
     }
 }
 
-export const fetchProjectVersion = async (projectId, version)=> {
-    try{
-        const resp = await axiosServerServices.get(`/projects/${projectId}/versions/${version}`)
-        const projectVersion = await resp.data
-        return projectVersion
-    }catch(err){
-        console.log(err);
-    }
-}
 
-export const fetchProjectArticle = async (projectId)=> {
+export const fetchProjectArticle = async (projectId,version)=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
-        
-        const resp = await axiosServerServices.get(`/projects/${projectId}/articles`)
+        let url = `/projects/${projectId}`
+        if(version) url += `/versions/${version}`
+        url += '/articles'
+        const resp = await axiosServerServices.get(url)
         const articles = await resp.data
         return articles
     }catch(err){
@@ -33,9 +28,12 @@ export const fetchProjectArticle = async (projectId)=> {
     }
 }
 
-export const fetchProjectComment = async (projectId)=> {
+export const fetchProjectComment = async (projectId, version)=> {
     try{
-        const resp = await axiosServerServices.get(`/projects/${projectId}/comments`)
+        let url = `/projects/${projectId}`
+        if(version) url += `/versions/${version}`
+        url += '/comments'
+        const resp = await axiosServerServices.get(url)
         const comments = await resp.data
         return comments
     }catch(err){

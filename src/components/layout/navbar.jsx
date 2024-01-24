@@ -18,7 +18,6 @@ import { faInstagram, faSquareFacebook, faSquareTwitter } from "@fortawesome/fre
 
 export default function Navbar() {
     const { user } = useSelector((state) => state.auth)
-    const { language } = useSelector((state) => state.language)
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)

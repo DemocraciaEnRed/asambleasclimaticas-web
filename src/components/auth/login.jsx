@@ -37,7 +37,7 @@ export default function LoginForm(props) {
                     var expires = new Date();
                     expires.setDate(expires.getDate() + 3600000);
                     setCookie('auth', res.token, { expires });
-                    dispatch(setUser(res.user))
+                    dispatch(setUser(res.user.user))
                 }
                 if(next) return window.location.href = next
                 window.location.reload(false);

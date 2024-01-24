@@ -50,14 +50,15 @@ export default function Article({ project, article }) {
                             </Remark>
                         </div>
                     </div>
-                    <footer className="card-footer has-background-primary is-flex is-justify-content-space-between ">
+                    <footer className={`card-footer has-background-primary is-flex is-justify-content-space-between is-relative ${project.version !== project.currentVersion ? 'disabled' :''}`} >
+                        
                         <div className="is-flex likes">
-                            <button className={`button is-rounded is-size-6-tablet is-size-7-mobile ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon icon={faThumbsUp} className="mr-1" /> <p className="is-hidden-touch mr-1">Me gusta </p>  ({likes}) </button>
-                            <button className={`button is-rounded is-size-6-tablet is-size-7-mobile ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon icon={faThumbsDown} className="mr-1" /> <p className="is-hidden-touch mr-1"> No me gusta </p>  ({dislikes}) </button>
+                            <button disabled={project.version !== project.currentVersion} className={`button is-rounded is-size-6-tablet is-size-7-mobile ${liked ? 'has-background-primary-dark has-text-white': 'is-white has-text-primary'}`} onClick={handleLike}> <FontAwesomeIcon icon={faThumbsUp} className="mr-1" /> <p className="is-hidden-touch mr-1">Me gusta </p>  ({likes}) </button>
+                            <button disabled={project.version !== project.currentVersion} className={`button is-rounded is-size-6-tablet is-size-7-mobile ${disliked ? 'has-background-primary-dark has-text-white' : 'is-white has-text-primary'}`} onClick={handleDislike}> <FontAwesomeIcon icon={faThumbsDown} className="mr-1" /> <p className="is-hidden-touch mr-1"> No me gusta </p>  ({dislikes}) </button>
                         </div>
                         <div className="is-flex is-align-items-center comments ">
                             <span className="has-text-white is-clickable is-hidden-mobile" onClick={handleShowComments}> {article.commentsCount} Comentarios </span>
-                            <button className="button is-white has-text-primary is-rounded is-size-6-tablet is-size-7-mobile" onClick={handleShowComments}><FontAwesomeIcon  icon={faComment} /> Comentar</button>
+                            <button disabled={project.version !== project.currentVersion} className="button is-white has-text-primary is-rounded is-size-6-tablet is-size-7-mobile" onClick={handleShowComments}><FontAwesomeIcon  icon={faComment} /> Comentar</button>
                         </div>
                     </footer>
                 </div>

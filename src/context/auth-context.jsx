@@ -1,13 +1,15 @@
 'use client'
 import axiosServices from '@/utils/axios';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getCookie } from 'cookies-next';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { dispatch } from '@/store';
+import { deleteUser, setUser } from '@/store/reducers/auth';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const token = getCookie('auth')
-  const [user, setUser] = useState()
+  const [userContext, setUserContext] = useState()
 
   useEffect(() => {
     fetchUserMe()
@@ -17,10 +19,12 @@ const AuthProvider = ({ children }) => {
     if (token) {
       try {
         const response = await axiosServices.get('/users/me')
-
-        setUser(response.data)
+        setUserContext(response.data.user)
+        dispatch(setUser(response.data.user))
 
       } catch (err) {
+        dispatch(deleteUser())
+        deleteCookie('auth')
         console.log(err);
       }
 
@@ -28,7 +32,7 @@ const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={user}>
+    <AuthContext.Provider value={{user:userContext}}>
       {children}
     </AuthContext.Provider>
   );
