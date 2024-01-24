@@ -1,9 +1,6 @@
-import { faThumbsDown, faThumbsUp, faComment } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Remark } from "react-remark";
 import Article from "./pacto/article";
 import Comments from "./pacto/comments";
-import { fetchProjectArticle, fetchProjectComment } from "@/utils/get-data";
+
 
 export default async function ArticuladoBody({ project, articles, comments }) {
 

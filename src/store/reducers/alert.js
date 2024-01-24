@@ -22,7 +22,10 @@ export const alertState = createSlice({
 
 export function setMessage({message,type, time = 3000}) {
     dispatch(handleAlert({message, type }));
-    if(!!message) setTimeout(() => dispatch(handleAlert({message:'', type:'' })), time);
+    const pathname = window.location.pathname
+    if(!!message) {
+        if(time) setTimeout(() => dispatch(handleAlert({message:'', type:'' })), time);
+    }
   }
 
 export const { handleAlert } = alertState.actions

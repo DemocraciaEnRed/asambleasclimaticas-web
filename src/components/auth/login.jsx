@@ -43,7 +43,7 @@ export default function LoginForm(props) {
                 window.location.reload(false);
             }
         } catch (err) {
-            setMessage({message: err.response.status ===422 ? 'Ingrese un email valido ' : err.response.data.message, type:'danger'})
+            setMessage({message: err.response.status ===422 ? '**Contraseña y/o Mail erróneo,** pruebe reingresar sus datos  \n**Senha e/ou E-mail incorreto, tente reintroduzir seus dados*' : err.response.data.message, type:'danger'})
             console.log(err);
         }
     }
