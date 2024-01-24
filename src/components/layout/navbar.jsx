@@ -141,13 +141,20 @@ export default function Navbar() {
                             </div>
                             <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div className="dropdown-content">
-                                    {/* user.role === 'admin' &&
+                                    {user.role === 'admin' &&
                                         <>
+                                            <div className="dropdown-item">
+                                                <Link href="/admin"> Panel de administración</Link>
+                                            </div>
+                                            <hr className="dropdown-divider" />
                                             <div className="dropdown-item">
                                                 <Link href="/pacto/nuevo"> Nuevo pacto </Link>
                                             </div>
+                                            <div className="dropdown-item">
+                                                <Link href="/admin/proyectos"> Listar pactos</Link>
+                                            </div>
                                             <hr className="dropdown-divider" />
-                                        </> */
+                                        </>
                                     }
                                     <a className="dropdown-item" onClick={logOut}>
                                         Cerrar sesión

@@ -63,6 +63,8 @@ export default function ProjectFormComponent({project, newVersion}) {
   const youtubeIdMatch = project && project.youtubeUrl ? project.youtubeUrl.match(/https:\/\/www.youtube.com\/embed\/(.*)/) : ''
   const init_youtubeId = youtubeIdMatch && youtubeIdMatch[1] ? youtubeIdMatch[1] : ''
   const init_stage = project ? project.stage : 'MX'
+  const init_shortAbout_es = project ? project.shortAbout_es : projectFormUtils.getPlaceholderShortAboutEs()
+  const init_shortAbout_pt = project ? project.shortAbout_pt : projectFormUtils.getPlaceholderShortAboutPt()
   const init_about_es = project ? project.about_es : projectFormUtils.getPlaceholderAboutEs()
   const init_about_pt = project ? project.about_pt : projectFormUtils.getPlaceholderAboutPt()
   if(project && project.articles){
@@ -118,6 +120,8 @@ export default function ProjectFormComponent({project, newVersion}) {
   const [youtubeUrl, setYoutubeUrl] = useState(init_youtubeUrl)
   const [youtubeId, setYoutubeId] = useState(init_youtubeId)
   const [stage, setStage] = useState(init_stage)
+  const [shortAbout_es, setShortAbout_es] = useState(init_shortAbout_es)
+  const [shortAbout_pt, setShortAbout_pt] = useState(init_shortAbout_pt)
   const [about_es, setAbout_es] = useState(init_about_es)
   const [about_pt, setAbout_pt] = useState(init_about_pt)
   const [author, setAuthor] = useState(init_author)
@@ -207,6 +211,14 @@ export default function ProjectFormComponent({project, newVersion}) {
 
   function handleSlug(e) {
     setSlug(e.target.value) 
+  }
+
+  function handleShortAbout_es(e) {
+    setShortAbout_es(e.target.value)
+  }
+
+  function handleShortAbout_pt(e) {
+    setShortAbout_pt(e.target.value)
   }
 
   function handleFocusOutSlug(e) {
@@ -339,6 +351,8 @@ export default function ProjectFormComponent({project, newVersion}) {
       title_pt,
       slug,
       stage,
+      shortAbout_es,
+      shortAbout_pt,
       about_es: about_es_ref.current.getMarkdown(),
       about_pt: about_pt_ref.current.getMarkdown(),
       articles: articles.map((article, index) => {
@@ -373,6 +387,9 @@ export default function ProjectFormComponent({project, newVersion}) {
   }
 
   function handleSave() {
+    if(!validateProject()) {
+      return
+    }
     const publish = publishNow || false
     setIsLoading(true)
     const payload = makePayload(publish)
@@ -382,8 +399,8 @@ export default function ProjectFormComponent({project, newVersion}) {
 
   function validateProject() {
     // title_es, title_pt, slug, stage, about_es, about_pt cannot be empty
-    if(!title_es || !title_pt || !slug || !stage || !about_es || !about_pt) {
-      setErrorResponse('Los campos título, slug, etapa y resumen no pueden estar vacios')
+    if(!title_es || !title_pt || !slug || !stage || !about_es || !about_pt, !shortAbout_es, !shortAbout_pt) {
+      setErrorResponse('Los campos título, slug, etapa y resumen corto y resumen no pueden estar vacios')
       setShowErrorResponse(true)
       return false
     }
@@ -402,6 +419,7 @@ export default function ProjectFormComponent({project, newVersion}) {
       return false
     }
 
+    return true
   }
 
   function submitProject(payload) {
@@ -802,6 +820,29 @@ export default function ProjectFormComponent({project, newVersion}) {
                 <option value="CH">CH - Chile</option>
                 <option value="AR">AR - Argentina</option>
               </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Project Short About */}
+      <div className="box">
+        <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Resumen corto del proyecto</h4>
+        <p>Escriba un resumen corto del proyecto para las tarjetas de presentación en la pagina de inicio. Este campo no se versiona.</p>
+        <div className="columns is-multiline is-mobile mt-1">
+          <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
+            <div className="field">
+              <label className="label">Español</label>
+              <div className="control">
+                <textarea className="textarea" placeholder="Resumen corto en español" value={shortAbout_es} onChange={handleShortAbout_es} rows={2}></textarea>
+              </div>
+            </div>
+          </div>
+          <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
+            <div className="field">
+              <label className="label">Portugués</label>
+              <div className="control">
+                <textarea className="textarea" placeholder="Resumen corto en portugués" value={shortAbout_pt} onChange={handleShortAbout_pt} rows={2}></textarea>
+              </div>
             </div>
           </div>
         </div>

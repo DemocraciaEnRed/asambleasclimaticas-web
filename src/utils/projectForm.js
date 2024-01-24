@@ -14,3 +14,12 @@ exports.getPlaceholderAboutPt = () => {
   `;
 }
 
+exports.getPlaceholderShortAboutEs = () => {
+  // not markdown
+  return `Escriba aquí una descripción corta de su proyecto (para la página de inicio)`;
+}
+
+exports.getPlaceholderShortAboutPt = () => {
+  // not markdown
+  return `Escreva aqui uma breve descrição do seu projeto (para a página inicial)`;
+}
