@@ -174,7 +174,7 @@ export default function Navbar() {
             </div>
             <ul className="link-list">
                 <li className="is-flex is-align-items-center pb-4 ">
-                    {user ? <div className="dropdown is-right is-hoverable user-avatar">
+                    {user ? <div className="dropdown is-right is-hoverable user-avatar m-4">
                         <div className="dropdown-trigger">
                             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                                 <span>{user.name}</span>
