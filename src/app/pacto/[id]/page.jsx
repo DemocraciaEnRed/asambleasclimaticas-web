@@ -1,6 +1,7 @@
 import Skeleton from "@/components/common/skeleton";
 import ResumenBody from "@/components/pacto/body/resumen";
 import HeaderPropuesta from "@/components/pacto/header";
+import BreadcrumbNav from "@/components/pacto/header/breadcrumb";
 import { fetchProject, fetchProjectVersion } from '@/utils/get-data';
 import { Suspense } from "react";
 
@@ -9,6 +10,7 @@ export default async function Propuesta({params:{id}, searchParams:{version}}) {
     const project = await fetchProject(id,version)
     if (project) return (<div className="pacto-wrapper ">
         <Suspense fallback={<Skeleton height={700} column/>}>
+            <BreadcrumbNav project={project} section="resumen" version={version}/>
             <HeaderPropuesta project={project} section="resumen" />
             <div className="project-body-container">
                 <ResumenBody project={project} />

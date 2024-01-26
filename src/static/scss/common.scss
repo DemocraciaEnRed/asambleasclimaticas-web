@@ -150,11 +150,13 @@
   .title {
     font-size: 5rem;
     letter-spacing: 8px;
+
     @include tablet {
       font-size: 1.5rem;
       letter-spacing: 4px;
     }
   }
+
   .actions {
     width: 25%;
 
@@ -223,6 +225,7 @@
 
 .language-selector {
   width: max-content;
+
   .language-selector-buttons {
     border-width: 2px;
     border-style: solid;
@@ -307,5 +310,83 @@
 
   .message-body {
     border-width: 0 0 0 7px;
+  }
+}
+
+.project-version-wrapper {
+  background-color: $grey-light;
+  color: $grey;
+  padding: .50rem .75rem;
+
+  @include tablet {
+    padding: .25rem .5rem;
+    background-color: $brown-base;
+    color: $white;
+  }
+
+  .title {
+    margin: 4px 0 6px;
+  }
+
+  .version-link {
+    font-size: 12px;
+
+    a {
+      color: $grey;
+    }
+  }
+
+  .version-modal {
+    @include tablet {
+      border: 2px solid $black;
+    }
+
+    .card {
+      min-width: 50%;
+
+      @include tablet {
+        min-width: 75%;
+        max-width: 95%;
+      }
+
+      .version-modal-content {
+        width: 75%;
+
+        @include tablet {
+          width: 100%;
+          margin: 0;
+        }
+
+        .version-button {
+          border-radius: 0;
+          border-left: none;
+          border-right: none;
+          border-width: 2px;
+          border-color: $black;
+
+          &:not(:last-of-type) {
+            border-bottom: none;
+          }
+
+          &.active {
+            background-color: $grey-lighter;
+
+            svg {
+              position: absolute;
+              left: 1rem;
+            }
+          }
+
+          &.current {
+            position: relative;
+
+            span {
+              position: absolute;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
   }
 }

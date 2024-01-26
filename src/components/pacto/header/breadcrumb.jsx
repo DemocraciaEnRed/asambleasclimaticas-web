@@ -1,29 +1,28 @@
-'use client'
-import { useEffect, useState } from "react"
-
-import { documento, comentario, articulado } from '../../../../document-example.json'
+import ProjectHeaderVersion from "@/components/common/project-version"
 import Link from "next/link"
 
-export default function BreadcrumbNav({ section, id, title }) {
+export default function BreadcrumbNav({ project, section, version }) {
 
-    return <div className="breadcrumb-nav w-100 is-flex is-align-items-center is-justify-content-center">
+    return <div className="breadcrumb-nav 
+                           has-background-cream 
+                           w-100 
+                           is-flex 
+                           is-align-items-center 
+                           is-justify-content-space-between 
+                           is-hidden-desktop
+                           p-3">
         <div className="breadcrumb-wrapper is-flex">
-            <Link className="has-text-white is-size-7 mr-2" href='/#projects'>
-                Propuestas
+            <Link className="has-text-brown is-size-7 mr-2" href=''>
+                {section}
             </Link>
-            <Link className={`has-text-white is-size-7 mr-2 ${section === '/propuesta' ? 'active':''}`} href={`/propuesta?id=${id}`}>
-                {title}
+            <Link className="has-text-brown is-size-7 mr-2" href="">
+                {project.slug}
             </Link>
-            {section === '/articulado' &&
-                <Link className={`has-text-white is-size-7 mr-2 ${section === '/articulado' ? 'active':''}`} href={`/articulado?id=${id}`}>
-                    Articulado de la propuesta
-                </Link>
-            }
-            {section === '/versiones' &&
-                <Link className={`has-text-white is-size-7 mr-2 ${section === '/articulado' ? 'active':''}`} href={`/versiones?id=${id}`}>
-                    Versiones
-                </Link>
-            }
+            
         </div>
+        <ProjectHeaderVersion project={project}
+                            version={project.version}
+                        />
+
     </div>
 }

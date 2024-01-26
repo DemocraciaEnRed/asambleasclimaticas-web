@@ -1,7 +1,7 @@
 import UserAvatar from "../../common/user-avatar";
 import ClosingDate from "../../common/closing-date";
 import ArticlesCommentsCounter from "../../common/article-comment-counter";
-import ProjectHeaderVersion from "./preject-version";
+import ProjectHeaderVersion from "../../common/project-version";
 import ProgressBar from "../../common/progresBar";
 import ClosingProject from "../../common/closing-project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

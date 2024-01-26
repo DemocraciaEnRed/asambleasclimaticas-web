@@ -9,7 +9,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { postComments } from '@/utils/post-data';
 import Pagination from './pagination';
 
-export default function RepliesModal({ commentUrl, active, addCommentDefault, closeCommentModal, user, project, isModal }) {
+export default function RepliesModal({ commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
@@ -44,9 +44,9 @@ export default function RepliesModal({ commentUrl, active, addCommentDefault, cl
     }
 
     return (
-        <div className={`${isModal ? 'modal' : 'is-stick-top'} replies-modal-wrapper ${active ? 'is-active' : ''}`}>
-            {isModal && <div className="modal-background" onClick={closeCommentModal}></div>}
-            <div className={`${isModal ? "modal-content" : ''}`} >
+        <div className={`modal replies-modal-wrapper ${active ? 'is-active' : ''}`}>
+            <div className="modal-background" onClick={closeCommentModal}></div>
+            <div className="modal-content" >
 
                 {comments && <div className="card">
                     <header className="card-header  ">
@@ -93,7 +93,7 @@ export default function RepliesModal({ commentUrl, active, addCommentDefault, cl
                     </footer>
                 </div>}
             </div>
-            {isModal && <button className="modal-close is-large" aria-label="close" onClick={closeCommentModal}></button>}
+           <button className="modal-close is-large" aria-label="close" onClick={closeCommentModal}></button>
         </div>
     )
 }

@@ -122,8 +122,7 @@ export default function Comment({ project, comment, urlComment, answerable }) {
                 active={commentSelected === comment._id}
                 project={project}
                 closeCommentModal={() => setCommentSelected(null)}
-                user={user}
-                isModal />}
+                user={user}/>}
         </div>
 
     )

@@ -2,17 +2,7 @@
   min-height: 100vh;
 
   .breadcrumb-nav {
-    height: 40px;
-    opacity: 0.8;
-    background-color: $grey-darker;
-
     .breadcrumb-wrapper {
-      width: 90%;
-
-      @include tablet {
-        justify-content: flex-start;
-      }
-
       a {
         &:not(:last-of-type) {
           &:after {
@@ -87,25 +77,7 @@
           }
 
           .project-info {
-            .project-version-wrapper {
-              .title {
-                margin: 4px 0 6px;
-              }
-
-              .version-link {
-                font-size: 12px;
-
-                a {
-                  color: $grey;
-                }
-              }
-
-              .version-modal{
-                .version-buutton{
-                  border-radius: 0px;
-                }
-              }
-            }
+            
 
           }
         }

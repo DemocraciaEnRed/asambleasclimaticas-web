@@ -3,6 +3,7 @@ import Skeleton from "@/components/common/skeleton"
 import ArticuladoBody from "@/components/pacto/body/articulado"
 import DisabledDisclaimer from "@/components/pacto/body/pacto/disclaimer"
 import HeaderPropuesta from "@/components/pacto/header"
+import BreadcrumbNav from "@/components/pacto/header/breadcrumb"
 import { fetchProject, fetchProjectArticle, fetchProjectComment, fetchProjectVersion } from "@/utils/get-data"
 import { Suspense } from "react"
 
@@ -16,7 +17,8 @@ export default async function PropuestaPactoComponent({ params: { id }, searchPa
 
     return <div className="pacto-wrapper">
         {project &&
-            <>
+            <>  
+            <BreadcrumbNav project={project} section="pacto" version={version}/>
                 <HeaderPropuesta project={project} section="pacto" />
                 <div className="project-body-container">
                     <LanguageSelector color="pink" />

@@ -65,3 +65,13 @@ a {
   .border-color-brown{
     border-color: $brown-base;
   }
+
+  .modal{
+    z-index: 9999;
+  }
+
+  .navbar-wrapper.navbar-fixed{
+    @include tablet{
+      position: inherit;
+    }
+  } 
