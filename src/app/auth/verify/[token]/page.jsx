@@ -28,7 +28,7 @@ export default async function VerifyToken({ params: { token } }) {
                         </div>
 
                     </div>
-                        <Link href="/" className="button is-rounded is-brown is-uppercase w-50"> home </Link>
+                        <Link href="/" className="button is-rounded is-brown has-text-white is-uppercase w-50"> inicio </Link>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@ export default async function VerifyToken({ params: { token } }) {
                     </div> */}
 
                 </div>
-                    <Link href="/" className="button is-rounded is-brown is-uppercase w-50"> home </Link>
+                    <Link href="/" className="button is-rounded is-brown has-text-white is-uppercase w-50"> inicio </Link>
             </div>
         </div>
     </div>

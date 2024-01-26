@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     fetchUserMe()
+    refreshToken()
   }, [])
 
   async function fetchUserMe() {
@@ -24,6 +25,19 @@ const AuthProvider = ({ children }) => {
 
       } catch (err) {
         dispatch(deleteUser())
+        deleteCookie('auth')
+        console.log(err);
+      }
+
+    }
+  }
+
+  async function refreshToken(){
+    if (token) {
+      try {
+        const response = await axiosServices.post('/auth/refresh-token')
+        setCookie('auth',response.data.token)
+      } catch (err) {
         deleteCookie('auth')
         console.log(err);
       }
