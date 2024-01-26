@@ -23,8 +23,8 @@ const DisabledDisclaimer = () =>{
     }, []);
     return( <article className="message is-danger">
     <div className="message-body">
-        <p className="mb-2">IMPORTANTE: Estas viendo una versión anterior (estas en la “Versión q se esta consultando”). Por esto veras que no puedes comentar ni reaccionar al contenido. Es una visualización únicamente de lectura para comprender el estado previo de las máximas y de la participación ciudadana. VOLVER A VERSION ACTUAL </p>
-        <p className="is-italic">IMPORTANTE: Você está visualizando uma versão anterior (você está na "Versão sendo consultada"). Por esse motivo, não será possível comentar ou reagir ao conteúdo. Trata-se apenas de uma visualização para leitura, a fim de compreender o estado anterior das normas e da participação cidadã. RETORNAR À VERSÃO ATUAL. </p>
+        <p className="mb-2">IMPORTANTE: Estas viendo una versión anterior (estas en la  &quot;Versión q se esta consultando&quot; ). Por esto veras que no puedes comentar ni reaccionar al contenido. Es una visualización únicamente de lectura para comprender el estado previo de las máximas y de la participación ciudadana. VOLVER A VERSION ACTUAL </p>
+        <p className="is-italic">IMPORTANTE: Você está visualizando uma versão anterior (você está na &quot;Versão sendo consultada&quot;). Por esse motivo, não será possível comentar ou reagir ao conteúdo. Trata-se apenas de uma visualização para leitura, a fim de compreender o estado anterior das normas e da participação cidadã. RETORNAR À VERSÃO ATUAL. </p>
     </div>
 </article>)
 }
