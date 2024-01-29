@@ -9,12 +9,12 @@ export default function RegisterForm() {
     const [countryList, setCountryList] = useState([])
     const [email, setEmail] = useState('')
     const [firstName, setFirstName] = useState('')
-    //const [lastName, setLastName] = useState('')
     const [country, setCountry] = useState('')
     const [lang, setLang] = useState('es')
     const [city, setCity] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const [errors, setErrors] = useState(null)
 
     const router = useRouter()
 
@@ -61,7 +61,10 @@ export default function RegisterForm() {
                 )
                 if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
-                setMessage({message: err.response.data.message, type:'danger'})
+                setMessage({
+                    message: err.response.data.message, 
+                    type:'danger'})
+                    setErrors(err.response.data.errors)
                 console.log(err);
             }
         } else {
@@ -77,13 +80,19 @@ export default function RegisterForm() {
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control">
-                                <input className="input" name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger':''}`} is-danger name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
+                                {errors && errors.some(error => error.field === 'email') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'email').message}
+                                </p>}
                             </div>
                         </div>
                         <div className="field">
                             <label className="label has-text-weight-normal">Tu nombre  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *Seu nome</span></label>
                             <div className="control">
-                                <input className="input" name="name" type="text" onChange={(event) => setFirstName(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'name') ? 'is-danger':''}`} name="name" type="text" onChange={(event) => setFirstName(event.target.value)} />
+                                {errors && errors.some(error => error.field === 'name') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'name').message}
+                                </p>}
                             </div>
                         </div>
                         <div className="field">
@@ -116,7 +125,10 @@ export default function RegisterForm() {
                         <div className="field">
                             <label className="label has-text-weight-normal">Contraseña <span className="ml-2 has-text-weight-light is-italic is-size-7"> *senha</span></label>
                             <div className="control">
-                                <input className="input" name="password" type="password" onChange={(event) => setPassword(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="password" type="password" onChange={(event) => setPassword(event.target.value)} />
+                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'password').message}
+                                </p>}
                             </div>
                         </div>
                         <div className="field">
@@ -131,7 +143,10 @@ export default function RegisterForm() {
                                 </span>
                             </label>
                             <div className="control">
-                                <input className="input" name="re-password" type="password" onChange={handleChangeRePassword} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="re-password" type="password" onChange={handleChangeRePassword} />
+                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'password').message}
+                                </p>}
                             </div>
                         </div>
                         <div className="field has-text-centered">

@@ -65,7 +65,6 @@ export const fetchUserMe = async  () => {
 export const verifyToken=async (token)=>{
     try{
         const res = await axiosServices.get(`/auth/verify/${token}`)
-        console.log(res);
         return {
             status:res.status,
             message:res.data.message

@@ -18,7 +18,8 @@ export default function LoginForm(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
-    const { user } = useSelector((state) => state.auth)
+    const [errors, setErrors] = useState(null)
+
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
 
@@ -43,7 +44,11 @@ export default function LoginForm(props) {
                 window.location.reload(false);
             }
         } catch (err) {
-            setMessage({message: err.response.status ===422 ? '**Contraseña y/o Mail erróneo,** pruebe reingresar sus datos  \n**Senha e/ou E-mail incorreto, tente reintroduzir seus dados*' : err.response.data.message, type:'danger'})
+            console.log(err.response.data);
+            setMessage({
+                message: err.response.data.message, 
+                type:'danger'})
+                setErrors(err.response.data.errors)
             console.log(err);
         }
     }
@@ -58,7 +63,10 @@ export default function LoginForm(props) {
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control has-icons-left ">
-                                <input className="input" autoCapitalize="none" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger':''}`} autoCapitalize="none" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
+                                {errors && errors.some(error => error.field === 'email') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'email').message}
+                                </p>}
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faEnvelope} />
                                 </span>
@@ -67,7 +75,10 @@ export default function LoginForm(props) {
                         <div className="field">
                             <label className="label has-text-weight-normal">Contraseña</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className="input" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} is-danger name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                    {errors.find(error => error.field === 'password').message}
+                                </p>}
                                 <span className="icon is-small is-left">
                                     <FontAwesomeIcon icon={faLock} />
                                 </span>
