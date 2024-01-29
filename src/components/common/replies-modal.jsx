@@ -5,15 +5,14 @@ import axiosServices from '@/utils/axios';
 import Link from 'next/link';
 import Comment from '../pacto/body/pacto/comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { postComments } from '@/utils/post-data';
 import Pagination from './pagination';
 
-export default function RepliesModal({ commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
+export default function RepliesModal({ comment, commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
-
 
 
     useEffect(() => {
@@ -49,11 +48,40 @@ export default function RepliesModal({ commentUrl, active, addCommentDefault, cl
             <div className="modal-content" >
 
                 {comments && <div className="card">
-                    <header className="card-header  ">
-                        <p className="card-header-title is-uppercase  is-justify-content-center">
-                            comentarios
-                        </p>
+                    <div className="is-flex is-justify-content-end pt-3 px-3">
+
+                        <FontAwesomeIcon onClick={closeCommentModal} icon={faXmark} />
+                    </div>
+                    <header className="card-header is-flex-direction-column ">
+
+
+                        <div className="is-flex p-4 comment" >
+                            <div className="py-2 pl-0 mr-3 is-hidden-touch">
+                                <div className='avatar' />
+                            </div>
+                            <div className="is-flex-grow-1 is-flex-shrink-1">
+                                <div className="is-flex">
+                                    <div className="py-2 pl-0 mr-1 is-hidden-desktop">
+                                        <div className='avatar' />
+                                    </div>
+                                    <div>
+                                        <div className="user-name is-size-5 " ><p className="is-inline">{comment.user.country.emoji} </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
+                                        <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
+
+                                    </div>
+                                </div>
+                                <p className="has-text-grey my-2 is-size-7-touch">{comment.text}</p>
+
+                            </div>
+
+                        </div>
+
+
+
                     </header>
+                    <p className="card-header-title is-uppercase  is-justify-content-center">
+                        comentarios
+                    </p>
                     <div className="replies-comment-box px-3 my-2">
                         <div>
                             {comments && (comments.replies.length > 0 ? comments.replies.map(comment => <Comment key={comment._id} project={project} comment={comment} urlComment={`${commentUrl}/${comment._id}`} />)
@@ -93,7 +121,6 @@ export default function RepliesModal({ commentUrl, active, addCommentDefault, cl
                     </footer>
                 </div>}
             </div>
-           <button className="modal-close is-large" aria-label="close" onClick={closeCommentModal}></button>
         </div>
     )
 }

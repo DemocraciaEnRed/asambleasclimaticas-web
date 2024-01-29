@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useSelector } from "react-redux"
 import { Remark } from "react-remark"
 import Comment from "./comment"
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons"
+import { faPaperPlane, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { postComments } from "@/utils/post-data"
@@ -43,8 +43,11 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
     return (<div className={`modal article-modal ${active ? 'is-active' : ''}`}>
         <div className="modal-background" onClick={closeCommentModal}></div>
         <div className="modal-card">
-
             <section className="modal-card-body p-0">
+                <div className="is-flex is-justify-content-end pt-3 px-3">
+
+                    <FontAwesomeIcon onClick={closeCommentModal} icon={faXmark} />
+                </div>
                 <div className="content is-size-7-touch">
                     <Remark>
                         {language === 'pt' ? article.text_pt : article.text_es}
@@ -97,7 +100,6 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
                 }
             </footer>
         </div>
-        <button className="modal-close is-large" aria-label="close" onClick={closeCommentModal}></button>
     </div>)
 }
 

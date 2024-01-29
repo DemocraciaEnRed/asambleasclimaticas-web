@@ -333,7 +333,6 @@
 
           .modal-card {
             width: 75%;
-            max-height: calc(100vh - 100px);
             @include tablet {
               width: 95%;
             }

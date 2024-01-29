@@ -14,20 +14,20 @@ export default function Comment({ project, comment, urlComment, answerable }) {
     const [commentSelected, setCommentSelected] = useState(null)
     const [likes, setLikes] = useState(comment.likes || 0)
     const [dislikes, setDislikes] = useState(comment.dislikes || 0)
-    const [liked, setliked] =useState(comment.liked ? 'liked' : comment.disliked ? 'disliked': null)
+    const [liked, setliked] = useState(comment.liked ? 'liked' : comment.disliked ? 'disliked' : null)
     const [highlighted, setHighlighted] = useState(comment.highlightedInVersion)
     const [resolved, setResolved] = useState(comment.resolvedInVersion)
     const { user } = useSelector((state) => state.auth)
 
 
     const handleComment = async () => {
-        setCommentSelected(comment._id)
+        setCommentSelected(comment)
     }
 
     const handleLike = async () => {
         const resp = await toLike(`${urlComment}`)
         if (resp.status === 200) setLikes(likes + 1); setliked('liked')
-        if (resp.type === 'changed') setDislikes(dislikes - 1); 
+        if (resp.type === 'changed') setDislikes(dislikes - 1);
         if (resp.type === 'removed') setLikes(likes - 1)
 
     }
@@ -118,11 +118,12 @@ export default function Comment({ project, comment, urlComment, answerable }) {
 
             </div>
             {commentSelected && <RepliesModal
+                comment={commentSelected}
                 commentUrl={`${urlComment}/replies`}
-                active={commentSelected === comment._id}
+                active={commentSelected._id === comment._id}
                 project={project}
                 closeCommentModal={() => setCommentSelected(null)}
-                user={user}/>}
+                user={user} />}
         </div>
 
     )
