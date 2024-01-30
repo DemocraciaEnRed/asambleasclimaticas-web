@@ -1,9 +1,9 @@
 "use client"
-import { setMessage } from "@/store/reducers/alert"
 import axiosServices from "@/utils/axios"
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { setMessage } from "@/store/reducers/alert"
 
 export default function RegisterForm() {
     const [countryList, setCountryList] = useState([])
@@ -81,7 +81,7 @@ export default function RegisterForm() {
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control">
                                 <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger':''}`} is-danger name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
-                                {errors && errors.some(error => error.field === 'email') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'email') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'email').message}
                                 </p>}
                             </div>
@@ -90,7 +90,7 @@ export default function RegisterForm() {
                             <label className="label has-text-weight-normal">Tu nombre  <span className="ml-2 has-text-weight-light is-italic is-size-7"> *Seu nome</span></label>
                             <div className="control">
                                 <input className={`input ${errors && errors.some(error => error.field === 'name') ? 'is-danger':''}`} name="name" type="text" onChange={(event) => setFirstName(event.target.value)} />
-                                {errors && errors.some(error => error.field === 'name') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'name') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'name').message}
                                 </p>}
                             </div>
@@ -126,7 +126,7 @@ export default function RegisterForm() {
                             <label className="label has-text-weight-normal">Contraseña <span className="ml-2 has-text-weight-light is-italic is-size-7"> *senha</span></label>
                             <div className="control">
                                 <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="password" type="password" onChange={(event) => setPassword(event.target.value)} />
-                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}
                             </div>
@@ -144,7 +144,7 @@ export default function RegisterForm() {
                             </label>
                             <div className="control">
                                 <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="re-password" type="password" onChange={handleChangeRePassword} />
-                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}
                             </div>

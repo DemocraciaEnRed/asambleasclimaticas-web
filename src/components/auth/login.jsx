@@ -44,7 +44,6 @@ export default function LoginForm(props) {
                 window.location.reload(false);
             }
         } catch (err) {
-            console.log(err.response.data);
             setMessage({
                 message: err.response.data.message, 
                 type:'danger'})
@@ -64,7 +63,7 @@ export default function LoginForm(props) {
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control has-icons-left ">
                                 <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger':''}`} autoCapitalize="none" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
-                                {errors && errors.some(error => error.field === 'email') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'email') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'email').message}
                                 </p>}
                                 <span className="icon is-small is-left">
@@ -76,7 +75,7 @@ export default function LoginForm(props) {
                             <label className="label has-text-weight-normal">Contraseña</label>
                             <div className="control has-icons-left has-icons-right">
                                 <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} is-danger name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
-                                {errors && errors.some(error => error.field === 'password') && <p class="help is-danger">
+                                {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}
                                 <span className="icon is-small is-left">
