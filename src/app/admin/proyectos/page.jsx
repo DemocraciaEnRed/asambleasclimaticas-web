@@ -1,14 +1,13 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import Link from 'next/link'
-import Image from 'next/image'
+import Emoji from "@/components/common/emoji";
 import axiosServices from "@/utils/axios";
-import { useEffect } from "react";
 
 export default function AdminProjectPage({params}) {
   // get the user from store
@@ -36,6 +35,10 @@ export default function AdminProjectPage({params}) {
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   
+  useEffect(() => {
+    initFetch()
+  }, [])
+
   async function initFetch() {
     try {
       // check if admin is the same as the user
@@ -53,15 +56,13 @@ export default function AdminProjectPage({params}) {
       const [projectRes] = await Promise.all(promises)
 
       // attach projects to array "projects"
-      const projectAux = projectRes.data.projects
-      setProjects(projectAux)
+      const projects = projectRes.data.projects
+      setProjects(projects)
       setPage(projectRes.data.page)
       setPages(projectRes.data.pages)
       setTotal(projectRes.data.total)
-      setLimit(projectRes.data.limit)
       setNextPage(projectRes.data.nextPage)
       setPrevPage(projectRes.data.prevPage)
-
       setIsLoading(false)
 
     } catch (error) {
@@ -70,40 +71,42 @@ export default function AdminProjectPage({params}) {
     }
   }
 
-  async function fetchMore() {
-    if(nextPage == null) {
-      return
-    }
+  async function fetchPage(thePage) {
     setIsLoadingMore(true)
+
     const promises = [
-      axiosServices.get(`/admin/projects?page=${nextPage}&limit=${limit}`),
+      axiosServices.get(`/admin/projects?page=${thePage}&limit=${limit}`),
     ]
 
     const [projectRes] = await Promise.all(promises)
 
     // attach projects to array "projects"
-    const projectAux = projectRes.data.projects
-    setProjects([...projects, ...projectAux])
+    const projects = projectRes.data.projects
+    setProjects(projects)
     setPage(projectRes.data.page)
     setPages(projectRes.data.pages)
     setTotal(projectRes.data.total)
-    setLimit(projectRes.data.limit)
     setNextPage(projectRes.data.nextPage)
     setPrevPage(projectRes.data.prevPage)
     setIsLoadingMore(false)
-    console.log(page)
-    console.log(pages)
-    console.log(total)
-    console.log(limit)
-    console.log(nextPage)
-    console.log(prevPage)
     return;
+  }
+
+  function fetchNextPage() {
+    if(!nextPage) return
+    fetchPage(nextPage)
+  }
+
+  function fetchPreviousPage() {
+    if(!prevPage) return
+    fetchPage(prevPage)
   }
 
   function renderLoading () {
     return (
       <div className="has-text-centered">
         <p>Cargando...</p>
+        <progress className="progress is-small is-primary mt-3" max="100">15%</progress>
       </div>
     )
   }
@@ -120,12 +123,6 @@ export default function AdminProjectPage({params}) {
     
     return `${day}/${month}/${year} ${hours}:${minutes}`
   }
-
-
-
-  useEffect(() => {
-    initFetch()
-  }, [])
 
   return (
     <>
@@ -154,7 +151,7 @@ export default function AdminProjectPage({params}) {
                   <td>
                     <p className="is-size-5 has-text-weight-bold"><Link className="has-text-info" href={`/pacto/${project._id}`}>{project.title_es}</Link> <span className="is-size-7 has-text-weight-normal has-text-grey">(v. {project.version})</span></p>
                     <div className="is-flex is-flex-direction-row is-align-items-center is-justify-content-flex-center">
-                      <Image src={project.author.country.image} alt={project.author.country.name} className="mr-1" width="20" height="20" />
+                      <Emoji emoji={project.author.country.emoji} />&nbsp;
                       <div className="has-text-weight-medium">{project.author.name} {project.author.lastname} <span className="has-text-grey is-italic">({project.author.role})</span></div>
                       
                     </div>
@@ -190,43 +187,18 @@ export default function AdminProjectPage({params}) {
               )
             })
           }
-          <tr>
-            <td colSpan="3" className="has-text-centered">
-              <div className="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
-                <p className="is-size-7 has-text-grey">Página {page} de {pages}</p>
-                <p className="is-size-7 has-text-grey">Total de proyectos: {total}</p>
-              </div>
-            </td>
-          </tr>
-          {
-            isLoadingMore && (
-              <tr className="has-text-centered">
-                <td colSpan="3" className="has-text-grey is-italic">
-                  <p className="my-3">- Cargando más proyectos -</p>
-                </td>
-              </tr>
-            )
-          }
-          {
-            !isLoadingMore && nextPage && (
-              <tr className="has-text-centered">
-                <td colSpan="3" className="has-text-grey is-italic px-4">
-                  <button className="button is-outlined is-dark is-small is-fullwidth my-3" onClick={fetchMore}>Cargar más</button>
-                </td>
-              </tr>
-            )
-          }
-           {
-            !isLoadingMore && !nextPage && (
-              <tr className="has-text-centered">
-                <td colSpan="3" className="has-text-grey is-italic px-4">
-                  <p className="is-size-7">No hay más proyectos para mostrar</p>
-                </td>
-              </tr>
-            )
-          }
           </tbody>
         </table>
+        <div className="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
+          <div className="is-flex is-flex-direction-row is-align-items-center">
+            <button className="button is-small is-dark is-outlined" disabled={!prevPage} onClick={() => fetchPreviousPage()}>Anterior</button>
+            <button className="button is-small is-dark is-outlined mx-2" disabled={!nextPage} onClick={() => fetchNextPage()}>Siguiente</button>
+            <p className="is-size-7 has-text-grey mx-2">Página {page} de {pages}</p>
+          </div>
+          <div>
+            <p className="is-size-7 has-text-grey">Total: {total}</p>
+          </div>
+        </div>
        </div>
     </>
   )
