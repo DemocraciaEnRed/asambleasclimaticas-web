@@ -17,7 +17,7 @@ const ProjectHeaderVersion = ({ project, version }) => {
                             '':
                             'has-background-danger has-text-white'} `}
     onClick={() => project.versions.length > 0 && setShowModal(!showModal)}>
-    <p className="has-text-weight-light is-size-6">Versión {version} <FontAwesomeIcon className='ml-3 is-hidden-desktop' icon={faPlusCircle}/></p>
+    <p className=" is-size-6">Versión {version} <FontAwesomeIcon className='ml-3 is-hidden-desktop' icon={faPlusCircle}/></p>
     {project.version !== project.currentVersion && <p className="has-text-weight-light is-size-7 is-hidden-touch">(Versión antigua)</p>}
     <div className="version-link is-underlined  is-hidden-touch">
       <p>+Versiones</p>

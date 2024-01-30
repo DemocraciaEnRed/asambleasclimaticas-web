@@ -57,10 +57,8 @@
   margin-right: 15px;
 
   .closing-date-title {
-    font-weight: 300;
     font-size: 14px;
     letter-spacing: .5px;
-    margin-bottom: 8px
   }
 }
 
@@ -115,7 +113,6 @@
 
   .counters {
     p {
-      font-weight: 300;
       font-size: 16px;
       margin-bottom: 0;
 
@@ -321,8 +318,8 @@
 }
 
 .project-version-wrapper {
-  background-color: $grey-light;
-  color: $grey;
+  background-color: $grey-lighter;
+  color: $brown-dark;
   padding: .50rem .75rem;
 
   @include tablet {

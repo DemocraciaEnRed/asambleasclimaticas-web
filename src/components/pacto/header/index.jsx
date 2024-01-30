@@ -47,13 +47,12 @@ export default function HeaderPropuesta({ project, section }) {
                         <StageProject stage={project.stage} />
                     </div>
                 </div>}
-                <div className="is-flex is-justify-content-center project-info is-hidden-desktop mb-3">
+                <div className=" project-info-mobile is-hidden-desktop mb-3">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
                         <ArticlesCommentsCounter commentsCount={project.commentsCount}
                             apoyosCount={project.likes}
                             project={project._id} />
-                        
                     </div>
                 <div className="tab-section is-flex is-justify-content-space-between is-align-items-flex-end">
                     <div className="tabs">

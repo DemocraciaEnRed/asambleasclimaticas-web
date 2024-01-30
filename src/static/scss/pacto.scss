@@ -76,9 +76,23 @@
             }
           }
 
-          .project-info {
-            
-
+          
+        }
+        .project-info-mobile {
+          display: flex;
+          justify-content: flex-start;
+          @include mobile{
+            justify-content: center;
+            flex-direction: column;
+            .closing-date-wrapper{
+              border-right: none;
+              border-bottom: 1px solid hsl(0, 0%, 71%);
+              margin: 0;
+              padding: .50rem;
+            }
+            .atricle-comment-wrapper{
+              margin-top: 1rem;
+            }
           }
         }
 
