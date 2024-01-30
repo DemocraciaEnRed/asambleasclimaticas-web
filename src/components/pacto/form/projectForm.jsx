@@ -411,13 +411,13 @@ export default function ProjectFormComponent({project, newVersion}) {
       return false
     }
     
-    // check if there are any articles that are empty
-    const emptyArticles = articles.filter(article => !article.text_es && !article.text_pt)
-    if(emptyArticles.length > 0) {
-      setErrorResponse('Hay artículos vacios')
-      setShowErrorResponse(true)
-      return false
-    }
+    // // check if there are any articles that are empty
+    // const emptyArticles = articles.filter(article => !article.text_es && !article.text_pt)
+    // if(emptyArticles.length > 0) {
+    //   setErrorResponse('Hay artículos vacios')
+    //   setShowErrorResponse(true)
+    //   return false
+    // }
 
     return true
   }
