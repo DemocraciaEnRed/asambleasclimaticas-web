@@ -15,6 +15,7 @@ export default function AdminSideMenu({ children }) {
     <aside className="menu">
       <ul className="menu-list">
         <li><Link href="/admin" className={isRouteActive('/admin') ? 'is-active' : ''}>Inicio</Link></li>
+        <li><Link href="/admin/estadisticas" className={isRouteActive('/admin/estadisticas') ? 'is-active' : ''}>Estadisticas</Link></li>
       </ul>
       <p className="menu-label has-text-black has-text-weight-bold">
         Proyectos
@@ -31,7 +32,7 @@ export default function AdminSideMenu({ children }) {
         <li>
           <Link href="/admin/usuarios" className={isRouteActive('/admin/usuarios') ? 'is-active' : ''}>Listar</Link>
         </li>
-        <li><a>Administrar roles</a></li>
+        {/* <li><a>Administrar roles</a></li> */}
       </ul>
     </aside>
   );
