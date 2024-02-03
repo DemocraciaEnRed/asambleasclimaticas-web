@@ -4,14 +4,14 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Emoji from "@/components/common/emoji";
 import axiosServices from "@/utils/axios";
+import { useAuthContext } from "@/context/auth-context";
 
 export default function AdminProjectPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {

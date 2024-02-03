@@ -8,9 +8,7 @@ import './themes.scss'
 
 import Navbar from "@/components/layout/navbar"
 import Footer from '@/components/layout/footer'
-import Overlay from '@/components/common/overlay'
-import { createTheme } from '@mui/material'
-import { AuthProvider } from '@/context/auth-context'
+import AuthContextProvider from '@/context/auth-context'
 import { LandingProvider } from '@/context/landing-context'
 import Message from '@/components/common/message'
 
@@ -32,14 +30,14 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <LandingProvider>
-            <AuthProvider>
+            <AuthContextProvider>
               <Navbar />
               <main>
                 {children}
               </main>
               <Footer />
               <Message/>
-            </AuthProvider>
+            </AuthContextProvider>
 
           </LandingProvider>
         </Providers>

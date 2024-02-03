@@ -1,11 +1,12 @@
 'use client'
+import { useAuthContext } from "@/context/auth-context"
 import { dispatch } from "@/store"
 import { handleLanguage } from "@/store/reducers/language"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
 const LanguageSelector = ({color}) => {
-    const { user } = useSelector((state) => state.auth)
+    const { user } = useAuthContext()
     const {language, switched} = useSelector((state)=>state.language)
 
     useEffect(()=>{

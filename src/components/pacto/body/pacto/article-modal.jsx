@@ -7,15 +7,15 @@ import { faPaperPlane, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { postComments } from "@/utils/post-data"
-import axiosServices from "@/utils/axios"
 import Pagination from "@/components/common/pagination"
+import { useAuthContext } from "@/context/auth-context";
+import { fetchGeneralComments } from "@/utils/get-data"
 
 const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, handleDislike, handleLike, likes, dislikes, project }) => {
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
     const { language } = useSelector((state) => state.language)
-    const { user } = useSelector((state) => state.auth)
-
+    const { user } = useAuthContext()
 
     useEffect(() => {
         fetchComments()
@@ -23,8 +23,8 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
 
     const fetchComments = async (page) => {
         try {
-            const resp = await axiosServices.get(`/projects/${project._id}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
-            setComments(resp.data);
+            const resp = await fetchGeneralComments(`/projects/${project._id}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
+            setComments(resp);
         } catch (err) {
             console.log(err);
         }

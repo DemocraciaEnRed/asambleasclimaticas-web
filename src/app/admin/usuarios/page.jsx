@@ -2,17 +2,17 @@
 import { useState, useEffect } from "react"
 import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Image from 'next/image'
 import axiosServices from "@/utils/axios";
 import { faCheck, faDownload, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
+import { useAuthContext } from "@/context/auth-context";
 
 export default function AdminUsersListPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {

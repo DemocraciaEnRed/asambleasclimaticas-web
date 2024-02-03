@@ -2,21 +2,22 @@
 import axiosServices from "@/utils/axios";
 import { useState } from "react";
 import Comment from "./comment";
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import Pagination from "@/components/common/pagination";
+import { useAuthContext } from "@/context/auth-context";
+import { postComments } from "@/utils/post-data";
 
 
 export default function Comments({ project, comments }) {
     const [commentList, setCommensList] = useState(comments.comments)
     const [textNewComment, setTextNewComment] = useState('')
-    const { user } = useSelector((state) => state.auth)
 
+    const { user } = useAuthContext()
     const handlesubmit = async (event) => {
         try {
             event.preventDefault()
-            const resp = await axiosServices.post(`/projects/${project._id}/comments`, { body: textNewComment })
-            resp.data.user = user
+            const resp = await postComments(`/projects/${project._id}/comments`, { body: textNewComment })
+            resp.user = user
             fetchComments()
             setTextNewComment('')
         } catch (err) {

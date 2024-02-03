@@ -12,10 +12,10 @@ export default function BreadcrumbNav({ project, section, version }) {
                            is-hidden-desktop
                            p-3">
         <div className="breadcrumb-wrapper is-flex">
-            <Link className="has-text-brown is-size-7 mr-2" href=''>
+            <Link className="has-text-brown is-size-7 mr-2" href="#">
                 {section}
             </Link>
-            <Link className="has-text-brown is-size-7 mr-2" href="">
+            <Link className="has-text-brown is-size-7 mr-2" href="#">
                 {project.slug}
             </Link>
             

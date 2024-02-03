@@ -1,3 +1,4 @@
+'use server'
 import axiosServices from "./axios";
 import axiosServerServices from "./axiosServer";
 
@@ -41,6 +42,16 @@ export const fetchProjectComment = async (projectId, version)=> {
     }
 }
 
+export const fetchGeneralComments = async (url) =>{
+    try {
+        const resp = await axiosServerServices.get(url)
+        return await resp.data
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 export const fetchProjectEvents = async (projectId)=> {
     try{
         //await new Promise((resolve) => setTimeout(resolve, 3000))
@@ -72,5 +83,15 @@ export const verifyToken=async (token)=>{
     }catch(err){
         //console.log(err);
         return err
+    }
+}
+
+export const fetchCountries = async  () => {
+    try{
+        const resp = await axiosServices.get('/misc/countries')
+        const countries = await resp.data
+        return(countries)
+    }catch(err){
+        console.log(err);
     }
 }

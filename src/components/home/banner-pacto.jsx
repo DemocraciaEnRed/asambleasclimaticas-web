@@ -22,7 +22,7 @@ const BannerPacto = async () => {
                         <p className="title is-2">{project.title_es}</p>
                         <div className="  py-2 mb-5">
                             <p>{project.shortAbout_es}</p>
-                            <p className="is-italic"><MkdFormatter source={project.shortAbout_pt} /></p>
+                            <div className="is-italic"><MkdFormatter source={project.shortAbout_pt} /></div>
 
                         </div>
                         <div className="is-flex info-pacto px-3">

@@ -1,18 +1,15 @@
 'use client'
-import { dispatch } from "@/store"
-import { setUser } from "@/store/reducers/auth"
+import { useState } from "react"
 
-import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { use, useState } from "react"
 
-import { useSelector } from "react-redux"
-import { setCookie } from "cookies-next"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
-import { useSearchParams } from "next/navigation"
+import { useSearchParams,useRouter } from "next/navigation"
 import { setMessage } from "@/store/reducers/alert"
+import { useAuthContext } from "@/context/auth-context"
+import { login } from "@/utils/post-data"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
@@ -20,9 +17,11 @@ export default function LoginForm(props) {
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState(null)
 
+    const router = useRouter()
+
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
-
+    const { loginContext } = useAuthContext()
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -31,24 +30,21 @@ export default function LoginForm(props) {
             password,
         }
         try {
-            const response = await axiosServices.post('/auth/login', JSON.stringify(body))
-            const res = await response.data
+            const response = await login(JSON.stringify(body))
             if (response.status === 200) {
-                if (res.token) {
+                if (response.data.token) {
                     var expires = new Date();
-                    expires.setDate(expires.getDate() + 3600000);
-                    setCookie('auth', res.token, { expires });
-                    dispatch(setUser(res.user.user))
+                    loginContext(response.data)
                 }
-                if(next) return window.location.href = next
-                window.location.reload(false);
+                if(next) return router.push(next)                
+                router.push('/')
             }
         } catch (err) {
+            const error= JSON.parse(err.message)
             setMessage({
-                message: err.response.data.message, 
+                message: error.data.message, 
                 type:'danger'})
-                setErrors(err.response.data.errors)
-            console.log(err);
+                setErrors(error.data.errors)
         }
     }
 

@@ -14,8 +14,8 @@ import slugify from 'slugify'
 import { InputMask } from '@react-input/mask';
 import ArticleForm from '@/components/pacto/form/articleForm'
 import projectFormUtils from '@/utils/projectForm'
-import { useSelector } from 'react-redux';
 import AuthorField from './authorField';
+import { useAuthContext } from '@/context/auth-context'
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
@@ -39,7 +39,7 @@ export default function ProjectFormComponent({project, newVersion}) {
   // INITIALIZATIONS
   const router = useRouter()  
   const mode = project ? 'edit' : 'new'
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
   const userIsAdmin = user && user.role === 'admin'
   let init_articles = [
     {
