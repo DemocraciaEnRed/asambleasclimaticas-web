@@ -2,11 +2,11 @@ import ArticlesCommentsCounter from "../common/article-comment-counter"
 import ClosingDate from "../common/closing-date"
 import ProgressBar from "../common/progresBar"
 import MkdFormatter from "../common/mkd-formatter"
-import { fetchProject } from "@/utils/get-data"
+import { fetchProjectId } from "@/utils/get-data"
 import StageProject from "../common/stage-project"
 
 const BannerPacto = async () => {
-    const project = await fetchProject('pacto-inter-ciudad')
+    const project = await fetchProjectId('pacto-inter-ciudad')
 
 
     if (project) return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 ' id="banner-pacto">

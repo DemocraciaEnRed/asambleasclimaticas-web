@@ -3,9 +3,9 @@ import { faThumbsDown, faThumbsUp, faComment } from "@fortawesome/free-regular-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Remark } from "react-remark";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { toDislike, toLike } from "@/utils/post-data";
 import ArticleModal from "./article-modal";
+import { useLanguage } from "@/context/lang-context";
 
 export default function Article({ project, article }) {
     const [likes,setLikes] = useState(article.likes)
@@ -13,7 +13,7 @@ export default function Article({ project, article }) {
     const [disliked, setDisliked] = useState(article.disliked)
     const [dislikes, setDislikes] = useState(article.dislikes)
     const [showComments, setShowComments] = useState(false)
-    const {language} = useSelector((state)=>state.language)
+    const {language} = useLanguage()
 
     const handleLike = async () => {
         const resp = await toLike(`/projects/${project._id}/articles/${article._id}`)

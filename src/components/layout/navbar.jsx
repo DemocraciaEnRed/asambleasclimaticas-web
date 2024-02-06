@@ -1,15 +1,11 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
-import { handleLanguage } from "@/store/reducers/language";
-import { deleteUser, handleToken } from "@/store/reducers/auth";
-import { deleteCookie } from 'cookies-next';
 import Overlay from "../common/overlay";
 import { faInstagram, faSquareFacebook, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useAuthContext } from "@/context/auth-context";
@@ -22,17 +18,12 @@ export default function Navbar() {
     const [showOverlay, setShowOverlay] = useState(false)
 
     const pathname = usePathname()
-    const dispatch = useDispatch()
 
-    const handleChangeLanguage = (language) => {
-        dispatch(handleLanguage(language))
-    }
 
     const handleOpenMenu = () => {
         if (window.innerWidth < 768) {
             setMenuOpen(!menuOpen)
             setShowOverlay(!showOverlay)
-            /* dispatch(handleOverlay()) */
         }
     }
 

@@ -1,6 +1,5 @@
 import { faThumbsDown, faThumbsUp } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useSelector } from "react-redux"
 import { Remark } from "react-remark"
 import Comment from "./comment"
 import { faPaperPlane, faXmark } from "@fortawesome/free-solid-svg-icons"
@@ -10,11 +9,12 @@ import { postComments } from "@/utils/post-data"
 import Pagination from "@/components/common/pagination"
 import { useAuthContext } from "@/context/auth-context";
 import { fetchGeneralComments } from "@/utils/get-data"
+import { useLanguage } from "@/context/lang-context"
 
 const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, handleDislike, handleLike, likes, dislikes, project }) => {
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
-    const { language } = useSelector((state) => state.language)
+    const { language } = useLanguage()
     const { user } = useAuthContext()
 
     useEffect(() => {

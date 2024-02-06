@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { useSearchParams,useRouter } from "next/navigation"
-import { setMessage } from "@/store/reducers/alert"
 import { useAuthContext } from "@/context/auth-context"
 import { login } from "@/utils/post-data"
+import { useAlert } from "@/context/alert-context"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
@@ -22,6 +22,7 @@ export default function LoginForm(props) {
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
     const { loginContext } = useAuthContext()
+    const { addAlert } = useAlert()
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -41,10 +42,8 @@ export default function LoginForm(props) {
             }
         } catch (err) {
             const error= JSON.parse(err.message)
-            setMessage({
-                message: error.data.message, 
-                type:'danger'})
-                setErrors(error.data.errors)
+            addAlert(error.data.message,'danger')
+            setErrors(error.data.errors)
         }
     }
 
@@ -70,7 +69,7 @@ export default function LoginForm(props) {
                         <div className="field">
                             <label className="label has-text-weight-normal">Contraseña</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} is-danger name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
                                 {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}

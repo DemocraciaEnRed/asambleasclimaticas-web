@@ -2,10 +2,10 @@
 import Link from "next/link"
 import { redirect, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { setMessage } from "@/store/reducers/alert"
 import Emoji from "../common/emoji"
 import { fetchCountries } from "@/utils/get-data"
 import { register } from "@/utils/post-data"
+import { useAlert } from "@/context/alert-context"
 
 export default function RegisterForm() {
     const [countryList, setCountryList] = useState([])
@@ -20,6 +20,8 @@ export default function RegisterForm() {
     const [errors, setErrors] = useState(null)
 
     const router = useRouter()
+
+    const {addAlert} = useAlert()
 
 
     useEffect(() => {
@@ -60,10 +62,8 @@ export default function RegisterForm() {
                 if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
                 const error= JSON.parse(err.message)
-                setMessage({
-                    message: error.data.message, 
-                    type:'danger'})
-                    setErrors(error.data.errors)
+                addAlert(error.data.message, 'danger')
+                setErrors(error.data.errors)
             }
         } else {
             const tycError = { field: 'terms-and-cond', message: '*necesitas aceptar los terminos y condiciones' }
@@ -79,7 +79,7 @@ export default function RegisterForm() {
                     <div className="field">
                         <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                         <div className="control">
-                            <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger' : ''}`} is-danger name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
+                            <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger' : ''}`} name="email" autoCapitalize="none" type="text" onChange={(event) => setEmail(event.target.value)} />
                             {errors && errors.some(error => error.field === 'email') && <p className="help is-danger">
                                 {errors.find(error => error.field === 'email').message}
                             </p>}

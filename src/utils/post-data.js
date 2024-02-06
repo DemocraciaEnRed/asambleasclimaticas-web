@@ -21,11 +21,10 @@ export const login = async (body) => {
         const resp = await axiosServerServices.post('/auth/login', body)
         return {
             status: resp.status,
-            expireInToken : exp,
             data: resp.data
         }
     } catch (err) {
-        console.log(error);
+        console.log(err);
         let error={
             status: err.response.status,
             data: err.response.data

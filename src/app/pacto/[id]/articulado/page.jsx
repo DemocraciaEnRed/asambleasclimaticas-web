@@ -4,13 +4,13 @@ import ArticuladoBody from "@/components/pacto/body/articulado"
 import DisabledDisclaimer from "@/components/pacto/body/pacto/disclaimer"
 import HeaderPropuesta from "@/components/pacto/header"
 import BreadcrumbNav from "@/components/pacto/header/breadcrumb"
-import { fetchProject, fetchProjectArticle, fetchProjectComment, fetchProjectVersion } from "@/utils/get-data"
+import { fetchProjectId, fetchProjectArticle, fetchProjectComment, fetchProjectVersion } from "@/utils/get-data"
 import { Suspense } from "react"
 
 
 export default async function PropuestaPactoComponent({ params: { id }, searchParams: { version } }) {
     const [project, articles, comments] = await Promise.all([
-        fetchProject(id, version),
+        fetchProjectId(id, version),
         fetchProjectArticle(id, version),
         fetchProjectComment(id, version)
     ])
@@ -21,7 +21,7 @@ export default async function PropuestaPactoComponent({ params: { id }, searchPa
             <BreadcrumbNav project={project} section="pacto" version={version}/>
                 <HeaderPropuesta project={project} section="pacto" />
                 <div className="project-body-container">
-                    <LanguageSelector color="pink" />
+                    <LanguageSelector />
                     <div className="columns mx-0">
                         <div className="column is-11 is-12-touch">
                         {project.version !== project.currentVersion && <DisabledDisclaimer />}

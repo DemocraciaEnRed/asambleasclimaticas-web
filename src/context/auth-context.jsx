@@ -1,5 +1,4 @@
 "use client";
-
 import {
     ReactNode,
     createContext,
@@ -11,6 +10,9 @@ import {
 } from "react";
 import Cookies from 'js-cookie'
 import { refreshToken } from "@/utils/post-data";
+import { fetchUserMe } from "@/utils/get-data";
+
+
 const AUTH_TOKENS_KEY = "RES_AUTH";
 const AUTH_USER_INFO = "RES_USER"
 
@@ -32,12 +34,25 @@ export default function AuthContextProvider({ children }) {
     useEffect(() => {
         if (authTokensInCookies) {
             refreshTokenContext()
+            refreshUser()
         } else {
             window.localStorage.removeItem(AUTH_USER_INFO);
             setUser(null)
 
         }
-    })
+    },[])
+
+    const refreshUser = async () => {
+        try {
+            const user = await fetchUserMe()
+            setUser(user)
+        } catch (err) {
+            console.log(err);
+            window.localStorage.removeItem(AUTH_USER_INFO);
+            setUser(null)
+            Cookies.remove(AUTH_TOKENS_KEY);
+        }
+    }
 
     const refreshTokenContext = async () => {
         try {

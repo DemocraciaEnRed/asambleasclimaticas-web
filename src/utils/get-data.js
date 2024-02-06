@@ -2,7 +2,7 @@
 import axiosServices from "./axios";
 import axiosServerServices from "./axiosServer";
 
-export const fetchProject = async (projectId,version)=> {
+export const fetchProjectId = async (projectId,version)=> {
     try{
         let url = `/projects/${projectId}`
         if(version) url += `/versions/${version}`
@@ -66,7 +66,7 @@ export const fetchProjectEvents = async (projectId)=> {
 export const fetchUserMe = async  () => {
     try{
         const res = await axiosServerServices.get('/users/me')
-        const user = await res.data
+        const user = await res.data.user
         if(user) return user
     }catch(err){
         console.log(err);

@@ -1,4 +1,3 @@
-import { Providers } from '@/store/provider'
 import { Karla } from 'next/font/google'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -9,8 +8,10 @@ import './themes.scss'
 import Navbar from "@/components/layout/navbar"
 import Footer from '@/components/layout/footer'
 import AuthContextProvider from '@/context/auth-context'
-import { LandingProvider } from '@/context/landing-context'
 import Message from '@/components/common/message'
+import { AlertProvider } from '@/context/alert-context'
+import { LanguageProvider } from '@/context/lang-context'
+import { Providers } from '@/store/provider'
 
 
 const karla = Karla({
@@ -29,17 +30,18 @@ export default function RootLayout({ children }) {
     <html lang="es" className={karla.className}>
       <body>
         <Providers>
-          <LandingProvider>
-            <AuthContextProvider>
-              <Navbar />
-              <main>
-                {children}
-              </main>
-              <Footer />
-              <Message/>
-            </AuthContextProvider>
-
-          </LandingProvider>
+          <AuthContextProvider>
+            <AlertProvider>
+              <LanguageProvider>
+                <Navbar />
+                <main>
+                  {children}
+                </main>
+                <Footer />
+                <Message />
+              </LanguageProvider>
+            </AlertProvider>
+          </AuthContextProvider>
         </Providers>
       </body>
     </html>
