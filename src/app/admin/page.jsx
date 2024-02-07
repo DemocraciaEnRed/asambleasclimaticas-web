@@ -9,7 +9,7 @@ import axiosServices from "@/utils/axios";
 import ProjectFormComponent from "@/components/pacto/form/projectForm";
 import { useEffect } from "react";
 
-export default function AdminHomePage({params}) {
+export default function ProfileHomePage({params}) {
   // get the user from store
   const { user } = useSelector(state => state.auth)
   // redirect if user is not logged in

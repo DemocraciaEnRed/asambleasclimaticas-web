@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
-import { useRouter, redirect } from "next/navigation"
+import { useRouter, redirect, usePathname } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import Link from 'next/link'
@@ -27,6 +27,18 @@ export default function AdminUserInfoPage({params}) {
   }
 
   const router = useRouter()
+  const pathname = usePathname()
+
+  const isRouteActive = (path, strict = false) => {
+    // check if pathname (string) contains or starts with path (string)
+    if(strict) return pathname === path
+
+    if (pathname.includes(path)) {
+      return true
+    }
+
+    return false
+  }
 
   const userId = params.id
   const [userData, setUserData] = useState(null);
@@ -136,9 +148,9 @@ export default function AdminUserInfoPage({params}) {
       <h1 className="title is-3 mb-5">{userData.name}</h1>
       <div className="tabs is-fullwidth mb-5">
         <ul>
-          <li className="is-active"><a>Perfil & Rol</a></li>
-          {/* <li><a>Cambiar email</a></li>
-          <li><a>Cambiar contraseña</a></li> */}
+          <li className={isRouteActive(`/admin/usuarios/${userId}`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}`}>Información</Link></li>
+          <li className={isRouteActive(`/admin/usuarios/${userId}/password`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}/password`}>Contraseña</Link></li>
+          <li className={isRouteActive(`/admin/usuarios/${userId}/email`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}/email`}>Email</Link></li>
           {/* {
             !userData.isVerified && <li><a>Verificar usuario</a></li>
           }
@@ -148,10 +160,11 @@ export default function AdminUserInfoPage({params}) {
           } */}
         </ul>
       </div>
-
+      <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Información basica del usuario</h3>
+      <p>Puede editar la información básica del usuario aquí.</p>
       <UserInfoForm userInfo={userData} ref={userInfoRef} />
       <div className="buttons is-right mt-4 mb-0">
-        <button className="button is-primary" onClick={saveUserData}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>
+        <button className={`button is-primary ${isUpdating ? 'is-loading' : ''}`} onClick={saveUserData}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>
       </div>
       <hr />
       <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Rol del usuario</h3>

@@ -120,7 +120,7 @@ export default function ProjectFormComponent({project, countries}) {
           </thead>
           <tbody>
             <tr>
-              <td>💬 Cantida de comentarios <u>generales</u> del proyecto</td>
+              <td>💬 Cantidad de comentarios <u>generales</u> del proyecto</td>
               <td>{project.stats.comments}</td>
             </tr>
             <tr>
@@ -157,7 +157,7 @@ export default function ProjectFormComponent({project, countries}) {
           </thead>
           <tbody>
             <tr>
-              <td>Cantida de respuestas en comentarios <u>generales</u> del proyecto</td>
+              <td>Cantidad de respuestas en comentarios <u>generales</u> del proyecto</td>
               <td>{project.stats.commentsReplies}</td>
             </tr>
             <tr>

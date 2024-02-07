@@ -74,9 +74,6 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
 
   return (
     <div className="">
-      <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Información basica del usuario</h3>
-      <p>Puede editar la información básica del usuario aquí.</p>
-
       <div className="my-3">
         <div className="field">
           <label className="label">Bio del usuario</label>
