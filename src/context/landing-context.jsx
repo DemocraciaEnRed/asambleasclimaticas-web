@@ -1,5 +1,4 @@
 'use client'
-import { landingSkip } from '@/store/reducers/config';
 import { redirect, usePathname } from 'next/navigation';
 import { createContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';

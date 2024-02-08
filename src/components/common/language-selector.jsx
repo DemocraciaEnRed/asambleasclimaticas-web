@@ -1,25 +1,25 @@
 'use client'
-import { dispatch } from "@/store"
-import { handleLanguage } from "@/store/reducers/language"
+import { useAuthContext } from "@/context/auth-context"
+import { useLanguage } from "@/context/lang-context"
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
 
-const LanguageSelector = ({color}) => {
-    const { user } = useSelector((state) => state.auth)
-    const {language, switched} = useSelector((state)=>state.language)
+const LanguageSelector = () => {
+    const { user } = useAuthContext()
+
+    const { language, switched, changeLanguage } = useLanguage()
 
     useEffect(()=>{
         if (user) {
-            if (!switched && user.lang !== language) dispatch(handleLanguage(user.lang))
+            if (!switched && user.lang !== language) changeLanguage(user.lang)
         }else{
-            if(!switched) dispatch(handleLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0]))
+            if(!switched) changeLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0])
         }
     },[])
     return (<div className="language-selector p-3">   
         <p className="px-3">Idioma</p>
-        <div className={`language-selector-buttons my-3 border-color-${color}`} > 
-            <button className={`button is-rounded ${language === 'es' ? `is-${color} has-text-white` : `has-text-${color}`}`} onClick={()=>dispatch(handleLanguage('es'))}>Español</button>
-            <button className={`button is-rounded ${language === 'pt' ? `is-${color} has-text-white` : `has-text-${color}`}`} onClick={()=>dispatch(handleLanguage('pt'))}>Portugués</button>
+        <div className={`language-selector-buttons my-3 border-color-pink`} > 
+            <button className={`button is-rounded ${ language === 'es' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={()=>changeLanguage('es')}>Español</button>
+            <button className={`button is-rounded ${ language === 'pt' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={()=>changeLanguage('pt')}>Portugués</button>
         </div>
     </div>)
 }

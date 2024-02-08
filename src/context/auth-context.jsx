@@ -1,59 +1,97 @@
-'use client'
-import axiosServices from '@/utils/axios';
-import { createContext, useContext, useEffect, useState } from 'react';
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
-import { dispatch } from '@/store';
-import { deleteUser, setUser } from '@/store/reducers/auth';
+"use client";
+import {
+    ReactNode,
+    createContext,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
+import Cookies from 'js-cookie'
+import { refreshToken } from "@/utils/post-data";
+import { fetchUserMe } from "@/utils/get-data";
 
-const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const token = getCookie('auth')
-  const [userContext, setUserContext] = useState()
+const AUTH_TOKENS_KEY = "RES_AUTH";
+const AUTH_USER_INFO = "RES_USER"
 
-  useEffect(() => {
-    fetchUserMe()
-    refreshToken()
-  }, [])
+export const AuthContext = createContext({
+    loginContext: (authTokens) => { },
+    logoutContext: () => { },
+    isLoggedIn: false,
+    authTokens: null,
+});
 
-  async function fetchUserMe() {
-    if (token) {
-      try {
-        const response = await axiosServices.get('/users/me')
-        setUserContext(response.data.user)
-        dispatch(setUser(response.data.user))
+export default function AuthContextProvider({ children }) {
+    const authTokensInCookies = Cookies.get(AUTH_TOKENS_KEY);
+    const userInLocalStorage = window.localStorage.getItem(AUTH_USER_INFO);
+    const [user, setUser] = useState(
+        userInLocalStorage && authTokensInCookies === null
+            ? null
+            : JSON.parse(userInLocalStorage))
 
-      } catch (err) {
-        dispatch(deleteUser())
-        deleteCookie('auth')
-        console.log(err);
-      }
+    useEffect(() => {
+        if (authTokensInCookies) {
+            refreshTokenContext()
+            refreshUser()
+        } else {
+            window.localStorage.removeItem(AUTH_USER_INFO);
+            setUser(null)
+
+        }
+    },[])
+
+    const refreshUser = async () => {
+        try {
+            const user = await fetchUserMe()
+            setUser(user)
+        } catch (err) {
+            console.error(err);
+            window.localStorage.removeItem(AUTH_USER_INFO);
+            Cookies.remove(AUTH_TOKENS_KEY);
+            setUser(null)
+        }
+    }
+
+    const refreshTokenContext = async () => {
+        try {
+            const response = await refreshToken()
+            Cookies.set(AUTH_TOKENS_KEY, response.token, { expires: 2})
+        } catch (err) {
+            console.error(err);
+            window.localStorage.removeItem(AUTH_USER_INFO);
+            setUser(null)
+            Cookies.remove(AUTH_TOKENS_KEY);
+        }
 
     }
-  }
 
-  async function refreshToken(){
-    if (token) {
-      try {
-        const response = await axiosServices.post('/auth/refresh-token')
-        setCookie('auth',response.data.token)
-      } catch (err) {
-        deleteCookie('auth')
-        console.log(err);
-      }
 
-    }
-  }
+    const loginContext = useCallback(function (authInfo) {
+        Cookies.set(AUTH_TOKENS_KEY, authInfo.token, { expires: 2});
+        window.localStorage.setItem(AUTH_USER_INFO, JSON.stringify(authInfo.user));
+        setUser(authInfo.user);
+    }, []);
 
-  return (
-    <AuthContext.Provider value={{user:userContext}}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    const logoutContext = useCallback(function () {
+        Cookies.remove(AUTH_TOKENS_KEY);
+        window.localStorage.removeItem(AUTH_USER_INFO);
+        setUser(null);
+    }, []);
 
-const useAuth = () => {
-  return useContext(AuthContext);
-};
+    const value = useMemo(
+        () => ({
+            loginContext,
+            logoutContext,
+            user,
+        }),
+        [loginContext, logoutContext, user]
+    );
 
-export { AuthProvider, useAuth };
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+export function useAuthContext() {
+    return useContext(AuthContext);
+}

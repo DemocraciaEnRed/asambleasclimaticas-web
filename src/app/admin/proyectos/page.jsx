@@ -4,14 +4,14 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Emoji from "@/components/common/emoji";
-import axiosServices from "@/utils/axios";
+import { useAuthContext } from "@/context/auth-context";
+import { adminFetchProjects } from "@/utils/get-data";
 
 export default function AdminProjectPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {
@@ -42,7 +42,7 @@ export default function AdminProjectPage({params}) {
   async function initFetch() {
     try {
       // check if admin is the same as the user
-       if(user.role !== 'admin') {
+      if(user.role !== 'admin') {
         console.log('----- not admin')
         // cannot be here, go to home
         router.push('/')
@@ -50,19 +50,19 @@ export default function AdminProjectPage({params}) {
 
       // fetch
       const promises = [
-        axiosServices.get(`/admin/projects?limit=${limit}`),
+        adminFetchProjects(page, limit),
       ]
+      
 
-      const [projectRes] = await Promise.all(promises)
-
+      const [projectData] = await Promise.all(promises)
       // attach projects to array "projects"
-      const projects = projectRes.data.projects
+      const projects = projectData.projects
       setProjects(projects)
-      setPage(projectRes.data.page)
-      setPages(projectRes.data.pages)
-      setTotal(projectRes.data.total)
-      setNextPage(projectRes.data.nextPage)
-      setPrevPage(projectRes.data.prevPage)
+      setPage(projectData.page)
+      setPages(projectData.pages)
+      setTotal(projectData.total)
+      setNextPage(projectData.nextPage)
+      setPrevPage(projectData.prevPage)
       setIsLoading(false)
 
     } catch (error) {
@@ -75,19 +75,19 @@ export default function AdminProjectPage({params}) {
     setIsLoadingMore(true)
 
     const promises = [
-      axiosServices.get(`/admin/projects?page=${thePage}&limit=${limit}`),
+      adminFetchProjects(thePage, limit),
     ]
 
-    const [projectRes] = await Promise.all(promises)
+    const [projectData] = await Promise.all(promises)
 
     // attach projects to array "projects"
-    const projects = projectRes.data.projects
+    const projects = projectData.projects
     setProjects(projects)
-    setPage(projectRes.data.page)
-    setPages(projectRes.data.pages)
-    setTotal(projectRes.data.total)
-    setNextPage(projectRes.data.nextPage)
-    setPrevPage(projectRes.data.prevPage)
+    setPage(projectData.page)
+    setPages(projectData.pages)
+    setTotal(projectData.total)
+    setNextPage(projectData.nextPage)
+    setPrevPage(projectData.prevPage)
     setIsLoadingMore(false)
     return;
   }

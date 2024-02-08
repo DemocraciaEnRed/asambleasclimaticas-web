@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faHome, faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useAuthContext } from "@/context/auth-context";
 
 export default function SuccessEditProjectForm({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
   const projectId = params.id
 
   // redirect if user is not logged in

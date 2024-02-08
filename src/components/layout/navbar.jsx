@@ -1,39 +1,29 @@
 'use client'
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {  faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
-import Logo from "../common/logo";
-import { handleOverlay } from "@/store/reducers/config";
-import { handleLanguage } from "@/store/reducers/language";
-import { deleteUser, handleToken } from "@/store/reducers/auth";
-import { deleteCookie } from 'cookies-next';
 import Overlay from "../common/overlay";
 import { faInstagram, faSquareFacebook, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
+import { useAuthContext } from "@/context/auth-context";
 
 
 export default function Navbar() {
-    const { user } = useSelector((state) => state.auth)
+    const { user, logoutContext } = useAuthContext()
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
 
     const pathname = usePathname()
-    const dispatch = useDispatch()
 
-    const handleChangeLanguage = (language) => {
-        dispatch(handleLanguage(language))
-    }
 
     const handleOpenMenu = () => {
         if (window.innerWidth < 768) {
             setMenuOpen(!menuOpen)
             setShowOverlay(!showOverlay)
-            /* dispatch(handleOverlay()) */
         }
     }
 
@@ -42,11 +32,8 @@ export default function Navbar() {
         else setNavbarFixed(false)
     }
 
-    const logOut = () => {
-        //dispatch(handleToken(''))
-        deleteCookie('auth')
-        dispatch(deleteUser())
-        window.location.reload(false);
+    const handleLogout = () => {
+        logoutContext()
     }
 
     useEffect(() => {
@@ -121,7 +108,7 @@ export default function Navbar() {
                                             <hr className="dropdown-divider" />
                                         </>
                                     }
-                                    <a className="dropdown-item" onClick={logOut}>
+                                    <a className="dropdown-item" onClick={handleLogout}>
                                         Cerrar sesión
                                     </a>
                                 </div>
@@ -136,12 +123,12 @@ export default function Navbar() {
                 <div className="foot-navbar is-hidden-tablet">
                     <ul className="footer-links">
                         <li>
-                            <Link className="has-text-white is-size-7-touch my-2" href="">
+                            <Link className="has-text-white is-size-7-touch my-2" href="#">
                                 Términos y condiciones
                             </Link>
                         </li>
                         <li>
-                            <Link className="has-text-white is-size-7-touch my-2" href="">
+                            <Link className="has-text-white is-size-7-touch my-2" href="#">
                                 Políticas de privacidad
                             </Link>
                         </li>
@@ -198,7 +185,7 @@ export default function Navbar() {
                                         <hr className="dropdown-divider" />
                                     </>
                                 }
-                                <a className="dropdown-item" onClick={logOut}>
+                                <a className="dropdown-item" onClick={handleLogout}>
                                     Cerrar sesión
                                 </a>
                             </div>
@@ -234,12 +221,12 @@ export default function Navbar() {
             <div className="foot-navbar is-hidden-tablet">
                 <ul className="footer-links">
                     <li>
-                        <Link className="has-text-white is-size-7-touch my-2" href="">
+                        <Link className="has-text-white is-size-7-touch my-2" href="#">
                             Términos y condiciones
                         </Link>
                     </li>
                     <li>
-                        <Link className="has-text-white is-size-7-touch my-2" href="">
+                        <Link className="has-text-white is-size-7-touch my-2" href="#">
                             Políticas de privacidad
                         </Link>
                     </li>

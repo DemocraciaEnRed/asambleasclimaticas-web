@@ -1,13 +1,14 @@
 'use client'
 
-import { setMessage } from "@/store/reducers/alert"
+import { useAlert } from "@/context/alert-context"
 import { useEffect } from "react"
 
 const DisabledDisclaimer = () => {
-
+    const { addAlert,removeAlert } = useAlert()
+    
     const controlNavbar = () => {
-        if (window.scrollY > 300) setMessage({ message: '**Estás visualizando una versión antigua**  \n**Você está visualizando uma versão antiga*', type: 'danger', time: null })
-        else setMessage({ message: '', type: '' })
+        if (window.scrollY > 300) addAlert('**Estás visualizando una versión antigua**  \n**Você está visualizando uma versão antiga*', 'danger', null )
+        else removeAlert()
     }
 
 
