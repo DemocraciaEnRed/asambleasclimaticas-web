@@ -134,6 +134,18 @@ export const adminFetchProjects = async (page, limit) => {
 
 }
 
+export const adminFetchProjectsByAuthor = async (authorId) => {
+    try {
+        let url = `/projects?author=${authorId}`
+        const resp = await axiosServerServices.get(url)
+        console.log(resp);
+        const project = await resp.data
+        return project
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 export const adminFetchUsers = async (page, limit) => {
 
     let url = '/admin/users'
