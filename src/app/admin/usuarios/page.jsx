@@ -4,11 +4,11 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 import Image from 'next/image'
-import axiosServices from "@/utils/axios";
 import { faCheck, faDownload, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { useAuthContext } from "@/context/auth-context";
+import { adminFetchUsers, adminFetchUsersCsv } from "@/utils/get-data";
 
 export default function AdminUsersListPage({params}) {
   // get the user from store
@@ -51,19 +51,19 @@ export default function AdminUsersListPage({params}) {
 
       // fetch
       const promises = [
-        axiosServices.get(`/admin/users?limit=${limit}&page=${page}`),
+        adminFetchUsers(page, limit),
       ]
 
-      const [projectRes] = await Promise.all(promises)
+      const [usersData] = await Promise.all(promises)
 
       // attach projects to array "projects"
-      const users = projectRes.data.users
+      const users = usersData.users
       setUsers(users)
-      setPage(projectRes.data.page)
-      setPages(projectRes.data.pages)
-      setTotal(projectRes.data.total)
-      setNextPage(projectRes.data.nextPage)
-      setPrevPage(projectRes.data.prevPage)
+      setPage(usersData.page)
+      setPages(usersData.pages)
+      setTotal(usersData.total)
+      setNextPage(usersData.nextPage)
+      setPrevPage(usersData.prevPage)
       setIsLoading(false)
 
     } catch (error) {
@@ -75,19 +75,19 @@ export default function AdminUsersListPage({params}) {
   async function fetchPage(thePage) {
     setIsLoadingMore(true)
     const promises = [
-      axiosServices.get(`/admin/users?page=${thePage}&limit=${limit}`),
+      adminFetchUsers(thePage, limit),
     ]
 
-    const [projectRes] = await Promise.all(promises)
+    const [usersData] = await Promise.all(promises)
 
     // attach projects to array "projects"
-    const users = projectRes.data.users
+    const users = usersData.users
     setUsers(users)
-    setPage(projectRes.data.page)
-    setPages(projectRes.data.pages)
-    setTotal(projectRes.data.total)
-    setNextPage(projectRes.data.nextPage)
-    setPrevPage(projectRes.data.prevPage)
+    setPage(usersData.page)
+    setPages(usersData.pages)
+    setTotal(usersData.total)
+    setNextPage(usersData.nextPage)
+    setPrevPage(usersData.prevPage)
     setIsLoadingMore(false)
     return;
   }
@@ -159,7 +159,7 @@ export default function AdminUsersListPage({params}) {
   }
 
   function downloadCSV(){
-    axiosServices.get('/admin/users/csv', {
+    adminFetchUsersCsv('/admin/users/csv', {
       responseType: 'blob'
     })
     .then(res => {

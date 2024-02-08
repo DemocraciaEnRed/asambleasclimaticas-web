@@ -4,11 +4,11 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 import Image from 'next/image'
-import axiosServices from "@/utils/axios";
 import { faCheck, faDownload, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { useAuthContext } from "@/context/auth-context";
+import { adminFetchUserId } from "@/utils/get-data";
 
 export default function AdminUserInfoPage({params}) {
   // get the user from store
@@ -40,13 +40,12 @@ export default function AdminUserInfoPage({params}) {
     try {
       // fetch
       const promises = [
-        axiosServices.get(`/admin/users/${userId}`),
+        adminFetchUserId(userId),
       ]
 
-      const [userRes] = await Promise.all(promises)
+      const [user] = await Promise.all(promises)
 
       // attach projects to array "projects"
-      const user = userRes.data
       setUserData(user)
       setIsLoading(false)
     } catch (err) {

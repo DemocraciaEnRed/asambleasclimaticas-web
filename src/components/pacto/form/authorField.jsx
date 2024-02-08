@@ -2,8 +2,8 @@
 import { useEffect, useState, useMemo, forwardRef, useImperativeHandle } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faArrowRight, faAsterisk, faCaretRight } from "@fortawesome/free-solid-svg-icons"
-import axiosServices from "@/utils/axios"
 import { useAuthContext } from "@/context/auth-context"
+import { adminFetchAuthors } from "@/utils/get-data"
 
 
 const AuthorField = forwardRef(({ author }, ref) => {
@@ -44,7 +44,7 @@ const AuthorField = forwardRef(({ author }, ref) => {
 
   async function fetchAuthors(page = 1, limit = 3) {
     try {
-      const { data } = await axiosServices.get(`/admin/users/authors?page=${page}&limit=${limit}`)
+      const data  = await adminFetchAuthors(page, limit)
       console.log(data)
       setAuthorsList(data.users)
       setTotalPages(data.pages)

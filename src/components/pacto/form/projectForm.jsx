@@ -16,6 +16,8 @@ import ArticleForm from '@/components/pacto/form/articleForm'
 import projectFormUtils from '@/utils/projectForm'
 import AuthorField from './authorField';
 import { useAuthContext } from '@/context/auth-context'
+import { adminFetchAuthors } from '@/utils/get-data'
+
 
 const EditorComp = dynamic(() => import('@/components/common/editor'), { ssr: false })
 
@@ -149,7 +151,7 @@ export default function ProjectFormComponent({project, newVersion}) {
   
   // useEffect(() => {
   //   async function getAuthors() {
-  //     const authors = await axiosServices.get('/admin/users/authors')
+  //     const authors = await adminFetchAuthors()
   //     console.log(authors.data)
   //     return authors.data
   //   }

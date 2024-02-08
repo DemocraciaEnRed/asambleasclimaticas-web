@@ -6,6 +6,7 @@ import Link from "next/link";
 import Pagination from "@/components/common/pagination";
 import { useAuthContext } from "@/context/auth-context";
 import { postComments } from "@/utils/post-data";
+import { fetchGeneralComments } from "@/utils/get-data";
 
 
 export default function Comments({ project, comments }) {
@@ -13,6 +14,7 @@ export default function Comments({ project, comments }) {
     const [textNewComment, setTextNewComment] = useState('')
 
     const { user } = useAuthContext()
+
     const handlesubmit = async (event) => {
         try {
             event.preventDefault()
@@ -27,8 +29,8 @@ export default function Comments({ project, comments }) {
 
     const fetchComments = async (page) => {
         try {
-            const resp = await axiosServices.get(`/projects/${project._id}/comments${page ? '?page=' + page : ''}`)
-            const comments = await resp.data
+            const commentList = await fetchGeneralComments(`/projects/${project._id}/comments${page ? '?page=' + page : ''}`)
+            const comments = await commentList
             setCommensList(comments.comments)
         } catch (err) {
             console.log(err);

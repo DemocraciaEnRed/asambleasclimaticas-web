@@ -4,15 +4,15 @@ import ArticuladoBody from "@/components/pacto/body/articulado"
 import DisabledDisclaimer from "@/components/pacto/body/pacto/disclaimer"
 import HeaderPropuesta from "@/components/pacto/header"
 import BreadcrumbNav from "@/components/pacto/header/breadcrumb"
-import { fetchProjectId, fetchProjectArticle, fetchProjectComment, fetchProjectVersion } from "@/utils/get-data"
+import { fetchProjectId, fetchArticleProjectId, fetchCommentProjectId, fetchProjectVersion } from "@/utils/get-data"
 import { Suspense } from "react"
 
 
 export default async function PropuestaPactoComponent({ params: { id }, searchParams: { version } }) {
     const [project, articles, comments] = await Promise.all([
         fetchProjectId(id, version),
-        fetchProjectArticle(id, version),
-        fetchProjectComment(id, version)
+        fetchArticleProjectId(id, version),
+        fetchCommentProjectId(id, version)
     ])
 
     return <div className="pacto-wrapper">
