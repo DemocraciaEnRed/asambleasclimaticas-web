@@ -8,8 +8,8 @@ import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-ico
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { useSearchParams,useRouter } from "next/navigation"
 import { useAuthContext } from "@/context/auth-context"
-import { login } from "@/utils/post-data"
 import { useAlert } from "@/context/alert-context"
+import axiosServices from "@/utils/axios"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
@@ -31,19 +31,18 @@ export default function LoginForm(props) {
             password,
         }
         try {
-            const response = await login(JSON.stringify(body))
+            const response = await axiosServices.post('/auth/login', body)
             if (response.status === 200) {
                 if (response.data.token) {
-                    var expires = new Date();
                     loginContext(response.data)
                 }
                 if(next) return router.push(next)                
                 router.push('/')
             }
         } catch (err) {
-            const error= JSON.parse(err.message)
-            addAlert(error.data.message,'danger')
-            setErrors(error.data.errors)
+            console.error(err);
+            addAlert(err.response.data.message,'danger')
+            setErrors(err.response.data.errors)
         }
     }
 

@@ -4,8 +4,8 @@ import { redirect, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import Emoji from "../common/emoji"
 import { fetchCountries } from "@/utils/get-data"
-import { register } from "@/utils/post-data"
 import { useAlert } from "@/context/alert-context"
+import axiosServices from "@/utils/axios"
 
 export default function RegisterForm() {
     const [countryList, setCountryList] = useState([])
@@ -58,12 +58,11 @@ export default function RegisterForm() {
                 rePassword
             }
             try {
-                const response = await register(JSON.stringify(body))
+                const response = await axiosServices.post('/auth/register', body)
                 if (response.status === 200) return router.push(`/auth/verify?email=${email}`)
             } catch (err) {
-                const error= JSON.parse(err.message)
-                addAlert(error.data.message, 'danger')
-                setErrors(error.data.errors)
+                addAlert(err.response.data.message, 'danger')
+                setErrors(err.response.data.errors)
             }
         } else {
             const tycError = { field: 'terms-and-cond', message: '*necesitas aceptar los terminos y condiciones' }

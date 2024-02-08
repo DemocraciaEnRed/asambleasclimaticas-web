@@ -47,10 +47,10 @@ export default function AuthContextProvider({ children }) {
             const user = await fetchUserMe()
             setUser(user)
         } catch (err) {
-            console.log(err);
+            console.error(err);
             window.localStorage.removeItem(AUTH_USER_INFO);
-            setUser(null)
             Cookies.remove(AUTH_TOKENS_KEY);
+            setUser(null)
         }
     }
 
@@ -59,7 +59,7 @@ export default function AuthContextProvider({ children }) {
             const response = await refreshToken()
             Cookies.set(AUTH_TOKENS_KEY, response.token, { expires: 2})
         } catch (err) {
-            console.log(err);
+            console.error(err);
             window.localStorage.removeItem(AUTH_USER_INFO);
             setUser(null)
             Cookies.remove(AUTH_TOKENS_KEY);

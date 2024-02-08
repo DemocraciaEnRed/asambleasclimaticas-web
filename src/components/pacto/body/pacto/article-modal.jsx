@@ -26,7 +26,7 @@ const ArticleModal = ({ article, active, closeCommentModal, liked, disliked, han
             const resp = await fetchGeneralComments(`/projects/${project._id}/articles/${article._id}/comments${page ? '?page=' + page : ''}`)
             setComments(resp);
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 

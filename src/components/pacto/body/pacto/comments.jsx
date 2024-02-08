@@ -22,7 +22,7 @@ export default function Comments({ project, comments }) {
             fetchComments()
             setTextNewComment('')
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
@@ -32,7 +32,7 @@ export default function Comments({ project, comments }) {
             const comments = await commentList
             setCommensList(comments.comments)
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
 
