@@ -1,5 +1,4 @@
 'use client'
-import axiosServices from "@/utils/axios";
 import { useState } from "react";
 import Comment from "./comment";
 import Link from "next/link";

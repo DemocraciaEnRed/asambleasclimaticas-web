@@ -25,7 +25,7 @@ export const login = async (body) => {
         }
     } catch (err) {
         console.log(err);
-        let error={
+        let error = {
             status: err.response.status,
             data: err.response.data
         }
@@ -41,7 +41,7 @@ export const register = async (body) => {
             data: resp.data
         }
     } catch (err) {
-        let error={
+        let error = {
             status: err.response.status,
             data: err.response.data
         }
