@@ -23,14 +23,16 @@ export default async function HojaBody({ project }) {
                     </div>
                     <div className=" column is-10">
 
-                        <div className="py-2 px-1 has-background-cream-light mb-3 is-size-7-touch">
-                            <p className="pt-1 is-hidden-desktop pb-3">{formatDate(event.date, '-')}</p>
-                            <h1 className=" is-size-5 mb-0">{event.title_es}</h1>
-                            <span className="has-text-weight-light is-italic is-size-6"> * {event.title_pt}</span>
-                            <div className="my-5">
+                        <div className="has-background-cream-light mb-3 is-size-7-touch">
+                            <div className="py-4 px-5">
+                                <p className="pt-1 is-hidden-desktop pb-3">{formatDate(event.date, '-')}</p>
+                                <h1 className=" is-size-5 mb-0">{event.title_es}</h1>
+                                <span className="has-text-weight-light is-italic is-size-6"> * {event.title_pt}</span>
+                                <div className="my-5">
 
-                                <p className="mb-2">{event.text_es}</p>
-                                <p className="has-text-weight-light is-italic is-size-6"> * {event.text_pt}</p>
+                                    <p className="mb-2">{event.text_es}</p>
+                                    <p className="has-text-weight-light is-italic is-size-6"> * {event.text_pt}</p>
+                                </div>
                             </div>
 
                         </div>
