@@ -66,7 +66,10 @@ export default function LoginForm(props) {
                             </div>
                         </div>
                         <div className="field">
+                            <div className="is-flex is-justify-content-space-between">
                             <label className="label has-text-weight-normal">Contraseña</label>
+                                <Link href="/auth/restore-password" className="has-text-success">¿Olvidaste tu contraseña?</Link >
+                            </div>
                             <div className="control has-icons-left has-icons-right">
                                 <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
                                 {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
