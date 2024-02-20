@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
-import { useRouter, redirect } from "next/navigation"
+import { useRouter, redirect, usePathname } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 import { useAuthContext } from "@/context/auth-context";
@@ -9,13 +9,13 @@ import { adminFetchProjectsByAuthor, adminFetchUserId } from "@/utils/get-data";
 import axiosServices from "@/utils/axios";
 import { faAngleDoubleRight, faExclamationTriangle, faPenClip, faShield, faSync, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import UserInfoForm from "@/components/admin/userInfoForm";
+import UserInfoForm from "@/components/user/userInfoForm";
 import { useAlert } from "@/context/alert-context";
 
 
 export default function AdminUserInfoPage({params}) {
   // get the user from store
-  const { user } = useAuthContext()
+  const { user, refreshUser } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {
@@ -28,6 +28,18 @@ export default function AdminUserInfoPage({params}) {
   }
 
   const router = useRouter()
+  const pathname = usePathname()
+
+  const isRouteActive = (path, strict = false) => {
+    // check if pathname (string) contains or starts with path (string)
+    if(strict) return pathname === path
+
+    if (pathname.includes(path)) {
+      return true
+    }
+
+    return false
+  }
 
   const userId = params.id
   const [userData, setUserData] = useState(null);
@@ -83,8 +95,10 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}/role`, {role})
       fetchData()
+      if(user._id === userId) {
+        refreshUser()
+      }
       addAlert('Rol de usuario actualizado','success')
-
     } catch (error) {
       console.error(error)
       addAlert('Ha ocurrido un error al actualizar el rol del usuario', 'danger')
@@ -98,6 +112,10 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}`, userInfo)
       fetchData()
+      // refresh user if it's the same user
+      if(user._id === userId) {
+        refreshUser()
+      }
       addAlert('Datos de usuario actualizados','success')
 
     } catch (error) {
@@ -127,9 +145,9 @@ export default function AdminUserInfoPage({params}) {
       <h1 className="title is-3 mb-5">{userData.name}</h1>
       <div className="tabs is-fullwidth mb-5">
         <ul>
-          <li className="is-active"><a>Perfil & Rol</a></li>
-          {/* <li><a>Cambiar email</a></li>
-          <li><a>Cambiar contraseña</a></li> */}
+          <li className={isRouteActive(`/admin/usuarios/${userId}`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}`}>Información</Link></li>
+          <li className={isRouteActive(`/admin/usuarios/${userId}/password`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}/password`}>Contraseña</Link></li>
+          <li className={isRouteActive(`/admin/usuarios/${userId}/email`, true) ? 'is-active' : ''}><Link href={`/admin/usuarios/${userId}/email`}>Email</Link></li>
           {/* {
             !userData.isVerified && <li><a>Verificar usuario</a></li>
           }
@@ -139,10 +157,11 @@ export default function AdminUserInfoPage({params}) {
           } */}
         </ul>
       </div>
-
+      <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Información basica del usuario</h3>
+      <p>Puede editar la información básica del usuario aquí.</p>
       <UserInfoForm userInfo={userData} ref={userInfoRef} />
       <div className="buttons is-right mt-4 mb-0">
-        <button className="button is-primary" onClick={saveUserData}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>
+        <button className={`button is-primary ${isUpdating ? 'is-loading' : ''}`} onClick={saveUserData}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>
       </div>
       <hr />
       <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Rol del usuario</h3>

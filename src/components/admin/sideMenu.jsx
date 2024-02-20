@@ -8,21 +8,29 @@ export default function AdminSideMenu({ children }) {
 
   const pathname = usePathname()
 
-  const isRouteActive = (path) => pathname === path;
-  console.log('router', pathname)
+  const isRouteActive = (path, strict = false) => {
+    // check if pathname (string) contains or starts with path (string)
+    if(strict) return pathname === path
+
+    if (pathname.includes(path)) {
+      return true
+    }
+
+    return false
+  }
 
   return (
     <aside className="menu">
       <ul className="menu-list">
-        <li><Link href="/admin" className={isRouteActive('/admin') ? 'is-active' : ''}>Inicio</Link></li>
-        <li><Link href="/admin/estadisticas" className={isRouteActive('/admin/estadisticas') ? 'is-active' : ''}>Estadisticas</Link></li>
+        <li><Link href="/admin" className={isRouteActive('/admin', true) ? 'is-active' : ''}>Inicio</Link></li>
+        <li><Link href="/admin/estadisticas" className={isRouteActive('/admin/estadisticas', true) ? 'is-active' : ''}>Estadisticas</Link></li>
       </ul>
       <p className="menu-label has-text-black has-text-weight-bold">
         Proyectos
       </p>
       <ul className="menu-list">
         <li>
-          <Link href="/admin/proyectos" className={isRouteActive('/admin/proyectos') ? 'is-active' : ''}>Listar</Link>
+          <Link href="/admin/proyectos" className={isRouteActive('/admin/proyectos', true) ? 'is-active' : ''}>Listar</Link>
         </li>
       </ul>
       <p className="menu-label has-text-black has-text-weight-bold">

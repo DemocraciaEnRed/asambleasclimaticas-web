@@ -9,7 +9,7 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
 
   const [userData, setUserData] = useState(userInfo);
   const [countries, setCountries] = useState([]);
-  const [isLoadingCountries, setIsLoadingCountries] = useState(false);
+  const [isLoadingCountries, setIsLoadingCountries] = useState(true);
   const [countriesFetchFailed, setCountriesFetchFailed] = useState(false);
   const [languages, setLanguages] = useState({'es': 'Español', 'pt': 'Português'});
 
@@ -45,8 +45,11 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
     }
   }
 
-  if(!userInfo) {
-    return <div>Cargando...</div>
+  if(isLoadingCountries) {
+    return <div className="has-text-centered">
+    <p>Cargando...</p>
+    <progress className="progress is-small is-primary mt-3" max="100">15%</progress>
+  </div>
   }
 
   // Define handlers for inputs
@@ -73,9 +76,6 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
 
   return (
     <div className="">
-      <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Información basica del usuario</h3>
-      <p>Puede editar la información básica del usuario aquí.</p>
-
       <div className="my-3">
         <div className="field">
           <label className="label">Bio del usuario</label>
@@ -90,7 +90,7 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
             <label className="label">Nombre completo</label>
             <div className="control">
               <input className={`input`} type="text" value={userData.name} onChange={handleNameChange} />
-              <span className="help">Nombre y apellido. De ser una organizacion, nombre de la misma.</span>
+              <span className="help">Nombre y apellido. De ser una organizacion, use el nombre de la misma.</span>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
             <label className="label">Correo electrónico</label>
             <div className="control">
               <input className={`input is-static`} type="text" defaultValue={userData.email} />
-              <span className="help">Para modificar el correo, ir a la opcion especifica</span>
+              <span className="help">Para modificar el correo, seleccione la sección especifica en el menú</span>
             </div>
           </div>
         </div>

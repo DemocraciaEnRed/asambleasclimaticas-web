@@ -3,7 +3,8 @@ import { useState, useEffect } from "react"
 import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faChartSimple, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Emoji from "@/components/common/emoji";
 import { useAuthContext } from "@/context/auth-context";
@@ -180,6 +181,9 @@ export default function AdminProjectPage({params}) {
                     </Link>
                     <Link className="button is-white is-small px-2" href={`/pacto/${project._id}/editar`}>
                       <FontAwesomeIcon icon={faPencil} size="lg" />
+                    </Link>
+                    <Link className="button is-white is-small px-2" href={`/pacto/${project._id}/estadisticas`}>
+                      <FontAwesomeIcon icon={faChartSimple} size="lg" />
                     </Link>
                     </div>
                   </td>

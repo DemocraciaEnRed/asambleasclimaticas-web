@@ -93,8 +93,12 @@ export default function Navbar() {
                             </div>
                             <div className="dropdown-menu" id="dropdown-menu4" role="menu">
                                 <div className="dropdown-content">
+                                    <div className="dropdown-item">
+                                        <Link href="/perfil"> Mi perfil</Link>
+                                    </div>
                                     {user.role === 'admin' &&
                                         <>
+                                            <hr className="dropdown-divider" />
                                             <div className="dropdown-item">
                                                 <Link href="/admin"> Panel de administración</Link>
                                             </div>
