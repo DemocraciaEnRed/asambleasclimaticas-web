@@ -1,38 +1,29 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
-import { useRouter, redirect, usePathname } from "next/navigation"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
-import Link from 'next/link'
-import Image from 'next/image'
+import { redirect } from "next/navigation"
 import axiosServices from "@/utils/axios";
-import { faAngleDoubleRight, faCheck, faDownload, faExclamationTriangle, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
-import Emoji from "@/components/common/emoji";
-import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import { setMessage } from "@/store/reducers/alert"
-import UserInfoForm from "@/components/admin/userInfoForm";
-import { setUser } from "@/store/reducers/auth";
+import { useAlert } from "@/context/alert-context";
+import { useAuthContext } from "@/context/auth-context";
 
 
 export default function UserPasswordPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
+  const { user } = useAuthContext()
+  const { addAlert } = useAlert()
 
-  const userId = user.id
-  const [userData, setUserData] = useState(null)
+  
+  const [userData, setUserData] = useState(user)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [isUpdating, setIsUpdating] = useState(false)
-  const userInfoRef = useRef(null)
+  const [isLoading, setIsLoading] = useState(false)
+  
+  // redirect if user is not logged in
+  if (!userData) {
+    redirect('/auth/login')
+  }
 
   useEffect(() => {
-    fetchData()
   }, [])
 
   const handleCurrentPasswordChange = (e) => {
@@ -47,77 +38,70 @@ export default function UserPasswordPage({params}) {
     setConfirmPassword(e.target.value)
   }
 
-  async function fetchData() {
-    try {
-      const userRes = await axiosServices.get(`/users/me`)
-      const user = userRes.data.user
-      setUserData(user)
-      setIsLoading(false)
-    } catch (err) {
-      setMessage('Error al cargar usuario', 'error')
-    }
-  }
-  
-
   function submit() {
     if (newPassword !== confirmPassword) {
-      setMessage('Las contraseñas no coinciden', 'error')
+      addAlert('Las contraseñas no coinciden', 'error')
       return
     }
 
-    setIsUpdating(true)
+    setIsLoading(true)
 
     axiosServices.put(`/users/me/password`, {
       currentPassword: currentPassword,
       newPassword: newPassword,
     })
     .then(() => {
-      setMessage('Contraseña actualizada', 'success')
+      addAlert('Contraseña actualizada', 'success')
       setNewPassword('')
       setConfirmPassword('')
       setCurrentPassword('')
-      setIsUpdating(false)
+      setIsLoading(false)
     })
     .catch(err => {
-      setMessage('Error al actualizar contraseña', 'error')
-      setIsUpdating(false)
+      addAlert('Error al actualizar contraseña', 'error')
+      setIsLoading(false)
     })
   }
 
-
-
-  if(isLoading) {
-    return <div className="has-text-centered">
-      <p>Cargando...</p>
-      <progress className="progress is-small is-primary mt-3" max="100">15%</progress>
-    </div>
-  }
+  const passwordsMatch = newPassword === confirmPassword
+  const passwordLength = newPassword.length >= 6
 
   return (
     <>
       <h1 className="subtitle is-6 has-text-grey">Mi perfil / Cambiar contraseña</h1>
       <h1 className="title is-3 mb-5">{userData.name}</h1>
       <hr />
-      <div className="field">
-        <label className="label">Contraseña actual</label>
-        <div className="control">
-          <input className="input" type="password" value={currentPassword} onChange={handleCurrentPasswordChange} disabled={isUpdating} min={6}/>
+      <div className="columns">
+        <div className="column is-8">
+
+          <div className="field">
+            <label className="label">Contraseña actual</label>
+            <div className="control">
+              <input className="input" type="password" value={currentPassword} onChange={handleCurrentPasswordChange} disabled={isLoading} min={6}/>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Nueva contraseña</label>
+            <div className="control">
+              <input className="input" type="password" value={newPassword} onChange={handleNewPasswordChange} disabled={isLoading} min={6}/>
+            </div>
+            {
+              newPassword && !passwordLength && <p className="help is-danger">La contraseña debe tener al menos 6 caracteres</p>
+            }
+          </div>
+          <div className="field">
+            <label className="label">Confirmar contraseña</label>
+            <div className="control">
+              <input className="input" type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} disabled={isLoading} min={6}/>
+            </div>
+            {
+              newPassword && confirmPassword && !passwordsMatch && <p className="help is-danger">Las contraseñas no coinciden</p>
+            }
+          </div>
+          <div className="buttons">
+            <button className={`button is-primary ${isLoading ? 'is-loading' : null}`} onClick={submit}>Cambiar contraseña</button>
+          </div>
         </div>
-      </div>
-      <div className="field">
-        <label className="label">Nueva contraseña</label>
-        <div className="control">
-          <input className="input" type="password" value={newPassword} onChange={handleNewPasswordChange} disabled={isUpdating} min={6}/>
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">Confirmar contraseña</label>
-        <div className="control">
-          <input className="input" type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} disabled={isUpdating} min={6}/>
-        </div>
-      </div>
-      <div className="buttons is-right">
-        <button className={`button is-primary ${isUpdating ? 'is-loading' : null}`} onClick={submit}>Cambiar contraseña</button>
       </div>
     </>
   )

@@ -19,6 +19,7 @@ const AUTH_USER_INFO = "RES_USER"
 export const AuthContext = createContext({
     loginContext: (authTokens) => { },
     logoutContext: () => { },
+    refreshUser: () => { },
     isLoggedIn: false,
     authTokens: null,
 });
@@ -42,7 +43,7 @@ export default function AuthContextProvider({ children }) {
         }
     },[])
 
-    const refreshUser = async () => {
+    const refreshUser = useCallback(async () => {
         try {
             const user = await fetchUserMe()
             setUser(user)
@@ -52,7 +53,7 @@ export default function AuthContextProvider({ children }) {
             Cookies.remove(AUTH_TOKENS_KEY);
             setUser(null)
         }
-    }
+    }, [])
 
     const refreshTokenContext = async () => {
         try {
@@ -84,9 +85,10 @@ export default function AuthContextProvider({ children }) {
         () => ({
             loginContext,
             logoutContext,
+            refreshUser,
             user,
         }),
-        [loginContext, logoutContext, user]
+        [loginContext, logoutContext, refreshUser, user]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

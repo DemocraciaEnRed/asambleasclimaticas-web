@@ -2,21 +2,22 @@
 import { useState, useEffect, useRef } from "react"
 import { useRouter, redirect, usePathname } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Image from 'next/image'
 import axiosServices from "@/utils/axios";
 import { faAngleDoubleRight, faCheck, faDownload, faExclamationTriangle, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import { setMessage } from "@/store/reducers/alert"
-import UserInfoForm from "@/components/admin/userInfoForm";
-import { setUser } from "@/store/reducers/auth";
+import { useAlert } from "@/context/alert-context";
+import UserInfoForm from "@/components/user/userInfoForm";
+import { useAuthContext } from "@/context/auth-context";
 
 
 export default function UserProfilePage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user, refreshUser } = useAuthContext()
+  const { addAlert } = useAlert()
+
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
@@ -62,16 +63,13 @@ export default function UserProfilePage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/users/me`, userInfo)
       fetchData()
-      // TODO Tina no puedo hacer que esto actualice el storage.
-      setUser(response.data.user)
-      setMessage({
-        message: 'Datos de usuario actualizados', 
-        type:'success'
-      })
+      setUserData(response.data.user)
+      refreshUser()
+      addAlert('Datos de usuario actualizados', 'success')
 
     } catch (error) {
       console.error(error)
-      setMessage({
+      addAlert({
         message: 'Ha ocurrido un error al actualizar los datos del usuario', 
         type:'danger'
       })
@@ -91,6 +89,11 @@ export default function UserProfilePage({params}) {
         <h1 className="subtitle is-6 has-text-grey">Mi perfil</h1>
         <h1 className="title is-3 mb-5">{userData.name}</h1>
         <hr />
+        <div className="content">
+          <p>
+            Aquí puedes actualizar sus datos y completar su perfil.
+          </p>
+        </div>
         <UserInfoForm userInfo={userData} ref={userInfoRef} />
         <div className="buttons is-right mt-4 mb-0">
           <button className={`button is-primary ${isUpdating ? 'is-loading' : ''}`} onClick={saveUserData}><FontAwesomeIcon icon={faSave} />&nbsp;Guardar</button>

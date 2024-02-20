@@ -9,13 +9,13 @@ import { adminFetchProjectsByAuthor, adminFetchUserId } from "@/utils/get-data";
 import axiosServices from "@/utils/axios";
 import { faAngleDoubleRight, faExclamationTriangle, faPenClip, faShield, faSync, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import UserInfoForm from "@/components/admin/userInfoForm";
+import UserInfoForm from "@/components/user/userInfoForm";
 import { useAlert } from "@/context/alert-context";
 
 
 export default function AdminUserInfoPage({params}) {
   // get the user from store
-  const { user } = useAuthContext()
+  const { user, refreshUser } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {
@@ -95,8 +95,10 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}/role`, {role})
       fetchData()
+      if(user._id === userId) {
+        refreshUser()
+      }
       addAlert('Rol de usuario actualizado','success')
-
     } catch (error) {
       console.error(error)
       addAlert('Ha ocurrido un error al actualizar el rol del usuario', 'danger')
@@ -110,6 +112,10 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}`, userInfo)
       fetchData()
+      // refresh user if it's the same user
+      if(user._id === userId) {
+        refreshUser()
+      }
       addAlert('Datos de usuario actualizados','success')
 
     } catch (error) {

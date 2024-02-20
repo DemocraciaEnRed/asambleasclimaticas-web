@@ -2,34 +2,35 @@
 import { useState, useEffect, useRef } from "react"
 import { useRouter, redirect, usePathname } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
 import Image from 'next/image'
 import axiosServices from "@/utils/axios";
 import { faAngleDoubleRight, faCheck, faDownload, faExclamationTriangle, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import { setMessage } from "@/store/reducers/alert"
+import { useAuthContext } from "@/context/auth-context";
+import { useAlert } from "@/context/alert-context";
 
 export default function AdminStatsPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
-
+  const { user } = useAuthContext()
+  const { addAlert } = useAlert()
+  
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
   }
-
+  
   // redirect if user is not admin or author
   if (user.role !== 'admin') {
     redirect('/')
   }
-
+  
   // const userId = params.id
   const pathname = usePathname()
   const [statsData, setStatsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
-
+  
   useEffect(() => {
     fetchData()
   }
@@ -52,7 +53,7 @@ export default function AdminStatsPage({params}) {
       setStatsData(stats.data)
       setIsLoading(false)
     } catch (err) {
-      setMessage('Error al cargar estadisticas', 'error')
+      addAlert('Error al cargar estadisticas', 'error')
     }
   }
     

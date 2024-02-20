@@ -9,12 +9,14 @@ import axiosServices from "@/utils/axios";
 import { faAngleDoubleRight, faCheck, faDownload, faExclamationTriangle, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import { setMessage } from "@/store/reducers/alert"
-import UserInfoForm from "@/components/admin/userInfoForm";
+import { useAlert } from "@/context/alert-context";
+import UserInfoForm from "@/components/user/userInfoForm";
+import { useAuthContext } from "@/context/auth-context";
 
 export default function AdminUserInfoPasswordPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user, refreshUser } = useAuthContext()
+  const { addAlert } = useAlert()
 
   // redirect if user is not logged in
   if (!user) {
@@ -57,7 +59,7 @@ export default function AdminUserInfoPasswordPage({params}) {
       setUserData(user)
       setIsLoading(false)
     } catch (err) {
-      setMessage('Error al cargar usuario', 'error')
+      addAlert('Error al cargar usuario', 'error')
     }
   }
   
@@ -66,13 +68,17 @@ export default function AdminUserInfoPasswordPage({params}) {
     setIsUpdating(true)
     axiosServices.put(`/admin/users/${userId}/email`, {email: newEmail, forceVerified})
     .then(res => {
-      setMessage('Email actualizado', 'success')
+      addAlert('Email actualizado', 'success')
       setNewEmail('')
       fetchData()
+      // refresh user if it's the same user
+      if(user._id === userId) {
+        refreshUser()
+      }
       setIsUpdating(false)
     })
     .catch(err => {
-      setMessage('Error al actualizar email', 'error')
+      addAlert('Error al actualizar email', 'error')
       setIsUpdating(false)
     })
   }
