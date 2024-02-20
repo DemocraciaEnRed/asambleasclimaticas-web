@@ -1,8 +1,8 @@
 import { formatDate } from "@/utils/format"
-import { fetchProjectEvents } from "@/utils/get-data"
+import { fetchEventsProjectId } from "@/utils/get-data"
 
 export default async function HojaBody({ project }) {
-    const events = await fetchProjectEvents(project._id)
+    const events = await fetchEventsProjectId(project._id)
     return <>
         <div className="hoja-de-ruta-wrapper">
             <div className="my-4">

@@ -4,10 +4,10 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import axiosServices from "@/utils/axios";
 import ProjectStats from "@/components/pacto/stats/projectStats";
 import { useEffect } from "react";
+import { useAuthContext } from "@/context/auth-context";
+import { fetchArticleProjectId, fetchCountries, fetchProjectId, fetchStatsProjectId } from "@/utils/get-data";
 
 
 
@@ -15,7 +15,7 @@ export default function EditProjectForm({params}) {
   const router = useRouter()
   const projectId = params.id
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
   // redirect if user is not logged in
   if (!user) {
     redirect('/auth/login')
@@ -33,16 +33,13 @@ export default function EditProjectForm({params}) {
     try {
       console.log(projectId)
       const promises = [
-        axiosServices.get(`/projects/${projectId}`),
-        axiosServices.get(`/projects/${projectId}/articles`),
-        axiosServices.get(`/projects/${projectId}/stats`),
-        axiosServices.get(`/misc/countries`)
+        fetchProjectId(projectId),
+        fetchArticleProjectId(projectId),
+        fetchStatsProjectId(projectId),
+        fetchCountries()
       ]
-      const [projectRes, projectArticlesRes, projectCurrentStatsRes, countriesRes] = await Promise.all(promises)
-      const projectData = projectRes.data
-      const articlesData = projectArticlesRes.data
-      const projectCurrentStatsData = projectCurrentStatsRes.data
-      const countriesData = countriesRes.data
+      const [projectData, articlesData, projectCurrentStatsData, countriesData] = await Promise.all(promises)
+
       // check if author is the same as the user
       console.log('user', user._id)
       console.log('project', projectData.author._id)

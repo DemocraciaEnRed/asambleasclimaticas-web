@@ -2,19 +2,20 @@
 import { useState, useEffect, useRef } from "react"
 import { useRouter, redirect, usePathname } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
 import Link from 'next/link'
-import Image from 'next/image'
+import { useAuthContext } from "@/context/auth-context";
+import { adminFetchProjectsByAuthor, adminFetchUserId } from "@/utils/get-data";
+
 import axiosServices from "@/utils/axios";
-import { faAngleDoubleRight, faCheck, faDownload, faExclamationTriangle, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
-import Emoji from "@/components/common/emoji";
+import { faAngleDoubleRight, faExclamationTriangle, faPenClip, faShield, faSync, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle, faSave, faTimesCircle, faUser } from "@fortawesome/free-regular-svg-icons";
-import { setMessage } from "@/store/reducers/alert"
 import UserInfoForm from "@/components/admin/userInfoForm";
+import { useAlert } from "@/context/alert-context";
+
 
 export default function AdminUserInfoPage({params}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
 
   // redirect if user is not logged in
   if (!user) {
@@ -48,6 +49,8 @@ export default function AdminUserInfoPage({params}) {
   const [isUpdating, setIsUpdating] = useState(false)
   const userInfoRef = useRef(null)
 
+  const{addAlert} = useAlert()
+
   useEffect(() => {
     fetchData()
   }, [])
@@ -56,15 +59,15 @@ export default function AdminUserInfoPage({params}) {
     try {
       // fetch
       const promises = [
-        axiosServices.get(`/admin/users/${userId}`),
-        axiosServices.get(`/projects?author=${userId}`)
+        adminFetchUserId(userId),
+        adminFetchProjectsByAuthor(userId)
       ]
 
-      const [userRes, projectRes] = await Promise.all(promises)
+      const [user, projects] = await Promise.all(promises)
+      const projectsTotal = projects.total
 
       // attach projects to array "projects"
-      const user = userRes.data
-      const projectsTotal = projectRes.data.total
+
       setUserData(user)
       setProjectsTotal(projectsTotal)
       setIsLoading(false)
@@ -92,17 +95,11 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}/role`, {role})
       fetchData()
-      setMessage({
-        message: 'Rol de usuario actualizado', 
-        type:'success'
-      })
+      addAlert('Rol de usuario actualizado','success')
 
     } catch (error) {
       console.error(error)
-      setMessage({
-        message: 'Ha ocurrido un error al actualizar el rol del usuario', 
-        type:'danger'
-      })
+      addAlert('Ha ocurrido un error al actualizar el rol del usuario', 'danger')
     }
   }
 
@@ -113,17 +110,11 @@ export default function AdminUserInfoPage({params}) {
       setIsUpdating(true)
       const response = await axiosServices.put(`/admin/users/${userId}`, userInfo)
       fetchData()
-      setMessage({
-        message: 'Datos de usuario actualizados', 
-        type:'success'
-      })
+      addAlert('Datos de usuario actualizados','success')
 
     } catch (error) {
       console.error(error)
-      setMessage({
-        message: 'Ha ocurrido un error al actualizar los datos del usuario', 
-        type:'danger'
-      })
+      addAlert('Ha ocurrido un error al actualizar los datos del usuario', 'danger')
     }
   }
 

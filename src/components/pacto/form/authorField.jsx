@@ -1,10 +1,9 @@
 "use client"
 import { useEffect, useState, useMemo, forwardRef, useImperativeHandle } from "react"
-import { useRouter } from "next/router"
-import { useSelector } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft, faArrowRight, faAsterisk, faCaretRight } from "@fortawesome/free-solid-svg-icons"
-import axiosServices from "@/utils/axios"
+import { useAuthContext } from "@/context/auth-context"
+import { adminFetchAuthors } from "@/utils/get-data"
 
 
 const AuthorField = forwardRef(({ author }, ref) => {
@@ -36,7 +35,7 @@ const AuthorField = forwardRef(({ author }, ref) => {
     }
   }));
 
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
 
   const authorValue = useMemo(() => {
     if (selectedAuthor == null) return `${user.country && user.country.emoji } ${user.name}`
@@ -45,7 +44,7 @@ const AuthorField = forwardRef(({ author }, ref) => {
 
   async function fetchAuthors(page = 1, limit = 3) {
     try {
-      const { data } = await axiosServices.get(`/admin/users/authors?page=${page}&limit=${limit}`)
+      const data  = await adminFetchAuthors(page, limit)
       console.log(data)
       setAuthorsList(data.users)
       setTotalPages(data.pages)

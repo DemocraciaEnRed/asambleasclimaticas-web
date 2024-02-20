@@ -1,13 +1,14 @@
 import { Swiper as SwiperComponent } from 'swiper/react';
 
 import { useEffect, useState } from 'react';
-import axiosServices from '@/utils/axios';
 import Link from 'next/link';
 import Comment from '../pacto/body/pacto/comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { postComments } from '@/utils/post-data';
 import Pagination from './pagination';
+import Emoji from './emoji';
+import { fetchGeneralComments } from '@/utils/get-data';
 
 export default function RepliesModal({ comment, commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
@@ -20,13 +21,9 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
     }, [])
 
     const fetchComents = async (page) => {
-        try {
-            const resp = await axiosServices.get(`${commentUrl}${page ? '?page=' + page : ''}`)
-            setComments(resp.data);
+        const resp = await fetchGeneralComments(`${commentUrl}${page ? '?page=' + page : ''}`)
+        setComments(resp);
 
-        } catch (err) {
-            console.log(err);
-        }
     }
 
     const handlesubmit = async (event) => {
@@ -65,7 +62,7 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
                                         <div className='avatar' />
                                     </div>
                                     <div>
-                                        <div className="user-name is-size-5 " ><p className="is-inline">{comment.user.country.emoji} </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
+                                        <div className="user-name is-size-5 " ><p className="is-inline"> <Emoji emoji={comment.user.country.emoji}/> </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
                                         <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
 
                                     </div>

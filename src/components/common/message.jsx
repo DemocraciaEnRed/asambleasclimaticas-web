@@ -1,22 +1,19 @@
 'use client'
-import { store } from "@/store";
-import { setMessage } from "@/store/reducers/alert";
-import { useSelector } from "react-redux";
+import { useAlert } from "@/context/alert-context";
 import { Remark } from "react-remark";
 
 const Message = () => {
-  const alert = useSelector(state => state.alert)
-
-  if (alert && alert.show) return (
-    <article className={`alert-message message ${alert.show ? 'is-active' : ''} is-${alert.type}`}>
+  const {alerts, removeAlert} = useAlert()
+  if (alerts) return (
+    <article className={`alert-message message is-active is-${alerts.type}`}>
 
       <div className="message-body is-flex is-justify-content-space-between has-background-white">
         <div className="content m-0">
           <Remark>
-            {alert.message}
+            {alerts.message}
           </Remark>
         </div>
-        <button onClick={() => setMessage({ message: '' })} className={`delete has-background-${alert.type}`} aria-label="delete"></button>
+        <button onClick={removeAlert} className={`delete has-background-${alerts.type}`} aria-label="delete"></button>
       </div>
     </article>
   )

@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle} from 'react';
-import axiosServices from "@/utils/axios";
-import { handleLanguage } from '@/store/reducers/language';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { faAngleDoubleRight, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { fetchCountries } from '@/utils/get-data';
 
 const UserInfoForm = forwardRef(({userInfo}, ref) => {
 
@@ -16,7 +15,7 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
 
 
   useEffect(() => {
-    fetchCountries()
+    getCountries()
   },[]);
 
   useImperativeHandle(ref, () => ({
@@ -30,13 +29,13 @@ const UserInfoForm = forwardRef(({userInfo}, ref) => {
     }
   }));
 
-  async function fetchCountries() {
+  async function getCountries() {
     try {
       console.log('help')
       setIsLoadingCountries(true)
       setTimeout(async () => {
-        const res = await axiosServices.get('/misc/countries')
-        setCountries(res.data)
+        const res = await fetchCountries('/misc/countries')
+        setCountries(res)
         setIsLoadingCountries(false)
       }, 3000);
     } catch (error) {

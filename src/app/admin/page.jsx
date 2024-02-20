@@ -1,23 +1,12 @@
-"use client"
-import { useState } from "react"
+'use client'
 import { useRouter, redirect } from "next/navigation"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-regular-svg-icons";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import axiosServices from "@/utils/axios";
-import ProjectFormComponent from "@/components/pacto/form/projectForm";
-import { useEffect } from "react";
+import { useAuthContext } from "@/context/auth-context";
 
-export default function ProfileHomePage({params}) {
+export default function AdminHomePage({ params }) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
+  const { user } = useAuthContext()  // redirect if user is not logged in
   // redirect if user is not admin or author
-  if (user.role !== 'admin') {
+  if (user && user.role !== 'admin') {
     redirect('/')
   }
 
@@ -26,7 +15,7 @@ export default function ProfileHomePage({params}) {
       <div className="">
         <h1 className="title is-3">Panel de administración</h1>
         <p>Seleccione una opción del menú lateral</p>
-       </div>
+      </div>
     </>
   )
 }

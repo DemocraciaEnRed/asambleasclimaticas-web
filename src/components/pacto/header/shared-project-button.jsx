@@ -8,7 +8,6 @@ import { FacebookShareButton, FacebookShareCount, InstapaperShareButton, Twitter
 
 const SharedProjectButton = ({ project }) => {
     const [show, setShow] = useState(false)
-    const url = window.location.origin
 
     return (
         <div className={`dropdown ${show ? 'is-active' : ''}`}>

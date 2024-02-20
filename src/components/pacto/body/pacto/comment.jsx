@@ -4,10 +4,10 @@ import { faThumbsDown, faThumbsUp, faStar, faMessage, faCheckCircle } from "@for
 import { faThumbsDown as faSolidThumbsDown, faThumbsUp as faSolidThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import RepliesModal from "@/components/common/replies-modal";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { highlighteComment, resolveComment, toDislike, toLike } from "@/utils/post-data";
 import { faStar as faStarSolid, faCheckCircle as faSolidCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import axiosServices from "@/utils/axios";
+import Emoji from "@/components/common/emoji";
+import { useAuthContext } from "@/context/auth-context";
 
 
 export default function Comment({ project, comment, urlComment, answerable }) {
@@ -17,8 +17,8 @@ export default function Comment({ project, comment, urlComment, answerable }) {
     const [liked, setliked] = useState(comment.liked ? 'liked' : comment.disliked ? 'disliked' : null)
     const [highlighted, setHighlighted] = useState(comment.highlightedInVersion)
     const [resolved, setResolved] = useState(comment.resolvedInVersion)
-    const { user } = useSelector((state) => state.auth)
 
+    const { user } = useAuthContext()
 
     const handleComment = async () => {
         setCommentSelected(comment)
@@ -107,7 +107,7 @@ export default function Comment({ project, comment, urlComment, answerable }) {
                             <div className='avatar' />
                         </div>
                         <div>
-                            <div className="user-name is-size-5 " ><p className="is-inline">{comment.user.country.emoji} </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
+                            <div className="user-name is-size-5 " ><p className="is-inline"><Emoji emoji={comment.user.country.emoji}/> </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
                             <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
 
                         </div>

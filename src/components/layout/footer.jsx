@@ -37,7 +37,7 @@ export default function Footer() {
 
             <ul >
                 <li>
-                    <Link className="has-text-black" href="">
+                    <Link className="has-text-black" href="#">
                         ¿Cómo funciona?
                     </Link>
                 </li>
@@ -47,7 +47,7 @@ export default function Footer() {
                     </Link>
                 </li>
                 <li>
-                    <Link className="has-text-black" href="">
+                    <Link className="has-text-black" href="#">
                         Contacto
                     </Link>
                 </li>
@@ -55,12 +55,12 @@ export default function Footer() {
 
             <ul>
                 <li>
-                    <Link className="has-text-black" href="">
+                    <Link className="has-text-black" href="#">
                         Términos y condiciones
                     </Link>
                 </li>
                 <li>
-                    <Link className="has-text-black" href="">
+                    <Link className="has-text-black" href="#">
                         Políticas de privacidad
                     </Link>
                 </li>

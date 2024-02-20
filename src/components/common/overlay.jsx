@@ -1,10 +1,7 @@
 'use client'
-import { handleOverlay } from '@/store/reducers/config';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 export default function Overlay({show}) {
-    const config = useSelector((state)=>state.config)
 
     
 

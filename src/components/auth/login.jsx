@@ -1,18 +1,15 @@
 'use client'
-import { dispatch } from "@/store"
-import { setUser } from "@/store/reducers/auth"
+import { useState } from "react"
 
-import axiosServices from "@/utils/axios"
 import Link from "next/link"
-import { use, useState } from "react"
 
-import { useSelector } from "react-redux"
-import { setCookie } from "cookies-next"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
-import { useSearchParams } from "next/navigation"
-import { setMessage } from "@/store/reducers/alert"
+import { useSearchParams,useRouter } from "next/navigation"
+import { useAuthContext } from "@/context/auth-context"
+import { useAlert } from "@/context/alert-context"
+import axiosServices from "@/utils/axios"
 
 export default function LoginForm(props) {
     const [email, setEmail] = useState('')
@@ -20,9 +17,12 @@ export default function LoginForm(props) {
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState(null)
 
+    const router = useRouter()
+
     const searchParams = useSearchParams()
     const next = searchParams.get('next')
-
+    const { loginContext } = useAuthContext()
+    const { addAlert } = useAlert()
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -31,24 +31,18 @@ export default function LoginForm(props) {
             password,
         }
         try {
-            const response = await axiosServices.post('/auth/login', JSON.stringify(body))
-            const res = await response.data
+            const response = await axiosServices.post('/auth/login', body)
             if (response.status === 200) {
-                if (res.token) {
-                    var expires = new Date();
-                    expires.setDate(expires.getDate() + 3600000);
-                    setCookie('auth', res.token, { expires });
-                    dispatch(setUser(res.user.user))
+                if (response.data.token) {
+                    loginContext(response.data)
                 }
-                if(next) return window.location.href = next
-                window.location.reload(false);
+                if(next) return router.push(next)                
+                router.push('/')
             }
         } catch (err) {
-            setMessage({
-                message: err.response.data.message, 
-                type:'danger'})
-                setErrors(err.response.data.errors)
-            console.log(err);
+            console.error(err);
+            addAlert(err.response.data.message,'danger')
+            setErrors(err.response.data.errors)
         }
     }
 
@@ -74,7 +68,7 @@ export default function LoginForm(props) {
                         <div className="field">
                             <label className="label has-text-weight-normal">Contraseña</label>
                             <div className="control has-icons-left has-icons-right">
-                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} is-danger name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
                                 {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}

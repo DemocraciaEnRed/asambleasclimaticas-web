@@ -1,39 +1,34 @@
 // third-party
 import { combineReducers } from 'redux';
 import { persistCombineReducers, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-import { CookieStorage } from 'redux-persist-cookie-storage'
-import Cookies from 'cookies-js'
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+const createNoopStorage = () => {
+  return {
+    getItem(_key) {
+      return Promise.resolve(null);
+    },
+    setItem(_key, value) {
+      return Promise.resolve(value);
+    },
+    removeItem(_key) {
+      return Promise.resolve();
+    },
+  };
+};
+const storage = typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage();
 
 // project import
-import configReducer from "./config";
-import languageReducer from './language';
-import authReducer from './auth'
-import alertReducer from './alert'
+import sliceReducer from "./slicer";
+
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 const reducers = combineReducers({
-  config: persistReducer(
+  slice: persistReducer(
     {
       key: 'config',
-      storage,
+      storage: storage,
     },
-    configReducer),
-  language: persistReducer(
-    {
-      key: 'Language',
-      storage,
-    },
-    languageReducer),
-  auth: persistReducer(
-    {
-      key: "token",
-    storage,
-  },
-  authReducer
-),
-alert: alertReducer
+    sliceReducer)
 
 });
 

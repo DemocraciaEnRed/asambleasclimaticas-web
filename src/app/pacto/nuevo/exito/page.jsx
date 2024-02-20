@@ -5,11 +5,11 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faHome, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useAuthContext } from "@/context/auth-context";
 
 export default function SuccessProjectForm({}) {
   // get the user from store
-  const { user } = useSelector(state => state.auth)
+  const { user } = useAuthContext()
   // get from the query string "projectId"
   const searchParams = useSearchParams()
   const projectId = searchParams.get('projectId')
