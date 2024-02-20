@@ -35,7 +35,7 @@ export default function Acercade() {
       </span>
      
       <div className="is-flex is-flex-wrap-wrap my-3">
-        {alianzas.map((alianza,idx) =><img className=" w-25 is-4 m-2 " key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} /> )}
+          {alianzas.map((alianza, idx) => <img className="org-logo is-4 my-2 mx-5 " key={idx} src={`/images/logos/${alianza}.png`} alt={'logo ' + alianza} />)}
       </div>
     </div>
   </section>)
