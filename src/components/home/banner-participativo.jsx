@@ -10,8 +10,8 @@ export function BannerParticipativo() {
     return <div className="banner-participativo has-text-centered has-background-cream py-6" id="banner-participativo">
         <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold">¿Cómo Participar?</h1>
         <div className="card-group is-flex is-justify-content-center my-4">
-            {CARD_PARTICIPATIVO.map(card =>
-                <div className="card m-3 py-4 is-flex-grow-1 is-flex is-flex-direction-column">
+            {CARD_PARTICIPATIVO.map((card,idx) =>
+                <div key={idx} className="card m-3 py-4 is-flex-grow-1 is-flex is-flex-direction-column">
                     <div className="card-image pt-5 has-text-centered">
                         <FontAwesomeIcon icon={card.icon} color="white" />
                     </div>

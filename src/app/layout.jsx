@@ -12,6 +12,7 @@ import Message from '@/components/common/message'
 import { AlertProvider } from '@/context/alert-context'
 import { LanguageProvider } from '@/context/lang-context'
 import { Providers } from '@/store/provider'
+import HelpButton from "@/components/layout/help-button";
 
 
 const karla = Karla({
@@ -34,9 +35,8 @@ export default function RootLayout({ children }) {
             <AlertProvider>
               <LanguageProvider>
                 <Navbar />
-                <main>
-                  {children}
-                </main>
+                <main>{children}</main>
+                <HelpButton />
                 <Footer />
                 <Message />
               </LanguageProvider>
@@ -45,5 +45,5 @@ export default function RootLayout({ children }) {
         </Providers>
       </body>
     </html>
-  )
+  );
 }
