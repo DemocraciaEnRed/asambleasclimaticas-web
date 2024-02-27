@@ -4,11 +4,12 @@ import { useRouter, redirect } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link'
 import Image from 'next/image'
-import { faCheck, faDownload, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faDownload, faMedal, faPenClip, faShield, faSync, faTimes, faUserEdit, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { faCheckCircle, faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { useAuthContext } from "@/context/auth-context";
 import { adminFetchUsers, adminFetchUsersCsv } from "@/utils/get-data";
+import { useDebouncedCallback } from "use-debounce"
 
 export default function AdminUsersListPage({params}) {
   // get the user from store
@@ -35,10 +36,11 @@ export default function AdminUsersListPage({params}) {
   const [prevPage, setPrevPage] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [query])
 
   async function fetchData() {
     try {
@@ -51,7 +53,7 @@ export default function AdminUsersListPage({params}) {
 
       // fetch
       const promises = [
-        adminFetchUsers(page, limit),
+        adminFetchUsers(page, limit, query),
       ]
 
       const [usersData] = await Promise.all(promises)
@@ -75,7 +77,7 @@ export default function AdminUsersListPage({params}) {
   async function fetchPage(thePage) {
     setIsLoadingMore(true)
     const promises = [
-      adminFetchUsers(thePage, limit),
+      adminFetchUsers(thePage, limit, query),
     ]
 
     const [usersData] = await Promise.all(promises)
@@ -91,6 +93,15 @@ export default function AdminUsersListPage({params}) {
     setIsLoadingMore(false)
     return;
   }
+
+  const queryDebounced = useDebouncedCallback(
+    // function
+    (query) => {
+      setQuery(query)
+    },
+    // delay in ms
+    800
+  );
 
   function fetchNextPage() {
     if(!nextPage) return
@@ -135,12 +146,12 @@ export default function AdminUsersListPage({params}) {
   function getCountry (user) {
     if(user.country) {
       return (
-        <span className="">
+        <span>&nbsp;-&nbsp;<span className="">
           <Emoji emoji={user.country.emoji} /> {user.country.name}
-        </span>
+        </span></span>
       )
     }
-    return 'Sin país'
+    return null
   }
 
   function isVerified (user) {
@@ -156,6 +167,17 @@ export default function AdminUsersListPage({params}) {
         <FontAwesomeIcon icon={faTimesCircle} className="" /> No verificado
       </span>
     )
+  }
+
+  function getParticipationInAssembly (user) {
+    if(user.participatedInAssembly) {
+      return (
+        <span>&nbsp;-&nbsp;<span className="has-text-link">
+          <FontAwesomeIcon icon={faMedal} className="" /> Participó
+        </span></span>
+      )
+    }
+    return null;
   }
 
   function downloadCSV(){
@@ -200,12 +222,18 @@ export default function AdminUsersListPage({params}) {
           </div>
         </div>
       <hr />
+      <div className="field">
+        <div className="control">
+          <input className="input" type="text" placeholder="Buscar usuario por nombre o email" onChange={(e) => queryDebounced(e.target.value)} />
+        </div>
+      </div>
       {
         isLoading && renderLoading()
       }
       { 
         !isLoading && users.length > 0 && (
           <>
+          {/* Input query for name or email */}
           <table className="table is-fullwidth is-bordered is-narrow">
             <thead>
               <tr>
@@ -221,7 +249,7 @@ export default function AdminUsersListPage({params}) {
                       <div>
                         <p><Link className="has-text-link" href={`/admin/usuarios/${user._id}`}><b>{user.name}</b></Link></p>
                         <div className="is-size-7 has-text-weight-medium">
-                        {isVerified(user)} - {getCountry(user)}
+                        {isVerified(user)}{getCountry(user)}{getParticipationInAssembly(user)}
                         </div>
                       </div>
                     </td>
@@ -246,6 +274,13 @@ export default function AdminUsersListPage({params}) {
           </div>
           </>
           
+        )
+      }
+      {
+        !isLoading && users.length === 0 && (
+          <div className="has-text-centered">
+            <p className="is-size-7 mt-6 mb-5 is-italic">No se han encontrado usuarios</p>
+          </div>
         )
       }
     </>
