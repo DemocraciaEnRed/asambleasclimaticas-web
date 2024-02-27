@@ -138,6 +138,22 @@ export default function AdminUserInfoPage({params}) {
     </div>
   }
 
+  async function setParticipatedInAssembly(participatedInAssembly) {
+    if(participatedInAssembly === userData.participatedInAssembly) return
+    try {
+      setIsUpdating(true)
+      const response = await axiosServices.put(`/admin/users/${userId}/participation`, {participatedInAssembly})
+      fetchData()
+      if(user._id === userId) {
+        refreshUser()
+      }
+      addAlert('El usuario ha sido actualizado correctamente','success')
+    } catch (error) {
+      console.error(error)
+      addAlert('Ha ocurrido un error al actualizar el rol del usuario', 'danger')
+    }
+  }
+
   return (
     <>
       { isUpdating && <FontAwesomeIcon icon={faSync} spin className="has-text-primary" style={{position: 'absolute', right: '1rem', top: '1rem'}} /> }
@@ -192,6 +208,19 @@ export default function AdminUserInfoPage({params}) {
           </div>
         )
       }
+      <hr />
+      <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Participación en asambleas</h3>
+      <p className="mb-3">Si el usuario participó de una de las asambleas puede marcar su participacion aqui</p>
+      <div className="tags">
+        <span className={userData.participatedInAssembly ? 'tag is-medium is-clickable is-primary' : 'tag is-medium is-clickable'}
+          onClick={() => setParticipatedInAssembly(true)}
+        >
+          <FontAwesomeIcon icon={faCheckCircle} />&nbsp;Participó</span>
+        <span className={!userData.participatedInAssembly ? 'tag is-medium is-clickable is-danger' : 'tag is-medium is-clickable'}
+          onClick={() => setParticipatedInAssembly(false)}
+        >
+          <FontAwesomeIcon icon={faTimesCircle} />&nbsp;No participó</span>
+      </div>
       <hr />
       <h3 className="title is-4 mb-1 has-text-weight"><FontAwesomeIcon icon={faAngleDoubleRight} /> Usuario verificado</h3>
       {
