@@ -8,18 +8,18 @@ const LanguageSelector = () => {
 
     const { language, switched, changeLanguage } = useLanguage()
 
-    useEffect(()=>{
+    useEffect(() => {
         if (user) {
-            if (!switched && user.lang !== language) changeLanguage(user.lang)
-        }else{
-            if(!switched) changeLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0])
+            changeLanguage(user.lang)
+        } else {
+            changeLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0])
         }
-    },[])
-    return (<div className="language-selector p-3">   
+    }, [])
+    return (<div className="language-selector p-3">
         <p className="px-3">Idioma</p>
-        <div className={`language-selector-buttons my-3 border-color-pink`} > 
-            <button className={`button is-rounded ${ language === 'es' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={()=>changeLanguage('es')}>Español</button>
-            <button className={`button is-rounded ${ language === 'pt' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={()=>changeLanguage('pt')}>Portugués</button>
+        <div className={`language-selector-buttons my-3 border-color-pink`} >
+            <button className={`button is-rounded ${language === 'es' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={() => changeLanguage('es')}>Español</button>
+            <button className={`button is-rounded ${language === 'pt' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={() => changeLanguage('pt')}>Portugués</button>
         </div>
     </div>)
 }
