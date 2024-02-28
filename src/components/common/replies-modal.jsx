@@ -9,6 +9,7 @@ import { postComments } from '@/utils/post-data';
 import Pagination from './pagination';
 import Emoji from './emoji';
 import { fetchGeneralComments } from '@/utils/get-data';
+import CommentContent from './comment-content';
 
 export default function RepliesModal({ comment, commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
     const [addComment, setAddComment] = useState(addCommentDefault)
@@ -52,26 +53,12 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
                     <header className="card-header is-flex-direction-column ">
 
 
-                        <div className="is-flex p-4 comment" >
-                            <div className="py-2 pl-0 mr-3 is-hidden-touch">
-                                <div className='avatar' />
-                            </div>
-                            <div className="is-flex-grow-1 is-flex-shrink-1">
-                                <div className="is-flex">
-                                    <div className="py-2 pl-0 mr-1 is-hidden-desktop">
-                                        <div className='avatar' />
-                                    </div>
-                                    <div>
-                                        <div className="user-name is-size-5 " ><p className="is-inline"> <Emoji emoji={comment.user.country.emoji}/> </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
-                                        <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
-
-                                    </div>
-                                </div>
-                                <p className="has-text-grey my-2 is-size-7-touch">{comment.text}</p>
-
-                            </div>
-
-                        </div>
+                        <CommentContent
+                            emoji={comment.user.country.emoji}
+                            username={comment.user.name}
+                            participatedInAssembly={comment.user.participatedInAssembly}
+                            createdAt={comment.createdAt}
+                            text={comment.text} />
 
 
 

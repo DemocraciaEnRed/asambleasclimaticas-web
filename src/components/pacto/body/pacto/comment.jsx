@@ -8,6 +8,7 @@ import { highlighteComment, resolveComment, toDislike, toLike } from "@/utils/po
 import { faStar as faStarSolid, faCheckCircle as faSolidCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import Emoji from "@/components/common/emoji";
 import { useAuthContext } from "@/context/auth-context";
+import CommentContent from "@/components/common/comment-content";
 
 
 export default function Comment({ project, comment, urlComment, answerable }) {
@@ -97,26 +98,12 @@ export default function Comment({ project, comment, urlComment, answerable }) {
                 </div>
                 }
             </div>
-            <div className="is-flex p-4 comment" >
-                <div className="py-2 pl-0 mr-3 is-hidden-touch">
-                    <div className='avatar' />
-                </div>
-                <div className="is-flex-grow-1 is-flex-shrink-1">
-                    <div className="is-flex">
-                        <div className="py-2 pl-0 mr-1 is-hidden-desktop">
-                            <div className='avatar' />
-                        </div>
-                        <div>
-                            <div className="user-name is-size-5 " ><p className="is-inline"><Emoji emoji={comment.user.country.emoji}/> </p> <p className="is-inline pl-2 has-text-weight-bold">{comment.user.name}</p></div>
-                            <p className="has-text-grey is-size-7">fecha: {new Date(comment.createdAt).toLocaleString('es-ES')}</p>
-
-                        </div>
-                    </div>
-                    <p className="has-text-grey my-2 is-size-7-touch">{comment.text}</p>
-
-                </div>
-
-            </div>
+            <CommentContent
+                emoji={comment.user.country.emoji}
+                username={comment.user.name}
+                participatedInAssembly={comment.user.participatedInAssembly}
+                createdAt={comment.createdAt}
+                text={comment.text} />
             {commentSelected && <RepliesModal
                 comment={commentSelected}
                 commentUrl={`${urlComment}/replies`}
