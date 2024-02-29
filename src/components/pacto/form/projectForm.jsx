@@ -67,6 +67,8 @@ export default function ProjectFormComponent({project, newVersion}) {
   const init_stage = project ? project.stage : 'MX'
   const init_shortAbout_es = project ? project.shortAbout_es : projectFormUtils.getPlaceholderShortAboutEs()
   const init_shortAbout_pt = project ? project.shortAbout_pt : projectFormUtils.getPlaceholderShortAboutPt()
+  const init_authorNotes_es = project && !newVersion ? project.authorNotes_es : ''
+  const init_authorNotes_pt = project && !newVersion ? project.authorNotes_pt : ''
   const init_about_es = project ? project.about_es : projectFormUtils.getPlaceholderAboutEs()
   const init_about_pt = project ? project.about_pt : projectFormUtils.getPlaceholderAboutPt()
   if(project && project.articles){
@@ -126,6 +128,8 @@ export default function ProjectFormComponent({project, newVersion}) {
   const [shortAbout_pt, setShortAbout_pt] = useState(init_shortAbout_pt)
   const [about_es, setAbout_es] = useState(init_about_es)
   const [about_pt, setAbout_pt] = useState(init_about_pt)
+  const [authorNotes_es, setAuthorNotes_es] = useState(init_authorNotes_es)
+  const [authorNotes_pt, setAuthorNotes_pt] = useState(init_authorNotes_pt)
   const [author, setAuthor] = useState(init_author)
   const authorFieldRef = useRef(null)
   const about_es_ref = useRef(null)
@@ -198,6 +202,17 @@ export default function ProjectFormComponent({project, newVersion}) {
     lower: true,
     replacement: '-',
   }
+
+  const canEditAuthorNotes = function () {
+    if(
+      (mode === 'edit' && project && project.version > 1) // if you're editing a project and it's not the first version, then you can update the "current" author notes
+      || (mode === 'edit' && newVersion) // if it's a new version, then you can update the "new" author notes for the new version)
+    ) {
+      return true
+    }
+    return false
+  }()
+
   function handleTitle_es(e) {
     setTitle_es(e.target.value)
   }
@@ -221,6 +236,14 @@ export default function ProjectFormComponent({project, newVersion}) {
 
   function handleShortAbout_pt(e) {
     setShortAbout_pt(e.target.value)
+  }
+
+  function handleAuthorNotes_es(e) {
+    setAuthorNotes_es(e.target.value)
+  }
+
+  function handleAuthorNotes_pt(e) {
+    setAuthorNotes_pt(e.target.value)
   }
 
   function handleFocusOutSlug(e) {
@@ -346,8 +369,6 @@ export default function ProjectFormComponent({project, newVersion}) {
   }
 
   function makePayload(isPublished) {
-    console.log(about_es_ref.current.getMarkdown())
-    console.log(about_pt_ref.current.getMarkdown())
     const payload = {
       title_es,
       title_pt,
@@ -375,6 +396,10 @@ export default function ProjectFormComponent({project, newVersion}) {
     if(closedAt) {
       const closedAtAux = closedAt + ' 23:59:59'
       payload.closedAt = (new Date(closedAtAux)).toISOString()
+    }
+    if(canEditAuthorNotes) {
+      payload.authorNotes_es = authorNotes_es
+      payload.authorNotes_pt = authorNotes_pt
     }
     if(isPublished) {
       payload.publishedAt = (new Date()).toISOString()
@@ -849,6 +874,7 @@ export default function ProjectFormComponent({project, newVersion}) {
           </div>
         </div>
       </div>
+     
       {/* Project About */}
       <div className="box">
         <div className="content">
@@ -924,6 +950,40 @@ export default function ProjectFormComponent({project, newVersion}) {
             )
           }
       </div>
+       {/* Author Notes */}
+       {
+        canEditAuthorNotes && (
+          <div className="box">
+            <h4 className="title is-4 mb-1"><FontAwesomeIcon icon={faCaretRight} /> Notas del autor sobre la versión</h4>
+            <p>Utilice este campo de texto para introducir de forma breve que cambios ha realizado en esta versión del proyecto.</p>
+            {
+              mode === 'edit' && newVersion && (
+                <>
+                <p className="has-text-link mt-4"><b><span className="has-text-danger">IMPORTANTE:</span></b> El texto se enviará a los usuarios como parte de la notificación.</p>
+                </>
+                )
+            }
+            <div className="columns is-multiline is-mobile mt-1">
+              <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
+                <div className="field">
+                  <label className="label">Español</label>
+                  <div className="control">
+                    <textarea className="textarea" placeholder="Resumen corto en español" value={authorNotes_es} onChange={handleAuthorNotes_es} rows={2}></textarea>
+                  </div>
+                </div>
+              </div>
+              <div className="column is-12-mobile is-12-tablet is-6-desktop is-6-widescreen is-6-fullhd">
+                <div className="field">
+                  <label className="label">Portugués</label>
+                  <div className="control">
+                    <textarea className="textarea" placeholder="Resumen corto en portugués" value={authorNotes_pt} onChange={handleAuthorNotes_pt} rows={2}></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
       {/* Project Save */}
       <div className="box">
         {/* Error message */}
@@ -950,8 +1010,16 @@ export default function ProjectFormComponent({project, newVersion}) {
           )
         }
         {
-          mode === 'edit' && (
+          mode === 'edit' && !newVersion && (
             <p>Al guardar el proyecto, los cambios pasarán a formar parte de la versión actual del proyecto.</p>
+          )
+        }
+        {
+          mode === 'edit' && newVersion && (
+            <>
+              <p>Al guardar el proyecto, se creará la nueva versión y se anexará la version pasada al historial.</p>
+              <p className="has-text-link mt-4"><b><span className="has-text-danger">IMPORTANTE:</span></b> Se enviará a todos los usuarios una notificación de la nueva versión.</p>
+            </>
           )
         }
         {
