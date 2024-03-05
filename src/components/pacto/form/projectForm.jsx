@@ -968,7 +968,7 @@ export default function ProjectFormComponent({project, newVersion}) {
                 <div className="field">
                   <label className="label">Español</label>
                   <div className="control">
-                    <textarea className="textarea" placeholder="Resumen corto en español" value={authorNotes_es} onChange={handleAuthorNotes_es} rows={2}></textarea>
+                    <textarea className="textarea" placeholder="Resumen corto en español" value={authorNotes_es} onChange={handleAuthorNotes_es} rows={10}></textarea>
                   </div>
                 </div>
               </div>
@@ -976,7 +976,7 @@ export default function ProjectFormComponent({project, newVersion}) {
                 <div className="field">
                   <label className="label">Portugués</label>
                   <div className="control">
-                    <textarea className="textarea" placeholder="Resumen corto en portugués" value={authorNotes_pt} onChange={handleAuthorNotes_pt} rows={2}></textarea>
+                    <textarea className="textarea" placeholder="Resumen corto en portugués" value={authorNotes_pt} onChange={handleAuthorNotes_pt} rows={10}></textarea>
                   </div>
                 </div>
               </div>
