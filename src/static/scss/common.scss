@@ -167,21 +167,20 @@
 .replies-modal-wrapper {
   .modal-content {
     width: 75%;
-
+    max-height: 95vh;
+    overflow: auto;
     @include tablet {
       width: 95%;
     }
 
-    max-height: none;
-    overflow: inherit;
 
     .card {
 
       .replies-comment-box {
         overflow: auto;
-        max-height: 50vh;
+        max-height: 53vh;
         @include tablet{
-          max-height: 40vh;
+          max-height: 25vh;
         }
       }
       .card-header{
