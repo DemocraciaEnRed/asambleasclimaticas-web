@@ -3,22 +3,24 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 import Overlay from "../common/overlay";
 import { faInstagram, faSquareFacebook, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { useAuthContext } from "@/context/auth-context";
+import { fetchProjectId } from "@/utils/get-data";
+import { PROJECT_ID } from "@/utils/constants";
 
 
 export default function Navbar() {
     const { user, logoutContext } = useAuthContext()
+    const [project, setProject] = useState(null)
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
 
     const pathname = usePathname()
-
 
     const handleOpenMenu = () => {
         if (window.innerWidth < 768) {
@@ -32,11 +34,14 @@ export default function Navbar() {
         else setNavbarFixed(false)
     }
 
-    const handleLogout = () => {
-        logoutContext()
+    const fetchProject = async () => {
+        const project = await fetchProjectId(PROJECT_ID)
+        if (project) setProject(project)
+
     }
 
     useEffect(() => {
+        fetchProject()
         if (typeof window !== 'undefined') {
             window.addEventListener('scroll', controlNavbar);
 
@@ -47,15 +52,12 @@ export default function Navbar() {
         }
     }, []);
 
-
     return (<>
         <nav className={`navbar-wrapper ${navbarFixed ? 'navbar-fixed' : ''}`}>
             <div className='logo py-3'>
                 <Link href="/" className="is-flex is-align-items-center">
                     <img src="/images/logoSimple.svg" alt="" />
-                    {/* <Logo color='#FFFFFF' /> */}
                 </Link>
-
             </div>
             <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5 p-3 is-clickable" onClick={handleOpenMenu}>
                 <FontAwesomeIcon icon={faBars} />
@@ -69,13 +71,15 @@ export default function Navbar() {
                             </span>
                         </Link>
                     </li>
-                    <li className={pathname == "/pacto" ? 'active' : ""}>
-                        <Link className='link-navbar has-text-weight-bold' href="/pacto/pacto-inter-ciudad" >
-                            <span className="is-size-6 is-size-7-touch">
-                                Pacto
-                            </span>
-                        </Link>
-                    </li>
+                    {project &&
+                        <li className={pathname == "/pacto" ? 'active' : ""}>
+                            <Link className='link-navbar has-text-weight-bold' href={`/pacto/${PROJECT_ID}`} >
+                                <span className="is-size-6 is-size-7-touch">
+                                    Pacto
+                                </span>
+                            </Link>
+                        </li>
+                    }
                     <li className={pathname == "/acerca-de" ? 'active' : ""}>
                         <Link className='link-navbar has-text-weight-bold' href="/sobre" >
                             <span className="is-size-6 is-size-7-touch">
@@ -88,7 +92,6 @@ export default function Navbar() {
                             <div className="dropdown-trigger">
                                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                                     <span>{user.name}</span>
-
                                 </button>
                             </div>
                             <div className="dropdown-menu" id="dropdown-menu4" role="menu">
@@ -112,7 +115,7 @@ export default function Navbar() {
                                             <hr className="dropdown-divider" />
                                         </>
                                     }
-                                    <a className="dropdown-item" onClick={handleLogout}>
+                                    <a className="dropdown-item" onClick={() => { logoutContext() }}>
                                         Cerrar sesión
                                     </a>
                                 </div>
@@ -121,7 +124,6 @@ export default function Navbar() {
                             :
                             <Link href="/auth/login" className="link-navbar has-text-weight-bold login-link ">
                                 login</Link>}
-
                     </li>
                 </ul>
                 <div className="foot-navbar is-hidden-tablet">
@@ -154,7 +156,6 @@ export default function Navbar() {
                             </Link>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -169,7 +170,6 @@ export default function Navbar() {
                         <div className="dropdown-trigger">
                             <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
                                 <span>{user.name}</span>
-
                             </button>
                         </div>
                         <div className="dropdown-menu" id="dropdown-menu4" role="menu">
@@ -189,7 +189,7 @@ export default function Navbar() {
                                         <hr className="dropdown-divider" />
                                     </>
                                 }
-                                <a className="dropdown-item" onClick={handleLogout}>
+                                <a className="dropdown-item" onClick={() => { logoutContext() }}>
                                     Cerrar sesión
                                 </a>
                             </div>
@@ -198,7 +198,6 @@ export default function Navbar() {
                         :
                         <Link onClick={handleOpenMenu} href="/auth/login" className="link-navbar has-text-weight-bold login-link ">
                             login</Link>}
-
                 </li>
                 <li className={pathname == "/" ? 'active' : ""}>
                     <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/" >
@@ -207,13 +206,15 @@ export default function Navbar() {
                         </span>
                     </Link>
                 </li>
-                <li className={pathname == "/pacto" ? 'active' : ""}>
-                    <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/pacto/pacto-inter-ciudad" >
-                        <span>
-                            Pacto
-                        </span>
-                    </Link>
-                </li>
+                {project &&
+                    <li className={pathname == "/pacto" ? 'active' : ""}>
+                        <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href={`/pacto/${PROJECT_ID}`} >
+                            <span>
+                                Pacto
+                            </span>
+                        </Link>
+                    </li>
+                }
                 <li className={pathname == "/acerca-de" ? 'active' : ""}>
                     <Link onClick={handleOpenMenu} className='link-navbar has-text-weight-bold' href="/sobre" >
                         <span>
@@ -252,7 +253,6 @@ export default function Navbar() {
                         </Link>
                     </li>
                 </ul>
-
             </div>
         </div>
         <Overlay show={showOverlay} />

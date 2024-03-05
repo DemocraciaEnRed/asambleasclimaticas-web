@@ -30,3 +30,5 @@ export const CARD_PARTICIPATIVO = [
         button_action: ''
     }
 ]
+
+export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID
