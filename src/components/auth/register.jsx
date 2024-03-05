@@ -100,7 +100,7 @@ export default function RegisterForm() {
               </p>
             </div>
             <div className="control">
-              <input
+              <input tabIndex={1}
                 className={`input ${errors && errors.some((error) => error.field === "email")
                   ? "is-danger"
                   : ""
@@ -125,7 +125,7 @@ export default function RegisterForm() {
               </span>
             </label>
             <div className="control">
-              <input
+              <input tabIndex={2}
                 className={`input ${errors && errors.some((error) => error.field === "name")
                   ? "is-danger"
                   : ""
@@ -150,7 +150,7 @@ export default function RegisterForm() {
             </label>
             <div className="control">
               <div className="select w-100">
-                <select
+                <select tabIndex={3}
                   className="w-100"
                   name="coutry"
                   value={country}
@@ -176,8 +176,8 @@ export default function RegisterForm() {
               </span>
             </label>
             <div className="control">
-              <div className="set-lang">
-                <button
+              <div className="set-lang" >
+                <button tabIndex={4}
                   type="button"
                   className={`button is-rounded ${lang === "es" ? "active" : ""
                     }`}
@@ -185,7 +185,7 @@ export default function RegisterForm() {
                 >
                   Español
                 </button>
-                <button
+                <button tabIndex={5}
                   type="button"
                   className={`button is-rounded ${lang === "pt" ? "active" : ""
                     }`}
@@ -204,7 +204,7 @@ export default function RegisterForm() {
               </span>
             </label>
             <div className="control">
-              <input
+              <input tabIndex={6}
                 className="input"
                 name="city"
                 type="text"
@@ -220,7 +220,7 @@ export default function RegisterForm() {
               </span>
             </label>
             <div className="control">
-              <input
+              <input tabIndex={7}
                 className={`input ${errors && errors.some((error) => error.field === "password")
                   ? "is-danger"
                   : ""
@@ -253,7 +253,7 @@ export default function RegisterForm() {
               </span>
             </label>
             <div className="control">
-              <input
+              <input tabIndex={8}
                 className={`input ${errors && errors.some((error) => error.field === "password")
                   ? "is-danger"
                   : ""
@@ -271,7 +271,7 @@ export default function RegisterForm() {
           </div>
           <div className="field has-text-centered">
             <label className="checkbox mt-4">
-              <input
+              <input tabIndex={9}
                 type="checkbox"
                 onChange={(event) => setAcceptTyC(event.target.checked)}
                 value={acceptTyC}
@@ -294,7 +294,7 @@ export default function RegisterForm() {
           </div>
         </div>
         <div className="actions mt-6 is-flex is-flex-direction-column is-align-items-center">
-          <button
+          <button tabIndex={10}
             className="button is-rounded confirm-button mb-3 is-uppercase w-50"
             type="submit"
           >

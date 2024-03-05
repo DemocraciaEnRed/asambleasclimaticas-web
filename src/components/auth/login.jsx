@@ -56,7 +56,7 @@ export default function LoginForm(props) {
                         <div className="field">
                             <label className="label has-text-weight-normal">Correo electrónico  <span className="ml-2 has-text-weight-light is-italic is-size-7"> * E-mail</span></label>
                             <div className="control has-icons-left ">
-                                <input className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger':''}`} autoCapitalize="none" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
+                                <input tabIndex={1} className={`input ${errors && errors.some(error => error.field === 'email') ? 'is-danger' : ''}`} autoCapitalize="none" type="text" placeholder="Email" onChange={(event) => setEmail(event.target.value)} />
                                 {errors && errors.some(error => error.field === 'email') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'email').message}
                                 </p>}
@@ -71,7 +71,7 @@ export default function LoginForm(props) {
                                 <Link href="/auth/restore-password" className="has-text-success">¿Olvidaste tu contraseña?</Link >
                             </div>
                             <div className="control has-icons-left has-icons-right">
-                                <input className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger':''}`} name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
+                                <input tabIndex={2} className={`input ${errors && errors.some(error => error.field === 'password') ? 'is-danger' : ''}`} name="email" type={showPassword ? "text" : "password"} placeholder="Contraseña" onChange={(event) => setPassword(event.target.value)} />
                                 {errors && errors.some(error => error.field === 'password') && <p className="help is-danger">
                                     {errors.find(error => error.field === 'password').message}
                                 </p>}
