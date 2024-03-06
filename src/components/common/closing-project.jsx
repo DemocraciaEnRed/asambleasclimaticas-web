@@ -1,12 +1,8 @@
+import { ClosedProjectcheck } from '@/utils/format'
 import React from 'react'
 
 
 
-const ClosedProjectcheck = (closedAt) => {
-  const today = new Date();
-  const ClosedDate = new Date(closedAt)
-  return ClosedDate <= today  
-}
 
 const ClosingProject = ({ closingDate }) => {
   const closed = ClosedProjectcheck(closingDate)

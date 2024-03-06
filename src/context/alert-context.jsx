@@ -7,18 +7,21 @@ export const useAlert = () => {
     return useContext(AlertContext);
 };
 
+let timeoutId = null
+
 export const AlertProvider = ({ children }) => {
     const [alerts, setAlerts] = useState(null);
 
-    const addAlert = useCallback((message, type = 'info', time=5000) => {
-        const newAlert = { message, type };
+    const addAlert = useCallback((message, type = 'info', closable = true, time = 5000) => {
+        const newAlert = { message, type, closable };
         setAlerts( newAlert);
-
-        if ( time ) setTimeout(() => {removeAlert(null);}, time);
+        if (time) timeoutId = setTimeout(() => removeAlert(timeoutId), time)
     });
 
     const removeAlert = (id) => {
         setAlerts(null);
+        clearTimeout(timeoutId);
+        timeoutId = null
     };
 
     return (

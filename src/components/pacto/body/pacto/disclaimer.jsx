@@ -7,7 +7,7 @@ const DisabledDisclaimer = () => {
     const { addAlert,removeAlert } = useAlert()
     
     const controlNavbar = () => {
-        if (window.scrollY > 300) addAlert('**Estás visualizando una versión antigua**  \n**Você está visualizando uma versão antiga*', 'danger', null )
+        if (window.scrollY > 300) addAlert('**Estás visualizando una versión antigua**  \n**Você está visualizando uma versão antiga*', 'danger', true, null)
         else removeAlert()
     }
 

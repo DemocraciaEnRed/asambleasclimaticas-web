@@ -6,6 +6,7 @@ import Pagination from "@/components/common/pagination";
 import { useAuthContext } from "@/context/auth-context";
 import { postComments } from "@/utils/post-data";
 import { fetchGeneralComments } from "@/utils/get-data";
+import { ClosedProjectcheck } from "@/utils/format";
 
 
 export default function Comments({ project, comments }) {
@@ -40,20 +41,32 @@ export default function Comments({ project, comments }) {
     return (
         <div className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
             <h4 className="my-4">Comentarios:</h4>
-            {user && project.version === project.currentVersion ? <div className="comment-form">
-                <h2 className="has-text-primary has-text-weight-bold ">Puede dejar sus comentarios sobre la presentación del proyecto aquí</h2>
-                <form action="submit" className="my-4" onSubmit={handlesubmit}>
-                    <textarea 
-                        className="textarea my-4" 
-                        placeholder="Comience a escribir su comentario.."  
-                        value={textNewComment} 
-                        onChange={(e) => setTextNewComment(e.target.value)}/>
-                    <button className="button is-primary is-rounded">Enviar comentario</button>
-                </form>
-            </div>
+            {!ClosedProjectcheck(project.closedAt) && project.version === project.currentVersion ? <>
+                {user ? <div className="comment-form">
+                    <h2 className="has-text-primary has-text-weight-bold ">Puede dejar sus comentarios sobre la presentación del proyecto aquí</h2>
+                    <form action="submit" className="my-4" onSubmit={handlesubmit}>
+                        <textarea
+                            className="textarea my-4"
+                            placeholder="Comience a escribir su comentario.."
+                            value={textNewComment}
+                            onChange={(e) => setTextNewComment(e.target.value)} />
+                        <button className="button is-primary is-rounded">Enviar comentario</button>
+                    </form>
+                </div>
+                    :
+                    <div >
+                        <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
+                    </div>
+                }
+            </>
                 :
                 <div >
-                    <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
+                    {ClosedProjectcheck(project.closedAt)
+                        ?
+                        <p>Este pacto esta finalizado no se puede comentar</p>
+                        :
+                        <p>Estas viendo una version anterior no se puede comentar</p>
+                    }
                 </div>
             }
             <hr />

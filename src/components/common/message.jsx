@@ -3,7 +3,7 @@ import { useAlert } from "@/context/alert-context";
 import { Remark } from "react-remark";
 
 const Message = () => {
-  const {alerts, removeAlert} = useAlert()
+  const { alerts, removeAlert } = useAlert()
   if (alerts) return (
     <article className={`alert-message message is-active is-${alerts.type}`}>
 
@@ -13,7 +13,7 @@ const Message = () => {
             {alerts.message}
           </Remark>
         </div>
-        <button onClick={removeAlert} className={`delete has-background-${alerts.type}`} aria-label="delete"></button>
+        {alerts.closable && <button onClick={removeAlert} className={`delete has-background-${alerts.type}`} aria-label="delete"></button>}
       </div>
     </article>
   )
