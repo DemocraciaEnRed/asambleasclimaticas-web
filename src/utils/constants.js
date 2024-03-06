@@ -31,4 +31,4 @@ export const CARD_PARTICIPATIVO = [
     }
 ]
 
-export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID
+export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
