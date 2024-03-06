@@ -14,6 +14,8 @@ export const deleteComment = async (url) => {
         console.error(err);
         const pathname = window.location.pathname
         if (err.response.status === 401) window.location.href = '/auth/login?next=' + pathname
+        let returnError = { status: err.response.status, message: err.response.data.message }
+        throw returnError
     }
 
 }

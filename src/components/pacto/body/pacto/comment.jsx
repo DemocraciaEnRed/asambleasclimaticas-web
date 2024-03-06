@@ -13,7 +13,7 @@ import { deleteComment } from "@/utils/delete-data";
 import { useAlert } from "@/context/alert-context";
 
 
-export default function Comment({ project, comment, urlComment, answerable }) {
+export default function Comment({ project, comment, urlComment, answerable, deleteCommentFromList }) {
     const [commentSelected, setCommentSelected] = useState(null)
     const [likes, setLikes] = useState(comment.likes || 0)
     const [dislikes, setDislikes] = useState(comment.dislikes || 0)
@@ -63,9 +63,15 @@ export default function Comment({ project, comment, urlComment, answerable }) {
 
         if (deleteTime) {
             clearTimeout(timeout)
-            await deleteComment(urlComment)
-            setDeleteTime(false)
-            removeAlert()
+            try {
+                await deleteComment(urlComment)
+                deleteCommentFromList(comment._id)
+                setDeleteTime(false)
+                removeAlert()
+            } catch (err) {
+                addAlert(err.message, 'danger')
+                console.error(err);
+            }
             return
         }
         setDeleteTime(true)

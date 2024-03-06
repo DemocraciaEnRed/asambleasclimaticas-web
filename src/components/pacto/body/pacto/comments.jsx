@@ -37,6 +37,12 @@ export default function Comments({ project, comments }) {
         }
     }
 
+    const deleteCommentFromList = (commentId) => {
+        const newComentList = [...commentList]
+        let index = commentList.findIndex(comment => comment._id === commentId);
+        newComentList.splice(index, 1)
+        if (index !== -1) setCommensList(newComentList)
+    }   
 
     return (
         <div className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
@@ -72,7 +78,15 @@ export default function Comments({ project, comments }) {
             <hr />
             <div className="comment-list">
                 <div className="box">
-                    {commentList.length > 0 && commentList.map(comment => <Comment project={project} comment={comment} key={comment._id} urlComment={`/projects/${project._id}/comments/${comment._id}`} answerable />
+                    {commentList.length > 0 && commentList.map(comment =>
+                        <Comment
+                            project={project}
+                            comment={comment}
+                            key={comment._id}
+                            urlComment={`/projects/${project._id}/comments/${comment._id}`}
+                            deleteCommentFromList={deleteCommentFromList}
+                            answerable
+                        />
                     )}
                 </div>
                 {comments.total / comments.limit > 1 &&<Pagination
