@@ -1,33 +1,22 @@
 'use client'
-import { useAlert } from "@/context/alert-context"
-import axiosServices from "@/utils/axios"
-import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-const texts = {
-    prevSend: {
-        title: 'Ingresa Tu nueva Contraseña',
-        title_pt: 'Digite sua nova senha.',
-    },
-    send: {
-        icon: faClipboardCheck,
-        title: 'Contraseña actualizada con exito!',
-        title_pt: 'Senha atualizada com sucesso!',
-    }
-}
+import Link from "next/link"
+import axiosServices from "@/utils/axios"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import { useAlert } from "@/context/alert-context"
+import { NEW_PASSWORD_TITLE } from "@/utils/constants"
+
 
 export default function SetNewPasswordForm({ token }) {
 
+    const { addAlert } = useAlert()
+
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
     const [success, setSuccess] = useState('prevSend')
     const [errors, setErrors] = useState(null)
-
-
-    const { addAlert } = useAlert()
 
     function handlePassword(event) {
         if (event.target.value !== password) {
@@ -51,16 +40,13 @@ export default function SetNewPasswordForm({ token }) {
         }
     }
 
-
     return (
         <div className="content has-text-centered">
             <div className="title mb-6">
-                {texts[success].icon && <FontAwesomeIcon icon={texts[success].icon} size="3x" />}
-                <h1 className="mb-0 my-3 is-uppercase is-size-2 is-size-3-touch has-text-weight-light">{texts[success].title}</h1>
-                <span className="has-text-weight-light is-italic is-size-4"> {texts[success].title_pt}</span>
-
+                {NEW_PASSWORD_TITLE[success].icon && <FontAwesomeIcon icon={NEW_PASSWORD_TITLE[success].icon} size="3x" />}
+                <h1 className="mb-0 my-3 is-uppercase is-size-2 is-size-3-touch has-text-weight-light">{NEW_PASSWORD_TITLE[success].title}</h1>
+                <span className="has-text-weight-light is-italic is-size-4"> {NEW_PASSWORD_TITLE[success].title_pt}</span>
             </div>
-
             {success == 'prevSend' && <div className="box-content">
                 <form action="POST" className="mt-3" onSubmit={submitNewPassword}>
                     <div className="field">

@@ -2,27 +2,29 @@
 import { useState } from "react"
 
 import Link from "next/link"
+import { useSearchParams, useRouter } from "next/navigation"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
-import { useSearchParams,useRouter } from "next/navigation"
-import { useAuthContext } from "@/context/auth-context"
-import { useAlert } from "@/context/alert-context"
 import axiosServices from "@/utils/axios"
 
-export default function LoginForm(props) {
+import { useAuthContext } from "@/context/auth-context"
+import { useAlert } from "@/context/alert-context"
+
+export default function LoginForm() {
+
+    const router = useRouter()
+    const searchParams = useSearchParams()
+    const next = searchParams.get('next')
+
+    const { loginContext } = useAuthContext()
+    const { addAlert } = useAlert()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
     const [errors, setErrors] = useState(null)
-
-    const router = useRouter()
-
-    const searchParams = useSearchParams()
-    const next = searchParams.get('next')
-    const { loginContext } = useAuthContext()
-    const { addAlert } = useAlert()
 
     async function handleLogin(event) {
         event.preventDefault()
@@ -45,7 +47,6 @@ export default function LoginForm(props) {
             setErrors(err.response.data.errors)
         }
     }
-
 
     return (
         <div className="auth-wrapper is-flex is-justify-content-center is-align-items-center">
@@ -92,9 +93,7 @@ export default function LoginForm(props) {
                             <h4 className=" has-text-weight-normal is-italic is-size-7">*Ainda não tem uma conta?</h4>
                             <Link className="button is-rounded register-button mt-3 w-50" href='/auth/register'>REGISTRATE</Link>
                         </div>
-
                     </div>
-
                 </form>
             </div>
         </div>

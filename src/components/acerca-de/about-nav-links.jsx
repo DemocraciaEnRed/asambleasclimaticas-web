@@ -18,7 +18,9 @@ const links = [
 ]
 
 export default function AboutNavLinks(){
+
     const pathname = usePathname()
+
     return(<div className='static-info-nav'>
     {links.map((link, i) => (
         <Link
