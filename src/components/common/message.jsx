@@ -1,12 +1,15 @@
 'use client'
-import { useAlert } from "@/context/alert-context";
 import { Remark } from "react-remark";
 
-const Message = () => {
+import { useAlert } from "@/context/alert-context";
+
+
+export default function Message() {
+
   const { alerts, removeAlert } = useAlert()
+
   if (alerts) return (
     <article className={`alert-message message is-active is-${alerts.type}`}>
-
       <div className="message-body is-flex is-justify-content-space-between has-background-white">
         <div className="content m-0">
           <Remark>
@@ -18,5 +21,3 @@ const Message = () => {
     </article>
   )
 }
-
-export default Message

@@ -1,9 +1,8 @@
 'use client'
 import React from 'react';
 
-export default function Overlay({show}) {
 
-    
+export default function Overlay({ show }) {
 
   return (
     <>

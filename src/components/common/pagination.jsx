@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 
+
 export default function Pagination({
     previousLabel = "Prev",
     nextLabel = "Next",
@@ -10,6 +11,7 @@ export default function Pagination({
     className,
     forcePage,
 }) {
+
     const [currentPage, setCurrentPage] = useState(forcePage || 0);
 
     const handlePageClick = useCallback(
@@ -24,19 +26,17 @@ export default function Pagination({
         const pages = [];
         const leftSide = pageRangeDisplayed / 2;
         const rightSide = pageRangeDisplayed - leftSide;
-
         for (let i = 0; i < pageCount; i++) {
             const label = i + 1;
             let className;
             if (i === currentPage) className = 'selected';
-
             if (
                 i === 0 ||
                 i === pageCount - 1 ||
                 (i >= currentPage - leftSide && i <= currentPage + rightSide)
             ) {
                 pages.push(
-                    <button key={i} onClick={() => handlePageClick(i)} className={className} style={{border:'none', backgroundColor:'transparent'}}>
+                    <button key={i} onClick={() => handlePageClick(i)} className={className} style={{ border: 'none', backgroundColor: 'transparent' }}>
                         {label}
                     </button>
                 );
@@ -45,13 +45,12 @@ export default function Pagination({
                 (i > currentPage + rightSide && i === pageCount - 2)
             ) {
                 pages.push(
-                    <span key={i}  style={{backgroundColor:'transparent'}}>
+                    <span key={i} style={{ backgroundColor: 'transparent' }}>
                         {breakLabel}
                     </span>
                 );
             }
         }
-
         return pages;
     }, [
         currentPage,
@@ -64,25 +63,17 @@ export default function Pagination({
         <div className={className}>
             <button
                 onClick={() => handlePageClick(currentPage - 1)}
-                className={
-                    currentPage === 0 ? `has-text-grey` : 'is-clickable'
-                }
+                className={currentPage === 0 ? `has-text-grey` : 'is-clickable'}
                 disabled={currentPage === 0}
-                style={{border:'none', backgroundColor:'transparent'}}
-            >
+                style={{ border: 'none', backgroundColor: 'transparent' }}>
                 {previousLabel}
             </button>
-
             {pages}
-
             <button
                 onClick={() => handlePageClick(currentPage + 1)}
-                className={
-                    currentPage === pageCount - 1 ? `has-text-grey` : 'is-clickable'
-                }
+                className={currentPage === pageCount - 1 ? `has-text-grey` : 'is-clickable'}
                 disabled={currentPage === pageCount - 1}
-                style={{border:'none', backgroundColor:'transparent'}}
-            >
+                style={{ border: 'none', backgroundColor: 'transparent' }}>
                 {nextLabel}
             </button>
         </div>

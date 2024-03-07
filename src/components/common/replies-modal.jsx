@@ -1,30 +1,25 @@
-import { Swiper as SwiperComponent } from 'swiper/react';
-
 import { useEffect, useState } from 'react';
+
 import Link from 'next/link';
-import Comment from '../pacto/body/pacto/comment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import Comment from '../pacto/body/pacto/comment';
 import { postComments } from '@/utils/post-data';
 import Pagination from './pagination';
-import Emoji from './emoji';
 import { fetchGeneralComments } from '@/utils/get-data';
 import CommentContent from './comment-content';
 
+
 export default function RepliesModal({ comment, commentUrl, active, addCommentDefault, closeCommentModal, user, project }) {
+
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
 
-
-    useEffect(() => {
-        fetchComents()
-    }, [])
-
     const fetchComents = async (page) => {
         const resp = await fetchGeneralComments(`${commentUrl}${page ? '?page=' + page : ''}`)
         setComments(resp);
-
     }
 
     const handlesubmit = async (event) => {
@@ -36,32 +31,25 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
         }
     }
 
-    const handleNewComment = () => {
-        setAddComment(!addComment)
-    }
+    useEffect(() => {
+        fetchComents()
+    }, [])
 
     return (
         <div className={`modal replies-modal-wrapper ${active ? 'is-active' : ''}`}>
             <div className="modal-background" onClick={closeCommentModal}></div>
             <div className="modal-content" >
-
                 {comments && <div className="card">
                     <div className="is-flex is-justify-content-end pt-3 px-3">
-
                         <FontAwesomeIcon onClick={closeCommentModal} icon={faXmark} />
                     </div>
                     <header className="card-header is-flex-direction-column ">
-
-
                         <CommentContent
                             emoji={comment.user.country.emoji}
                             username={comment.user.name}
                             participatedInAssembly={comment.user.participatedInAssembly}
                             createdAt={comment.createdAt}
                             text={comment.text} />
-
-
-
                     </header>
                     <p className="card-header-title is-uppercase  is-justify-content-center">
                         comentarios
@@ -74,7 +62,6 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
                         </div>
                         {
                             comments && comments.total / comments.limit > 1 &&
-
                             <Pagination
                                 className="is-flex is-justify-content-center pagination"
                                 breakLabel="..."
@@ -95,7 +82,6 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
                                     <FontAwesomeIcon icon={faPaperPlane} />
                                 </span>
                             </p>
-
                         </form>
                             :
                             <div >

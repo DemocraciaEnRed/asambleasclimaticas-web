@@ -3,10 +3,11 @@ import { useAuthContext } from "@/context/auth-context"
 import { useLanguage } from "@/context/lang-context"
 import { useEffect } from "react"
 
-const LanguageSelector = () => {
-    const { user } = useAuthContext()
 
-    const { language, switched, changeLanguage } = useLanguage()
+export default function LanguageSelector() {
+
+    const { user } = useAuthContext()
+    const { language, changeLanguage } = useLanguage()
 
     useEffect(() => {
         if (user) {
@@ -15,6 +16,7 @@ const LanguageSelector = () => {
             changeLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0])
         }
     }, [])
+
     return (<div className="language-selector p-3">
         <p className="px-3">Idioma</p>
         <div className={`language-selector-buttons my-3 border-color-pink`} >
@@ -23,5 +25,3 @@ const LanguageSelector = () => {
         </div>
     </div>)
 }
-
-export default LanguageSelector

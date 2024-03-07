@@ -1,4 +1,5 @@
 export default function Skeleton({column, reverseColumn, height}) {
+
     return (
         <div className="section skeleton my-4">
             <div className="columns">

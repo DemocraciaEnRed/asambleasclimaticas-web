@@ -1,25 +1,10 @@
 import React from 'react'
 
+import { ClosedProjectcheck, RemainingDate, progress } from '@/utils/format'
 
-const RemainingDate = (firstDate, secondDate) => {
-  const date1 = new Date(firstDate)
-  const date2 = new Date(secondDate)
-  const diffTime = Math.abs(date2 - date1)
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
-  return diffDays
-}
+export default function ProgressBar({ closingDate, creationDate }) {
 
-const progress = (total, remaining) => {
-  return remaining * 100 / total
-}
-
-const ClosedProjectcheck = (closedAt) => {
-  const today = new Date();
-  const ClosedDate = new Date(closedAt)
-  return ClosedDate <= today  
-}
-const ProgressBar = ({ closingDate, creationDate, remaining }) => {
   const closed = ClosedProjectcheck(closingDate)
 
   if(closingDate) return (
@@ -33,6 +18,3 @@ const ProgressBar = ({ closingDate, creationDate, remaining }) => {
     </div>
   )
 }
-
-
-export default ProgressBar
