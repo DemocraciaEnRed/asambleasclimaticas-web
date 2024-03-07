@@ -2,8 +2,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faSquareTwitter, faSquareFacebook } from "@fortawesome/free-brands-svg-icons";
-import { useEffect } from "react";
-import Logo from "../common/logo";
+import Image from "next/image";
 
 
 export default function Footer() {
@@ -12,7 +11,12 @@ export default function Footer() {
         <footer className='footer-wrapper py-6'>
             <div className='logo'>
                 <Link href="/" className="has-text-centered" >
-                    <img src="/images/logoSimple.svg" alt="" />
+                    <Image
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        src="/images/logoSimple.svg"
+                        alt="logo resurgentes" />
                 </Link>
 
             </div>

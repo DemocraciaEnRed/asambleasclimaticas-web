@@ -2,7 +2,7 @@ import Skeleton from "@/components/common/skeleton";
 import ResumenBody from "@/components/pacto/body/resumen";
 import HeaderPropuesta from "@/components/pacto/header";
 import BreadcrumbNav from "@/components/pacto/header/breadcrumb";
-import { fetchProjectId, fetchProjectVersion } from '@/utils/get-data';
+import { fetchProjectId } from '@/utils/get-data';
 import { Suspense } from "react";
 
 

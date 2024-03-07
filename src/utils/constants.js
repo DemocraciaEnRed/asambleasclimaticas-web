@@ -1,6 +1,8 @@
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPenToSquare, faSquarePollHorizontal } from "@fortawesome/free-solid-svg-icons";
 
+export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
+
 export const CARD_PARTICIPATIVO = [
     {
         icon: faWhatsapp,
@@ -31,4 +33,4 @@ export const CARD_PARTICIPATIVO = [
     }
 ]
 
-export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
+export const ALIANZAS = ['delibera', 'extituto', 'sur', 'demos', 'der']

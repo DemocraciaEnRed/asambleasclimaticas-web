@@ -11,6 +11,7 @@ import { faInstagram, faSquareFacebook, faSquareTwitter } from "@fortawesome/fre
 import { useAuthContext } from "@/context/auth-context";
 import { fetchProjectId } from "@/utils/get-data";
 import { PROJECT_ID } from "@/utils/constants";
+import Image from "next/image";
 
 
 export default function Navbar() {
@@ -56,7 +57,12 @@ export default function Navbar() {
         <nav className={`navbar-wrapper ${navbarFixed ? 'navbar-fixed' : ''}`}>
             <div className='logo py-3'>
                 <Link href="/" className="is-flex is-align-items-center">
-                    <img src="/images/logoSimple.svg" alt="" />
+                    <Image
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        src="/images/logoSimple.svg"
+                        alt="logo resurgentes" />
                 </Link>
             </div>
             <div className="menu-navbar is-hidden-tablet is-flex is-align-items-center mr-5 p-3 is-clickable" onClick={handleOpenMenu}>
@@ -161,7 +167,12 @@ export default function Navbar() {
         </nav>
         <div className={`navbar-mobile-links is-hidden-tablet ${menuOpen ? 'active' : ''}`}>
             <div className="header-navbar is-flex is-justify-content-space-between is-align-items-center w-100 py-4 pl-4">
-                <img src="/images/logoSimple.svg" alt="" />
+                <Image
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    src="/images/logoSimple.svg"
+                    alt="logo resurgentes" />
                 <FontAwesomeIcon icon={faXmark} className=" mr-5 p-3 is-clickable" color="white" onClick={handleOpenMenu} />
             </div>
             <ul className="link-list">

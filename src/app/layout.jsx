@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 import './themes.scss'
 
-
 import Navbar from "@/components/layout/navbar"
 import Footer from '@/components/layout/footer'
 import AuthContextProvider from '@/context/auth-context'

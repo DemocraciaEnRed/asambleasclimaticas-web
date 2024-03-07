@@ -1,9 +1,7 @@
-
 import AboutNavLinks from "@/components/acerca-de/about-nav-links";
 
 
-export default function Layout({children}) {
-
+export default function Layout({ children }) {
 
     return (
         <div className="acerca-de-wrapper">

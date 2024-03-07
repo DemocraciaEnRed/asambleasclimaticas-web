@@ -10,7 +10,7 @@ export default async function HojaBody({ project }) {
                 <h1 className=" is-size-3 has-text-primary mb-0">Hoja de Ruta de las asambleas</h1>
                 <span className="has-text-weight-light is-italic is-size-4 has-text-primary"> * Roteiro das Assembleias</span>
             </div>
-            <p className="mb-0 has-text-weight-bold">Ordenado de mas reciente al mas antiguo</p>
+            <p className="mb-0 has-text-weight-bold">Ordenado de más reciente a más antiguo</p>
             <span className="has-text-weight-light is-italic is-size-7"> *Ordenado do mais recente ao mais antigo</span>
 
             <div className="events">

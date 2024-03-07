@@ -2,6 +2,7 @@
 import { stageCountryList } from "@/utils/data";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 import { Remark } from "react-remark";
 
@@ -46,7 +47,13 @@ export default function ResumenBody({ project }) {
                     {stageCountryList.map(country =>
                         <div key={country.code} className={`stage is-flex is-align-items-center  my-3 pr-3 ${project.stage === country.code ? 'active' : ''}`}>
                             <figure className="image is-48x48">
-                                <img className="" src={country.image} />
+                                <Image
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    src={country.image}
+                                    alt={`bandera pais ${country.name}`} />
+                                {/* <img className="" src={country.image} /> */}
                             </figure>
                             <div className="name-country has-background-black is-flex-grow-1 has-text-centered has-text-white px-3 is-uppercase">
                                 {country.name}
