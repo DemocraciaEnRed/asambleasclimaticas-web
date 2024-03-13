@@ -19,7 +19,7 @@
 
         .card-group {
             flex-wrap: wrap;
-            width: 90%;
+            width: 75%;
                 margin: auto;
             
             @include tablet {
@@ -27,7 +27,7 @@
                 }
             .card {
                 background-color: $pink-base;
-                width: 23%;
+                width: 45%;
                 border-radius: 15px;
 
                 @include widescreen {

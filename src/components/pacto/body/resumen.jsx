@@ -1,10 +1,12 @@
 'use client'
-import { stageCountryList } from "@/utils/data";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { Remark } from "react-remark";
+
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { STAGE_COUNTRY_LIST } from "@/utils/constants";
 
 
 export default function ResumenBody({ project }) {
@@ -44,7 +46,7 @@ export default function ResumenBody({ project }) {
                 </Link>
 
                 <div className="m-0 mt-6 is-flex is-flex-wrap-wrap is-justify-content-center stage-wrapper">
-                    {stageCountryList.map(country =>
+                    {STAGE_COUNTRY_LIST.map(country =>
                         <div key={country.code} className={`stage is-flex is-align-items-center  my-3 pr-3 ${project.stage === country.code ? 'active' : ''}`}>
                             <figure className="image is-48x48">
                                 <Image

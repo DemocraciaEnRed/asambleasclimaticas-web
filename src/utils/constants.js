@@ -1,11 +1,59 @@
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPenToSquare, faSquarePollHorizontal, faClipboardCheck, faLock, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 
 export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
 
-export const CARD_PARTICIPATIVO = [
+export const STAGE_COUNTRY_LIST = [
     {
+        name: "Brasil",
+        code: "BR",
+        image: "https://cdn-icons-png.flaticon.com/512/197/197386.png",
+        city: "Por definir",
+        date: "marzo-mayo 2024",
+        topic: "Por definir",
+        leader: "IDEEMOS",
+        description: "",
+        progress: 50,
+    },
+    {
+        name: "Colombia",
+        code: "CO",
+        image: "https://cdn-icons-png.flaticon.com/512/197/197575.png",
+        city: "Buenaventura",
+        date: "mayo-julio 2024",
+        topic: "Por definir",
+        leader: "Extituto",
+        description: "",
+        progress: 75,
+    },
+    {
+        name: "Argentina",
+        code: "AR",
+        image: "https://cdn-icons-png.flaticon.com/512/197/197573.png",
+        city: "Por definir",
+        date: "febrero–marzo 2024",
+        topic: "Por definir",
+        leader: "Democracia en Red",
+        description: "",
+        progress: 100,
+    },
+    {
+        name: "México",
+        code: "MX",
+        image: "https://cdn-icons-png.flaticon.com/512/197/197397.png",
+        city: "Monterrey (zona metropolitana)",
+        date: "febrero–marzo 2024",
+        topic:
+            "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
+        leader: "SUR, Instituto del Sur Urbano",
+        description:
+            "La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un mecanismo de sorteo cívico, que se reúnen para deliberar mejoras a las políticas ambientales urbanas para la Zona Metropolitana de Monterrey, en forma de desafío público.",
+        progress: 25,
+    },
+];
+
+export const CARD_PARTICIPATIVO = [
+    /* {
         icon: faWhatsapp,
         title_es: 'Comunidad de Whatsapp',
         title_pt: '*Comunidade do WhatsApp',
@@ -13,25 +61,26 @@ export const CARD_PARTICIPATIVO = [
         description_pt: '*Junte-se à comunidade do WhatsApp para ficar por dentro das novidades',
         button_text: 'unite',
         button_action: ''
+    }, */
+    {
+        icon: faSquarePollHorizontal,
+        title_es: 'Comentarios ',
+        title_pt: '*Comentários',
+        description_es: 'Comenta, mira y responde comentarios de otros usuarios.',
+        description_pt: '*Comente, visualize e responda aos comentários de outros usuários.',
+        button_text: 'Comente',
+        button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
     },
     {
         icon: faPenToSquare,
-        title_es: 'Aporte en las máximas',
-        title_pt: 'Aporte nas máximas',
-        description_es: 'Deja tus opiniones y valora las maximas',
-        description_pt: '*Deixe suas opiniões e avalie as máximas.',
+        title_es: 'Aportes',
+        title_pt: '*Contribuições',
+        description_es: 'Deja sugerencias y aportes específicos en cada máxima',
+        description_pt: '*Deixe sugestões e contribuições específicas em cada máxima',
         button_text: 'aporte',
-        button_action: ''
-    },
-    {
-        icon: faSquarePollHorizontal,
-        title_es: 'Deja tus opiniones y valora las maximas ',
-        title_pt: '*Deixe suas opiniões e avalie as máximas.',
-        description_es: 'Responda las encuestas relámpago sobre las temáticas',
-        description_pt: '*Responda as pesquisas relâmpago sobre os temas.',
-        button_text: 'responde',
-        button_action: ''
+        button_action: `/pacto/${PROJECT_ID}/articulado/#comment_section`
     }
+
 ]
 
 export const ALIANZAS = ['delibera', 'extituto', 'sur', 'demos', 'der']

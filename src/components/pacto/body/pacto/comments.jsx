@@ -1,7 +1,8 @@
 'use client'
 import { useState } from "react";
-import Comment from "./comment";
 import Link from "next/link";
+
+import Comment from "./comment";
 import Pagination from "@/components/common/pagination";
 import { useAuthContext } from "@/context/auth-context";
 import { postComments } from "@/utils/post-data";
@@ -45,7 +46,7 @@ export default function Comments({ project, comments }) {
     }   
 
     return (
-        <div className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
+        <div id="comment_section" className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
             <h4 className="my-4">Comentarios:</h4>
             {!ClosedProjectcheck(project.closedAt) && project.version === project.currentVersion ? <>
                 {user ? <div className="comment-form">
