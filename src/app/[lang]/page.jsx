@@ -4,23 +4,28 @@ import CountriesBanner from "@/app/_components/landing/countries-banner";
 import CountryBanner from "@/app/_components/landing/country-banner";
 import SliderBanner from "@/app/_components/landing/slider-banner";
 import { getDictionary } from "./dictionaries";
+import { BANNER_BACKGROUND } from "@/utils/constants";
 
 export async function generateStaticParams() {
     return ['es','pt'].map((lang) => {
-      return { lang }
-    })
-  }
+        return { lang }
+    })}
 
 
 export default async function Landing({ params: { lang } }) {
     const dict = await getDictionary(lang)
 
+    const getRandomBackground =()=>{
+        var randomNumber = Math.random();
+        const index=Math.floor(BANNER_BACKGROUND.length*randomNumber)
+        return BANNER_BACKGROUND[index]
+    }
 
 
     return (
         <div className="landing-wrapper">
             <BannerTitle
-                image="/images/image-city.png"
+                image={`/images/banners/${getRandomBackground()}`}
                 title={dict.bannerTitle.title}
                 linkButton="#banner-interciudad"
                 textButton={dict.bannerTitle.button}

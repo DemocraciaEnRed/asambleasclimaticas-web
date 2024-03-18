@@ -1,6 +1,6 @@
 {
     "bannerTitle": {
-        "title": "Uniendo Voces para Despertar el Cambio Climático",
+        "title": "UNIENDO VOCES PARA ENFRENTAR EL CAMBIO CLIMÁTICO",
         "subtitle": "Forjamos Futuros Sostenibles, Ciudad por Ciudad.",
         "button": "Comenzar"
     },
@@ -8,24 +8,14 @@
         "title": "Asambleas",
         "countries": [
             {
-                "name": "México",
-                "code": "MX",
-                "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
-                "city": "Monterrey (zona metropolitana)",
-                "date": "febrero–marzo 2024",
-                "topic": "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
-                "leader": "SUR, Instituto del Sur Urbano",
-                "description": "La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un mecanismo de sorteo cívico, que se reúnen para deliberar mejoras a las políticas ambientales urbanas para la Zona Metropolitana de Monterrey, en forma de desafío público."
-            },
-            {
                 "name": "Brasil",
                 "code": "BR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
-                "city": "Por definir",
+                "city": "Bujarú",
                 "date": "marzo-mayo 2024",
-                "topic": "Por definir",
-                "leader": "IDEEMOS",
-                "description": ""
+                "topic": "Bio/Eco Economía, renta y calidad de vida en la Amazonia",
+                "leader": "Delibera Brasil",
+                "description": "La Asamblea Climática de Bujaru está formada por 50 vecinos provenientes de la ciudad, incluyendo las comunidades tradicionales, que se reunirán para comprender el contexto, oportunidades y riesgos de la crisis climática en un proceso deliberativo para enviar al gobierno recomendaciones de políticas públicas e inversiones privadas en Bioeconomía Sostenible con generación de ingresos y calidad de vida para todos los que habitan en Bujaru."
             },
             {
                 "name": "Colombia",
@@ -41,21 +31,31 @@
                 "name": "Argentina",
                 "code": "AR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197573.png",
-                "city": "Por definir",
+                "city": "Mar del Plata",
                 "date": "julio-septiembre 2024",
                 "topic": "Por definir",
                 "leader": "Democracia en Red",
                 "description": ""
+            },
+            {
+                "name": "México",
+                "code": "MX",
+                "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
+                "city": "Monterrey (zona metropolitana)",
+                "date": "febrero–marzo 2024",
+                "topic": "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
+                "leader": "SUR, Instituto del Sur Urbano",
+                "description": "La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un sorteo cívico, que se reúnen para deliberar y emitir recomendaciones para mejorar las políticas ambientales urbanas de la Zona Metropolitana de Monterrey."
             }
         ]
     },
     "sliderBanner": [
-        "<strong class='has-text-white'>(Re)surgentes</strong> es una red de Asambleas Climáticas, acompañadas por expertas, gobiernos locales, y organizaciones especializadas en democracia deliberativa en América Latina.",
-        "<strong class='has-text-white'>Nuestro objetivo</strong> es fortalecer los procesos de democratización y descentralización de toma de decisiones públicas frente a la crisis climática en América Latina.",
-        "<strong class='has-text-white'>Las Asambleas Climáticas</strong> – son mecanismos de democracia deliberativa que buscan asegurar que personas ciudadanas seleccionadas al azar tomemos un rol central en la toma de decisiones sobre el clima en América Latina."
+        "<strong class='has-text-white'>(Re)surgentes</strong> es una red de Asambleas Climáticas integradas por más de 200 personas elegidas al azar en cuatro ciudades de América Latina, acompañadas por personas expertas, partes interesadas, gobiernos locales, líderes y organizaciones especializadas en democracia deliberativa.",
+        "<strong class='has-text-white'>Nuestro objetivo es </strong> fortalecer los procesos de democratización y descentralización de toma de decisiones públicas frente a la crisis climática en América Latina.",
+        "<strong class='has-text-white'>Las Asambleas Climáticas</strong> – son mecanismos de democracia deliberativa, de discusión y reflexión, impulsados para que personas ciudadanas, seleccionadas al azar, asuman un rol central en la toma de decisiones sobre el clima en América Latina."
     ],
     "pactoBannerSecction": {
         "image": "",
-        "description": "<p>El <strong>pacto</strong> es un instrumento de incidencia pública construido de manera colaborativa donde personas y ciudades definen una visión estratégica para afrontar la crisis climática desde América Latina para el mundo.</p><p class='py-3 has-text-weight-bold'>Cómo funciona:</p><ol ><li>Durante su proceso de deliberación, cada Asamblea decide por lo menos 4 propuestas de principios para el pacto.</li><li>Las propuestas se publican en la plataforma para recibir contribuciones, aportes, y comentarios de la ciudadanía en general, que deberá registrarse con nombre y ciudad para participar del debate y determinación de los principios del pacto.</li><li>Durante el proceso de participación, se generan versiones actualizadas y mejoradas del Pacto Inter-ciudades, gracias a las contribuciones y aportes de las personas.</li><li>Se genera un documento final y se pone a consideración de las personas para su validación final.</li></ol>"
+        "description": "<p>El <strong>pacto interciudad</strong> es un instrumento de inicidencia pública, construido de forma colaborativa, donde personas y ciudades definen una visión estratégica para afrontar la crisis climática desde América Latina para el mundo.</p><p class='py-3 has-text-weight-bold'>¿Cómo funciona?</p><ol ><li> Cada <a href='#countries-banner'> Asamblea Climática </a> elabora al menos 4 propuestas de principios para el Pacto.</li><li> Las propuestas se publican en la plataforma del Pacto Interciudad para recibir contribuciones, aportes y comentarios de la ciudadanía en general.</li><li>Para participar del debate y determinación del Pacto las personas deben registrarse con nombre y ciudad <a href='https://pacto.resurgentes.org/auth/register'> aquí</a> </li><li>Durante el proceso de participación se generarán versiones actualizadas y mejoradas del Pacto con los aportes de las personas registradas.</li><li>Finalmente se redactará un documento final del Pacto Interciudad que se pondrá a consideración de las personas para su validación final.</li> </ol>"
     }
 }

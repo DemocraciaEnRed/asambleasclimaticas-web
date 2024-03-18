@@ -53,7 +53,7 @@ export default function Navbar() {
             <div className={`navbar-links has-text-white is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
                 <ul >
                     <li >
-                        <Link onClick={handleOpenMenu} className='link-navbar' href="/" >
+                        <Link onClick={handleOpenMenu} className='link-navbar' href="#" >
                             <span>
                                 Inicio
                             </span>
