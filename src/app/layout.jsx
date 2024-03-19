@@ -25,7 +25,7 @@ export const metadata = {
     description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
     images: [
       {
-        url: '/images/share-landing.png', 
+        url: 'https://resurgentes.org/images/share-landing.png', 
         width: 800,
         height: 600,
       },
