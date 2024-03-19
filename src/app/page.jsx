@@ -13,14 +13,19 @@ export default async function Home() {
 
     return (
         <div className="home-wrapper">
-            <BannerTitle image="/images/image-city.png" title="Pacto Inter-ciudad" subtitle="*PACTO INTERCIDADE" urlButton='#banner-participativo' textButton="Participar" />
+            <BannerTitle
+                title="Pacto Inter-ciudad"
+                subtitle="*PACTO INTERCIDADE"
+                urlButton="#banner-participativo"
+                textButton="Participar"
+            />
             <BannerParticipativo />
             <Banner />
             <BannerResurgente />
-            <Suspense fallback={<Skeleton height={500}/>}>
+            <Suspense fallback={<Skeleton height={500} />}>
                 <BannerPacto />
             </Suspense>
             <BannerSobreProyecto />
         </div>
-    )
+    );
 }

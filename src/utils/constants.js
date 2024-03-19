@@ -52,6 +52,10 @@ export const STAGE_COUNTRY_LIST = [
     },
 ];
 
+export const BANNER_BACKGROUND = [
+    'banner_marDelPlata.png', 'banner_Brasil.jpeg', 'banner_colombia.png', 'banner_Mexico.jpg'
+]
+
 export const CARD_PARTICIPATIVO = [
     /* {
         icon: faWhatsapp,
