@@ -134,7 +134,24 @@
 .banner-title {
   padding: 13rem 9rem;
   background-size: cover;
-
+  .banner-background{
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
+    @include tablet{
+      width: auto;
+      max-width: none;
+      left: -50%;
+    }
+    &.active{
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+  }
   .is-overlay {
     background-color: #ffffff87;
   }
@@ -145,7 +162,8 @@
     width: 75%;
     img{
       width: 30%;
-      filter: brightness(0) saturate(100%) invert(8%) sepia(18%) saturate(1421%) hue-rotate(322deg) brightness(98%) contrast(91%);      @include tablet{
+      filter: brightness(0) saturate(100%) invert(8%) sepia(18%) saturate(1421%) hue-rotate(322deg) brightness(98%) contrast(91%);      
+      @include tablet{
         width: 60%;
       }
     }
