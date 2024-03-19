@@ -71,7 +71,7 @@ export const CARD_PARTICIPATIVO = [
         title_es: 'Comentarios ',
         title_pt: '*Comentários',
         description_es: 'Comenta, mira y responde comentarios de otros usuarios.',
-        description_pt: '*Comente, visualize e responda aos comentários de outros usuários.',
+        description_pt: '*Visualize, comente e responda aos comentários de outros usuários.*',
         button_text: 'Comente',
         button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
     },

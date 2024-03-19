@@ -61,6 +61,7 @@
         >.button {
             border-width: 2px;
             border-color: $black;
+            height: fit-content;
         }
     }
 
@@ -170,6 +171,7 @@
                 border-radius: 999px;
                 border: none;
                 padding: 0 2rem;
+                height: fit-content;
             }
         }
     }
