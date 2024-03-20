@@ -1,6 +1,3 @@
-import { faPenToSquare, faSquarePollHorizontal, faClipboardCheck, faLock, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-
-
 export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
 
 export const STAGE_COUNTRY_LIST = [
@@ -67,7 +64,7 @@ export const CARD_PARTICIPATIVO = [
         button_action: ''
     }, */
     {
-        icon: faSquarePollHorizontal,
+        icon: 'comment.svg',
         title_es: 'Comentarios ',
         title_pt: '*Comentários',
         description_es: 'Comenta, mira y responde comentarios de otros usuarios.',
@@ -76,7 +73,7 @@ export const CARD_PARTICIPATIVO = [
         button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
     },
     {
-        icon: faPenToSquare,
+        icon: 'pencil.svg',
         title_es: 'Aportes',
         title_pt: '*Contribuições',
         description_es: 'Deja sugerencias y aportes específicos en cada máxima',
@@ -95,7 +92,7 @@ export const NEW_PASSWORD_TITLE = {
         title_pt: 'Digite sua nova senha.',
     },
     send: {
-        icon: faClipboardCheck,
+        icon: 'lock_success.svg',
         title: 'Contraseña actualizada con exito!',
         title_pt: 'Senha atualizada com sucesso!',
     }
@@ -103,14 +100,14 @@ export const NEW_PASSWORD_TITLE = {
 
 export const RESTORE_PASSWORD_TITLE = {
     prevSend: {
-        icon: faLock,
+        icon: 'lock.svg',
         title: 'Recupera tu contraseña',
         title_pt: '* Recupere sua senha.',
         description: 'No te preocupes, recuperarla es fácil. Introduce tu correo electrónico y sigue las instrucciones en el correo que recibirás para restablecer tu contraseña.',
         description_pt: '* Não se preocupe, recuperá-la é fácil. Insira seu endereço de e-mail e siga as instruções no e-mail que você receberá para redefinir sua senha.'
     },
     send: {
-        icon: faPaperPlane,
+        icon: 'mail.svg',
         title: 'Mail de restauración enviado',
         title_pt: 'E-mail de recuperação enviado.',
         description: 'En unos minutos recibirás un correo con el paso a paso para poder definir tu nueva contraseña (No te olvides de revisar en spam).',

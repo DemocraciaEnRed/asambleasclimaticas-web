@@ -287,7 +287,19 @@
   &:not(:last-of-type) {
     border-bottom: 1px solid $grey-light;
   }
-
+  .likes{
+    img{
+      height: 1em;
+      width: auto;
+      filter: grayscale(1);
+      &.liked{
+        filter: grayscale(2) invert(27%) sepia(54%) saturate(355%) hue-rotate(125deg) brightness(96%) contrast(89%);
+      }
+      &.disliked{
+        filter: invert(15%) sepia(100%) saturate(746%) hue-rotate(-17deg) brightness(98%) contrast(97%);
+      }
+    }
+  }
   .highlighted {
     .is-relative {
       &:hover {

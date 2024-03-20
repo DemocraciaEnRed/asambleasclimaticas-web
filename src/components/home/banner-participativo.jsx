@@ -1,9 +1,7 @@
 import Link from "next/link";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { CARD_PARTICIPATIVO } from "@/utils/constants";
-
+import Image from "next/image";
 
 export function BannerParticipativo() {
     return (
@@ -21,7 +19,13 @@ export function BannerParticipativo() {
                         className="card m-3 py-4 is-flex is-flex-direction-column"
                     >
                         <div className="card-image pt-5 has-text-centered">
-                            <FontAwesomeIcon icon={card.icon} color="white" />
+                            <Image
+                                src={`/icon/${card.icon}`}
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                className="icon-card"
+                            />
                         </div>
                         <div className="card-content py-0 has-text-centered has-text-white is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-space-evenly">
                             <div className="title is-size-3 is-size-4-touch">
