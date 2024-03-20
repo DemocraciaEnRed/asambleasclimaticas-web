@@ -1,11 +1,21 @@
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function BannerSobreProyecto(){
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+export default function BannerSobreProyecto() {
     return (
         <div className="banner-sobre-proyecto">
-            <div className="banner-image"></div>
+            <div className="banner-image has-background-orange">
+                <Image
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    src="/images/image_project.png"
+                    alt="imagen sobre proyecto"
+                />
+            </div>
             <div className="content has-background-orange">
                 <div className="title is-size-2">
                     Sobre el Proyecto
