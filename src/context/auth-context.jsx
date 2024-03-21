@@ -11,9 +11,9 @@ import {
 import Cookies from 'js-cookie'
 import { refreshToken } from "@/utils/post-data";
 import { fetchUserMe } from "@/utils/get-data";
+import { AUTH_TOKENS_KEY } from "@/utils/constants";
 
 
-const AUTH_TOKENS_KEY = "RES_AUTH";
 const AUTH_USER_INFO = "RES_USER"
 
 export const AuthContext = createContext({

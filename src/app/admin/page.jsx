@@ -3,12 +3,6 @@ import { useRouter, redirect } from "next/navigation"
 import { useAuthContext } from "@/context/auth-context";
 
 export default function AdminHomePage({ params }) {
-  // get the user from store
-  const { user } = useAuthContext()  // redirect if user is not logged in
-  // redirect if user is not admin or author
-  if (user && user.role !== 'admin') {
-    redirect('/')
-  }
 
   return (
     <>

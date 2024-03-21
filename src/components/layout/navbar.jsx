@@ -115,8 +115,8 @@ export default function Navbar() {
                                 </span>
                             </Link>
                         </li>
-                        <li className="is-flex is-align-items-center is-hidden-mobile">
-                            {isClient && user ? (
+                        {isClient && <li className="is-flex is-align-items-center is-hidden-mobile">
+                            { user ? (
                                 <div className="dropdown is-right is-hoverable mr-4 user-avatar">
                                     <div className="dropdown-trigger">
                                         <button
@@ -184,7 +184,7 @@ export default function Navbar() {
                                     login
                                 </Link>
                             )}
-                        </li>
+                        </li>}
                     </ul>
                 </div>
             </nav>
@@ -209,8 +209,8 @@ export default function Navbar() {
                     />
                 </div>
                 <ul className="link-list">
-                    <li className="is-flex is-align-items-center pb-4 ">
-                        {isClient && user ? (
+                {isClient && <li className="is-flex is-align-items-center pb-4 ">
+                        {user ? (
                             <div className="dropdown is-right is-hoverable user-avatar m-4">
                                 <div className="dropdown-trigger">
                                     <button
@@ -271,7 +271,7 @@ export default function Navbar() {
                                 login
                             </Link>
                         )}
-                    </li>
+                    </li>}
                     <li className={pathname == "/" ? "active" : ""}>
                         <Link
                             onClick={handleOpenMenu}

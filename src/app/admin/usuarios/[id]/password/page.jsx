@@ -18,16 +18,6 @@ export default function AdminUserInfoPasswordPage({params}) {
   const { user } = useAuthContext()
   const { addAlert } = useAlert()
 
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-
-  // redirect if user is not admin or author
-  if (user.role !== 'admin') {
-    redirect('/')
-  }
-
   const userId = params.id
   const pathname = usePathname()
   const [userData, setUserData] = useState(null);

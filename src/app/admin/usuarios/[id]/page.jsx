@@ -17,16 +17,6 @@ export default function AdminUserInfoPage({params}) {
   // get the user from store
   const { user, refreshUser } = useAuthContext()
 
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-
-  // redirect if user is not admin or author
-  if (user.role !== 'admin') {
-    redirect('/')
-  }
-
   const router = useRouter()
   const pathname = usePathname()
 

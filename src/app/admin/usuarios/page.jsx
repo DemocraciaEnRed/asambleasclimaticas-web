@@ -15,16 +15,6 @@ export default function AdminUsersListPage({params}) {
   // get the user from store
   const { user } = useAuthContext()
 
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-
-  // redirect if user is not admin or author
-  if (user.role !== 'admin') {
-    redirect('/')
-  }
-
   const router = useRouter()
 
   const [users, setUsers] = useState([])
@@ -44,13 +34,6 @@ export default function AdminUsersListPage({params}) {
 
   async function fetchData() {
     try {
-      // check if admin is the same as the user
-       if(user.role !== 'admin') {
-        console.log('----- not admin')
-        // cannot be here, go to home
-        router.push('/')
-      }
-
       // fetch
       const promises = [
         adminFetchUsers(page, limit, query),
