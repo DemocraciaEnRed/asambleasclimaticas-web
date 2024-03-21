@@ -6,7 +6,9 @@ const LanguageContext = createContext();
 const LANGUAGE_INFO_COOKIE = 'RES_LANG'
 
 export const LanguageProvider = ({ children }) => {
-    const storedLanguage = window.localStorage.getItem(LANGUAGE_INFO_COOKIE);
+    const storedLanguage =
+        typeof window !== "undefined" &&
+        window.localStorage.getItem(LANGUAGE_INFO_COOKIE);
     const jsonStoredLanguage = storedLanguage && JSON.parse(storedLanguage);
     const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : 'es');
 

@@ -26,7 +26,9 @@ export const AuthContext = createContext({
 
 export default function AuthContextProvider({ children }) {
     const authTokensInCookies = Cookies.get(AUTH_TOKENS_KEY);
-    const userInLocalStorage = window.localStorage.getItem(AUTH_USER_INFO);
+    const userInLocalStorage =
+        typeof window !== "undefined" &&
+        window.localStorage.getItem(AUTH_USER_INFO);
     const [user, setUser] = useState(
         userInLocalStorage && authTokensInCookies === null
             ? null

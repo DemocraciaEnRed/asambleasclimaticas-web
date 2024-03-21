@@ -20,35 +20,35 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [navbarFixed, setNavbarFixed] = useState(false)
     const [showOverlay, setShowOverlay] = useState(false)
-
-    const pathname = usePathname()
+    const [isClient, setIsClient] = useState(false);
+    const pathname = usePathname();
 
     const handleOpenMenu = () => {
         if (window.innerWidth < 768) {
-            setMenuOpen(!menuOpen)
-            setShowOverlay(!showOverlay)
+            setMenuOpen(!menuOpen);
+            setShowOverlay(!showOverlay);
         }
-    }
+    };
 
     const controlNavbar = () => {
-        if (window.scrollY > 300) setNavbarFixed(true)
-        else setNavbarFixed(false)
-    }
+        if (window.scrollY > 300) setNavbarFixed(true);
+        else setNavbarFixed(false);
+    };
 
     const fetchProject = async () => {
-        const project = await fetchProjectId(PROJECT_ID)
-        if (project) setProject(project)
-
-    }
+        const project = await fetchProjectId(PROJECT_ID);
+        if (project) setProject(project);
+    };
 
     useEffect(() => {
-        fetchProject()
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', controlNavbar);
+        fetchProject();
+        if (typeof window !== "undefined") {
+            window.addEventListener("scroll", controlNavbar);
+            setIsClient(true);
 
             // cleanup function
             return () => {
-                window.removeEventListener('scroll', controlNavbar);
+                window.removeEventListener("scroll", controlNavbar);
             };
         }
     }, []);
@@ -116,7 +116,7 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li className="is-flex is-align-items-center is-hidden-mobile">
-                            {user ? (
+                            {isClient && user ? (
                                 <div className="dropdown is-right is-hoverable mr-4 user-avatar">
                                     <div className="dropdown-trigger">
                                         <button
@@ -210,7 +210,7 @@ export default function Navbar() {
                 </div>
                 <ul className="link-list">
                     <li className="is-flex is-align-items-center pb-4 ">
-                        {user ? (
+                        {isClient && user ? (
                             <div className="dropdown is-right is-hoverable user-avatar m-4">
                                 <div className="dropdown-trigger">
                                     <button

@@ -27,22 +27,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="es" className={karla.className}>
-      <body>
-        <Providers>
-          <AuthContextProvider>
-            <AlertProvider>
-              <LanguageProvider>
-                <Navbar />
-                <main>{children}</main>
-                <HelpButton />
-                <Footer />
-                <Message />
-              </LanguageProvider>
-            </AlertProvider>
-          </AuthContextProvider>
-        </Providers>
-      </body>
-    </html>
+      <html lang="es" className={karla.className}>
+          <body>
+              <AuthContextProvider>
+                  <AlertProvider>
+                      <LanguageProvider>
+                          <Navbar />
+                          <main>{children}</main>
+                          <HelpButton />
+                          <Footer />
+                          <Message />
+                      </LanguageProvider>
+                  </AlertProvider>
+              </AuthContextProvider>
+          </body>
+      </html>
   );
 }
