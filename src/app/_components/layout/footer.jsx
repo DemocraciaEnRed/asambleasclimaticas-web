@@ -14,7 +14,7 @@ export default function Footer() {
                 </Link>
 
             </div>
-            <ul className="footer-rrss py-4">
+            {/* <ul className="footer-rrss py-4">
                 <li >
                     <Link className='link-footer ' href="https://twitter.com/fundacionDER" target="_blank" >
                         <FontAwesomeIcon icon={faSquareTwitter} />
@@ -30,7 +30,7 @@ export default function Footer() {
                         <FontAwesomeIcon icon={faSquareFacebook} />
                     </Link>
                 </li>
-            </ul>
+            </ul> */}
             {/* <div className="footer-links">
 
                 <ul >
