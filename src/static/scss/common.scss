@@ -138,23 +138,20 @@
   .banner-background{
     opacity: 0;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%,0);
     position: absolute;
-    width: 100%;
+    width: auto;
     height: 100%;
     transition: opacity 0.3s;
-    @include tablet{
-      width: auto;
-      max-width: none;
-      left: -50%;
-    }
+    max-width: none;
     &.active{
       opacity: 1;
       transition: opacity 0.3s;
     }
   }
   .is-overlay {
-    background-color: #ffffff87;
+    background-color: #ffffff5e;
   }
 
   .content {

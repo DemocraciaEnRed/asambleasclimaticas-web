@@ -16,15 +16,17 @@ const ImageRandom = ({
     const [imageActive, setImageActive] = useState(0);
 
     const getRandomBackground = () => {
-        setInterval(() => {
-            var randomNumber = Math.random();
-            const index = Math.floor(BANNER_BACKGROUND.length * randomNumber);
+        setTimeout(() => {
+            let index =
+                imageActive < BANNER_BACKGROUND.length - 1
+                    ? imageActive + 1
+                    : 0;
             setImageActive(index);
         }, 5000);
     };
     useEffect(() => {
         getRandomBackground();
-    }, []);
+    }, [imageActive]);
     return (
         <div>
             {BANNER_BACKGROUND.map((image, idx) => (
