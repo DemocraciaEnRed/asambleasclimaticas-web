@@ -18,19 +18,13 @@ const karla = Karla({
   display: 'swap',
 })
 export const metadata = {
+  metadataBase: new URL('https://resurgentes.org'),
   title: 'Resurgente Pacto-interciudad',
   description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
   openGraph:{
     title: 'Resurgente Pacto-interciudad',
     description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
-    images: [
-      {
-        url: 'https://resurgentes.org/images/share-landing.png', 
-        width: 800,
-        height: 600,
-      },
-      
-    ],
+    images:  'https://resurgentes.org/images/share-landing.png',
     type: 'website',
   }
 }
