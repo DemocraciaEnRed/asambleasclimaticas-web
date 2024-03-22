@@ -20,7 +20,7 @@ export default function Footer() {
                 </Link>
 
             </div>
-            <ul className="footer-rrss">
+            {/* <ul className="footer-rrss">
                 <li >
                     <Link className='link-footer has-text-weight-bold has-text-black' href="https://twitter.com/fundacionDER" target="_blank" >
                         <FontAwesomeIcon icon={faSquareTwitter} />
@@ -36,7 +36,7 @@ export default function Footer() {
                         <FontAwesomeIcon icon={faSquareFacebook} />
                     </Link>
                 </li>
-            </ul>
+            </ul> */}
             <div className="footer-links">
 
             <ul >
@@ -51,7 +51,7 @@ export default function Footer() {
                     </Link>
                 </li>
                 <li>
-                    <Link className="has-text-black" href="#">
+                    <Link className="has-text-black" href="/sobre/contacto">
                         Contacto
                     </Link>
                 </li>
