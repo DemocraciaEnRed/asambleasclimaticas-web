@@ -67,7 +67,6 @@
                 width: 100%;
             }
             h1 {
-                font-size: 3rem;
 
                 @include tablet{
                     line-height: 4rem;
@@ -84,7 +83,6 @@
             }
 
             h2 {
-                font-size: 1.5rem;
                 @include tablet{
                     line-height: 2rem;
                     margin-bottom: 30px;
@@ -134,18 +132,11 @@
             }
                 
             span {
-                font-size: 1.4rem;
-                line-height: 2rem;
                 margin-top: 40px;
                 margin-bottom: 30px;
             }
-
-            p {
-                font-size: 1rem;
-                color: $grey-dark;
-                max-width: 850px;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
+            .pt-text{
+                font-size: .9rem;
             }
             ul{
                 list-style: disc;

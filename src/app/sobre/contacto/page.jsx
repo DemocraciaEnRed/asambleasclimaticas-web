@@ -8,20 +8,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Acercade() {
 
     return (<section className='contacto'>
-        <h1>Contacto</h1>
+        <h2 className="has-text-pink is-size-2">
+                Contacto
+            </h2>
         <div className='static-info-wrapper-content'>
             <p>
-                ¿Perteneces a una organización de la sociedad civil o movimiento social? Agendemos una llamada para activar tu propuesta en COLECTIVA
+            Puedes contactar al equipo de Resurgentes escribiendo un correo a <Link href="mailto:resurgentes.latam@gmail.com">resurgentes.latam@gmail.com</Link>
             </p>
-            <button className="my-3 button is-rounded is-brown is-uppercase has-text-white px-6">Conoce más</button>
             <div className="link-section">
-                <h2 className="has-text-primary">Escríbenos tus comentario</h2>
-                <Link target="_blank" href="https://www.artemisas.org/"><FontAwesomeIcon icon={faLaptop} /><p>https://www.artemisas.org/</p></Link>
-                <Link target="_blank" href="mailto:organizacionartemisas@gmail.com"><FontAwesomeIcon icon={faEnvelope} /><p>organizacionartemisas@gmail.com</p></Link>
-                <h2 className="has-text-primary">Redes Sociales</h2>
-                <Link target="_blank" href="https://instagram.com/organizacionartemisas?igshid=YmMyMTA2M2Y="><FontAwesomeIcon icon={faInstagram} /><p>https://instagram.com/organizacionartemisas	</p></Link>
-                <Link target="_blank" href="https://twitter.com/Artemisas_org"><FontAwesomeIcon icon={faTwitter} /><p>@Artemisas_org</p></Link>
-                <Link target="_blank" href="https://www.facebook.com/OrganizacionArtemisas/"><FontAwesomeIcon icon={faFacebook} /><p>https://www.facebook.com/OrganizacionArtemisas/</p></Link>
+            <h3 className="has-text-primary has-text-weight-bold is-size-3 mt-6 mb-3">
+                    Quiénes somos
+                </h3>
+                <h4 className="has-text-primary is-size-5 has-text-weight-bold">Delibera Brasil (Brasil)</h4>
+                <Link target="_blank" href="https://deliberabrasil.org/">deliberabrasil.org</Link>
+                <h4 className="has-text-primary is-size-5 has-text-weight-bold">Ideemos (Colombia)</h4>
+                <Link target="_blank" href="https://ideemos.org/">ideemos.org</Link>
+                <h4 className="has-text-primary is-size-5 has-text-weight-bold">Extituto (Colombia)</h4>
+                <Link target="_blank" href="https://www.extituto.org/">extituto.org</Link>
+                <h4 className="has-text-primary is-size-5 has-text-weight-bold">Democracia en Red (Argentina)</h4>
+                <Link target="_blank" href="https://democraciaenred.org/">democraciaenred.org</Link>
+                <h4 className="has-text-primary is-size-5 has-text-weight-bold">Sur - Instituto del Sur Urbano (México)</h4>
+                <Link target="_blank" href="https://surinstitute.com/surexs">surinstitute.com</Link>
             </div>
         </div>
     </section>)
