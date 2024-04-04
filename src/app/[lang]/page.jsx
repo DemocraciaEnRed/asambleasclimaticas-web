@@ -6,15 +6,16 @@ import SliderBanner from "@/app/_components/landing/slider-banner";
 import { getDictionary } from "./dictionaries";
 
 export async function generateStaticParams() {
-    return ['es','pt'].map((lang) => {
+    return ['es', 'pt'].map((lang) => {
         return { lang }
-    })}
+    })
+}
 
 
 export default async function Landing({ params: { lang } }) {
     const dict = await getDictionary(lang)
 
-    
+
 
     return (
         <div className="landing-wrapper">
@@ -25,6 +26,7 @@ export default async function Landing({ params: { lang } }) {
                 subtitle={dict.bannerTitle.subtitle}
             />
             <CountriesBanner
+                dict={dict}
                 countries={dict.countriesBanner.countries}
                 title={dict.countriesBanner.title}
             />
@@ -32,9 +34,10 @@ export default async function Landing({ params: { lang } }) {
                 textsSlider={dict.sliderBanner}
             />
             <BannerPactoLanding
+                title={dict.pactoBannerSecction.title}
                 description={dict.pactoBannerSecction.description} />
             <div className="country-banner">
-                {dict.countriesBanner.countries.map(country => <CountryBanner key={country.code} country={country} />)}
+                {dict.countriesBanner.countries.map(country => <CountryBanner key={country.code} dict={dict} country={country} />)}
             </div>
         </div>
     )

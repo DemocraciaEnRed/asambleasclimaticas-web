@@ -11,6 +11,23 @@ import { handleOverlay } from "@/store/reducers/config";
 import Logo from "@/app/_components/common/logo";
 import LangSwitch from "../common/lang-switch";
 
+const links = [
+    {
+        "/es": "Inicio",
+        "/pt":"Início",
+        "url": "#"
+    },
+    {
+        "/es": "asambleas",
+        "/pt":"Assembleias",
+        "url": "#countries-banner"
+    },
+    {
+        "/es": "sobre",
+        "/pt": "sobre",
+        "url": "#banner-interciudad"
+    }
+]
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -52,7 +69,14 @@ export default function Navbar() {
             </div>
             <div className={`navbar-links has-text-white is-flex-grow-1 ${!menuOpen ? 'is-hidden-mobile' : ''}`}>
                 <ul >
-                    <li >
+                    {links.map((link,idx) =><li key={idx} >
+                        <Link onClick={handleOpenMenu} className='link-navbar' href={link.url} >
+                            <span>
+                                {link[pathname]}
+                            </span>
+                        </Link>
+                    </li>)}
+                    {/* <li >
                         <Link onClick={handleOpenMenu} className='link-navbar' href="#" >
                             <span>
                                 Inicio
@@ -72,7 +96,7 @@ export default function Navbar() {
                                 sobre
                             </span>
                         </Link>
-                    </li>
+                    </li> */}
 
 
 

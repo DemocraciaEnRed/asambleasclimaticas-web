@@ -1,6 +1,6 @@
 export const BANNER_BACKGROUND = [
     'banner_argentina.jpg',
     'banner_brasil.jpg',
-    //'banner_colombia.avif',
-    'banner_mexico.png'
+    'banner_colombia.jpg',
+    'banner_mexico.jpg'
 ]

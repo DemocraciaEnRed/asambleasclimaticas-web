@@ -6,13 +6,18 @@
     },
     "countriesBanner": {
         "title": "Assembleias",
+        "city":"Cidade",
+        "date":"Data",
+        "topic":"Tema",
+        "leader_organization":"Organização Líder",
+        "start_date":"Data de início",
         "countries": [
             {
                 "name": "Brasil",
                 "code": "BR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
                 "city": "Bujaru",
-                "date": "março a maio de 2024",
+                "date": "março a junho de 2024",
                 "topic": "Bioeconomia Sustentável, renda e qualidade de vida na Amazônia",
                 "leader": "Delibera Brasil",
                 "description": "A Assembleia Climática de Bujaru é formada por 50 moradores sorteados em todo o município, incluindo as comunidades tradicionais, que se reunem para entender o contexto, oportunidades e riscos, deliberar e fazer recomendações para políticas públicas e investimentos privados em Bioeconomia Sustentável com geração de renda e qualidade de vida para todas e todos que vivem em Bujaru."
@@ -51,11 +56,11 @@
     },
     "sliderBanner": [
         "<strong class='has-text-white'>(Re)surgentes</strong> é uma rede de Assembleias Climáticas composta por mais de 200 pessoas sorteadas aleatoriamente em quatro cidades da América Latina, acompanhadas por especialistas, partes interessadas, governos locais, líderes e organizações especializadas em democracia deliberativa.",
-        "v<strong class='has-text-white'>Nosso objetivo</strong> é fortalecer os processos de democratização e descentralização da tomada de decisões públicas para o enfrentamento da crise climática na América Latina.",
+        "<strong class='has-text-white'>Nosso objetivo</strong> é fortalecer os processos de democratização e descentralização da tomada de decisões públicas para o enfrentamento da crise climática na América Latina.",
         "<strong class='has-text-white'>As Assembleias Climáticas </strong> são espaços da democracia deliberativa, de discussão e reflexão, criados para que cidadãos, sorteados de forma aleatória, desempenhem um papel central na tomada de decisões sobre o clima na América Latina."
     ],
     "pactoBannerSecction": {
-        "image": "",
+        "title": "Pacto-Intercidades",
         "description": "<p>O <strong>Pacto-Intercidades</strong> é um instrumento de incidência pública construído de forma colaborativa, em que pessoas e cidades definem uma visão estratégica para enfrentar a crise climática a partir da América Latina para o mundo.</p><p class='py-3 has-text-weight-bold'>Como funciona:</p><ol><li>Cada <a href='#countries-banner'>Assembleia Climática</a> decide por pelo menos 4 propostas de princípios para o pacto.</li><li>As propostas são publicadas na plataforma do Pacto-Intercidades para receber contribuições, sugestões e comentários da população em geral.</li><li>Para participar do debate e determinação do Pacto, as pessoas devem se registrar com nome e cidade <a href='https://pacto.resurgentes.org/auth/register'>aqui</a>.</li><li>Ao longo do processo de participação são geradas versões atualizadas e aprimoradas do Pacto, graças às contribuições das pessoas.</li><li>Por fim, um documento final do Pacto-Intercidades é gerado e será apresentado para consideração das pessoas para sua validação final.</li></ol>"
     }
 }

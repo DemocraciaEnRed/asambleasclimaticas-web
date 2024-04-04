@@ -6,13 +6,18 @@
     },
     "countriesBanner": {
         "title": "Asambleas",
+        "city":"Ciudad",
+        "date":"Fecha",
+        "topic":"Tema",
+        "leader_organization":"Organizacion Líder",
+        "start_date":"FECHA DE COMIENZO",
         "countries": [
             {
                 "name": "Brasil",
                 "code": "BR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
                 "city": "Bujarú",
-                "date": "marzo-mayo 2024",
+                "date": "marzo-junio 2024",
                 "topic": "Bio/Eco Economía, renta y calidad de vida en la Amazonia",
                 "leader": "Delibera Brasil",
                 "description": "La Asamblea Climática de Bujaru está formada por 50 vecinos provenientes de la ciudad, incluyendo las comunidades tradicionales, que se reunirán para comprender el contexto, oportunidades y riesgos de la crisis climática en un proceso deliberativo para enviar al gobierno recomendaciones de políticas públicas e inversiones privadas en Bioeconomía Sostenible con generación de ingresos y calidad de vida para todos los que habitan en Bujaru."
@@ -55,7 +60,7 @@
         "<strong class='has-text-white'>Las Asambleas Climáticas</strong> – son mecanismos de democracia deliberativa, de discusión y reflexión, impulsados para que personas ciudadanas, seleccionadas al azar, asuman un rol central en la toma de decisiones sobre el clima en América Latina."
     ],
     "pactoBannerSecction": {
-        "image": "",
+        "title": "Pacto-Interciudad",
         "description": "<p>El <strong>pacto interciudad</strong> es un instrumento de inicidencia pública, construido de forma colaborativa, donde personas y ciudades definen una visión estratégica para afrontar la crisis climática desde América Latina para el mundo.</p><p class='py-3 has-text-weight-bold'>¿Cómo funciona?</p><ol ><li> Cada <a href='#countries-banner'> Asamblea Climática </a> elabora al menos 4 propuestas de principios para el Pacto.</li><li> Las propuestas se publican en la plataforma del Pacto Interciudad para recibir contribuciones, aportes y comentarios de la ciudadanía en general.</li><li>Para participar del debate y determinación del Pacto las personas deben registrarse con nombre y ciudad <a href='https://pacto.resurgentes.org/auth/register'> aquí</a> </li><li>Durante el proceso de participación se generarán versiones actualizadas y mejoradas del Pacto con los aportes de las personas registradas.</li><li>Finalmente se redactará un documento final del Pacto Interciudad que se pondrá a consideración de las personas para su validación final.</li> </ol>"
     }
 }

@@ -3,7 +3,7 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 
 
 
-export default function CountriesBanner({ countries, title }) {
+export default function CountriesBanner({ dict,countries, title }) {
     return <div className="countries-banner has-text-centered has-background-cream py-6" id="countries-banner">
         <h1 className="has-text-color-white has-text-centered is-size-2 has-text-weight-bold">{title}</h1>
         <div className="card-group is-flex is-justify-content-space-evenly is-flex-wrap-wrap my-4">
@@ -21,9 +21,9 @@ export default function CountriesBanner({ countries, title }) {
                         </p>
                         <div className="content is-flex-grow-1 is-flex is-flex-direction-column  is-justify-content-center">
                             <ul>
-                                <li><strong>Ciudad: </strong>{country.city}</li>
-                                <li><strong>Fecha: </strong>{country.date}</li>
-                                <li><strong>Tema: </strong>{country.topic}</li>
+                                <li><strong>{dict.countriesBanner.city}: </strong>{country.city}</li>
+                                <li><strong>{dict.countriesBanner.date}: </strong>{country.date}</li>
+                                <li><strong>{dict.countriesBanner.topic}: </strong>{country.topic}</li>
                             </ul>
                         </div>
                     </div>
