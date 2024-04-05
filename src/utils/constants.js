@@ -120,3 +120,7 @@ export const RESTORE_PASSWORD_TITLE = {
         description_pt: ' Em alguns minutos, você receberá um e-mail com o passo a passo para definir sua nova senha. Não se esqueça de verificar na pasta de spam.'
     }
 }
+
+export const ADMIN_PROTECTED_ROUTE = '/admin'
+
+export const AUTHOR_PROTECTED_ROUTES = ['/nuevo','/editar','/nueva-version','/estadisticas']

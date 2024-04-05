@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from './constants';
+import { API_URL, AUTH_TOKENS_KEY } from './constants';
 
 let cookies;
 
@@ -14,7 +14,6 @@ if (typeof window === 'undefined') {
 
 const axiosServices = axios.create({ withCredentials: true, baseURL: API_URL })
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
-const AUTH_TOKENS_KEY = "RES_AUTH";
 
 axiosServices.interceptors.request.use(
     (config) => {

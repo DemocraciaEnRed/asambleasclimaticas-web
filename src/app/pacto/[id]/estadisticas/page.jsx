@@ -17,13 +17,6 @@ export default function EditProjectForm({params}) {
   // get the user from store
   const { user } = useAuthContext()
   // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-  // redirect if user is not admin or author
-  if (user.role !== 'admin' && user.role !== 'author') {
-    redirect('/')
-  }
 
   const [project, setProject] = useState(null)
   const [countries, setCountries] = useState([])

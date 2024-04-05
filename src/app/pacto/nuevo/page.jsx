@@ -1,5 +1,5 @@
 "use client"
-import { redirect, useRouter } from "next/navigation"
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,18 +7,15 @@ import ProjectFormComponent from "@/components/pacto/form/projectForm";
 import { useAuthContext } from "@/context/auth-context";
 
 export default function NewProjectForm({}) {
+  const [isClient, setIsClient] = useState(false);
+
   // get the user from store
   const { user } = useAuthContext()
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-  // redirect if user is not admin or author
-  if (user.role !== 'admin' && user.role !== 'author') {
-    redirect('/')
-  }
-
-  return (
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+  
+  if(isClient)return (
     <>
       <div className="section has-background-black has-text-white">
         <div className="container is-fluid">

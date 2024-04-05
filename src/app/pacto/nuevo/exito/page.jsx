@@ -13,14 +13,6 @@ export default function SuccessProjectForm({}) {
   // get from the query string "projectId"
   const searchParams = useSearchParams()
   const projectId = searchParams.get('projectId')
-  // redirect if user is not logged in
-  if (!user) {
-    redirect('/auth/login')
-  }
-  // redirect if user is not admin or author
-  if (user.role !== 'admin' && user.role !== 'author') {
-    redirect('/')
-  }
 
   return (
     <>

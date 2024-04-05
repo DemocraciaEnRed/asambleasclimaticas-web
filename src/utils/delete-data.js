@@ -1,7 +1,7 @@
 import axiosServices from "./axios";
 import Cookies from "js-cookie";
+import { AUTH_TOKENS_KEY } from "./constants";
 
-const AUTH_TOKENS_KEY = "RES_AUTH";
 
 export const deleteComment = async (url) => {
 

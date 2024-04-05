@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import Comment from "./comment";
@@ -13,6 +13,7 @@ import { ClosedProjectcheck } from "@/utils/format";
 export default function Comments({ project, comments }) {
     const [commentList, setCommensList] = useState(comments.comments)
     const [textNewComment, setTextNewComment] = useState('')
+    const [isClient, setIsClient] = useState(false);
 
     const { user } = useAuthContext()
 
@@ -44,8 +45,11 @@ export default function Comments({ project, comments }) {
         newComentList.splice(index, 1)
         if (index !== -1) setCommensList(newComentList)
     }   
-
-    return (
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+    
+    if(isClient)return (
         <div id="comment_section" className={`comment-section ${project.version !== project.currentVersion ? 'disabled is-relative' : ''}`}>
             <h4 className="my-4">Comentarios:</h4>
             {!ClosedProjectcheck(project.closedAt) && project.version === project.currentVersion ? <>

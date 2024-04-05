@@ -41,17 +41,7 @@ export default async function PropuestaPactoComponent({ params: { id }, searchPa
                             </div>}
                     </div>
                     </div>
-                    <Suspense fallback={
-                        <div>
-                            <Skeleton height={200} reverseColumn />
-                            <Skeleton height={200} reverseColumn />
-                            <Skeleton height={200} reverseColumn />
-                            <Skeleton height={200} reverseColumn />
-                            <Skeleton height={200} reverseColumn />
-                        </div>
-                    }>
                         <ArticuladoBody project={project} articles={articles} comments={comments} />
-                    </Suspense>
                 </div>
             </>
         }

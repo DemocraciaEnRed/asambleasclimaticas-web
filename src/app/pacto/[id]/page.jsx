@@ -14,7 +14,6 @@ export default async function Propuesta({
     if (project)
         return (
             <div className="pacto-wrapper ">
-                <Suspense fallback={<Skeleton height={700} column />}>
                     <BreadcrumbNav
                         project={project}
                         section="resumen"
@@ -24,7 +23,6 @@ export default async function Propuesta({
                     <div className="project-body-container">
                         <ResumenBody project={project} />
                     </div>
-                </Suspense>
             </div>
         );
     else
