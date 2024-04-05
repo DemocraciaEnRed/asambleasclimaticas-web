@@ -7,7 +7,7 @@ export default function BannerResurgente(){
             y el pacto <br />
             interciudad?
             <p className="has-text-weight-light is-italic is-size-3">
-            O que é (re)surgentes e o pacto intercidades?
+            O que é (re)surgentes e o pacto-intercidades?
             </p>
             </div>
             

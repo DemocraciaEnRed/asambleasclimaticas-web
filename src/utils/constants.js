@@ -1,4 +1,7 @@
 export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
+export const API_URL = process.env.NEXT_API_URL ||process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.resurgentes.org'
+export const AUTH_TOKENS_KEY = "RES_AUTH";
+
 
 export const STAGE_COUNTRY_LIST = [
     {
@@ -50,10 +53,10 @@ export const STAGE_COUNTRY_LIST = [
 ];
 
 export const BANNER_BACKGROUND = [
-    //'banner_marDelPlata.png',
-    //'banner_Brasil.jpeg',
+    'banner_argentina.jpg',
+    'banner_brasil.jpg',
     'banner_colombia.png',
-    'banner_Mexico.jpg'
+    'banner_mexico.jpg'
 ]
 
 export const CARD_PARTICIPATIVO = [
