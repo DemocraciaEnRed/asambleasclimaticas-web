@@ -120,7 +120,7 @@ export default function Acercade() {
                         concentran en la pestaña Pacto.
                     </p>
                     <span className="is-italic pt-text">
-                        *Você pode acessar o pacto clicando na aba "Pacto" no
+                        *Você pode acessar o pacto clicando na aba &quot;Pacto&quot; no
                         menu superior ou a partir do resumo do pacto no início.
                         <br />
                         Esta seção possui três abas: Resumo, Pacto e Roteiro.
@@ -182,7 +182,7 @@ export default function Acercade() {
                         (Re)surgentes, serão publicadas “perguntas-relâmpago” na
                         plataforma, com o objetivo de coletar informações
                         relevantes para o projeto. Ao entrar, você verá na tela
-                        uma janela pop-up com as perguntas a serem respondidas."
+                        uma janela pop-up com as perguntas a serem respondidas.
                     </span>
                 </div>
             </div>
