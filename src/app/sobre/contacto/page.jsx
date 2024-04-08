@@ -28,7 +28,7 @@ export default function Acercade() {
                 <h4 className="has-text-primary is-size-5 has-text-weight-bold">Democracia en Red (Argentina)</h4>
                 <Link target="_blank" href="https://democraciaenred.org/">democraciaenred.org</Link>
                 <h4 className="has-text-primary is-size-5 has-text-weight-bold">Sur - Instituto del Sur Urbano (México)</h4>
-                <Link target="_blank" href="https://surinstitute.com/surexs">surinstitute.com</Link>
+                <Link target="_blank" href="https://surinstitute.com/">surinstitute.com</Link>
             </div>
         </div>
     </section>)

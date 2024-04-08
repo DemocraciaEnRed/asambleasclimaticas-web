@@ -42,7 +42,7 @@ export const STAGE_COUNTRY_LIST = [
         code: "MX",
         image: "https://cdn-icons-png.flaticon.com/512/197/197397.png",
         city: "Monterrey (zona metropolitana)",
-        date: "febrero–marzo 2024",
+        date: "septiembre-noviembre 2024",
         topic:
             "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
         leader: "SUR, Instituto del Sur Urbano",
