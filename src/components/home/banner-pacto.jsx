@@ -6,9 +6,7 @@ import { fetchProjectId } from "@/utils/get-data"
 import StageProject from "../common/stage-project"
 import { PROJECT_ID } from "@/utils/constants"
 
-const BannerPacto = async () => {
-    const project = await fetchProjectId(PROJECT_ID)
-
+const BannerPacto = async ({project}) => {
 
     if (!project) return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 ' id="banner-pacto">
         <div className="card has-background-cream is-flex has-text-centered card-project">
@@ -27,9 +25,9 @@ const BannerPacto = async () => {
         </div>
     </div>)
 
-    return (<div className='banner-pacto is-flex is-justify-content-center is-align-items-center is-flex-direction-column py-6 ' id="banner-pacto">
-        <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold my-3">El pacto</h1>
-        {project && <a href={`/pacto/${PROJECT_ID}/`} className=" card-project">
+    return (<div className='banner-pacto is-flex is-justify-content-start is-align-items-center is-flex-direction-column py-6 m-3 ' id="banner-pacto">
+        <h1 className="has-text-color-white has-text-centered is-size-2 is-size-4-touch has-text-weight-bold my-3">{project.slug}</h1>
+        <a href={`/pacto/${PROJECT_ID}/`} className=" card-project">
             <div className="card has-background-cream is-flex ">
                 <div className="card-image" style={{ backgroundImage: `url('${project.coverUrl}')` }}>
 
@@ -59,7 +57,7 @@ const BannerPacto = async () => {
                 </div>
             </div>
         </a>
-        }
+        
 
     </div>)
 }

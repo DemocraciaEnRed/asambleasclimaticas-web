@@ -7,6 +7,7 @@ import BannerResurgente from "@/components/home/banner-resurgente";
 import BannerSobreProyecto from "@/components/home/banner-sobre-proyecto";
 import BannerTitle from "@/components/common/banner-title";
 import Skeleton from "@/components/common/skeleton";
+import BannerProjectCards from "@/components/home/banner-project-cards";
 
 
 export default async function Home() {
@@ -23,7 +24,7 @@ export default async function Home() {
             <Banner />
             <BannerResurgente />
             <Suspense fallback={<Skeleton height={500} />}>
-                <BannerPacto />
+                <BannerProjectCards />
             </Suspense>
             <BannerSobreProyecto />
         </div>

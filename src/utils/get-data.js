@@ -5,6 +5,17 @@ import axiosServices from "./axios"
 
 /* PROJECT DATA */
 
+export const fetchProjects = async () => {
+    try {
+        let url = `/projects`
+        const resp = await axiosServices.get(url)
+        const project = await resp.data
+        return project
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export const fetchProjectId = async (projectId, version) => {
     try {
         let url = `/projects/${projectId}`
