@@ -8,7 +8,7 @@ const LANGUAGE_INFO_COOKIE = 'RES_LANG'
 export const LanguageProvider = ({ children }) => {
     const storedLanguage = window.localStorage.getItem(LANGUAGE_INFO_COOKIE);
     const jsonStoredLanguage = storedLanguage && JSON.parse(storedLanguage);
-    const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : 'es');
+    const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0] || 'es');
 
     const changeLanguage = (newLanguage) => {
         const switchLanguage = {

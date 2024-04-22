@@ -12,8 +12,6 @@ export default function LanguageSelector() {
     useEffect(() => {
         if (user) {
             changeLanguage(user.lang)
-        } else {
-            changeLanguage(navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0])
         }
     }, [])
 
