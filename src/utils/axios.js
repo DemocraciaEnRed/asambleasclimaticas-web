@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { API_URL } from './constants';
+
 let cookies;
 
 // Check if it's server-side rendering
@@ -11,7 +13,7 @@ if (typeof window === 'undefined') {
 }
 
 
-const axiosServices = axios.create({ withCredentials: true, baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.resurgentes.org' })
+const axiosServices = axios.create({ withCredentials: true, baseURL: API_URL })
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 const AUTH_TOKENS_KEY = "RES_AUTH";
 

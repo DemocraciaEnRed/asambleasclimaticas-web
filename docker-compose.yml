@@ -5,7 +5,7 @@ services:
     build:
       context: .
     image: democraciaenred/asambleasclimaticas-web:latest
-    # env_file:
-    #   - .env.local 
+    env_file:
+      - .env.local 
     ports:
       - 4000:4000
