@@ -196,10 +196,13 @@
         flex-wrap: wrap;
             
         .banner-image {
-            width: 30%;
+            width: 50%;
             video{
                 height: 410px;
                 width: 100%;
+                &::-webkit-media-controls-timeline, &::-webkit-media-controls-current-time-display, &::-webkit-media-controls-time-remaining-display{
+                display: none;
+               }
             }
             @include tablet {
                 width: 100%;
@@ -209,7 +212,7 @@
         }
 
         .content {
-            width: 70%;
+            width: 50%;
             padding: 4rem 2rem;
             color: $white;
             margin-bottom: 0;
