@@ -7,9 +7,9 @@ import {
     faStar,
     faMessage,
     faCheckCircle,
+    faTrashAlt,
 } from "@fortawesome/free-regular-svg-icons";
 import {
-    faXmark,
     faStar as faStarSolid,
     faCheckCircle as faSolidCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
@@ -290,7 +290,7 @@ export default function Comment({
                                 </span>
                                 <FontAwesomeIcon
                                     className="mx-2"
-                                    icon={faXmark}
+                                    icon={faTrashAlt}
                                 />
                             </div>
                         )}
