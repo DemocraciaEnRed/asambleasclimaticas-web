@@ -8,11 +8,15 @@ const LANGUAGE_INFO_COOKIE = 'RES_LANG'
 export const LanguageProvider = ({ children }) => {
     const storedLanguage = window.localStorage.getItem(LANGUAGE_INFO_COOKIE);
     const jsonStoredLanguage = storedLanguage && JSON.parse(storedLanguage);
-    const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : navigator.language.split("-")[0] || navigator.userLanguage.split("-")[0] || 'es');
+    function getNavigatorLanguage() {
+        // If the language is any pt language, return pt, else return es
+        return navigator.language.includes('pt') ? 'pt' : 'es';
+    }
+    const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : getNavigatorLanguage());
 
     const changeLanguage = (newLanguage) => {
         const switchLanguage = {
-            language: newLanguage
+            language: newLanguage === 'pt' ? 'pt' : 'es'
         }
         window.localStorage.setItem(LANGUAGE_INFO_COOKIE, JSON.stringify(switchLanguage));
         setLanguage(newLanguage);
