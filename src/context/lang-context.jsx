@@ -13,7 +13,12 @@ export const LanguageProvider = ({ children }) => {
         return navigator.language.includes('pt') ? 'pt' : 'es';
     }
     const [language, setLanguage] = useState(jsonStoredLanguage ? jsonStoredLanguage.language : getNavigatorLanguage());
-
+    
+    if(!storedLanguage){
+        // get the language from the navigator and set it to the language cookie
+        const language = getNavigatorLanguage();
+        window.localStorage.setItem(LANGUAGE_INFO_COOKIE, JSON.stringify({language: language}));
+    }
     const changeLanguage = (newLanguage) => {
         const switchLanguage = {
             language: newLanguage === 'pt' ? 'pt' : 'es'
