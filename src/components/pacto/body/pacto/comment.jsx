@@ -113,6 +113,18 @@ export default function Comment({
         setDeleteTime(true);
     };
 
+    // status if it is an admin or moderator
+    const isAdminOrModerator = () => {
+        if(!user) return false;
+        return user.role === "admin" || user.role === "moderator";
+    }
+    // // status if it is the author of the project
+    // const isAuthor = () =>
+    //     user.role === "author" && user._id === project.author._id;
+    // // status if it is the owner of the comment
+    // const isCommentOwner = () => user._id === comment.user._id;
+
+
     const canDeleteComment = () => {
         if (!user) return false;
 
@@ -124,6 +136,37 @@ export default function Comment({
 
         return isAdminOrModerator || isAuthor || isCommentOwner;
     };
+
+    const showResolvedButton = () => {
+        // NOTE: if resolved or highlighted is 0 then it hasnt been resolved nor highlighted
+
+        // if the comment is not highlighted or resolved then it should be available
+        const resolvedOrHighlighted = Math.max(resolved,highlighted);
+        if(resolvedOrHighlighted === 0) return true
+        // if the comment has been resolved in the current version then the button is available (to remove the highlight)
+        if(resolved > 0 && resolved === project.version) return true
+        // if the comment has been resolved or highlighted in a previous version then the button is not available
+        if(resolvedOrHighlighted > 0 && resolvedOrHighlighted < project.version) return false
+        // if the comment has been highlighted in a previous version then the button is not available
+        if(highlighted > 0 && highlighted <= project.version) return false
+
+        return true
+    }
+
+    const showHighlightedButton = () => {
+        // NOTE: if resolved or highlighted is 0 then it hasnt been resolved nor highlighted
+
+        // if the comment is not highlighted or resolved then it should be available
+        const resolvedOrHighlighted = Math.max(resolved,highlighted);
+        if(resolvedOrHighlighted === 0) return true
+        // if the comment has been highlighted in the current version then the button is available (to remove the highlight)
+        if(highlighted > 0 && highlighted == project.version) return true
+        // if the comment has been resolved or highlighted in a previous version then the button is not available
+        if(resolvedOrHighlighted > 0 && resolvedOrHighlighted < project.version) return false
+        // if the comment has been resolved in a previous version, or in the current, then the button is not available
+        if(resolved > 0 && resolved <= project.version) return false
+        return true
+    }
 
     return (
         <div className="comment-wrapper pt-3">
@@ -153,7 +196,7 @@ export default function Comment({
                         }`}
                     />
                     {dislikes > 0 && dislikes}
-                    {(!user ||
+                    {/* {(!user ||
                         (user &&
                             !(
                                 user.role === "admin" ||
@@ -189,7 +232,36 @@ export default function Comment({
                                 )}
                             </div>
                         </div>
-                    )}
+                    )} */}
+                    <div className="is-inline highlighted">
+                        <div className="is-relative is-inline ">
+                            {0 != highlighted && highlighted <= project.version && (
+                                <>
+                                    <FontAwesomeIcon
+                                        className={`mx-2 has-text-warning`}
+                                        icon={faStarSolid}
+                                    />
+                                    <span className="tag is-light is-absolute">
+                                        Aporte destacado - Recibido en
+                                        ver. {highlighted}
+                                    </span>
+                                </>
+                            )}
+                        </div>
+                        <div className="is-relative is-inline ">
+                            {0 != resolved && resolved <= project.version && (
+                                <>
+                                    <FontAwesomeIcon
+                                        className={`mx-2 has-text-success`}
+                                        icon={faSolidCheckCircle}
+                                    />
+                                    <span className="tag is-light is-absolute">
+                                        Aporte resuelto por un admin en ver. {resolved}
+                                    </span>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
                 <div className="is-flex">
                     {answerable && (
@@ -206,77 +278,27 @@ export default function Comment({
                                     icon={faMessage}
                                 />
                             </div>
-                            {user &&
-                                (user.role === "admin" ||
-                                    user.role === "moderator") && (
-                                    <div className="highlighted">
-                                        <div
-                                            className="is-inline is-clickable is-relative"
-                                            onClick={handleHighlighted}
-                                        >
-                                            <span
-                                                className={`tag  ${
-                                                    highlighted ===
-                                                    project.version
-                                                        ? "is-light"
-                                                        : "is-warning"
-                                                }`}
-                                            >
-                                                {highlighted === project.version
-                                                    ? "quitar destacado"
-                                                    : "destacar comentario"}
+                            { isAdminOrModerator() && (
+                                <div className="highlighted">
+                                    {
+                                        showHighlightedButton() &&
+                                        <div className="is-inline is-clickable is-relative" onClick={handleHighlighted}>
+                                            <span className={`tag ${highlighted === project.version ? "is-light" : "is-warning" }`}                                        >
+                                                {highlighted === project.version ? "Quitar destacado" : "Destacar comentario"}
                                             </span>
-                                            <FontAwesomeIcon
-                                                className={`mx-2  ${
-                                                    highlighted ===
-                                                    project.version
-                                                        ? "has-text-warning"
-                                                        : ""
-                                                }`}
-                                                icon={
-                                                    highlighted ===
-                                                    project.version
-                                                        ? faStarSolid
-                                                        : faStar
-                                                }
-                                            />
+                                            <FontAwesomeIcon className={`mx-2  ${ highlighted === project.version ? "has-text-warning" : "" }`} icon={ highlighted === project.version ? faStarSolid : faStar } />
                                         </div>
-                                        {comment.article && (
-                                            <div
-                                                className="is-inline is-clickable is-relative"
-                                                onClick={handleResolved}
-                                            >
-                                                <span
-                                                    className={`tag   ${
-                                                        resolved ===
-                                                        project.version
-                                                            ? "is-light"
-                                                            : "is-success"
-                                                    }`}
-                                                >
-                                                    {resolved ===
-                                                    project.version
-                                                        ? "quitar resuelto"
-                                                        : "resolver comentario"}
-                                                </span>
-                                                <FontAwesomeIcon
-                                                    className={`mx-2  ${
-                                                        resolved ===
-                                                        project.version
-                                                            ? "has-text-success"
-                                                            : ""
-                                                    }`}
-                                                    icon={
-                                                        resolved ===
-                                                        project.version
-                                                            ? faSolidCheckCircle
-                                                            : faCheckCircle
-                                                    }
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
+                                    }
+                                    { showResolvedButton() && comment.article && (
+                                        <div className="is-inline is-clickable is-relative" onClick={handleResolved} >
+                                            <span className={`tag ${ resolved === project.version ? "is-light" : "is-success" }`}>
+                                                {resolved === project.version ? "Quitar resuelto" : "Resolver comentario"}
+                                            </span>
+                                            <FontAwesomeIcon className={`mx-2  ${ resolved === project.version ? "has-text-success" : "" }`} icon={ resolved === project.version ? faSolidCheckCircle : faCheckCircle } />
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </>
                     )}
                     <div className="highlighted">
