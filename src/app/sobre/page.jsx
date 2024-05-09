@@ -20,26 +20,10 @@ export default function Acercade() {
                 </h1>
                 <div>
                     <p>
-                        (Re)surgentes - Somos una red de organizaciones y
-                        personas expertas en democracia deliberativa que
-                        promueve la participación de personas ciudadanas,
-                        especialistas, activistas y gobiernos locales en un
-                        ciclo de Asambleas Climáticas y un Pacto Interciudad en
-                        América Latina: Delibera Brasil, en Brasil; IDeemos, en
-                        Colombia; Democracia en Red, en Argentina y SUR,
-                        Instituto del Sur Urbano, en México.
+                    (Re)surgentes - Somos una red de organizaciones y personas expertas en democracia deliberativa que promueve la participación de personas ciudadanas, especialistas, activistas y gobiernos locales en un ciclo de Asambleas Climáticas y un Pacto Interciudad en América Latina: Delibera Brasil, en Brasil; IDeemos y Extituto de Política Abierta, en Colombia; Democracia en Red, en Argentina y SUR, Instituto del Sur Urbano, en México.
                     </p>
                     <p className="is-italic pt-text mt-2">
-                        *(Re)surgentes - Somos uma rede de Assembleias
-                        Climáticas em cidades da América Latina, acompanhadas
-                        por pessoas especializadas, governos locais e
-                        organizações especializadas em democracia deliberativa:
-                        SUR, Instituto del Sur Urbano, A.C. no México; Delibera
-                        Brasil, no Brasil; IDeemos, na Colômbia; e Democracia en
-                        Red, na Argentina. Nosso objetivo é fortalecer os
-                        processos de democratização e descentralização da tomada
-                        de decisões públicas diante da crise climática na
-                        América Latina.
+                    *(Re)surgentes - Somos uma rede de Assembleias Climáticas em cidades da América Latina, acompanhadas por pessoas especializadas, governos locais e organizações especializadas em democracia deliberativa: SUR, Instituto del Sur Urbano, A.C. no México; Delibera Brasil, no Brasil; IDeemos e Extituto de Política Abierta, na Colômbia; e Democracia en Red, na Argentina. Nosso objetivo é fortalecer os processos de democratização e descentralização da tomada de decisões públicas diante da crise climática na América Latina.
                     </p>
                 </div>
                 <h3 className="has-text-primary has-text-weight-bold is-size-4 mt-4 mb-3">
