@@ -6,6 +6,7 @@ import ArticuladoBody from "@/components/pacto/body/articulado"
 import DisabledDisclaimer from "@/components/pacto/body/pacto/disclaimer"
 import HeaderPropuesta from "@/components/pacto/header"
 import BreadcrumbNav from "@/components/pacto/header/breadcrumb"
+import AuthorNotesWrapper from "@/components/pacto/body/pacto/authorNotes"
 import { fetchProjectId, fetchArticleProjectId, fetchCommentProjectId } from "@/utils/get-data"
 
 
@@ -23,6 +24,9 @@ export default async function PropuestaPactoComponent({ params: { id }, searchPa
                 <HeaderPropuesta project={project} section="pacto" />
                 <div className="project-body-container">
                     <LanguageSelector />
+                    {
+                        project.version > 1 && <AuthorNotesWrapper project={project} />
+                    }
                     <div className="columns mx-0">
                         <div className="column is-11 is-12-touch">
                         {project.version !== project.currentVersion && <DisabledDisclaimer />}
