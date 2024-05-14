@@ -182,62 +182,61 @@
     }
 }
 
-.footer-wrapper {
-    background-color: $grey-lighter;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    border-top: 6px solid $pink-base;
+// .footer-wrapper {
+//     background-color: $grey-lighter;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 1rem 3rem;
+//     border-top: 6px solid $pink-base;
 
-    @include tablet {
-        flex-direction: column;
-    }
+//     @include tablet {
+//         flex-direction: column;
+//     }
 
-    .logo {
+//     .logo {
 
-        margin: 8px 0 8px 22px;
-        text-transform: uppercase;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+//         margin: 8px 0 8px 22px;
+//         text-transform: uppercase;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
 
-        @include tablet {
-            margin: 1rem 0;
-        }
+//         @include tablet {
+//             margin: 1rem 0;
+//         }
 
-        img {
-            width: 70%;
-            filter: brightness(0);
-        }
-    }
+//         img {
+//             width: 70%;
+//         }
+//     }
 
-    .footer-rrss {
-        svg {
-            height: 32px;
-            margin: 0 2rem;
-        }
+//     .footer-rrss {
+//         svg {
+//             height: 32px;
+//             margin: 0 2rem;
+//         }
 
-        display: flex;
+//         display: flex;
 
-        @include tablet {
-            padding-bottom: 16px;
-        }
-    }
+//         @include tablet {
+//             padding-bottom: 16px;
+//         }
+//     }
 
-    .footer-links {
-        display: flex;
+//     .footer-links {
+//         display: flex;
 
-        ul {
-            margin: 0 2rem;
-        }
-    }
+//         ul {
+//             margin: 0 2rem;
+//         }
+//     }
 
-    @include tablet {
-        justify-content: center;
-        padding: 1rem 2rem;
-    }
-}
+//     @include tablet {
+//         justify-content: center;
+//         padding: 1rem 2rem;
+//     }
+// }
 
 .navbar-mobile-links {
     display: none;
@@ -392,4 +391,10 @@
 
         }
     }
+}
+
+.footer-wrapper{
+    background-color: $grey-lighter;
+    border-top: 6px solid $pink-base;
+
 }

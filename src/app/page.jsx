@@ -7,6 +7,7 @@ import BannerResurgente from "@/components/home/banner-resurgente";
 import BannerSobreProyecto from "@/components/home/banner-sobre-proyecto";
 import BannerTitle from "@/components/common/banner-title";
 import Skeleton from "@/components/common/skeleton";
+import QuienesSomos from "@/components/layout/quienes-somos";
 
 
 export default async function Home() {
@@ -26,6 +27,7 @@ export default async function Home() {
                 <BannerPacto />
             </Suspense>
             <BannerSobreProyecto />
+            <QuienesSomos />
         </div>
     );
 }
