@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import axiosServices from "@/utils/axios"
 import {
+    faSpinner,
     faTriangleExclamation,
     faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +22,7 @@ export default function RegisterForm() {
     const { addAlert } = useAlert();
 
     const [countryList, setCountryList] = useState([]);
+    const [fetchingCountries, setFetchingCountries] = useState(true);
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [country, setCountry] = useState("");
@@ -37,7 +39,10 @@ export default function RegisterForm() {
     }, []);
 
     async function fetchCountry() {
-        setCountryList(await fetchCountries());
+        fetchCountries().then((countries) => {
+            setCountryList(countries);
+            setFetchingCountries(false);
+        })
     }
 
     function handleChangeRePassword(event) {
@@ -82,7 +87,13 @@ export default function RegisterForm() {
             setErrors((prevErr) => (prevErr ? [...prevErr, tycError] : [tycError]));
         }
     }
-
+    if(fetchingCountries) return (
+        <div className="has-text-centered">
+            <p>
+                <FontAwesomeIcon icon={faSpinner} spin size="2x"></FontAwesomeIcon>
+            </p>
+        </div>
+    )
     return (
         <>
             <form action="POST" onSubmit={handleRegister}>
