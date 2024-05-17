@@ -18,7 +18,7 @@ export default function QuienesSomos() {
                 </a>
               </div>
               <div className="column is-4-desktop is-narrow-tablet is-12-mobile has-text-centered">
-                <a href="https://delibera.org/" target="_blank" rel="noreferrer">
+                <a href="https://deliberabrasil.org/" target="_blank" rel="noreferrer">
                   <img style={{width: '100%', padding: '0 10px', maxWidth: 250, margin: '0 auto' }} src="https://democraciaenred.nyc3.digitaloceanspaces.com/projects/asambleasclimaticas/delibera-logo.png" alt="" />
                 </a>
               </div>
