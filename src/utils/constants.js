@@ -1,4 +1,5 @@
 export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
+// export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://zj437s00-3000.brs.devtunnels.ms/'
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
 export const AUTH_TOKENS_KEY = "RES_AUTH";
 
@@ -22,7 +23,7 @@ export const STAGE_COUNTRY_LIST = [
         city: "Buenaventura",
         date: "mayo-julio 2024",
         topic: "Por definir",
-        leader: "Extituto",
+        leader: "Ideemos y Extituto",
         description: "",
         progress: 75,
     },
