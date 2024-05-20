@@ -11,32 +11,11 @@
     }
 
     .banner-participativo {
-        padding: 2rem 4rem;
 
-        @include tablet {
-            padding: 2rem 1rem;
-        }
-
-        .card-group {
-            flex-wrap: wrap;
-            width: 75%;
-                margin: auto;
-            
-            @include tablet {
-                    width: 100%;
-                }
+        #columns-participativo {
             .card {
                 background-color: $pink-base;
-                width: 45%;
                 border-radius: 15px;
-
-                @include widescreen {
-                    width: 45%;
-                }
-
-                @include tablet {
-                    width: 100%;
-                }
 
                 .card-image {
                     img {
@@ -59,8 +38,39 @@
                 }
             }
         }
+        #columns-typeform {
+            .card {
+                background-color: $white;
+                border: 5px solid $pink-base;
+                border-radius: 15px;
 
-        >.button {
+                .card-image {
+                    img {
+                        height: 4rem;
+                        width: auto;
+                    }
+                }
+
+                .card-content {
+
+                    .title,
+                    .content {
+                        color: $pink-base;
+                    }
+                }
+                .card-description{
+                    color: $pink-base;
+                }
+
+                .card-footer {
+                    border: none;
+                    .button{
+                        border: 2px solid $pink-base;
+                    }
+                }
+            }
+        }
+        #boton-conocer-mas {
             border-width: 2px;
             border-color: $black;
             height: fit-content;

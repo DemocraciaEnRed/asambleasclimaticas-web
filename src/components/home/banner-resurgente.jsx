@@ -1,6 +1,6 @@
 import VideoBanner from "./video-banner";
 
-export default function     BannerResurgente(){
+export default function BannerResurgente(){
     return <div className=" banner-re-surgente">
         <div className="content has-background-orange is-flex is-align-items-center">
             <div className="title is-size-1 is-size-3-touch">¿Qué es <br />

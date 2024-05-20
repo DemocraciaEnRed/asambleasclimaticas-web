@@ -9,7 +9,7 @@ export default function QuienesSomos() {
 
           <h1 className="title is-1 has-text-centered">¿Quienes somos?</h1>
           {/* subtitle in portuguese */}
-          <h5 className="subtitle is-5 has-text-centered">Quem somos?</h5>
+          <h5 className="subtitle is-5 has-text-centered is-italic">Quem somos?</h5>
           <br />
           <div className="columns is-centered is-vcentered is-mobile is-multiline">
               <div className="column is-4-desktop is-narrow-tablet is-12-mobile has-text-centered">
@@ -33,7 +33,7 @@ export default function QuienesSomos() {
               </div>
               <div className="column is-4-desktop is-narrow-tablet is-12-mobile has-text-centered">
                 <a href="https://ideemos.org/" target="_blank" rel="noreferrer">
-                  <img style={{width: '100%', padding: '0 10px', maxWidth: 350, margin: '0 auto' }} src="https://democraciaenred.nyc3.digitaloceanspaces.com/projects/asambleasclimaticas/demos-logo.png" alt="" />
+                  <img style={{width: '100%', padding: '0 10px', maxWidth: 250, margin: '0 auto' }} src="https://democraciaenred.nyc3.digitaloceanspaces.com/projects/asambleasclimaticas/demos-logo.png" alt="" />
                 </a>
               </div>
           </div>
