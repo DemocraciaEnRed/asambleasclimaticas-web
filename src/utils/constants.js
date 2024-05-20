@@ -1,6 +1,7 @@
 export const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECTID || 'pacto-inter-ciudad'
 // export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://zj437s00-3000.brs.devtunnels.ms/'
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+// export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+export const API_URL = 'https://api.resurgentes.org'
 export const AUTH_TOKENS_KEY = "RES_AUTH";
 
 
