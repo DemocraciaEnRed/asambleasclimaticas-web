@@ -9,7 +9,7 @@ export default function CountryBanner({ dict, country }) {
                 <p><strong className="is-uppercase" >{dict.countriesBanner.city}: </strong>{country.city}</p>
                 <p><strong className="is-uppercase" >{dict.countriesBanner.leader_organization}: </strong>{country.leader}</p>
                 <p><strong className="is-uppercase" >{dict.countriesBanner.start_date}: </strong>{country.date}</p>
-                <p>{country.description}</p>
+                <p dangerouslySetInnerHTML={{__html: country.description}}></p>
             </div>
 
         </div>

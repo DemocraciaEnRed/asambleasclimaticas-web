@@ -17,40 +17,40 @@
                 "code": "BR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
                 "city": "Bujaru",
-                "date": "março a junho de 2024",
+                "date": "Abril a Maio de 2024",
                 "topic": "Bioeconomia Sustentável, renda e qualidade de vida na Amazônia",
                 "leader": "Delibera Brasil",
-                "description": "A Assembleia Climática de Bujaru é formada por 50 moradores sorteados em todo o município, incluindo as comunidades tradicionais, que se reunem para entender o contexto, oportunidades e riscos, deliberar e fazer recomendações para políticas públicas e investimentos privados em Bioeconomia Sustentável com geração de renda e qualidade de vida para todas e todos que vivem em Bujaru."
+                "description": "A Assembleia Climática de Bujaru é formada por 50 moradores sorteados em todo o município, incluindo as comunidades tradicionais, que se reuniram para entender o contexto, oportunidades e riscos, deliberar e fazer recomendações para políticas públicas e investimentos privados em Bioeconomia Sustentável com geração de renda e qualidade de vida para todas e todos que vivem em Bujaru."
             },
             {
                 "name": "Colômbia",
                 "code": "CO",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197575.png",
                 "city": "Buenaventura",
-                "date": "maio a julho de 2024",
-                "topic": "a ser definido",
+                "date": "Agosto de 2024",
+                "topic": "Coleta e gerenciamento de resíduos sólidos",
                 "leader": "Extituto",
-                "description": ""
+                "description": "A Assembleia Climática de Buenaventura é formada por 50 pessoas selecionadas aleatoriamente por meio de sorteio cívico, para representar a população da cidade. Os participantes irão se reunir para elaborar recomendações sobre a coleta e gerenciamento de resíduos sólidos no município."
             },
             {
                 "name": "Argentina",
                 "code": "AR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197573.png",
-                "city": "a ser definido",
-                "date": "julho a setembro de 2024",
-                "topic": "a ser definido",
+                "city": "Mar del Plata",
+                "date": "Agosto de 2024",
+                "topic": "Plano estratégico municipal de ação climática - Mitigando o impacto das mudanças climáticas a nível local",
                 "leader": "Democracia en Red",
-                "description": ""
+                "description": "A Assembleia Climática de Mar del Plata é formada por 50 pessoas selecionadas aleatoriamente por meio de um sorteio cívico para representar a população da cidade. Os participantes irão elaborar recomendações para o novo Plano de Ação Climática Municipal de General Pueyrredón. As recomendações serão focadas em três eixos do PAC:<br/><br/>A) Formação, sensibilização e criação de políticas comunitárias.<br/>B) Tratamento de resíduos sólidos e efluentes, reaproveitamento de materiais e reciclagem.<br/>C) Prevenção e preparação para situações de emergência e eventos catastróficos climáticos, e elaboração de medidas de adaptação às alterações climáticas."
             },
             {
                 "name": "México",
                 "code": "MX",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
-                "city": "Monterrey (área metropolitana)",
-                "date": "setembro-novembro 2024",
-                "topic": "Mudanças Climáticas na área metropolitana. Programa Estadual de Mudanças Climáticas",
+                "city": "Monterrey, Nuevo León",
+                "date": "Setembro a Novembro de 2024",
+                "topic": "Programa Estadual de Mudanças Climáticas - Medidas de Adaptação Climática",
                 "leader": "SUR, Instituto del Sur Urbano",
-                "description": "A Assembleia Climática de Nuevo León é formada por 50 cidadãos e cidadãs selecionados aleatoriamente, através de um Sorteio Cívico, que se reúnem para deliberar e fazer recomendações para as políticas urbanas ambientais da região metropolitana de Monterrey."
+                "description": "A Assembleia Climática de Nuevo León é formada por 50 pessoas selecionadas aleatoriamente por meio de um sorteio cívico para representar a população da cidade. Os participantes irão se reunir e elaborar recomendações para a melhoria das políticas ambientais do Estado, e para a priorização de ações de adaptação às mudanças climáticas na Região Metropolitana de Monterrey."
             }
         ]
     },

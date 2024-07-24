@@ -17,40 +17,40 @@
                 "code": "BR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
                 "city": "Bujarú",
-                "date": "marzo-junio 2024",
-                "topic": "Bio/Eco Economía, renta y calidad de vida en la Amazonia",
+                "date": "Abril a Mayo de 2024",
+                "topic": "Bioeconomía Sostenible, renta y calidad de vida en la Amazonia",
                 "leader": "Delibera Brasil",
-                "description": "La Asamblea Climática de Bujaru está formada por 50 vecinos provenientes de la ciudad, incluyendo las comunidades tradicionales, que se reunirán para comprender el contexto, oportunidades y riesgos de la crisis climática en un proceso deliberativo para enviar al gobierno recomendaciones de políticas públicas e inversiones privadas en Bioeconomía Sostenible con generación de ingresos y calidad de vida para todos los que habitan en Bujaru."
+                "description": "La Asamblea Climática de Bujaru está formada por 50 vecinos provenientes de la ciudad, incluyendo las comunidades tradicionales, que se reunieron para comprender el contexto, oportunidades y riesgos de la crisis climática en un proceso deliberativo para enviar al gobierno recomendaciones de políticas públicas e inversiones privadas en Bioeconomía Sostenible con generación de ingresos y calidad de vida para todos los que habitan en Bujaru."
             },
             {
                 "name": "Colombia",
                 "code": "CO",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197575.png",
                 "city": "Buenaventura",
-                "date": "mayo-julio 2024",
-                "topic": "Por definir",
+                "date": "Agosto 2024",
+                "topic": "Recolección y transformación de residuos sólidos",
                 "leader": "Extituto",
-                "description": ""
+                "description": "La Asamblea Climática de Buenaventura está integrada por 50 personas seleccionadas al azar mediante un sorteo cívico, formando una muestra representativa de la población de la zona rural y urbana. Estas personas se reunirán para deliberar y emitir recomendaciones sobre la recolección y transformación de residuos sólidos en el distrito."
             },
             {
                 "name": "Argentina",
                 "code": "AR",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197573.png",
                 "city": "Mar del Plata",
-                "date": "julio-septiembre 2024",
-                "topic": "Por definir",
+                "date": "Agosto de 2024",
+                "topic": "Plan estratégico de acción climática municipal. Orientado a mitigar el impacto del cambio climático a nivel local.",
                 "leader": "Democracia en Red",
-                "description": ""
+                "description": "La Asamblea Climática de Mar del Plata está integrada por 50 personas seleccionadas al azar mediante un sorteo cívico, formando una muestra representativa de la población de la ciudad. Estas personas se reunirán para deliberar y emitir recomendaciones sobre el nuevo plan de acción climática de la Municipalidad de General Pueyrredón. Se buscarán aportes sobre tres ejes del PAC:<br/><br/>A) Formación, concientización y creación de políticas impulsadas por la comunidad.<br/>B) Tratamiento de residuos sólidos y efluentes, reutilización de materiales y reciclaje.<br/>C) Prevención y preparación para emergencias de eventos catastróficos relacionados con la crisis climática, y medidas de adaptación al cambio climático."
             },
             {
                 "name": "México",
                 "code": "MX",
                 "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
-                "city": "Monterrey (zona metropolitana)",
-                "date": "septiembre-noviembre 2024",
+                "city": "Monterrey, Nuevo León",
+                "date": "Septiembre a Noviembre de 2024",
                 "topic": "Cambio Climático en la zona metropolitana. Programa Estatal de Cambio Climático",
                 "leader": "SUR, Instituto del Sur Urbano",
-                "description": "La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas seleccionadas al azar, por medio de un sorteo cívico, que se reúnen para deliberar y emitir recomendaciones para mejorar las políticas ambientales urbanas de la Zona Metropolitana de Monterrey."
+                "description": "La Asamblea Climática de Nuevo León está integrada por 50 personas ciudadanas, seleccionadas al azar mediante un sorteo cívico, que se reúnen para deliberar y emitir recomendaciones para mejorar las políticas ambientales del Estado, así como para priorizar las medidas de acción para la adaptación al Cambio Climático en la Zona Metropolitana de Monterrey."
             }
         ]
     },
