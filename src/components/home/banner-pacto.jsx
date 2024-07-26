@@ -47,8 +47,8 @@ const BannerPacto = async () => {
 
                             <ClosingDate closingDate={project.closedAt}
                                 creationDate={project.createdAt} />
-                            <ArticlesCommentsCounter commentsCount={10/* project.commentsCount */}
-                                apoyosCount={30/* project.apoyosCount */}
+                            <ArticlesCommentsCounter commentsCount={project.commentsCount}
+                                apoyosCount={project.apoyosCount}
                                 project={project._id} />
                             <StageProject stage={project.stage} />
 
