@@ -26,7 +26,7 @@ function AuthorNotesWrapper({project}) {
             }
           </h1>
         </div>          
-        <div class="is-italic" style={{whiteSpace: 'pre-line'}}>{authorNotes}</div>
+        <div className="is-italic" style={{whiteSpace: 'pre-line'}}>{authorNotes}</div>
           </div>
         </div>
       </div>

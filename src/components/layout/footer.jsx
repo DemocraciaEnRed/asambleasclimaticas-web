@@ -59,12 +59,12 @@ export default function Footer() {
                                             Contacto
                                         </Link>
                                     </li>
-                                    <li class="is-hidden-desktop">
+                                    <li className="is-hidden-desktop">
                                         <Link className="has-text-black" href="#">
                                             Términos y condiciones
                                         </Link>
                                     </li>
-                                    <li class="is-hidden-desktop">
+                                    <li className="is-hidden-desktop">
                                         <Link className="has-text-black" href="#">
                                             Políticas de privacidad
                                         </Link>
