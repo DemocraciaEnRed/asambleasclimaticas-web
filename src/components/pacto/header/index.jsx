@@ -27,7 +27,7 @@ export default function HeaderPropuesta({ project, section }) {
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
                         <ArticlesCommentsCounter commentsCount={project.commentsCount}
-                            apoyosCount={project.likes}
+                            apoyosCount={project.articleLikesCount}
                             project={project._id} />
                         <ProjectHeaderVersion project={project}
                             version={project.version}
