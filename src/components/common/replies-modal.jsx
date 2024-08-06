@@ -16,7 +16,7 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
     const [addComment, setAddComment] = useState(addCommentDefault)
     const [textNewComment, setTextNewComment] = useState('')
     const [comments, setComments] = useState(null)
-
+    const isProjectClosed = project.closed
     const fetchComents = async (page) => {
         const resp = await fetchGeneralComments(`${commentUrl}${page ? '?page=' + page : ''}`)
         setComments(resp);
@@ -74,21 +74,23 @@ export default function RepliesModal({ comment, commentUrl, active, addCommentDe
                             />
                         }
                     </div>
-                    <footer className="modal-card-foot has-background-white">
-                        {user ? <form action="submit" className="w-100" onSubmit={handlesubmit}>
-                            <p className="control has-icons-right ">
-                                <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." value={textNewComment} onChange={(e) => setTextNewComment(e.target.value)} />
-                                <span className="icon is-small is-right is-clickable" onClick={handlesubmit}>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
-                                </span>
-                            </p>
-                        </form>
-                            :
-                            <div >
-                                <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
-                            </div>
-                        }
-                    </footer>
+                    {
+                        !isProjectClosed && <footer className="modal-card-foot has-background-white">
+                            {user ? <form action="submit" className="w-100" onSubmit={handlesubmit}>
+                                <p className="control has-icons-right ">
+                                    <input className="input is-rounded" type="text" placeholder="Escribe un comentario....." value={textNewComment} onChange={(e) => setTextNewComment(e.target.value)} />
+                                    <span className="icon is-small is-right is-clickable" onClick={handlesubmit}>
+                                        <FontAwesomeIcon icon={faPaperPlane} />
+                                    </span>
+                                </p>
+                            </form>
+                                :
+                                <div >
+                                    <p>Inicia sesión <Link href="/auth/login"> aquí</Link> para poder comentar</p>
+                                </div>
+                            }
+                        </footer>
+                    }
                 </div>}
             </div>
         </div>
