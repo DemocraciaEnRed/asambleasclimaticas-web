@@ -26,7 +26,7 @@ export default function HeaderPropuesta({ project, section }) {
                     <div className="is-flex is-justify-content-end project-info is-hidden-touch ">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
-                        <ArticlesCommentsCounter commentsCount={project.commentsCount}
+                        <ArticlesCommentsCounter commentsCount={project.commentsTotalCount}
                             apoyosCount={project.articleLikesCount}
                             project={project._id} />
                         <ProjectHeaderVersion project={project}
@@ -50,8 +50,8 @@ export default function HeaderPropuesta({ project, section }) {
                 <div className=" project-info-mobile is-hidden-desktop mb-3">
                         {project.closedAt && <ClosingDate closingDate={project.closedAt}
                             creationDate={project.createdAt} />}
-                        <ArticlesCommentsCounter commentsCount={project.commentsCount}
-                            apoyosCount={project.likes}
+                        <ArticlesCommentsCounter commentsCount={project.commentsTotalCount}
+                            apoyosCount={project.articleLikesCount}
                             project={project._id} />
                     </div>
                 <div className="tab-section is-flex is-justify-content-space-between is-align-items-flex-end">
