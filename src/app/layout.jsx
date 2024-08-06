@@ -12,6 +12,7 @@ import { AlertProvider } from '@/context/alert-context'
 import { LanguageProvider } from '@/context/lang-context'
 import { Providers } from '@/store/provider'
 import HelpButton from "@/components/layout/help-button";
+import GoogleAnalytics from '@/components/common/google-analytics'
 
 
 const karla = Karla({
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={karla.className}>
       <body>
+        <GoogleAnalytics ga_id="G-S16X1Z9SQL" />
         <Providers>
           <AuthContextProvider>
             <AlertProvider>
