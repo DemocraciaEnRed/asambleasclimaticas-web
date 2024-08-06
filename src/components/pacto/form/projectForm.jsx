@@ -842,10 +842,10 @@ export default function ProjectFormComponent({project, newVersion}) {
           <div className="control">
             <div className="select">
               <select value={stage} onChange={handleStage}>
-                <option value="MX">MX - México</option>
                 <option value="BR">BR - Brasil</option>
-                <option value="CH">CH - Chile</option>
                 <option value="AR">AR - Argentina</option>
+                <option value="CO">CO - Colombia</option>
+                <option value="MX">MX - México</option>
               </select>
             </div>
           </div>
