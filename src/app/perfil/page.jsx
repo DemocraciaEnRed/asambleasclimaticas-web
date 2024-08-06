@@ -70,6 +70,8 @@ export default function UserProfilePage({params}) {
     } catch (error) {
       console.error(error)
       addAlert('Ha ocurrido un error al actualizar los datos del usuario', 'danger')
+    } finally {
+      setIsUpdating(false)
     }
   }
 
