@@ -11,7 +11,7 @@ import { fetchArticleProjectId, fetchCountries, fetchProjectId, fetchStatsProjec
 
 
 
-export default function EditProjectForm({params}) {
+export default function StatsProjectPage({params}) {
   const router = useRouter()
   const projectId = params.id
   // get the user from store
