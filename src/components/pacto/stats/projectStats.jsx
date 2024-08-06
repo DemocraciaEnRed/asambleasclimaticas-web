@@ -86,9 +86,14 @@ export default function ProjectFormComponent({project, countries}) {
             return getCountryProgress(countryCode, project.stats.uniqueUsersWhoInteractedPerCountry[countryCode])
           })
         }
+        {
+          Object.keys(uniqueUsersWhoInteractedPerCountrySortedByValue).length === 0 && <div className="column is-12">
+            No hay datos de interacción por paises
+          </div>
+        }
         </div>
         <hr />
-        <h3 className="title is-5">Me gusta/No me gusta (Del proyecto)</h3>
+        {/* <h3 className="title is-5">Me gusta/No me gusta (Del proyecto)</h3>
         <h6 className="subtitle is-6 is-italic">Solamente son los me gusta/no me gusta <u>al proyecto</u>. No se suman los me gusta/no me gusta de articulos, comentarios (generales o en articulos) ni respuestas a comentarios</h6>
         <table className="table is-narrow is-bordered is-fullwidth">
           <thead>
@@ -108,7 +113,7 @@ export default function ProjectFormComponent({project, countries}) {
             </tr>
           </tbody>
         </table>
-        <hr />
+        <hr /> */}
         <h3 className="title is-5">Comentarios generales</h3>
         <h6 className="subtitle is-6 is-italic">Se considera comentario general a un comentario no asociado a un articulo, sino a comentarios generales (de 1° nivel)</h6>
         <table className="table is-narrow is-bordered is-fullwidth">
