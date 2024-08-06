@@ -10,7 +10,7 @@ import Overlay from '@/app/_components/common/overlay'
 import { createTheme } from '@mui/material'
 import Navbar from '@/app/_components/layout/navbar'
 import Footer from '@/app/_components/layout/footer'
-
+import GoogleAnalytics from "@/app/_components/common/google-analytics";
 
 const karla = Karla({
   weight: ['200', '300', '400', '500', '600', '700', '800'],
@@ -44,6 +44,7 @@ export default function RootLayout({ children}) {
   return (
     <html lang="es" className={karla.className}>
       <body>
+        <GoogleAnalytics ga_id="G-DJJZSS3LVE"/>
         <Providers>
           <Navbar />
           <main>
@@ -51,8 +52,6 @@ export default function RootLayout({ children}) {
           </main>
           <Footer />
           <Overlay />
-
-
         </Providers>
       </body>
     </html>
