@@ -14,9 +14,9 @@ export const refreshToken = async () => {
 }
 
 export const toLike = async (url) => {
-    
+
+    const token = Cookies.get(AUTH_TOKENS_KEY)
     try {
-        const token = Cookies.get(AUTH_TOKENS_KEY)
         if (!token) throw {response:{status:401}}
         const resp = await axiosServices.post(`${url}/like`)
         return {
@@ -32,8 +32,8 @@ export const toLike = async (url) => {
 
 export const toDislike = async (url) => {
 
+    const token = Cookies.get(AUTH_TOKENS_KEY)
     try {
-        const token = Cookies.get(AUTH_TOKENS_KEY)
         if (!token) throw {response:{status:401}}
         const resp = await axiosServices.post(`${url}/dislike`)
         return {
@@ -49,8 +49,8 @@ export const toDislike = async (url) => {
 
 export const postComments = async (url, content) => {
 
+    const token = Cookies.get(AUTH_TOKENS_KEY)
     try {
-        const token = Cookies.get(AUTH_TOKENS_KEY)
         if (!token) throw {response:{status:401}}
         const resp = await axiosServices.post(url, content)
         return resp.data
@@ -63,8 +63,8 @@ export const postComments = async (url, content) => {
 
 export const highlighteComment = async (url) => {
 
+    const token = Cookies.get(AUTH_TOKENS_KEY)
     try {
-        const token = Cookies.get(AUTH_TOKENS_KEY)
         if (!token) throw {response:{status:401}}
         const resp = await axiosServices.post(`${url}/highlight`)
         return resp.data
@@ -78,8 +78,8 @@ export const highlighteComment = async (url) => {
 
 export const resolveComment = async (url) => {
 
+    const token = Cookies.get(AUTH_TOKENS_KEY)
     try {
-        const token = Cookies.get(AUTH_TOKENS_KEY)
         if (!token) throw {response:{status:401}}
         const resp = await axiosServices.post(`${url}/resolve`)
         return resp.data
