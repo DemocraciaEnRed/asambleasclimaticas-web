@@ -9,14 +9,11 @@ import { Suspense } from "react";
 export default async function Propuesta({params:{id}, searchParams:{version}}) {
     const project = await fetchProjectId(id,version)
     if (project) return (<div className="pacto-wrapper ">
-        <Suspense fallback={<Skeleton height={700} column/>}>
             <BreadcrumbNav project={project} section="resumen" version={version}/>
             <HeaderPropuesta project={project} section="resumen" />
             <div className="project-body-container">
                 <ResumenBody project={project} />
             </div>
-
-        </Suspense>
     </div>)
     else return (<div className="content pacto-wrapper has-text-centered">
         <h1 className='my-6'>Todavia no hay pacto</h1>

@@ -78,6 +78,7 @@ export default function ProjectFormComponent({project, newVersion}) {
         clientId: getRandomClientId(),
         text_es: article.text_es,
         text_pt: article.text_pt,
+        notInteractive: article.notInteractive,
       }
     })
   }

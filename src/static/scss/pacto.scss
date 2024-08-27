@@ -283,6 +283,10 @@
       }
 
       .article {
+        .card-article-title {
+          border: none!important;
+          box-shadow: none!important;
+        }
         .card-article {
           .card-footer {
             padding: 0.5rem 1rem;

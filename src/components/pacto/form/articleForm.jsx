@@ -9,6 +9,8 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   const [articleId] = useState(article._id || null);
   const [text_es, setText_es] = useState(article.text_es || '');
   const [text_pt, setText_pt] = useState(article.text_pt || '');
+  const [notInteractive, setNotIteractive] = useState(article.notInteractive || false)
+  
   // const [position, setPosition] = useState(article.position || 1);
   const summary_es_ref = useRef(null);
   const summary_pt_ref = useRef(null);
@@ -31,6 +33,7 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
       }
       if(deleted) output.deleted = true
       if(articleId) output._id = articleId
+      output.notInteractive = notInteractive
       return output
     },
     getCurrentTextEs() {
@@ -66,12 +69,17 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
     setDeleted(!deleted)
   }
 
+
   return (
     <div className='article-wrapper'>
       <div className='mb-4'>
         <div className="is-flex is-justify-content-space-between is-align-items-center is-justify-content-top">
           <h3 className="title is-5 mb-0">Artículo {!articleId && <span className="tag is-primary">Nuevo</span> }</h3>
           <div className="is-flex">
+          <label className="checkbox mr-4">
+            <input type="checkbox" checked={!notInteractive} onChange={()=>setNotIteractive(!notInteractive)} />
+              Interactivo
+            </label>
             <div className="is-clickable"><FontAwesomeIcon className="" icon={faCaretSquareUp} onClick={clickArticleUp}/></div>
             <div className="is-clickable ml-4"><FontAwesomeIcon className="" icon={faSquareCaretDown} onClick={clickArticleDown} /></div>
             {
@@ -98,6 +106,5 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   )
 })
 
-ArticleForm.displayName = 'ArticleForm';
 
 export default ArticleForm;

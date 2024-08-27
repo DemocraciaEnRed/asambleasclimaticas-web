@@ -17,7 +17,6 @@ export default function Article({ project, article }) {
     const [dislikes, setDislikes] = useState(article.dislikes);
     const [showComments, setShowComments] = useState(false);
     const { language } = useLanguage();
-
     const handleLike = async () => {
         const resp = await toLike(
             `/projects/${project._id}/articles/${article._id}`
@@ -60,7 +59,7 @@ export default function Article({ project, article }) {
     return (
         <div className="columns mx-0 article my-4">
             <div className="column  is-11 is-12-touch">
-                <div className="card card-article">
+                <div className={"card " + (article.notInteractive ? "card-article-title" : "card-article")}>
                     <div className="card-content is-size-5 columns mx-0">
                         <div className="content w-100 is-size-7-touch">
                             <Remark>
@@ -70,7 +69,7 @@ export default function Article({ project, article }) {
                             </Remark>
                         </div>
                     </div>
-                    <footer
+                    {!article.notInteractive && <footer
                         className={`card-footer has-background-primary is-flex is-justify-content-space-between is-relative ${
                             project.version !== project.currentVersion
                                 ? "disabled"
@@ -142,7 +141,7 @@ export default function Article({ project, article }) {
                                 <FontAwesomeIcon icon={faComment} /> Comentar
                             </button>
                         </div>
-                    </footer>
+                    </footer>}
                 </div>
             </div>
             {showComments && (
