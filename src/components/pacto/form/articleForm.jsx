@@ -30,10 +30,10 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
         clientId: article.clientId,
         text_es: summary_es_ref.current.getMarkdown(),
         text_pt: summary_pt_ref.current.getMarkdown(),
-      }
-      if(deleted) output.deleted = true
-      if(articleId) output._id = articleId
-      output.notInteractive = notInteractive
+        notInteractive: notInteractive,
+      };
+      if (deleted) output.deleted = true;
+      if (articleId) output._id = articleId;
       return output
     },
     getCurrentTextEs() {
@@ -106,5 +106,6 @@ const ArticleForm = forwardRef(({ article, moveArticleUp, moveArticleDown, toggl
   )
 })
 
+ArticleForm.displayName = "ArticleForm";
 
 export default ArticleForm;
