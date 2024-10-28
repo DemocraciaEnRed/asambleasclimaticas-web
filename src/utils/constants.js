@@ -76,7 +76,7 @@ export const CARD_PARTICIPATIVO = [
         description_es: 'Comenta, mira y responde comentarios de otros usuarios.',
         description_pt: '*Visualize, comente e responda aos comentários de outros usuários.*',
         button_text: 'Comente',
-        button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
+        button_action: `/pacto/${PROJECT_ID}/articulado/#comment_section`
     },
     {
         icon: 'pencil.svg',
@@ -85,7 +85,7 @@ export const CARD_PARTICIPATIVO = [
         description_es: 'Deja sugerencias y aportes específicos en cada máxima',
         description_pt: '*Deixe sugestões e contribuições específicas em cada máxima',
         button_text: 'aporte',
-        button_action: `/pacto/${PROJECT_ID}/articulado/#comment_section`
+        button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
     }
 
 ]
