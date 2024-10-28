@@ -19,7 +19,7 @@ export default function LanguageSelector() {
         <p className="px-3">Idioma</p>
         <div className={`language-selector-buttons my-3 border-color-pink`} >
             <button className={`button is-rounded ${language === 'es' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={() => changeLanguage('es')}>Español</button>
-            <button className={`button is-rounded ${language === 'pt' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={() => changeLanguage('pt')}>Portugués</button>
+            <button className={`button is-rounded ${language === 'pt' ? 'is-pink has-text-white' : 'has-text-pink'}`} onClick={() => changeLanguage('pt')}>Português</button>
         </div>
     </div>)
 }
