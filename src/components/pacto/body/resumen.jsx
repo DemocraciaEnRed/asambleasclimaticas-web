@@ -41,7 +41,14 @@ export default function ResumenBody({ project }) {
                 </div>
 
                 <Link href={`/pacto/${project.slug}/articulado`} className="contrib-button has-text-weight-bold has-text-white has-background-primary w-100 mt-5 is-flex is-justify-content-space-between is-align-items-center p-4 is-size-6">
+                    <p>
                     Contribuye dejando tus aportes en las máximas del Pacto Interciudad
+                    <br/>
+                    <span className="has-text-weight-light is-italic is-size-6">
+                        Deixe sua contribuição para as máximas do Pacto-Intercidades
+                        </span>
+
+                    </p>
                     <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
 
