@@ -60,15 +60,15 @@ export const BANNER_BACKGROUND = [
 ]
 
 export const CARD_PARTICIPATIVO = [
-    /* {
-        icon: faWhatsapp,
-        title_es: 'Comunidad de Whatsapp',
-        title_pt: '*Comunidade do WhatsApp',
-        description_es: 'Unase a la comunidad de whatsapp para conocer las novedades',
-        description_pt: '*Junte-se à comunidade do WhatsApp para ficar por dentro das novidades',
-        button_text: 'unite',
-        button_action: ''
-    }, */
+    {
+        icon: 'thumbsUp.svg',
+        title_es: ' Apoyos',
+        title_pt: '*Suportar',
+        description_es: 'Priorizá y apoyá las máximas de tu preferencia con un Me gusta.',
+        description_pt: '*Priorize e apoie as máximas de sua preferência com um Like.',
+        button_text: 'Apoye',
+        button_action: `/pacto/${PROJECT_ID}/articulado/#articles_pacto`
+    },
     {
         icon: 'comment.svg',
         title_es: 'Comentarios ',

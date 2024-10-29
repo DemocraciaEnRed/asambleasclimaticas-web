@@ -16,9 +16,9 @@ export function BannerParticipativo() {
                 </h1>
                 <div className="columns" id="columns-participativo">
                     {CARD_PARTICIPATIVO.map((card, idx) => (
-                        <div className="column" key={idx}>
+                        <div className="column is-flex" key={idx}>
                             <div
-                                className="card m-3 py-4 is-flex is-flex-direction-column"
+                                className="card m-3 py-4 is-flex is-flex-direction-column "
                                 >
                                 <div className="card-image pt-5 has-text-centered">
                                     <Image
@@ -30,7 +30,7 @@ export function BannerParticipativo() {
                                         alt=""
                                     />
                                 </div>
-                                <div className="card-content py-0 has-text-centered has-text-white is-flex-grow-1 is-flex is-flex-direction-column is-justify-content-space-evenly">
+                                <div className="card-content py-0 has-text-centered has-text-white is-flex-grow-1 is-flex is-flex-direction-column ">
                                     <div className="title is-size-3 is-size-4-touch">
                                         {card.title_es}
                                         <h5 className="is-size-5 is-italic">
