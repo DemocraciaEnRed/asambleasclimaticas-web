@@ -13,21 +13,21 @@ import QuienesSomos from "@/components/layout/quienes-somos";
 export default async function Home() {
 
     return (
-        <div className="home-wrapper">
-            <BannerTitle
-                title="Pacto Inter-ciudad"
-                subtitle="*PACTO INTERCIDADE"
-                urlButton="#banner-participativo"
-                textButton="Participar"
-            />
-            <BannerParticipativo />
-            <Banner />
-            <BannerResurgente />
-            <Suspense fallback={<Skeleton height={500} />}>
-                <BannerPacto />
-            </Suspense>
-            <BannerSobreProyecto />
-            <QuienesSomos />
-        </div>
+      <div className="home-wrapper">
+        <BannerTitle
+          title="Pacto Inter-ciudad"
+          subtitle="*PACTO-INTERCIDADES"
+          urlButton="#banner-participativo"
+          textButton="Participar"
+        />
+        <BannerParticipativo />
+        <Banner />
+        <BannerResurgente />
+        <Suspense fallback={<Skeleton height={500} />}>
+          <BannerPacto />
+        </Suspense>
+        <BannerSobreProyecto />
+        <QuienesSomos />
+      </div>
     );
 }
