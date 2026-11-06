@@ -1,0 +1,65 @@
+[
+  {
+    "id": "br-asamblea",
+    "date": "2024-04-01", "end": "2024-05-31", "precision": "month",
+    "kind": "activity", "assembly": "br", "place": "Bujarú, Pará",
+    "title": { "es": "Asamblea Climática de Bujarú", "pt": "Assembleia Climática de Bujaru" },
+    "text": { "es": "50 personas sorteadas deliberan sobre bioeconomía sustentable en 5 encuentros.", "pt": "50 pessoas sorteadas deliberam sobre bioeconomia sustentável em 5 encontros." }
+  },
+  {
+    "id": "ar-anuncio",
+    "date": "2024-07-06", "precision": "day",
+    "kind": "news", "assembly": "ar",
+    "title": { "es": "Mar del Plata será sede de la primera asamblea climática ciudadana del país", "pt": "Mar del Plata será sede da primeira assembleia climática cidadã do país" },
+    "url": "https://www.0223.com.ar/nota/2024-7-6-12-21-0-mar-del-plata-sera-sede-de-la-primera-asamblea-climatica-ciudadana"
+  },
+  {
+    "id": "ar-asamblea",
+    "date": "2024-08-13", "end": "2024-08-22", "precision": "day",
+    "kind": "activity", "assembly": "ar", "place": "Mar del Plata, General Pueyrredon",
+    "title": { "es": "Asamblea Climática de Mar del Plata", "pt": "Assembleia Climática de Mar del Plata" },
+    "text": { "es": "7 jornadas para fortalecer el Plan de Acción Climática del municipio.", "pt": "7 jornadas para fortalecer o Plano de Ação Climática do município." }
+  },
+  {
+    "id": "red-ips",
+    "date": "2024-08-01", "precision": "month",
+    "kind": "news", "assembly": "red",
+    "title": { "es": "IPS: Asambleas climáticas buscan ciudadanía en las soluciones de América Latina", "pt": "IPS: Assembleias climáticas buscam a cidadania nas soluções da América Latina" },
+    "url": "https://ipsnoticias.net/2024/08/asambleas-climaticas-buscan-ciudadania-en-las-soluciones-de-america-latina/"
+  },
+  {
+    "id": "co-asamblea",
+    "date": "2024-08-28", "end": "2024-08-31", "precision": "day",
+    "kind": "activity", "assembly": "co", "place": "Buenaventura, Valle del Cauca",
+    "title": { "es": "Asamblea Climática de Buenaventura", "pt": "Assembleia Climática de Buenaventura" },
+    "text": { "es": "47 personas deliberan sobre el plan de residuos sólidos del distrito.", "pt": "47 pessoas deliberam sobre o plano de resíduos sólidos do distrito." }
+  },
+  {
+    "id": "mx-asamblea",
+    "date": "2024-09-07", "end": "2024-09-22", "precision": "day",
+    "kind": "activity", "assembly": "mx", "place": "Macrocentro Comunitario San Bernabé, Monterrey",
+    "title": { "es": "Asamblea Climática de Nuevo León", "pt": "Assembleia Climática de Nuevo León" },
+    "text": { "es": "Dos fines de semana (7 y 8, 21 y 22 de septiembre) sobre 16 líneas de adaptación.", "pt": "Dois fins de semana (7 e 8, 21 e 22 de setembro) sobre 16 linhas de adaptação." }
+  },
+  {
+    "id": "co-cop16",
+    "date": "2024-10-01", "precision": "month",
+    "kind": "news", "assembly": "co",
+    "title": { "es": "La asamblea de Buenaventura en la COP16", "pt": "A assembleia de Buenaventura na COP16" },
+    "url": "https://www.instagram.com/p/DBwoBPnPIS4/"
+  },
+  {
+    "id": "mx-encuentro-2025-03",
+    "date": "2025-03-01", "precision": "month",
+    "kind": "activity", "assembly": "mx",
+    "title": { "es": "Encuentro de seguimiento de la asamblea de Nuevo León", "pt": "Encontro de acompanhamento da assembleia de Nuevo León" },
+    "url": "https://drive.google.com/file/d/1YP50cQ3e-0qvrZLtoHP_84GaZhK4G5z2/view"
+  },
+  {
+    "id": "mx-glosa",
+    "date": "2025-09-07", "precision": "day",
+    "kind": "activity", "assembly": "mx", "place": "Nuevo León",
+    "title": { "es": "Glosa Ciudadana a un año de la asamblea", "pt": "Glosa Cidadã um ano depois da assembleia" },
+    "text": { "es": "Rendición de cuentas del gobierno sobre las 4 líneas comprometidas en 2025.", "pt": "Prestação de contas do governo sobre as 4 linhas assumidas em 2025." }
+  }
+]

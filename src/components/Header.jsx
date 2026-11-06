@@ -1,21 +1,32 @@
 'use client'
-/* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { PAGES, link } from '@/lib/site'
+import Logo from './Logo'
 
 export default function Header({ t }) {
   const pathname = usePathname() || `/${t.lang}/`
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   // Same page, other language: /es/asambleas/br/ -> /pt/asambleas/br/
   const rest = pathname.split('/').slice(2).join('/')
-  const current = (path) => (path === '' ? rest === '' : rest.startsWith(path))
+  const onHero = rest === ''
+  const current = (path) => rest.startsWith(path)
 
+  // Over the home key visual the header melts into the photo; once you scroll it turns into solid paper.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const clear = onHero && !scrolled && !open
   return (
-    <header className={`top ${open ? 'is-open' : ''}`}>
+    <header className={`top ${clear ? 'is-clear' : ''} ${open ? 'is-open' : ''}`}>
       <a className="skip" href="#contenido">{t.skip}</a>
-      <a href={link(t.lang)} className="top-logo">
-        <img src={`/images/marca/logo-${t.lang}.png`} alt={t.logoAlt} width="1145" height="449" />
+      <a href={link(t.lang)} className="top-logo" aria-label={`${t.logoAlt}, ${t.nav.home}`}>
+        <Logo lang={t.lang} light={clear} tagline={t.tagline} />
       </a>
       <button className="top-toggle caps" aria-expanded={open} aria-controls="menu" onClick={() => setOpen(!open)}>
         {open ? t.close : t.menu}

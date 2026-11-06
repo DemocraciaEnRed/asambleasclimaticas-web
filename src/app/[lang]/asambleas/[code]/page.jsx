@@ -1,4 +1,5 @@
-import { Cutout, Paren, ResourceList, Share } from '@/components/bits'
+import { Cutout, Paren, ResourceList } from '@/components/bits'
+import Share from '@/components/Share'
 import { SITE, link, resourcesFor, tint } from '@/lib/site'
 import { getDictionary } from '../../dictionaries'
 

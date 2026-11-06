@@ -10,8 +10,10 @@
     "home": "Início",
     "assemblies": "Assembleias",
     "impact": "Incidência",
+    "agenda": "Agenda",
     "library": "Biblioteca",
-    "about": "Quem somos"
+    "about": "Quem somos",
+    "contact": "Contato"
   },
   "home": {
     "title": "Duzentas pessoas escolhidas por sorteio disseram aos seus governos o que fazer diante da crise climática.",
@@ -21,13 +23,45 @@
       "(re)surgentes é uma rede de Assembleias Climáticas em quatro cidades da América Latina, acompanhadas por especialistas, governos locais e organizações especializadas em democracia deliberativa.",
       "O seu objetivo é democratizar e descentralizar as decisões públicas diante da crise climática."
     ],
-    "dotsTitle": "200 pessoas sorteadas",
-    "dotsText": "Cada figura é uma moradora ou um morador escolhido ao acaso. Toque em uma cidade para ver a sua assembleia.",
     "assembliesTitle": "Quatro cidades, quatro perguntas",
     "afterTitle": "O que aconteceu com as recomendações",
     "afterCta": "Ver a incidência",
-    "libraryTitle": "Para ler e assistir",
-    "libraryCta": "Ir para a biblioteca"
+    "agendaTitle": "Agenda e novidades",
+    "agendaCta": "Ver toda a agenda"
+  },
+  "agendaPage": {
+    "title": "Agenda",
+    "intro": "Atividades, datas importantes e novidades da rede e de cada assembleia.",
+    "filter": "Mostrar",
+    "all": "Tudo",
+    "kinds": { "activity": "Atividade", "news": "Novidade" },
+    "upcoming": "Em breve",
+    "past": "O que já aconteceu",
+    "noUpcoming": "Não há atividades programadas por enquanto. Quando a rede publicar novas datas, elas vão aparecer aqui.",
+    "addToCalendar": "Adicionar à minha agenda",
+    "network": "Rede"
+  },
+  "contactPage": {
+    "title": "Contato",
+    "intro": "Você é de um governo, uma organização ou um veículo de imprensa? Quer levar uma assembleia climática para a sua cidade? Escreva para nós.",
+    "name": "Nome",
+    "email": "E-mail",
+    "country": "País",
+    "reason": "Motivo",
+    "choose": "Escolha uma opção",
+    "countries": ["Argentina", "Brasil", "Colômbia", "México", "Outro país"],
+    "reasons": ["Quero uma assembleia na minha cidade", "Imprensa", "Governo", "Organização ou pesquisa", "Outro"],
+    "message": "Mensagem",
+    "privacy": "Usamos os seus dados só para responder. Não os compartilhamos com ninguém.",
+    "send": "Enviar mensagem",
+    "sending": "Enviando…",
+    "sent": "Recebemos a sua mensagem. Vamos responder no e-mail que você deixou.",
+    "another": "Enviar outra mensagem",
+    "error": "Não conseguimos enviar a mensagem. Verifique a sua conexão e tente de novo.",
+    "offline": "O formulário ainda não está conectado. Enquanto isso, escreva para a organização do seu país.",
+    "orgsTitle": "Organizações da rede",
+    "shareTitle": "Compartilhe a rede",
+    "shareText": "Conte para outras pessoas o que são as assembleias climáticas."
   },
   "process": {
     "title": "Como funciona uma assembleia",
@@ -54,6 +88,8 @@
     "resources": "Documentos e imprensa",
     "gallery": "Fotos e vídeos no Drive",
     "share": "Compartilhar",
+    "shareMore": "Mais opções",
+    "copied": "Link copiado",
     "seeAssembly": "Ver a assembleia",
     "prev": "Anterior",
     "next": "Próxima",
@@ -86,7 +122,8 @@
     "network": "Rede",
     "types": { "report": "Relatórios", "press": "Imprensa", "video": "Vídeos", "social": "Redes", "gallery": "Fotos e vídeos" },
     "empty": "Não há materiais com esses filtros. Tente outra assembleia ou outro tipo.",
-    "language": "Idioma"
+    "language": "Idioma",
+    "count": "materiais"
   },
   "aboutPage": {
     "title": "Quem somos",
@@ -123,7 +160,7 @@
       "dates": "Abril e maio de 2024",
       "people": 50,
       "sessions": 5,
-      "topic": "BioEconomia Sustentável: caminhos e escolhas para gerar trabalho, renda e qualidade de vida em Bujaru.",
+      "topic": "Como gerar trabalho, renda e qualidade de vida em Bujaru com bioeconomia sustentável?",
       "leader": "Delibera Brasil, em parceria com a Prefeitura e a Secretaria Municipal de Agricultura de Bujaru.",
       "actors": ["Delibera Brasil", "Prefeitura de Bujaru", "Secretaria Municipal de Agricultura"],
       "how": [
@@ -149,7 +186,7 @@
       "dates": "13 a 22 de agosto de 2024",
       "people": 50,
       "sessions": 7,
-      "topic": "Como fortalecer o Plano de Ação Climática do município com recomendações da cidadania.",
+      "topic": "Como fortalecer o Plano de Ação Climática do município com recomendações da cidadania?",
       "leader": "Democracia en Red, com a Direção de Modernização e Informação Estratégica do Município de General Pueyrredon.",
       "actors": ["Democracia en Red", "Município de General Pueyrredon"],
       "how": [
@@ -174,7 +211,7 @@
       "dates": "28 a 31 de agosto de 2024",
       "people": 47,
       "sessions": 4,
-      "topic": "Como atualizar o plano de resíduos sólidos (PGIRS) e o contrato de coleta nas zonas urbanas e rurais do distrito.",
+      "topic": "Como atualizar o plano de resíduos sólidos (PGIRS) e o contrato de coleta nas zonas urbanas e rurais do distrito?",
       "leader": "Extituto junto com Ideemos, a Prefeitura Distrital de Buenaventura e um comitê técnico de organizações locais, com o apoio da Sede Pacífico da Universidade del Valle.",
       "actors": ["Extituto", "Ideemos", "Prefeitura Distrital de Buenaventura", "ASOGESAMPA", "Empoderando Pacífico", "Ambios", "Red de jóvenes por el medio ambiente", "Consejo Comunitario de Córdoba", "Consejo Comunitario de Bazán Bocana", "Universidad del Valle, Sede Pacífico"],
       "how": [
@@ -200,7 +237,7 @@
       "dates": "7, 8, 21 e 22 de setembro de 2024",
       "people": 53,
       "sessions": 4,
-      "topic": "O que recomendar para as 16 linhas de ação de adaptação do Programa Estadual de Mudança Climática.",
+      "topic": "O que recomendar para as 16 linhas de ação de adaptação do Programa Estadual de Mudança Climática?",
       "leader": "SUR, Instituto do Sul Urbano, com as Secretarias de Participação Cidadã e de Meio Ambiente do Governo de Nuevo León e o Conselho Nuevo León para o Planejamento Estratégico.",
       "actors": ["SUR, Instituto do Sul Urbano", "Secretaria de Participação Cidadã", "Secretaria de Meio Ambiente", "Conselho Nuevo León"],
       "how": [

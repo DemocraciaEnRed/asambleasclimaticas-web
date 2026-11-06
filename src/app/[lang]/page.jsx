@@ -1,16 +1,15 @@
-import People from '@/components/People'
-import { Cutout, Paren, Partners, ResourceList } from '@/components/bits'
-import { link, resourcesFor, tint } from '@/lib/site'
+import Agenda from '@/components/Agenda'
+import { Cutout, Paren } from '@/components/bits'
+import { agendaFor, link, tint } from '@/lib/site'
 import { getDictionary } from './dictionaries'
 
 export default async function Home({ params: { lang } }) {
   const t = await getDictionary(lang)
   const cities = Object.fromEntries(t.assemblies.map((a) => [a.code, a.city]))
-  const picks = resourcesFor(lang).filter((r) => r.type === 'report').slice(0, 4)
 
   return (
     <>
-      {/* Key visual: blurred city, cream cutouts bleeding off the edges. */}
+      {/* Key visual: blurred city, cream cutouts bleeding off the edges. The header floats over it. */}
       <section className="kv">
         <Cutout code="co" className="kv-left" />
         <Cutout code="br" className="kv-right" />
@@ -28,24 +27,19 @@ export default async function Home({ params: { lang } }) {
         </div>
       </section>
 
-      <section className="people-wrap wrap">
-        <div className="people-head">
-          <h2>{t.home.dotsTitle}</h2>
-          <p className="muted">{t.home.dotsText}</p>
-        </div>
-        <People lang={lang} assemblies={t.assemblies} label={t.home.dotsTitle} />
-      </section>
-
       <section className="posters-wrap">
         <h2 className="wrap">{t.home.assembliesTitle}</h2>
         <div className="posters">
           {t.assemblies.map((a) => (
             <a key={a.code} className="poster" href={link(lang, `asambleas/${a.code}/`)} style={tint(a.code)}>
               <Cutout code={a.code} className="poster-art" />
-              <span className="poster-country caps">{a.country}</span>
-              <span className="poster-city">{a.city}</span>
-              <span className="poster-q">{a.topic}</span>
               <span className="poster-num">({a.people})</span>
+              {/* Text sits on a cream paper label: legible on every brand color, pink included. */}
+              <span className="poster-label">
+                <span className="caps">{a.country}</span>
+                <span className="poster-city">{a.city}</span>
+                <span className="poster-q">{a.topic}</span>
+              </span>
             </a>
           ))}
         </div>
@@ -78,10 +72,12 @@ export default async function Home({ params: { lang } }) {
         </div>
       </section>
 
-      <section className="wrap home-library">
-        <h2>{t.home.libraryTitle}</h2>
-        <ResourceList t={t} items={picks} showAssembly cities={cities} />
-        <Paren href={link(lang, 'biblioteca/')}>{t.home.libraryCta}</Paren>
+      <section className="wrap home-agenda">
+        <div className="section-head">
+          <h2>{t.home.agendaTitle}</h2>
+          <Paren href={link(lang, 'agenda/')}>{t.home.agendaCta}</Paren>
+        </div>
+        <Agenda t={t} lang={lang} initial={agendaFor(lang)} cities={cities} limit={3} />
       </section>
 
       <section className="pacto">
@@ -93,8 +89,6 @@ export default async function Home({ params: { lang } }) {
           </div>
         </div>
       </section>
-
-      <Partners title={t.aboutPage.partnersTitle} />
     </>
   )
 }

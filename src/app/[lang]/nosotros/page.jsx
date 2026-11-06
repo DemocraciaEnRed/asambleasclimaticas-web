@@ -1,4 +1,5 @@
-import { Partners } from '@/components/bits'
+import { Paren, Partners } from '@/components/bits'
+import { link } from '@/lib/site'
 import { getDictionary } from '../dictionaries'
 
 export async function generateMetadata({ params: { lang } }) {
@@ -39,7 +40,8 @@ export default async function About({ params: { lang } }) {
 
       <section className="wrap contact">
         <h2>{A.contactTitle}</h2>
-        <p className="lead">{A.contact}</p>
+        <p className="lead">{t.contactPage.intro}</p>
+        <Paren href={link(lang, 'contacto/')}>{t.contactPage.send}</Paren>
       </section>
 
       <Partners title={A.partnersTitle} />

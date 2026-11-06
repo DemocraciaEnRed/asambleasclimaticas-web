@@ -1,4 +1,5 @@
 import recursos from '@/content/recursos.json'
+import agenda from '@/content/agenda.json'
 
 export const LANGS = ['es', 'pt']
 
@@ -11,12 +12,23 @@ export const LOOK = {
   red: { color: 'var(--cafe)', art: 1 },
 }
 
+// Main navigation. Home is reached through the logo.
 export const PAGES = [
-  ['home', ''],
   ['assemblies', 'asambleas/'],
   ['impact', 'incidencia/'],
+  ['agenda', 'agenda/'],
   ['library', 'biblioteca/'],
   ['about', 'nosotros/'],
+  ['contact', 'contacto/'],
+]
+
+// Organizations that ran the assemblies (footer). Logos come from Democracia en Red's CDN, as on pacto.resurgentes.org.
+const CDN = 'https://democraciaenred.nyc3.digitaloceanspaces.com/projects/asambleasclimaticas'
+export const CONSORTIUM = [
+  { name: 'Delibera Brasil', logo: `${CDN}/delibera-logo.png`, url: 'https://deliberabrasil.org' },
+  { name: 'Democracia en Red', logo: `${CDN}/der-logo.png`, url: 'https://democraciaenred.org' },
+  { name: 'Extituto', logo: `${CDN}/extituto-logo.png`, url: null },
+  { name: 'SUR, Instituto del Sur Urbano', logo: `${CDN}/sur-logo.png`, url: null },
 ]
 
 export const PARTNERS = [
@@ -31,6 +43,10 @@ export const PARTNERS = [
 
 export const SITE = 'https://resurgentes.org'
 
+// Optional back-office endpoints, set at build time. Without them the site uses the JSON in src/content.
+export const AGENDA_URL = process.env.NEXT_PUBLIC_AGENDA_URL || ''
+export const CONTACT_URL = process.env.NEXT_PUBLIC_CONTACT_URL || ''
+
 export const link = (lang, path = '') => `/${lang}/${path}`
 
 // CSS custom properties that tint a cutout with an assembly's color.
@@ -43,3 +59,11 @@ export const resourcesFor = (lang, assembly) =>
   recursos
     .filter((r) => !assembly || r.assembly === assembly)
     .map((r) => ({ ...r, title: r.title[lang] }))
+
+// Agenda items in one language, newest first. Same shape the back office must return.
+export const localize = (lang, items) =>
+  items
+    .map((e) => ({ ...e, title: e.title[lang] || e.title.es, text: e.text?.[lang] || e.text?.es || '' }))
+    .sort((a, b) => b.date.localeCompare(a.date))
+
+export const agendaFor = (lang) => localize(lang, agenda)

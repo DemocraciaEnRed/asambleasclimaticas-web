@@ -25,7 +25,7 @@ export default function Library({ t, items, cities }) {
         <Group label={L.filterAssembly} value={assembly} set={setAssembly} options={[...Object.entries(cities), ['red', L.network]]} />
         <Group label={L.filterType} value={type} set={setType} options={TYPES.map((k) => [k, L.types[k]])} />
       </div>
-      <p className="lib-count num" aria-live="polite">({shown.length})</p>
+      <p className="lib-count" aria-live="polite"><span className="num">({shown.length})</span> {L.count}</p>
       {shown.length ? <ResourceList t={t} items={shown} showAssembly cities={cities} /> : <p className="empty">{L.empty}</p>}
     </>
   )

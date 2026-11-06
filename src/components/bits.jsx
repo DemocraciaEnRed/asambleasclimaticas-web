@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { PAGES, PARTNERS, link, tint } from '@/lib/site'
+import { CONSORTIUM, PAGES, PARTNERS, link, tint } from '@/lib/site'
+import Logo from './Logo'
 
 // A brand illustration cut out of cream paper, tinted through a CSS mask.
 export function Cutout({ code, className = '' }) {
@@ -28,38 +29,35 @@ export function Partners({ title }) {
   )
 }
 
+// Institutional footer: the consortium's logos and sites, as the brief asks.
 export function Footer({ t }) {
   return (
     <footer className="foot">
       <div className="wrap foot-grid">
-        <img src={`/images/marca/logo-${t.lang}-crema.png`} alt={t.logoAlt} width="1145" height="449" loading="lazy" />
+        <div className="foot-brand">
+          <a href={link(t.lang)} aria-label={t.logoAlt}><Logo lang={t.lang} light tagline={t.tagline} /></a>
+          <p>{t.footer.text}</p>
+        </div>
         <nav aria-label={t.menu}>
+          <a href={link(t.lang)}>{t.nav.home}</a>
           {PAGES.map(([key, path]) => <a key={key} href={link(t.lang, path)}>{t.nav[key]}</a>)}
           <a href={t.pacto.url}>{t.pacto.title}</a>
         </nav>
-        <div>
-          <p>{t.footer.text}</p>
-          <p className="muted">{t.footer.license}</p>
+        <div className="foot-orgs">
+          <h2 className="caps">{t.aboutPage.consortiumTitle}</h2>
+          <ul>
+            {CONSORTIUM.map((o) => (
+              <li key={o.name}>
+                {o.url
+                  ? <a href={o.url} target="_blank" rel="noopener noreferrer"><img src={o.logo} alt={o.name} loading="lazy" /></a>
+                  : <img src={o.logo} alt={o.name} loading="lazy" />}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+      <p className="wrap muted foot-legal">{t.footer.license}</p>
     </footer>
-  )
-}
-
-export function Share({ t, url, title }) {
-  const u = encodeURIComponent(url)
-  const text = encodeURIComponent(title)
-  const targets = [
-    ['WhatsApp', `https://wa.me/?text=${text}%20${u}`],
-    ['Facebook', `https://www.facebook.com/sharer/sharer.php?u=${u}`],
-    ['X', `https://x.com/intent/post?text=${text}&url=${u}`],
-    ['LinkedIn', `https://www.linkedin.com/sharing/share-offsite/?url=${u}`],
-  ]
-  return (
-    <div className="share">
-      <span className="caps">{t.labels.share}</span>
-      {targets.map(([name, href]) => <a key={name} href={href} target="_blank" rel="noopener noreferrer">{name}</a>)}
-    </div>
   )
 }
 
