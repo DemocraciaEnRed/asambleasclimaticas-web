@@ -1,29 +1,11 @@
 'use client'
-import { useEffect, useLayoutEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from 'react'
 
-export default function Page(){
-    const router = useRouter();
-    const pathname = usePathname()
-
-  useLayoutEffect(() => {
-    // Detect the browser's preferred language
-    const browserLang = navigator.language || navigator.userLanguage;
-    const supportedLocales = ['es', 'pt'];
-    let detectedLocale = 'es'; // fallback to 'en-US' if the browser's language is not supported
-    
-    if (supportedLocales.includes(browserLang.split('-')[0])) {
-        detectedLocale = browserLang.split('-')[0];
-    }
-
-    // If the user hits the root path, redirect based on the browser's language
-    if (pathname === '/') {
-      router.replace(`/${detectedLocale}`);
-    }
-  }, []);
-    return(
-    <div>
-
-    </div>
-    )
+// The root only picks a language: Portuguese browsers go to /pt/, everyone else to /es/.
+export default function Root() {
+  useEffect(() => {
+    const lang = (navigator.language || '').toLowerCase().startsWith('pt') ? 'pt' : 'es'
+    window.location.replace(`/${lang}/`)
+  }, [])
+  return <noscript><a href="/es/">Español</a> · <a href="/pt/">Português</a></noscript>
 }

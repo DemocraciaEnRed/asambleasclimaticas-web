@@ -1,58 +1,31 @@
-import { Providers } from '@/store/provider'
-import { Karla } from 'next/font/google'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import Script from 'next/script'
+import { Urbanist, Archivo } from 'next/font/google'
 
+import './site.css'
 
-import '@/app/themes.scss'
+const urbanist = Urbanist({ subsets: ['latin'], display: 'swap', variable: '--f-text' })
+const archivo = Archivo({ subsets: ['latin'], display: 'swap', axes: ['wdth'], variable: '--f-caps' })
 
+const GA_ID = 'G-DJJZSS3LVE'
+const description = 'Red latinoamericana de Asambleas Climáticas: 200 personas sorteadas en Bujarú, Buenaventura, Mar del Plata y Nuevo León deliberaron y entregaron recomendaciones a sus gobiernos.'
 
-import Overlay from '@/app/_components/common/overlay'
-import { createTheme } from '@mui/material'
-import Navbar from '@/app/_components/layout/navbar'
-import Footer from '@/app/_components/layout/footer'
-import GoogleAnalytics from "@/app/_components/common/google-analytics";
-
-const karla = Karla({
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
-  subsets: ['latin'],
-  display: 'swap',
-})
 export const metadata = {
   metadataBase: new URL('https://resurgentes.org'),
-  title: 'Resurgente Pacto-interciudad',
-  description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
-  openGraph:{
-    title: 'Resurgente Pacto-interciudad',
-    description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
-    images:  'https://resurgentes.org/images/share-landing.png',
-    type: 'website',
-  },
-  twitter:{
-    title: 'Resurgente Pacto-interciudad',
-    description: 'Participa en la co-creación del pacto Inter-ciudad, y conoce las máximas elaboradas en las Asambleas Climáticas de Brasil, Argentina, Colombia y Mexico.',
-    images:  {
-      url:'https://resurgentes.org/images/share-landing.png',
-      alt:'banner resurgentes'
-    },
-    type: 'website',
-  }
-  
+  title: { default: '(re)surgentes, Asambleas Climáticas', template: '%s | (re)surgentes' },
+  description,
+  openGraph: { description, images: '/images/share-landing.png', type: 'website' },
+  twitter: { card: 'summary_large_image', images: { url: '/images/share-landing.png', alt: '(re)surgentes' } },
 }
 
-export default function RootLayout({ children}) {
-
+export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={karla.className}>
+    <html lang="es" className={`${urbanist.variable} ${archivo.variable}`}>
       <body>
-        <GoogleAnalytics ga_id="G-DJJZSS3LVE"/>
-        <Providers>
-          <Navbar />
-          <main>
-            {children}
-          </main>
-          <Footer />
-          <Overlay />
-        </Providers>
+        {children}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="ga" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA_ID}');`}
+        </Script>
       </body>
     </html>
   )

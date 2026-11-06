@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  env: {
-    PROJECTID: 'pacto-inter-ciudad',
-  },
   output: 'export',
-  images: { unoptimized: true }
+  // Every page is exported as folder/index.html, so /pt/ and /es/asambleas/br/ work on any static host.
+  trailingSlash: true,
+  images: { unoptimized: true },
 }
 
 module.exports = nextConfig

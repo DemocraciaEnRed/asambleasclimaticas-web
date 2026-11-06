@@ -1,66 +1,222 @@
 {
-    "bannerTitle": {
-        "title": "UNINDO VOZES PARA ENFRENTAR A MUDANÇA CLIMÁTICA.",
-        "subtitle": "Construimos Futuros Sustentáveis, Cidade por Cidade.",
-        "button": "Começar"
-    },
-    "countriesBanner": {
-        "title": "Assembleias",
-        "city":"Cidade",
-        "date":"Data",
-        "topic":"Tema",
-        "leader_organization":"Organização Líder",
-        "start_date":"Data de início",
-        "countries": [
-            {
-                "name": "Brasil",
-                "code": "BR",
-                "image": "https://cdn-icons-png.flaticon.com/512/197/197386.png",
-                "city": "Bujaru",
-                "date": "Abril a Maio de 2024",
-                "topic": "Bioeconomia Sustentável, renda e qualidade de vida na Amazônia",
-                "leader": "Delibera Brasil",
-                "description": "A Assembleia Climática de Bujaru é formada por 50 moradores sorteados em todo o município, incluindo as comunidades tradicionais, que se reuniram para entender o contexto, oportunidades e riscos, deliberar e fazer recomendações para políticas públicas e investimentos privados em Bioeconomia Sustentável com geração de renda e qualidade de vida para todas e todos que vivem em Bujaru."
-            },
-            {
-                "name": "Colômbia",
-                "code": "CO",
-                "image": "https://cdn-icons-png.flaticon.com/512/197/197575.png",
-                "city": "Buenaventura",
-                "date": "Agosto de 2024",
-                "topic": "Coleta e gerenciamento de resíduos sólidos",
-                "leader": "Extituto",
-                "description": "A Assembleia Climática de Buenaventura é formada por 50 pessoas selecionadas aleatoriamente por meio de sorteio cívico, para representar a população da cidade. Os participantes irão se reunir para elaborar recomendações sobre a coleta e gerenciamento de resíduos sólidos no município."
-            },
-            {
-                "name": "Argentina",
-                "code": "AR",
-                "image": "https://cdn-icons-png.flaticon.com/512/197/197573.png",
-                "city": "Mar del Plata",
-                "date": "Agosto de 2024",
-                "topic": "Plano estratégico municipal de ação climática - Mitigando o impacto das mudanças climáticas a nível local",
-                "leader": "Democracia en Red",
-                "description": "A Assembleia Climática de Mar del Plata é formada por 50 pessoas selecionadas aleatoriamente por meio de um sorteio cívico para representar a população da cidade. Os participantes irão elaborar recomendações para o novo Plano de Ação Climática Municipal de General Pueyrredón. As recomendações serão focadas em três eixos do PAC:<br/><br/>A) Formação, sensibilização e criação de políticas comunitárias.<br/>B) Tratamento de resíduos sólidos e efluentes, reaproveitamento de materiais e reciclagem.<br/>C) Prevenção e preparação para situações de emergência e eventos catastróficos climáticos, e elaboração de medidas de adaptação às alterações climáticas."
-            },
-            {
-                "name": "México",
-                "code": "MX",
-                "image": "https://cdn-icons-png.flaticon.com/512/197/197397.png",
-                "city": "Monterrey, Nuevo León",
-                "date": "Setembro a Novembro de 2024",
-                "topic": "Programa Estadual de Mudanças Climáticas - Medidas de Adaptação Climática",
-                "leader": "SUR, Instituto del Sur Urbano",
-                "description": "A Assembleia Climática de Nuevo León é formada por 50 pessoas selecionadas aleatoriamente por meio de um sorteio cívico para representar a população da cidade. Os participantes irão se reunir e elaborar recomendações para a melhoria das políticas ambientais do Estado, e para a priorização de ações de adaptação às mudanças climáticas na Região Metropolitana de Monterrey."
-            }
-        ]
-    },
-    "sliderBanner": [
-        "<strong class='has-text-white'>(Re)surgentes</strong> é uma rede de Assembleias Climáticas composta por mais de 200 pessoas sorteadas aleatoriamente em quatro cidades da América Latina, acompanhadas por especialistas, partes interessadas, governos locais, líderes e organizações especializadas em democracia deliberativa.",
-        "<strong class='has-text-white'>Nosso objetivo</strong> é fortalecer os processos de democratização e descentralização da tomada de decisões públicas para o enfrentamento da crise climática na América Latina.",
-        "<strong class='has-text-white'>As Assembleias Climáticas </strong> são espaços da democracia deliberativa, de discussão e reflexão, criados para que cidadãos, sorteados de forma aleatória, desempenhem um papel central na tomada de decisões sobre o clima na América Latina."
+  "lang": "pt",
+  "other": { "lang": "es", "label": "Español", "short": "ES" },
+  "logoAlt": "(re)surgentes, Assembleias Climáticas",
+  "tagline": "Assembleias climáticas",
+  "skip": "Ir para o conteúdo",
+  "menu": "Menu",
+  "close": "Fechar",
+  "nav": {
+    "home": "Início",
+    "assemblies": "Assembleias",
+    "impact": "Incidência",
+    "library": "Biblioteca",
+    "about": "Quem somos"
+  },
+  "home": {
+    "title": "Duzentas pessoas escolhidas por sorteio disseram aos seus governos o que fazer diante da crise climática.",
+    "cta": "Conhecer as assembleias",
+    "whatTitle": "Uma rede de assembleias cidadãs",
+    "what": [
+      "(re)surgentes é uma rede de Assembleias Climáticas em quatro cidades da América Latina, acompanhadas por especialistas, governos locais e organizações especializadas em democracia deliberativa.",
+      "O seu objetivo é democratizar e descentralizar as decisões públicas diante da crise climática."
     ],
-    "pactoBannerSecction": {
-        "title": "Pacto-Intercidades",
-        "description": "<p>O <strong>Pacto-Intercidades</strong> é um instrumento de incidência pública construído de forma colaborativa, em que pessoas e cidades definem uma visão estratégica para enfrentar a crise climática a partir da América Latina para o mundo.</p><p class='py-3 has-text-weight-bold'>Como funciona:</p><ol><li>Cada <a href='#countries-banner'>Assembleia Climática</a> decide por pelo menos 4 propostas de princípios para o pacto.</li><li>As propostas são publicadas na plataforma do Pacto-Intercidades para receber contribuições, sugestões e comentários da população em geral.</li><li>Para participar do debate e determinação do Pacto, as pessoas devem se registrar com nome e cidade <a href='https://pacto.resurgentes.org/auth/register'>aqui</a>.</li><li>Ao longo do processo de participação são geradas versões atualizadas e aprimoradas do Pacto, graças às contribuições das pessoas.</li><li>Por fim, um documento final do Pacto-Intercidades é gerado e será apresentado para consideração das pessoas para sua validação final.</li></ol>"
+    "dotsTitle": "200 pessoas sorteadas",
+    "dotsText": "Cada figura é uma moradora ou um morador escolhido ao acaso. Toque em uma cidade para ver a sua assembleia.",
+    "assembliesTitle": "Quatro cidades, quatro perguntas",
+    "afterTitle": "O que aconteceu com as recomendações",
+    "afterCta": "Ver a incidência",
+    "libraryTitle": "Para ler e assistir",
+    "libraryCta": "Ir para a biblioteca"
+  },
+  "process": {
+    "title": "Como funciona uma assembleia",
+    "steps": [
+      { "title": "Sorteio cívico", "text": "São escolhidas ao acaso cerca de 50 pessoas que refletem a população: idades, bairros, zonas rurais e urbanas." },
+      { "title": "Aprender", "text": "Escutam especialistas, o governo local e organizações do território." },
+      { "title": "Deliberar", "text": "Discutem em mesas de trabalho, comparam opções e priorizam." },
+      { "title": "Recomendar", "text": "Entregam as suas recomendações ao governo." },
+      { "title": "Acompanhar", "text": "Acompanham o que o governo faz com elas." }
+    ]
+  },
+  "labels": {
+    "people": "pessoas sorteadas",
+    "sessions": "encontros",
+    "dates": "Datas",
+    "topic": "Pergunta",
+    "leader": "Organizou",
+    "actors": "Participaram",
+    "how": "Como foi",
+    "outcome": "O que propuseram",
+    "after": "O que aconteceu depois",
+    "milestones": "Percurso",
+    "videos": "Vídeos",
+    "resources": "Documentos e imprensa",
+    "gallery": "Fotos e vídeos no Drive",
+    "share": "Compartilhar",
+    "seeAssembly": "Ver a assembleia",
+    "prev": "Anterior",
+    "next": "Próxima",
+    "status": "Situação"
+  },
+  "assembliesPage": {
+    "title": "As assembleias",
+    "intro": "Entre abril e setembro de 2024, quatro cidades da América Latina sortearam moradoras e moradores para deliberar sobre um problema climático concreto do seu território.",
+    "compareTitle": "Lado a lado",
+    "columns": ["Assembleia", "Pessoas", "Encontros", "Pergunta", "Situação"]
+  },
+  "impactPage": {
+    "title": "Incidência",
+    "intro": "Uma assembleia não termina quando entrega as suas recomendações. Aqui acompanhamos o que aconteceu com cada uma: quem respondeu, o que foi implementado e o que continua pendente.",
+    "stagesTitle": "O percurso de cada assembleia",
+    "stages": ["Deliberou", "Entregou recomendações", "O governo respondeu", "Há acompanhamento cidadão"],
+    "done": "Sim",
+    "pending": "Ainda não",
+    "inProgress": "Em andamento",
+    "agendaTitle": "Marcos",
+    "past": "Passado",
+    "upcoming": "Por vir"
+  },
+  "libraryPage": {
+    "title": "Biblioteca",
+    "intro": "Relatórios, cartas de recomendações, notícias e vídeos das quatro assembleias.",
+    "all": "Tudo",
+    "filterAssembly": "Assembleia",
+    "filterType": "Tipo",
+    "network": "Rede",
+    "types": { "report": "Relatórios", "press": "Imprensa", "video": "Vídeos", "social": "Redes", "gallery": "Fotos e vídeos" },
+    "empty": "Não há materiais com esses filtros. Tente outra assembleia ou outro tipo.",
+    "language": "Idioma"
+  },
+  "aboutPage": {
+    "title": "Quem somos",
+    "intro": "(re)surgentes é uma rede de Assembleias Climáticas formadas por mais de 200 pessoas escolhidas ao acaso em quatro cidades da América Latina.",
+    "goal": "O nosso objetivo é fortalecer a democratização e a descentralização das decisões públicas diante da crise climática na América Latina.",
+    "whatIs": "As Assembleias Climáticas são mecanismos de democracia deliberativa: pessoas selecionadas ao acaso estudam, discutem e assumem um papel central nas decisões sobre o clima.",
+    "consortiumTitle": "Consórcio",
+    "consortium": [
+      { "name": "Delibera Brasil", "city": "Bujaru", "url": "https://deliberabrasil.org" },
+      { "name": "Democracia en Red", "city": "Mar del Plata", "url": "https://democraciaenred.org" },
+      { "name": "Extituto", "city": "Buenaventura", "url": null },
+      { "name": "SUR, Instituto do Sul Urbano", "city": "Nuevo León", "url": null }
+    ],
+    "partnersTitle": "Alianças e organizações participantes",
+    "contactTitle": "Contato",
+    "contact": "Para falar com a rede, escreva para a organização que coordena a assembleia do seu país."
+  },
+  "pacto": {
+    "title": "Pacto Intercidades",
+    "text": "Cada assembleia propôs princípios para um pacto comum entre cidades. A cidadania os comentou em uma plataforma aberta para construir uma visão compartilhada a partir da América Latina.",
+    "cta": "Ir para o Pacto",
+    "url": "https://pacto.resurgentes.org"
+  },
+  "footer": {
+    "text": "Rede latino-americana de Assembleias Climáticas.",
+    "license": "Código aberto sob licença GPL-3.0."
+  },
+  "assemblies": [
+    {
+      "code": "br",
+      "country": "Brasil",
+      "city": "Bujaru",
+      "region": "Pará",
+      "dates": "Abril e maio de 2024",
+      "people": 50,
+      "sessions": 5,
+      "topic": "BioEconomia Sustentável: caminhos e escolhas para gerar trabalho, renda e qualidade de vida em Bujaru.",
+      "leader": "Delibera Brasil, em parceria com a Prefeitura e a Secretaria Municipal de Agricultura de Bujaru.",
+      "actors": ["Delibera Brasil", "Prefeitura de Bujaru", "Secretaria Municipal de Agricultura"],
+      "how": [
+        "Entre abril e maio de 2024, 50 cidadãs e cidadãos do município foram selecionados para representar a população local.",
+        "Em 5 encontros, refletiram sobre como a cidade quer se posicionar estrategicamente e acessar oportunidades rumo ao desenvolvimento sustentável e à bioeconomia."
+      ],
+      "outcome": "Uma Carta de Recomendações entregue oficialmente ao governo municipal: criação do Plano Municipal de Agricultura com metas e indicadores intersetoriais, cooperativas e associações em diálogo com o setor privado, mais formação para jovens em agricultura e desenvolvimento do ecoturismo e do turismo rural.",
+      "after": "Desde então, diversas políticas passaram a ser implementadas no município contemplando recomendações da Assembleia, como ações e investimentos para fortalecer a agricultura familiar e a economia turística local. Os participantes formaram um grupo engajado que segue atuando no município por meio da página de Instagram Bujaru Verde.",
+      "status": "Recomendações em andamento",
+      "stages": ["done", "done", "done", "done"],
+      "milestones": [
+        { "when": "Abril e maio de 2024", "what": "5 encontros da assembleia" },
+        { "when": "2024", "what": "Entrega da Carta de Recomendações ao governo municipal" },
+        { "when": "Depois", "what": "Políticas para a agricultura familiar e o turismo local" },
+        { "when": "Hoje", "what": "O grupo Bujaru Verde continua ativo" }
+      ]
+    },
+    {
+      "code": "ar",
+      "country": "Argentina",
+      "city": "Mar del Plata",
+      "region": "General Pueyrredon",
+      "dates": "13 a 22 de agosto de 2024",
+      "people": 50,
+      "sessions": 7,
+      "topic": "Como fortalecer o Plano de Ação Climática do município com recomendações da cidadania.",
+      "leader": "Democracia en Red, com a Direção de Modernização e Informação Estratégica do Município de General Pueyrredon.",
+      "actors": ["Democracia en Red", "Município de General Pueyrredon"],
+      "how": [
+        "50 moradores de Mar del Plata, de diferentes bairros e perfis, escolhidos por sorteio cívico, trabalharam sobre três linhas do Plano: formação, conscientização e comunicação (linha Rosa); resíduos, reciclagem, compostagem e efluentes (linha Violeta); e prevenção de emergências climáticas (linha Turquesa).",
+        "A primeira semana foi dedicada a entender a crise climática na América Latina e na cidade, com especialistas e funcionários públicos, e a priorizar problemas. A segunda, a cocriar soluções. A presença foi próxima de 100%."
+      ],
+      "outcome": "18 desafios climáticos priorizados (6 por linha) e 54 ideias de solução validadas pela assembleia, entregues ao município em um relatório detalhado e um resumo executivo.",
+      "after": "A assembleia aguarda avanços do município, tanto na implementação do Plano de Ação Climática quanto em políticas climáticas e ambientais concretas.",
+      "status": "Aguardando resposta do município",
+      "stages": ["done", "done", "pending", "pending"],
+      "milestones": [
+        { "when": "13 a 22 de agosto de 2024", "what": "7 jornadas da assembleia" },
+        { "when": "2024", "what": "Entrega do relatório e do resumo executivo ao município" },
+        { "when": "Hoje", "what": "Aguardando avanços do município" }
+      ]
+    },
+    {
+      "code": "co",
+      "country": "Colômbia",
+      "city": "Buenaventura",
+      "region": "Valle del Cauca",
+      "dates": "28 a 31 de agosto de 2024",
+      "people": 47,
+      "sessions": 4,
+      "topic": "Como atualizar o plano de resíduos sólidos (PGIRS) e o contrato de coleta nas zonas urbanas e rurais do distrito.",
+      "leader": "Extituto junto com Ideemos, a Prefeitura Distrital de Buenaventura e um comitê técnico de organizações locais, com o apoio da Sede Pacífico da Universidade del Valle.",
+      "actors": ["Extituto", "Ideemos", "Prefeitura Distrital de Buenaventura", "ASOGESAMPA", "Empoderando Pacífico", "Ambios", "Red de jóvenes por el medio ambiente", "Consejo Comunitario de Córdoba", "Consejo Comunitario de Bazán Bocana", "Universidad del Valle, Sede Pacífico"],
+      "how": [
+        "47 pessoas de zonas urbanas e rurais participaram durante quatro dias. Nos dois primeiros, aprenderam como é hoje o percurso dos resíduos sólidos em Buenaventura.",
+        "Nos dois últimos, deliberaram em comissões sobre temas locais e regionais, com espaços para compartilhar avanços entre comissões."
+      ],
+      "outcome": "Uma atualização do PGIRS e do contrato de coleta com ênfase em reaproveitamento e economia circular, que leve em conta a zona rural, a mais exposta ao mau manejo dos resíduos e aos efeitos da mudança climática.",
+      "after": "Está sendo construída uma nova rota de incidência para implementar as recomendações junto com instituições nacionais, atores privados e organizações da sociedade civil.",
+      "status": "Nova rota de incidência",
+      "stages": ["done", "done", "progress", "pending"],
+      "milestones": [
+        { "when": "28 a 31 de agosto de 2024", "what": "4 dias de assembleia" },
+        { "when": "Outubro de 2024", "what": "Participação na COP16" },
+        { "when": "Depois", "what": "Publicação das recomendações gerais" },
+        { "when": "Hoje", "what": "Construção de uma nova rota de incidência" }
+      ]
+    },
+    {
+      "code": "mx",
+      "country": "México",
+      "city": "Nuevo León",
+      "region": "Região metropolitana de Monterrey",
+      "dates": "7, 8, 21 e 22 de setembro de 2024",
+      "people": 53,
+      "sessions": 4,
+      "topic": "O que recomendar para as 16 linhas de ação de adaptação do Programa Estadual de Mudança Climática.",
+      "leader": "SUR, Instituto do Sul Urbano, com as Secretarias de Participação Cidadã e de Meio Ambiente do Governo de Nuevo León e o Conselho Nuevo León para o Planejamento Estratégico.",
+      "actors": ["SUR, Instituto do Sul Urbano", "Secretaria de Participação Cidadã", "Secretaria de Meio Ambiente", "Conselho Nuevo León"],
+      "how": [
+        "Durante dois fins de semana, no Macrocentro Comunitário San Bernabé, na zona norte da região metropolitana de Monterrey, 53 assembleístas se formaram em deliberação climática e nos desafios climáticos do estado.",
+        "Trabalharam em plenária e em 4 mesas de trabalho para analisar e recomendar sobre 16 linhas de ação de adaptação."
+      ],
+      "outcome": "Recomendações para as 16 linhas de ação de adaptação do Programa Estadual de Mudança Climática de Nuevo León.",
+      "after": "A Secretaria de Participação Cidadã criou um mecanismo de acompanhamento: em 2025, o governo estadual se comprometeu a atender as recomendações de 4 linhas (Redes Climáticas Comunitárias, Monitoramento de Áreas Verdes Urbanas, Educação Climática e Cultura Climática), com reuniões trimestrais entre assembleístas e equipes de governo e uma Glosa Cidadã de prestação de contas.",
+      "status": "Compromisso do governo",
+      "stages": ["done", "done", "done", "done"],
+      "milestones": [
+        { "when": "Setembro de 2024", "what": "Dois fins de semana de assembleia" },
+        { "when": "2025", "what": "O governo se compromete com 4 das 16 linhas" },
+        { "when": "2025", "what": "Reuniões trimestrais e primeira prestação de contas" },
+        { "when": "7 de setembro de 2025", "what": "Glosa Cidadã, um ano depois da assembleia" }
+      ]
     }
+  ]
 }
