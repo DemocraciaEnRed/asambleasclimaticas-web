@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { CONTACT_URL } from '@/lib/site'
+import { CONTACT_API } from '@/lib/site'
 
-// Posts JSON to the back office. The field names are the contract the backend has to accept.
+// Posts JSON to the back office (table "messages"). The field names are the columns it accepts.
 export default function ContactForm({ t }) {
   const C = t.contactPage
   const [state, setState] = useState('idle') // idle | sending | sent | error
@@ -10,15 +10,15 @@ export default function ContactForm({ t }) {
   async function submit(ev) {
     ev.preventDefault()
     const form = ev.currentTarget
-    const data = Object.fromEntries(new FormData(form))
-    if (data.website) return // honeypot: bots fill hidden fields
-    if (!CONTACT_URL) return setState('offline')
+    const { website, ...data } = Object.fromEntries(new FormData(form))
+    if (website) return // honeypot: bots fill hidden fields
+    if (!CONTACT_API) return setState('offline')
     setState('sending')
     try {
-      const r = await fetch(CONTACT_URL, {
+      const r = await fetch(CONTACT_API.url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, lang: t.lang }),
+        headers: CONTACT_API.headers,
+        body: JSON.stringify({ ...data, country: data.country || null, reason: data.reason || null, lang: t.lang }),
       })
       if (!r.ok) throw new Error(r.status)
       form.reset()

@@ -43,9 +43,24 @@ export const PARTNERS = [
 
 export const SITE = 'https://resurgentes.org'
 
-// Optional back-office endpoints, set at build time. Without them the site uses the JSON in src/content.
-export const AGENDA_URL = process.env.NEXT_PUBLIC_AGENDA_URL || ''
-export const CONTACT_URL = process.env.NEXT_PUBLIC_CONTACT_URL || ''
+// Back office (Supabase), set at build time. Without it the agenda uses the JSON in src/content
+// and the contact form shows its "offline" message. The anon key is public by design: access is
+// limited by the row-level security rules in supabase/schema.sql.
+const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const SB_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+const SB_HEADERS = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
+
+// Each endpoint is null when the back office is not configured.
+export const AGENDA_API = SB_URL && SB_KEY ? {
+  url: `${SB_URL}/rest/v1/events?select=id,date,end:end_date,precision,kind,assembly,place,url,title,text&published=eq.true`,
+  headers: SB_HEADERS,
+} : null
+
+export const CONTACT_API = SB_URL && SB_KEY ? {
+  url: `${SB_URL}/rest/v1/messages`,
+  // return=minimal: the public may insert messages but not read them back.
+  headers: { ...SB_HEADERS, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+} : null
 
 export const link = (lang, path = '') => `/${lang}/${path}`
 

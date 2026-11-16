@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { AGENDA_URL, localize, tint } from '@/lib/site'
+import { AGENDA_API, localize, tint } from '@/lib/site'
 
 const today = () => new Date().toISOString().slice(0, 10)
 
@@ -55,8 +55,8 @@ export default function Agenda({ t, lang, initial, cities, limit }) {
   // Dates are compared in the visitor's browser, so "upcoming" is right even long after the build.
   useEffect(() => {
     setNow(today())
-    if (!AGENDA_URL) return
-    fetch(AGENDA_URL)
+    if (!AGENDA_API) return
+    fetch(AGENDA_API.url, { headers: AGENDA_API.headers })
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((data) => setItems(localize(lang, data)))
       .catch(() => {}) // keep the bundled agenda if the back office is down
