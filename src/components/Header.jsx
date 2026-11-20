@@ -8,12 +8,12 @@ export default function Header({ t }) {
   const pathname = usePathname() || `/${t.lang}/`
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  // Same page, other language: /es/asambleas/br/ -> /pt/asambleas/br/
+  // Misma página, otro idioma: /es/asambleas/br/ -> /pt/asambleas/br/
   const rest = pathname.split('/').slice(2).join('/')
   const onHero = rest === ''
   const current = (path) => rest.startsWith(path)
 
-  // Over the home key visual the header melts into the photo; once you scroll it turns into solid paper.
+  // Sobre el key visual de la home el header se funde con la foto; al hacer scroll pasa a ser papel sólido.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()

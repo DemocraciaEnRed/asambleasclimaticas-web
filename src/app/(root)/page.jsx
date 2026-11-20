@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-// The root only picks a language: Portuguese browsers go to /pt/, everyone else to /es/.
+// La raíz solo elige el idioma: los navegadores en portugués van a /pt/, el resto a /es/.
 export default function Root() {
   useEffect(() => {
     const lang = (navigator.language || '').toLowerCase().startsWith('pt') ? 'pt' : 'es'

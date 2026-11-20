@@ -9,7 +9,7 @@ export const metadata = {
   robots: { index: false, follow: false },
 }
 
-// Separate root layout: no public header/footer and no analytics on the back office.
+// Layout raíz aparte: el backoffice no lleva el header/footer público ni analytics.
 export default function AdminLayout({ children }) {
   return (
     <html lang="es" className={fontClasses}>

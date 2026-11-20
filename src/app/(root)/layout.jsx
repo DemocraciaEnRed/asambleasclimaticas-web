@@ -5,7 +5,7 @@ export const metadata = {
   title: '(re)surgentes, Asambleas Climáticas',
 }
 
-// Only wraps "/", which sends each visitor to their language.
+// Solo envuelve "/", que manda a cada visitante a su idioma.
 export default function RootLayout({ children }) {
   return <Shell lang="es">{children}</Shell>
 }

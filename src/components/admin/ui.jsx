@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useStore } from './AdminShell'
 
-// Loads one table and exposes save/remove that keep the list in sync.
+// Carga una tabla y expone save/remove, que mantienen la lista sincronizada.
 export function useTable(table) {
   const store = useStore()
   const [rows, setRows] = useState(null)
@@ -32,7 +32,7 @@ export function useTable(table) {
   return { rows, error, reload, save, remove, saveMany }
 }
 
-// Read/write a nested path like "title.es" on a plain object.
+// Lee/escribe una ruta anidada como "title.es" en un objeto plano.
 export const get = (o, path) => path.split('.').reduce((v, k) => v?.[k], o)
 export function set(o, path, value) {
   const [k, ...rest] = path.split('.')
@@ -49,7 +49,7 @@ export function Field({ label, error, hint, wide, children }) {
   )
 }
 
-// Input bound to a path of the draft record. `as` picks input | textarea | select.
+// Campo ligado a una ruta del registro en borrador. `as` elige input | textarea | select.
 export function Input({ form, path, as = 'input', options, ...props }) {
   const { draft, setDraft, errors } = form
   const value = get(draft, path) ?? ''
@@ -64,7 +64,7 @@ export function Input({ form, path, as = 'input', options, ...props }) {
   return <input value={value} onChange={onChange} aria-invalid={!!errors[path]} {...props} />
 }
 
-// The same text in Spanish and Portuguese, side by side.
+// El mismo texto en español y en portugués, uno al lado del otro.
 export function Bilingual({ form, path, label, as, required }) {
   return (
     <div className="adm-pair is-wide">
@@ -78,7 +78,7 @@ export function Bilingual({ form, path, label, as, required }) {
   )
 }
 
-// Modal editor: holds a draft, validates on save, and closes with Escape or the backdrop.
+// Editor modal: guarda un borrador, valida al guardar y se cierra con Escape o el fondo.
 export function Editor({ title, record, check, onSave, onDelete, onClose, children }) {
   const ref = useRef(null)
   const [draft, setDraft] = useState(record)
@@ -86,8 +86,8 @@ export function Editor({ title, record, check, onSave, onDelete, onClose, childr
   const [busy, setBusy] = useState(false)
   const [failure, setFailure] = useState('')
 
-  // No close() on cleanup: it fires the dialog's close event, which would unmount the editor
-  // during React's dev double-mount. Unmounting removes the dialog anyway.
+  // Sin close() en el cleanup: dispara el evento close del diálogo, que desmontaría el editor
+  // durante el doble montaje de React en desarrollo. Al desmontar, el diálogo se quita igual.
   useEffect(() => {
     if (!ref.current.open) ref.current.showModal()
   }, [])
@@ -133,7 +133,7 @@ export function Editor({ title, record, check, onSave, onDelete, onClose, childr
   )
 }
 
-// Downloads data as a .json file formatted like the ones in src/content.
+// Descarga los datos como un .json con el mismo formato que los de src/content.
 export function download(name, data) {
   const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' })
   const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: name })

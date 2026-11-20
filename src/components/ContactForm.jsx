@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { CONTACT_API } from '@/lib/site'
 
-// Posts JSON to the back office (table "messages"). The field names are the columns it accepts.
+// Envía JSON al backoffice (tabla "messages"). Los nombres de los campos son las columnas que acepta.
 export default function ContactForm({ t }) {
   const C = t.contactPage
   const [state, setState] = useState('idle') // idle | sending | sent | error
@@ -11,7 +11,7 @@ export default function ContactForm({ t }) {
     ev.preventDefault()
     const form = ev.currentTarget
     const { website, ...data } = Object.fromEntries(new FormData(form))
-    if (website) return // honeypot: bots fill hidden fields
+    if (website) return // honeypot: los bots completan los campos ocultos
     if (!CONTACT_API) return setState('offline')
     setState('sending')
     try {

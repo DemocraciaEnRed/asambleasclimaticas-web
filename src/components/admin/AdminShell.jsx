@@ -60,7 +60,7 @@ function Login({ store }) {
 
 export default function AdminShell({ children }) {
   const [store, setStore] = useState(null)
-  const [session, setSession] = useState(undefined) // undefined while loading
+  const [session, setSession] = useState(undefined) // undefined mientras carga
   const [open, setOpen] = useState(false)
   const path = usePathname()
 

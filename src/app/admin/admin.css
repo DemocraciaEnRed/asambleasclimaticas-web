@@ -1,6 +1,6 @@
 /*
-  Back office. Uses the site's tokens (site.css) but is a work tool:
-  denser type, real tables, visible form borders.
+  Backoffice. Usa los tokens del sitio (site.css) pero es una herramienta de trabajo:
+  tipografía más densa, tablas de verdad, bordes visibles en los formularios.
 */
 .adm { font-size: 1rem; line-height: 1.5; }
 .adm section { padding-block: 0; }
@@ -10,12 +10,12 @@
 
 .adm-loading { padding: 3rem var(--gutter); }
 
-/* Login */
+/* Inicio de sesión */
 .adm-login { max-width: 26rem; margin: 12vh auto; padding-inline: var(--gutter); }
 .adm-login h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); margin: .2rem 0 2rem; }
 .adm-stack { display: grid; gap: 1.1rem; }
 
-/* Top bar */
+/* Barra superior */
 .adm-top {
   position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 1rem 2rem; flex-wrap: wrap;
   padding: .9rem var(--gutter); background: var(--cafe); color: var(--crema);
@@ -50,7 +50,7 @@
 .adm-list { padding: 0; list-style: none; display: grid; gap: .4rem; }
 .adm-list .muted { display: inline-block; min-width: 7.5rem; }
 
-/* Buttons */
+/* Botones */
 .adm-btn {
   display: inline-flex; align-items: center; gap: .4rem; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none;
   padding: .55rem 1rem; border: 1.5px solid var(--cafe); background: transparent; color: var(--cafe);
@@ -64,7 +64,7 @@
 .adm-icon { font: inherit; width: 1.9rem; height: 1.9rem; border: 1px solid rgb(43 27 24 / .3); background: transparent; color: inherit; cursor: pointer; }
 .adm-icon:disabled { opacity: .25; cursor: default; }
 
-/* Form fields */
+/* Campos de formulario */
 .adm-field { display: grid; gap: .3rem; align-content: start; }
 .adm-field .caps { font-size: .62rem; }
 .adm input:not([type="checkbox"]), .adm select, .adm textarea {
@@ -83,14 +83,14 @@
 .adm-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 @media (max-width: 40rem) { .adm-grid, .adm-pair { grid-template-columns: 1fr; } }
 
-/* Filters */
+/* Filtros */
 .adm-filters { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem 1.25rem; margin-bottom: 1.25rem; }
 .adm-filter { display: grid; gap: .2rem; }
 .adm-filter .caps { font-size: .6rem; }
 .adm-filter select { width: auto; min-width: 11rem; padding: .4rem .6rem; }
 .adm-filters > p { margin: 0 0 .45rem; }
 
-/* Tables: rows become stacked blocks on phones */
+/* Tablas: en el celular las filas pasan a ser bloques apilados */
 .adm-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 .adm-table th { text-align: left; font-family: var(--f-caps); font-stretch: 125%; font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; padding: .5rem .75rem; border-bottom: 1.5px solid var(--cafe); }
 .adm-table td { padding: .65rem .75rem; border-bottom: 1px solid rgb(43 27 24 / .15); vertical-align: top; }
@@ -114,14 +114,14 @@
 .adm-badge.is-off { background: var(--arena); color: var(--cafe); }
 .adm-empty { padding: 2rem 0; opacity: .75; }
 
-/* Overview cards */
+/* Tarjetas del resumen */
 .adm-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; }
 .adm-card { display: grid; gap: .3rem; padding: 1.25rem; background: var(--arena); text-decoration: none; }
 .adm-card:hover { background: #e4d8c4; }
 .adm-card .num { font-size: 3rem; }
 .adm-card .caps { font-size: .6rem; }
 
-/* Inbox */
+/* Bandeja de entrada */
 .adm-inbox { list-style: none; padding: 0; border-top: 1px solid rgb(43 27 24 / .2); }
 .adm-inbox > li { border-bottom: 1px solid rgb(43 27 24 / .2); }
 .adm-msg-head {
@@ -134,7 +134,7 @@
 .adm-msg-text { white-space: pre-wrap; }
 @media (max-width: 44rem) { .adm-msg-head { grid-template-columns: 1fr auto; } }
 
-/* Editor dialog */
+/* Diálogo de edición */
 .adm-dialog { width: min(48rem, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); padding: 0; border: 0; background: var(--crema); color: var(--cafe); }
 .adm-dialog::backdrop { background: rgb(43 27 24 / .55); }
 .adm-dialog form { display: grid; }

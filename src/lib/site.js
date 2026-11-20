@@ -3,7 +3,7 @@ import agenda from '@/content/agenda.json'
 
 export const LANGS = ['es', 'pt']
 
-// Each assembly gets one brand color and one brand illustration.
+// Cada asamblea tiene un color y una ilustración de la marca.
 export const LOOK = {
   br: { color: 'var(--verde)', art: 1 },
   ar: { color: 'var(--azul)', art: 3 },
@@ -12,7 +12,7 @@ export const LOOK = {
   red: { color: 'var(--cafe)', art: 1 },
 }
 
-// Main navigation. Home is reached through the logo.
+// Navegación principal. A la home se llega desde el logo.
 export const PAGES = [
   ['assemblies', 'asambleas/'],
   ['impact', 'incidencia/'],
@@ -22,7 +22,7 @@ export const PAGES = [
   ['contact', 'contacto/'],
 ]
 
-// Organizations that ran the assemblies (footer). Logos come from Democracia en Red's CDN, as on pacto.resurgentes.org.
+// Organizaciones que llevaron adelante las asambleas (footer). Los logos vienen del CDN de Democracia en Red, como en pacto.resurgentes.org.
 const CDN = 'https://democraciaenred.nyc3.digitaloceanspaces.com/projects/asambleasclimaticas'
 export const CONSORTIUM = [
   { name: 'Delibera Brasil', logo: `${CDN}/delibera-logo.png`, url: 'https://deliberabrasil.org' },
@@ -43,14 +43,14 @@ export const PARTNERS = [
 
 export const SITE = 'https://resurgentes.org'
 
-// Back office (Supabase), set at build time. Without it the agenda uses the JSON in src/content
-// and the contact form shows its "offline" message. The anon key is public by design: access is
-// limited by the row-level security rules in supabase/schema.sql.
+// Backoffice (Supabase), definido al compilar. Sin él, la agenda usa el JSON de src/content
+// y el formulario de contacto muestra su mensaje "sin conexión". La anon key es pública a propósito: el acceso
+// lo limitan las reglas de seguridad por fila (RLS) de supabase/schema.sql.
 const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const SB_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 const SB_HEADERS = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
 
-// Each endpoint is null when the back office is not configured.
+// Cada endpoint es null cuando el backoffice no está configurado.
 export const AGENDA_API = SB_URL && SB_KEY ? {
   url: `${SB_URL}/rest/v1/events?select=id,date,end:end_date,precision,kind,assembly,place,url,title,text&published=eq.true`,
   headers: SB_HEADERS,
@@ -58,13 +58,13 @@ export const AGENDA_API = SB_URL && SB_KEY ? {
 
 export const CONTACT_API = SB_URL && SB_KEY ? {
   url: `${SB_URL}/rest/v1/messages`,
-  // return=minimal: the public may insert messages but not read them back.
+  // return=minimal: el público puede insertar mensajes pero no leerlos.
   headers: { ...SB_HEADERS, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
 } : null
 
 export const link = (lang, path = '') => `/${lang}/${path}`
 
-// CSS custom properties that tint a cutout with an assembly's color.
+// Propiedades CSS que tiñen un recorte con el color de una asamblea.
 export const tint = (code) => ({
   '--c': LOOK[code].color,
   '--art': `url(/images/marca/ilustracion-${LOOK[code].art}.png)`,
@@ -75,7 +75,7 @@ export const resourcesFor = (lang, assembly) =>
     .filter((r) => !assembly || r.assembly === assembly)
     .map((r) => ({ ...r, title: r.title[lang] }))
 
-// Agenda items in one language, newest first. Same shape the back office must return.
+// Actividades de la agenda en un idioma, las más nuevas primero. Misma forma que debe devolver el backoffice.
 export const localize = (lang, items) =>
   items
     .map((e) => ({ ...e, title: e.title[lang] || e.title.es, text: e.text?.[lang] || e.text?.es || '' }))

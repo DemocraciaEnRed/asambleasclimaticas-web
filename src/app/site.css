@@ -1,8 +1,8 @@
 /*
-  (re)surgentes. Built from the brandbook's key visual:
-  grainy blurred cities, cream paper cutouts that bleed off the edge,
-  flat two-tone pattern fields, tracked caps, and the "(re)" parentheses.
-  No rounded cards, no shadows: paper is flat.
+  (re)surgentes. Construido a partir del key visual del manual de marca:
+  ciudades desenfocadas con grano, recortes de papel crema que se salen del borde,
+  campos planos de patrones a dos tonos, mayúsculas espaciadas y los paréntesis de "(re)".
+  Sin tarjetas redondeadas ni sombras: el papel es plano.
 */
 :root {
   --cafe: #2b1b18;
@@ -15,7 +15,7 @@
   --verde: #039950;
   --gutter: clamp(1rem, 4vw, 3.5rem);
   --max: 80rem;
-  --hh: 4.5rem; /* header height */
+  --hh: 4.5rem; /* alto del header */
   color-scheme: light;
 }
 
@@ -48,7 +48,7 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 2rem; }
 .section-head .paren { margin-top: 0; }
 
-/* The tagline voice: wide, tracked caps, straight from the logo lockup. */
+/* La voz del lema: mayúsculas anchas y espaciadas, tal como en el logo. */
 .caps {
   font-family: var(--f-caps), sans-serif;
   font-stretch: 125%;
@@ -61,10 +61,10 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .small-title { margin-bottom: 1.5rem; }
 .num { font-weight: 200; letter-spacing: -.04em; line-height: .9; font-variant-numeric: tabular-nums; }
 
-/* Brand web icons (black circles) recolored by mask. */
+/* Íconos web de la marca (círculos negros) recoloreados con máscara. */
 .icon { display: inline-block; width: 1.6em; aspect-ratio: 1; flex: none; background: currentColor; -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat; }
 
-/* (call to action): the parentheses open up on hover, like the logo's "(re)". */
+/* (llamado a la acción): los paréntesis se abren al pasar el mouse, como el "(re)" del logo. */
 .paren {
   display: inline-flex; align-items: center; gap: .55em; background: none; border: 0; cursor: pointer; color: inherit;
   text-decoration: none; margin-top: 2rem; padding: .25rem 0;
@@ -77,20 +77,20 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .paren:hover > span:last-child, .paren:focus-visible > span:last-child { transform: translateX(.35em); }
 .paren.is-light { color: var(--crema); }
 
-/* Paper cutouts: one PNG per shape, colored by mask so every tint comes from the palette. */
+/* Recortes de papel: un PNG por forma, coloreado con máscara para que cada tono salga de la paleta. */
 .cutout {
   display: block; position: absolute; background: var(--crema); pointer-events: none;
   -webkit-mask: var(--art) center / contain no-repeat;
   mask: var(--art) center / contain no-repeat;
 }
 
-/* Logo: cropped wordmark + live tagline (the baked-in tagline is unreadable at header size). */
+/* Logo: logotipo recortado + lema como texto (el lema incrustado no se lee al tamaño del header). */
 .logo { display: flex; align-items: center; gap: .9rem; color: var(--cafe); }
 .logo-mark { width: clamp(8rem, 13vw, 10rem); aspect-ratio: 1145 / 172; object-fit: cover; object-position: 50% 36%; margin-left: -.6rem; }
 .logo-tag { font-size: .62rem; letter-spacing: .32em; line-height: 1.35; max-width: 9.5rem; padding-left: .9rem; border-left: 1px solid currentColor; }
 .logo.is-light { color: var(--crema); }
 
-/* Header: sticky everywhere; over the home photo it is transparent until you scroll. */
+/* Header: fijo en todas las páginas; sobre la foto de la home es transparente hasta que se hace scroll. */
 .top {
   position: sticky; top: 0; z-index: 10; height: var(--hh);
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -126,7 +126,7 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
   .top-lang { margin-top: 1rem; font-size: .8rem; }
 }
 
-/* Key visual. It slides under the transparent header. */
+/* Key visual. Se mete debajo del header transparente. */
 .kv {
   position: relative; overflow: hidden; min-height: min(92vh, 56rem);
   margin-top: calc(-1 * var(--hh)); padding-top: var(--hh);
@@ -158,8 +158,8 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .intro-text p + p { margin-top: 1rem; }
 @media (max-width: 52rem) { .intro { grid-template-columns: 1fr; } }
 
-/* Posters: flat color fields with a cutout cropped huge, like the brand patterns.
-   Text sits on a cream paper label so it passes contrast on every color (pink is 3.8:1 with café). */
+/* Afiches: campos de color plano con un recorte enorme y cortado, como los patrones de la marca.
+   El texto va sobre una etiqueta de papel crema para cumplir el contraste en todos los colores (el rosa da 3.8:1 con café). */
 .posters-wrap { padding-top: 0; padding-bottom: 0; }
 .posters-wrap > h2 { margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
 .posters { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -182,7 +182,7 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
   .poster-art { width: 100%; top: -12%; left: auto; right: -10%; }
 }
 
-/* Process: a real sequence, numbered in the brand's parentheses. */
+/* Proceso: una secuencia real, numerada entre los paréntesis de la marca. */
 .process ol { list-style: none; padding: 0; margin-top: 2.5rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem 1.5rem; counter-reset: step; }
 .process li { counter-increment: step; }
 .process li::before { content: "(" counter(step) ")"; display: block; font-size: 3rem; font-weight: 200; letter-spacing: -.04em; line-height: 1; margin-bottom: 1rem; }
@@ -191,7 +191,7 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 @media (max-width: 60rem) { .process ol { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 34rem) { .process ol { grid-template-columns: 1fr; } }
 
-/* What happened next */
+/* Qué pasó después */
 .after { background: var(--cafe); color: var(--crema); }
 .after ul { list-style: none; padding: 0; margin-top: 2.5rem; }
 .after li {
@@ -222,7 +222,7 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .agenda { padding-top: 0; }
 @media (max-width: 36rem) { .ev { grid-template-columns: 1fr; gap: .75rem; } }
 
-/* Resources */
+/* Recursos */
 .resources { list-style: none; padding: 0; margin-top: 2rem; }
 .resources li { border-top: 1px solid var(--cafe); }
 .resources li:last-child { border-bottom: 1px solid var(--cafe); }
@@ -248,11 +248,11 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .pacto .paren { margin-top: 1.5rem; }
 @media (max-width: 48rem) { .pacto-grid { grid-template-columns: 1fr; } }
 
-/* Partners */
+/* Organizaciones aliadas */
 .partners ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 2rem 3rem; align-items: center; }
 .partners img { height: 4.5rem; width: auto; mix-blend-mode: multiply; }
 
-/* Footer: institutional, with the consortium's logos and links. */
+/* Footer: institucional, con los logos y enlaces del consorcio. */
 .foot { background: var(--cafe); color: var(--crema); padding-block: 3.5rem 2rem; }
 .foot-grid { display: grid; grid-template-columns: 1.2fr auto 1.4fr; gap: 2.5rem 4rem; align-items: start; }
 .foot-brand { display: grid; gap: 1rem; }
@@ -267,13 +267,13 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .foot-legal { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgb(255 247 235 / .2); font-size: .9rem; }
 @media (max-width: 52rem) { .foot-grid { grid-template-columns: 1fr; } }
 
-/* Inner page heads: the title sits in parentheses, set like the logo. */
+/* Encabezados de páginas internas: el título va entre paréntesis, compuesto como el logo. */
 .page-head { padding-block: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3.5vw, 3rem); }
 .page-head h1 { font-size: clamp(3.2rem, 11vw, 9rem); font-weight: 600; letter-spacing: -.045em; line-height: .9; text-transform: lowercase; margin-bottom: 1.25rem; }
 .page-head h1::before { content: "("; font-weight: 200; }
 .page-head h1::after { content: ")"; font-weight: 200; }
 
-/* Assemblies list: full-bleed strips, cutout on alternating sides, text on a paper label. */
+/* Lista de asambleas: franjas a todo el ancho, recorte alternando de lado, texto sobre etiqueta de papel. */
 .strips { padding: 0; }
 .strip { display: block; position: relative; overflow: hidden; background: var(--c); text-decoration: none; }
 .strip-art { width: min(42rem, 70vw); aspect-ratio: 1; right: -6%; top: 50%; transform: translateY(-50%) rotate(-10deg); transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
@@ -281,14 +281,14 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .strip:hover .strip-art { transform: translateY(-50%) rotate(0deg) scale(1.05); }
 .strip-text { position: relative; display: grid; gap: .6rem; padding-block: clamp(2.5rem, 6vw, 5rem); justify-items: start; }
 .strip.is-flip .strip-text { justify-items: end; text-align: right; }
-/* line-height .9 lets descenders (j, g, p) hang below the box: the bottom margin gives them room. */
+/* Con line-height .9 los descendentes (j, g, p) quedan fuera de la caja: el margen inferior les da lugar. */
 .strip-city { font-size: clamp(3rem, 10vw, 8rem); font-weight: 700; letter-spacing: -.045em; line-height: .9; margin-bottom: .14em; }
 .strip-text > .caps, .strip-q, .strip-more { background: var(--crema); padding: .3rem .6rem; }
 .strip-q { font-size: 1.15rem; max-width: 30rem; }
 .strip-more { margin-top: .5rem; }
 @media (max-width: 40rem) { .strip.is-flip .strip-text { justify-items: start; text-align: left; } }
 
-/* Tables */
+/* Tablas */
 .table-scroll { overflow-x: auto; margin-top: 2rem; }
 table { width: 100%; min-width: 46rem; border-collapse: collapse; }
 th, td { text-align: left; vertical-align: top; padding: 1rem 1.25rem 1rem 0; border-bottom: 1px solid var(--cafe); }
@@ -296,7 +296,7 @@ thead th { padding-bottom: .75rem; }
 .compare tbody th { font-size: 1.3rem; white-space: nowrap; box-shadow: inset 4px 0 var(--c); padding-left: 1rem; }
 .compare td.num { font-size: 2.4rem; }
 
-/* Assembly page */
+/* Página de asamblea */
 .a-head { position: relative; overflow: hidden; background: var(--c); }
 .a-head-art { width: min(46rem, 85vw); aspect-ratio: 1; right: -8%; bottom: -30%; transform: rotate(-12deg); }
 .a-head-inner { position: relative; padding-block: clamp(3.5rem, 9vw, 7rem); display: grid; justify-items: start; }
@@ -346,13 +346,13 @@ thead th { padding-bottom: .75rem; }
 .a-pager { display: flex; flex-wrap: wrap; gap: 0 2.5rem; }
 .a-pager .paren { margin-top: 0; }
 
-/* Share */
+/* Compartir */
 .share { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; align-items: center; font-weight: 600; }
 .share .caps { margin-right: .25rem; }
 .share a, .share button { color: inherit; font: inherit; font-weight: 600; }
 .share-btn { display: inline-flex; align-items: center; gap: .45rem; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
 
-/* Impact: a stage matrix where filled cutouts mark how far each assembly got. */
+/* Incidencia: una matriz de etapas donde los recortes rellenos marcan hasta dónde llegó cada asamblea. */
 .stages { padding-top: 0; }
 .stage-table { min-width: 44rem; table-layout: fixed; }
 .stage-table thead th { font-size: 1.25rem; font-weight: 700; border-bottom: 4px solid var(--c); }
@@ -372,7 +372,7 @@ thead th { padding-bottom: .75rem; }
 .impact-status { display: inline-block; font-weight: 600; border-left: 6px solid var(--c); padding-left: .6rem; }
 @media (max-width: 48rem) { .impact-grid { grid-template-columns: 1fr; } }
 
-/* Filters: the chosen option is the one in parentheses. */
+/* Filtros: la opción elegida es la que está entre paréntesis. */
 .library { padding-top: 0; }
 .filters { display: grid; gap: 1.25rem; }
 .filter { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; align-items: baseline; }
@@ -390,7 +390,7 @@ thead th { padding-bottom: .75rem; }
 .lib-count .num { font-size: 3rem; }
 .empty { margin-top: 1rem; font-size: 1.2rem; max-width: 40rem; }
 
-/* Contact */
+/* Contacto */
 .contact-grid { padding-top: 0; display: grid; grid-template-columns: 1.6fr 1fr; gap: 3rem clamp(2rem, 6vw, 6rem); align-items: start; }
 .form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
 .form label { display: grid; gap: .4rem; }
@@ -420,7 +420,7 @@ thead th { padding-bottom: .75rem; }
 .channels .muted { margin-bottom: 1rem; }
 @media (max-width: 52rem) { .contact-grid, .form { grid-template-columns: 1fr; } }
 
-/* About */
+/* Nosotros */
 .about-photo { padding: 0; height: clamp(16rem, 45vw, 32rem); background: url(/images/marca/kv-barrio.jpg) center / cover; }
 .about-text { display: grid; gap: 2rem; max-width: 56rem; }
 .pattern-band { padding: 0; height: clamp(14rem, 34vw, 26rem); background: url(/images/marca/patrones.jpg) center / cover; }

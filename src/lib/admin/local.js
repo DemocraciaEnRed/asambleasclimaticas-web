@@ -2,11 +2,11 @@ import agenda from '@/content/agenda.json'
 import recursos from '@/content/recursos.json'
 import { eventId } from './model'
 
-// Local stand-in for Supabase: same interface, data kept in this browser's localStorage.
-// Nothing leaves the browser; use "Exportar JSON" to take changes to src/content.
+// Reemplazo local de Supabase: misma interfaz, datos guardados en el localStorage de este navegador.
+// Nada sale del navegador; usar "Exportar JSON" para llevar los cambios a src/content.
 
 const KEY = 'resurgentes-admin:v1:'
-const memory = {} // fallback when localStorage is blocked (private mode, disabled site data)
+const memory = {} // alternativa cuando localStorage está bloqueado (modo privado, datos del sitio desactivados)
 
 function read(name, seed) {
   try {
@@ -24,7 +24,7 @@ function write(name, value) {
 const seeds = {
   events: () => agenda.map((e) => ({ end: '', place: '', url: '', text: { es: '', pt: '' }, ...e, published: true })),
   resources: () => recursos.map((r, i) => ({ youtube: '', ...r, id: `r${i + 1}`, position: i, published: true })),
-  // Two sample messages so the inbox can be tried out. They never reach the public site.
+  // Dos mensajes de ejemplo para poder probar la bandeja. Nunca llegan al sitio público.
   messages: () => [
     { id: 'm1', created_at: new Date(Date.now() - 864e5).toISOString(), name: 'Ejemplo: Ana Pereira', email: 'ana@example.org', country: 'Brasil', reason: 'Quiero una asamblea en mi ciudad', message: 'Mensaje de ejemplo del modo local. En producción acá llegan los mensajes del formulario de contacto.', lang: 'pt', status: 'new' },
     { id: 'm2', created_at: new Date(Date.now() - 6 * 864e5).toISOString(), name: 'Ejemplo: Redacción', email: 'prensa@example.org', country: 'Argentina', reason: 'Prensa', message: 'Otro mensaje de ejemplo, ya leído.', lang: 'es', status: 'read' },
@@ -69,7 +69,7 @@ export function createStore() {
     },
     async remove(table, id) { write(table, rows(table).filter((r) => r.id !== id)) },
 
-    // Local only: throw away edits and start again from src/content.
+    // Solo local: descarta los cambios y vuelve a empezar desde src/content.
     async reset() { ['events', 'resources', 'messages'].forEach((t) => write(t, seeds[t]())) },
   }
 }

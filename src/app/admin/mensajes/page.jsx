@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTable, Filter, PageHead, Status, Badge, fmtDate } from '@/components/admin/ui'
 import { STATUSES, label } from '@/lib/admin/model'
 
-// Inbox for the public contact form. Messages are read-only; only their status changes.
+// Bandeja del formulario de contacto público. Los mensajes son de solo lectura; solo cambia su estado.
 export default function MessagesAdmin() {
   const { rows, error, reload, save } = useTable('messages')
   const [status, setStatus] = useState('active')

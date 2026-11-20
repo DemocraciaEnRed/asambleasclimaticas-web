@@ -18,7 +18,7 @@ function When({ e, lang }) {
   return <time dateTime={e.date} className="ev-when"><b className="num">{day}{range}</b><span className="caps">{month} {d.getFullYear()}</span></time>
 }
 
-// Google Calendar template link: adds an upcoming activity without downloading anything.
+// Enlace de plantilla de Google Calendar: agrega una actividad próxima sin descargar nada.
 function calendarLink(e) {
   const d = (s) => s.replaceAll('-', '')
   const endDay = new Date(`${e.end || e.date}T12:00:00`)
@@ -52,14 +52,14 @@ export default function Agenda({ t, lang, initial, cities, limit }) {
   const [kind, setKind] = useState('all')
   const [now, setNow] = useState(null)
 
-  // Dates are compared in the visitor's browser, so "upcoming" is right even long after the build.
+  // Las fechas se comparan en el navegador del visitante, así "próximas" es correcto aunque haya pasado mucho desde el build.
   useEffect(() => {
     setNow(today())
     if (!AGENDA_API) return
     fetch(AGENDA_API.url, { headers: AGENDA_API.headers })
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((data) => setItems(localize(lang, data)))
-      .catch(() => {}) // keep the bundled agenda if the back office is down
+      .catch(() => {}) // si el backoffice no responde, queda la agenda incluida en el build
   }, [lang])
 
   const ref = now || '0000'

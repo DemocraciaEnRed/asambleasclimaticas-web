@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { lang } }) {
   }
 }
 
-// Root layout for each language: /es/... renders <html lang="es">, /pt/... renders <html lang="pt">.
+// Layout raíz por idioma: /es/... renderiza <html lang="es">, /pt/... renderiza <html lang="pt">.
 export default async function LangLayout({ children, params: { lang } }) {
   const t = await getDictionary(lang)
   return (

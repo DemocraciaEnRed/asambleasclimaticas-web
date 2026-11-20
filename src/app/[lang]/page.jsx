@@ -9,7 +9,7 @@ export default async function Home({ params: { lang } }) {
 
   return (
     <>
-      {/* Key visual: blurred city, cream cutouts bleeding off the edges. The header floats over it. */}
+      {/* Key visual: ciudad desenfocada, recortes crema que se salen de los bordes. El header flota encima. */}
       <section className="kv">
         <Cutout code="co" className="kv-left" />
         <Cutout code="br" className="kv-right" />
@@ -34,7 +34,7 @@ export default async function Home({ params: { lang } }) {
             <a key={a.code} className="poster" href={link(lang, `asambleas/${a.code}/`)} style={tint(a.code)}>
               <Cutout code={a.code} className="poster-art" />
               <span className="poster-num">({a.people})</span>
-              {/* Text sits on a cream paper label: legible on every brand color, pink included. */}
+              {/* El texto va sobre una etiqueta de papel crema: se lee sobre todos los colores de marca, rosa incluido. */}
               <span className="poster-label">
                 <span className="caps">{a.country}</span>
                 <span className="poster-city">{a.city}</span>

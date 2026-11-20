@@ -1,5 +1,5 @@
-// What the back office edits: field options, empty records, validation and the JSON export.
-// Records keep the same shape as src/content/*.json, plus `published` (and `position` for resources).
+// Lo que edita el backoffice: opciones de campos, registros vacíos, validación y exportación a JSON.
+// Los registros mantienen la forma de src/content/*.json, más `published` (y `position` en los recursos).
 
 export const ASSEMBLIES = [
   ['br', 'Bujarú (BR)'],
@@ -30,7 +30,7 @@ export const emptyResource = () => ({
 
 const isUrl = (s) => { try { return /^https?:$/.test(new URL(s).protocol) } catch { return false } }
 
-// Returns { field: message } for every problem; an empty object means the record can be saved.
+// Devuelve { campo: mensaje } por cada problema; un objeto vacío significa que el registro se puede guardar.
 export function checkEvent(e) {
   const err = {}
   if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date || '')) err.date = 'Elegí una fecha.'
@@ -49,7 +49,7 @@ export function checkResource(r) {
   return err
 }
 
-// Pulls the video id out of any YouTube link (watch, youtu.be, shorts, embed).
+// Saca el id del video de cualquier enlace de YouTube (watch, youtu.be, shorts, embed).
 export function youtubeId(url = '') {
   try {
     const u = new URL(url)
@@ -59,7 +59,7 @@ export function youtubeId(url = '') {
   } catch { return '' }
 }
 
-// Stable, readable id for a new agenda item: "mx-glosa-ciudadana-2025-09".
+// Id estable y legible para una actividad nueva de la agenda: "mx-glosa-ciudadana-2025-09".
 export function eventId(e, taken) {
   const slug = (e.title.es || 'evento').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').split('-').slice(0, 4).join('-')
@@ -69,10 +69,10 @@ export function eventId(e, taken) {
   return id
 }
 
-// Drops empty values so the export matches the hand-written JSON (no "place": "" noise).
+// Quita los valores vacíos para que la exportación coincida con el JSON escrito a mano (sin ruido tipo "place": "").
 const clean = (o) => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== '' && v != null && !(typeof v === 'object' && !Object.values(v).some(Boolean))))
 
-// The exact files the public site reads today: only published items, without back-office fields.
+// Los mismos archivos que lee hoy el sitio público: solo lo publicado, sin los campos del backoffice.
 export function exportEvents(events) {
   return events
     .filter((e) => e.published)

@@ -2,12 +2,12 @@
 import { CONSORTIUM, PAGES, PARTNERS, link, tint } from '@/lib/site'
 import Logo from './Logo'
 
-// A brand illustration cut out of cream paper, tinted through a CSS mask.
+// Una ilustración de la marca recortada en papel crema, teñida con una máscara CSS.
 export function Cutout({ code, className = '' }) {
   return <span className={`cutout ${className}`} style={tint(code)} aria-hidden="true" />
 }
 
-// The brand's call to action: tracked caps between parentheses, like the "(re)" in the logo.
+// El llamado a la acción de la marca: mayúsculas espaciadas entre paréntesis, como el "(re)" del logo.
 export function Paren({ href, children, light }) {
   return (
     <a className={`paren caps ${light ? 'is-light' : ''}`} href={href}>
@@ -29,7 +29,7 @@ export function Partners({ title }) {
   )
 }
 
-// Institutional footer: the consortium's logos and sites, as the brief asks.
+// Footer institucional: los logos y sitios del consorcio, como pide el brief.
 export function Footer({ t }) {
   return (
     <footer className="foot">

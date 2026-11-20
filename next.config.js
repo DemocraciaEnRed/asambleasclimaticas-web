@@ -2,7 +2,7 @@
 
 const nextConfig = {
   output: 'export',
-  // Every page is exported as folder/index.html, so /pt/ and /es/asambleas/br/ work on any static host.
+  // Cada página se exporta como carpeta/index.html, así /pt/ y /es/asambleas/br/ funcionan en cualquier hosting estático.
   trailingSlash: true,
   images: { unoptimized: true },
 }

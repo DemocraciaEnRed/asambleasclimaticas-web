@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 
-// The full lockup PNG has the tagline baked in at a size that becomes unreadable
-// below ~20rem. Small sizes show only the wordmark (cropped from the same file)
-// and set the tagline as live text, so it stays legible, selectable and translatable.
+// El PNG del logo completo trae el lema incrustado a un tamaño que no se lee
+// por debajo de ~20rem. En tamaños chicos se muestra solo el logotipo (recortado del mismo archivo)
+// y el lema va como texto, así se lee, se puede seleccionar y se traduce.
 export default function Logo({ lang, light, tagline }) {
   return (
     <span className={`logo ${light ? 'is-light' : ''}`}>

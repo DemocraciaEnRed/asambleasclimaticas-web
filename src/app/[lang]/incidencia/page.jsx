@@ -19,7 +19,7 @@ export default async function Impact({ params: { lang } }) {
         <p className="lead">{P.intro}</p>
       </section>
 
-      {/* Each row is a stage of the incidence path; a filled cutout means the assembly got there. */}
+      {/* Cada fila es una etapa del camino de incidencia; un recorte relleno indica que la asamblea llegó hasta ahí. */}
       <section className="wrap stages">
         <h2>{P.stagesTitle}</h2>
         <div className="table-scroll" tabIndex={0} role="region" aria-label={P.stagesTitle}>

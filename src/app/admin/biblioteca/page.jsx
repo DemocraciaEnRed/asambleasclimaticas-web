@@ -36,7 +36,7 @@ export default function LibraryAdmin() {
   const shown = sorted.filter((r) => (assembly === 'all' || r.assembly === assembly) && (type === 'all' || r.type === type))
   const sources = [...new Set(sorted.map((r) => r.source).filter(Boolean))].sort()
 
-  // Swaps position with the neighbour visible in the current filter, which is the order people see.
+  // Intercambia la posición con el vecino visible en el filtro actual, que es el orden que ve la gente.
   const move = (i, dir) => {
     const a = shown[i], b = shown[i + dir]
     saveMany([{ ...a, position: b.position }, { ...b, position: a.position }])

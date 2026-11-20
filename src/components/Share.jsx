@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
 
-// Share with the brand's web icons. On phones the native share sheet covers every app;
-// elsewhere the button copies the link. WhatsApp gets its own button: it is where these links travel in the region.
+// Compartir con los íconos web de la marca. En el celular, el menú nativo de compartir cubre todas las apps;
+// en el resto, el botón copia el enlace. WhatsApp tiene su propio botón: es por donde circulan estos enlaces en la región.
 export default function Share({ t, url, title }) {
   const [copied, setCopied] = useState(false)
   const u = encodeURIComponent(url)
@@ -10,7 +10,7 @@ export default function Share({ t, url, title }) {
 
   async function share() {
     if (navigator.share) {
-      try { await navigator.share({ title, url }) } catch { /* cancelled */ }
+      try { await navigator.share({ title, url }) } catch { /* cancelado */ }
       return
     }
     await navigator.clipboard?.writeText(url)

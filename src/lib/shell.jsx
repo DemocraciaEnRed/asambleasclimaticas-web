@@ -5,7 +5,7 @@ import '@/app/site.css'
 
 const GA_ID = 'G-DJJZSS3LVE'
 
-// The <html> shell shared by both root layouts, so each language declares its own lang.
+// La estructura <html> que comparten ambos layouts raíz, para que cada idioma declare su propio lang.
 export default function Shell({ lang, children }) {
   return (
     <html lang={lang} className={fontClasses}>
