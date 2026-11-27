@@ -144,3 +144,8 @@
 .adm-dialog-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .75rem; padding: 1rem 1.5rem; border-top: 1px solid rgb(43 27 24 / .2); position: sticky; bottom: 0; background: var(--crema); }
 .adm-dialog-foot .adm-error { margin-right: auto; }
 .adm-dialog-foot .is-danger { margin-right: auto; }
+.adm-row { cursor: grab; }
+.adm-row:active { cursor: grabbing; }
+.adm-row.is-dragging { opacity: .45; }
+.adm-row.is-drag-over td { border-top: 3px solid var(--naranja); }
+.adm-drag-handle { display: inline-grid; place-items: center; width: 1.25rem; height: 1.9rem; margin-right: .15rem; color: var(--cafe); font-size: 1.1rem; line-height: 1; user-select: none; }

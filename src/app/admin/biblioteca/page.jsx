@@ -31,6 +31,8 @@ export default function LibraryAdmin() {
   const [editing, setEditing] = useState(null)
   const [assembly, setAssembly] = useState('all')
   const [type, setType] = useState('all')
+  const [dragging, setDragging] = useState(null)
+  const [dragOver, setDragOver] = useState(null)
 
   const sorted = [...(rows || [])].sort((a, b) => a.position - b.position)
   const shown = sorted.filter((r) => (assembly === 'all' || r.assembly === assembly) && (type === 'all' || r.type === type))
@@ -43,6 +45,24 @@ export default function LibraryAdmin() {
   }
 
   const onSave = (r) => save({ ...r, youtube: r.type === 'video' ? youtubeId(r.url) : '' })
+
+  const reorder = (targetId) => {
+    if (!dragging || dragging === targetId) return
+    const nextShown = [...shown]
+    const from = nextShown.findIndex((r) => r.id === dragging)
+    const to = nextShown.findIndex((r) => r.id === targetId)
+    if (from < 0 || to < 0) return
+    const [moved] = nextShown.splice(from, 1)
+    nextShown.splice(to, 0, moved)
+
+    const visibleIds = new Set(shown.map((r) => r.id))
+    let visibleIndex = 0
+    const nextGlobal = sorted
+      .map((r) => visibleIds.has(r.id) ? nextShown[visibleIndex++] : r)
+      .map((r, position) => ({ ...r, position }))
+
+    saveMany(nextGlobal)
+  }
 
   return (
     <>
@@ -63,8 +83,34 @@ export default function LibraryAdmin() {
           <thead><tr><th><span className="sr">Orden</span></th><th>Título</th><th>Asamblea</th><th>Tipo</th><th>Fuente</th><th>Estado</th></tr></thead>
           <tbody>
             {shown.map((r, i) => (
-              <tr key={r.id}>
+              <tr
+                key={r.id}
+                draggable
+                className={dragging === r.id ? 'adm-row is-dragging' : dragOver === r.id ? 'adm-row is-drag-over' : 'adm-row'}
+                onDragStart={(e) => {
+                  setDragging(r.id)
+                  e.dataTransfer.effectAllowed = 'move'
+                  e.dataTransfer.setData('text/plain', r.id)
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault()
+                  e.dataTransfer.dropEffect = 'move'
+                  setDragOver(r.id)
+                }}
+                onDragLeave={() => setDragOver(null)}
+                onDrop={(e) => {
+                  e.preventDefault()
+                  reorder(r.id)
+                  setDragging(null)
+                  setDragOver(null)
+                }}
+                onDragEnd={() => {
+                  setDragging(null)
+                  setDragOver(null)
+                }}
+              >
                 <td className="adm-order">
+                  <span className="adm-drag-handle" aria-label={`Arrastrar ${r.title.es}`} title="Arrastrar para ordenar">⠿</span>
                   <button className="adm-icon" aria-label={`Subir ${r.title.es}`} disabled={i === 0} onClick={() => move(i, -1)}>↑</button>
                   <button className="adm-icon" aria-label={`Bajar ${r.title.es}`} disabled={i === shown.length - 1} onClick={() => move(i, 1)}>↓</button>
                 </td>
