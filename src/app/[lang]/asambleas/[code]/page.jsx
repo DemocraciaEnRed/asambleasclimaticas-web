@@ -37,8 +37,8 @@ export default async function Assembly({ params: { lang, code } }) {
 
       <div className="a-facts">
         <dl className="wrap">
-          <div><dd className="num">({a.people})</dd><dt>{L.people}</dt></div>
-          <div><dd className="num">({a.sessions})</dd><dt>{L.sessions}</dt></div>
+          <div><dd className="num">{a.people}</dd><dt>{L.people}</dt></div>
+          <div><dd className="num">{a.sessions}</dd><dt>{L.sessions}</dt></div>
           <div><dt className="caps">{L.dates}</dt><dd>{a.dates}</dd></div>
           <div><dt className="caps">{L.status}</dt><dd><b>{a.status}</b></dd></div>
         </dl>

@@ -36,7 +36,10 @@ export function Footer({ t }) {
       <div className="wrap foot-grid">
         <div className="foot-brand">
           <a href={link(t.lang)} aria-label={t.logoAlt}><Logo lang={t.lang} light tagline={t.tagline} /></a>
-          <p>{t.footer.text}</p>
+          <div>
+            <p>{t.footer.text}</p>
+            <p className="foot-license">{t.footer.license}</p>
+          </div>
         </div>
         <nav aria-label={t.menu}>
           <a href={link(t.lang)}>{t.nav.home}</a>
@@ -56,7 +59,6 @@ export function Footer({ t }) {
           </ul>
         </div>
       </div>
-      <p className="wrap muted foot-legal">{t.footer.license}</p>
     </footer>
   )
 }

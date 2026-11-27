@@ -1,6 +1,30 @@
-import { Cutout } from '@/components/bits'
 import { link, tint } from '@/lib/site'
 import { getDictionary } from '../dictionaries'
+
+function StageIcon({ status, label }) {
+  if (status === 'done') {
+    return (
+      <svg className="stage-icon" viewBox="0 0 32 32" role="img" aria-label={label}>
+        <path d="M7 16.5l6 6L25 9" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
+
+  if (status === 'progress') {
+    return (
+      <svg className="stage-icon" viewBox="0 0 32 32" role="img" aria-label={label}>
+        <circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" strokeWidth="3" />
+        <path d="M16 9v7l5 3" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg className="stage-icon" viewBox="0 0 32 32" role="img" aria-label={label}>
+      <path d="M9 9l14 14M23 9L9 23" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+    </svg>
+  )
+}
 
 export async function generateMetadata({ params: { lang } }) {
   const t = await getDictionary(lang)
@@ -19,7 +43,7 @@ export default async function Impact({ params: { lang } }) {
         <p className="lead">{P.intro}</p>
       </section>
 
-      {/* Cada fila es una etapa del camino de incidencia; un recorte relleno indica que la asamblea llegó hasta ahí. */}
+      {/* Cada fila es una etapa del camino de incidencia; el ícono indica si está cumplida, en curso o pendiente. */}
       <section className="wrap stages">
         <h2>{P.stagesTitle}</h2>
         <div className="table-scroll" tabIndex={0} role="region" aria-label={P.stagesTitle}>
@@ -40,8 +64,7 @@ export default async function Impact({ params: { lang } }) {
                   <th scope="row">{stage}</th>
                   {t.assemblies.map((a) => (
                     <td key={a.code} style={tint(a.code)} className={`st st-${a.stages[s]}`}>
-                      <Cutout code={a.code} className="st-mark" />
-                      <span className="st-word">{word[a.stages[s]]}</span>
+                      <StageIcon status={a.stages[s]} label={word[a.stages[s]]} />
                     </td>
                   ))}
                 </tr>
@@ -49,31 +72,13 @@ export default async function Impact({ params: { lang } }) {
             </tbody>
           </table>
         </div>
-      </section>
-
-      <section className="impact-list">
-        {t.assemblies.map((a) => (
-          <article key={a.code} className="impact" style={tint(a.code)}>
-            <div className="wrap impact-grid">
-              <header>
-                <p className="caps">{a.country}</p>
-                <h2><a href={link(lang, `asambleas/${a.code}/`)}>{a.city}</a></h2>
-                <p className="impact-status">{a.status}</p>
-              </header>
-              <div>
-                <p>{a.after}</p>
-                <ol className="trail">
-                  {a.milestones.map((m) => (
-                    <li key={m.what}>
-                      <span className="caps">{m.when}</span>
-                      <span>{m.what}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </article>
-        ))}
+        <div className="legend">
+          <ul className="stage-legend" aria-label={P.stagesTitle}>
+            <li><StageIcon status="done" label={P.done} /><span>{P.done}</span></li>
+            <li><StageIcon status="progress" label={P.inProgress} /><span>{P.inProgress}</span></li>
+            <li><StageIcon status="pending" label={P.pending} /><span>{P.pending}</span></li>
+          </ul>
+        </div>
       </section>
     </>
   )

@@ -253,9 +253,11 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .partners img { height: 4.5rem; width: auto; mix-blend-mode: multiply; }
 
 /* Footer: institucional, con los logos y enlaces del consorcio. */
-.foot { background: var(--cafe); color: var(--crema); padding-block: 3.5rem 2rem; }
+.foot { background: var(--cafe); color: var(--crema); padding-block: 3.5rem; }
 .foot-grid { display: grid; grid-template-columns: 1.2fr auto 1.4fr; gap: 2.5rem 4rem; align-items: start; }
 .foot-brand { display: grid; gap: 1rem; }
+.foot-brand p { margin: 0; }
+.foot-license { margin-top: 1.75rem !important; font-size: .9rem; }
 .foot-brand a { text-decoration: none; }
 .foot nav { display: grid; gap: .3rem; font-weight: 600; }
 .foot nav a { text-decoration: none; }
@@ -264,7 +266,6 @@ section { padding-block: clamp(2.75rem, 5.5vw, 4.75rem); }
 .foot-orgs ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
 .foot-orgs li { background: var(--crema); display: grid; place-items: center; padding: .9rem; min-height: 5rem; }
 .foot-orgs img { max-height: 3rem; width: auto; }
-.foot-legal { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgb(255 247 235 / .2); font-size: .9rem; }
 @media (max-width: 52rem) { .foot-grid { grid-template-columns: 1fr; } }
 
 /* Encabezados de páginas internas: el título va entre paréntesis, compuesto como el logo. */
@@ -352,17 +353,20 @@ thead th { padding-bottom: .75rem; }
 .share a, .share button { color: inherit; font: inherit; font-weight: 600; }
 .share-btn { display: inline-flex; align-items: center; gap: .45rem; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
 
-/* Incidencia: una matriz de etapas donde los recortes rellenos marcan hasta dónde llegó cada asamblea. */
+/* Incidencia: una matriz de etapas con íconos de estado en el color de cada asamblea. */
 .stages { padding-top: 0; }
 .stage-table { min-width: 44rem; table-layout: fixed; }
 .stage-table thead th { font-size: 1.25rem; font-weight: 700; border-bottom: 4px solid var(--c); }
 .stage-table thead th a { text-decoration: none; }
 .stage-table tbody th { font-weight: 600; font-size: 1.05rem; width: 14rem; }
-.st { text-align: left; }
-.st .cutout { position: relative; width: 3.25rem; aspect-ratio: 1; background: var(--c); }
-.st-progress .cutout { opacity: .4; }
-.st-pending .cutout { background: transparent; outline: 2px dashed var(--c); outline-offset: -2px; -webkit-mask: none; mask: none; border-radius: 50%; width: 2.6rem; opacity: .6; }
-.st-word { display: block; font-size: .9rem; margin-top: .35rem; }
+.st { text-align: left; vertical-align: middle; }
+.stage-icon { display: block; width: 2.6rem; height: 2.6rem; color: var(--c); }
+.st-progress .stage-icon { opacity: .75; }
+.st-pending .stage-icon { opacity: .85; }
+.legend { display: flex; justify-content: flex-end; margin-top: 1.25rem; }
+.stage-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .9rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+.stage-legend li { display: flex; align-items: center; gap: .35rem; font-size: .9rem; font-weight: 600; }
+.stage-legend .stage-icon { width: 1.5rem; height: 1.5rem; color: #111; opacity: 1; }
 
 .impact-list { padding: 0; }
 .impact { border-top: 1px solid var(--cafe); }
