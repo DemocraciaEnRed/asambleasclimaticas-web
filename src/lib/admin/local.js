@@ -1,6 +1,7 @@
 import agenda from '@/content/agenda.json'
 import recursos from '@/content/recursos.json'
 import { eventId } from './model'
+import { ADMIN_EMAIL } from './store'
 
 // Reemplazo local de Supabase: misma interfaz, datos guardados en el localStorage de este navegador.
 // Nada sale del navegador; usar "Exportar JSON" para llevar los cambios a src/content.
@@ -42,8 +43,8 @@ export function createStore() {
     mode: 'local',
     async session() { return read(SESSION, () => null) },
     onAuth(cb) { listeners.add(cb); return () => listeners.delete(cb) },
-    async signIn(email) {
-      const session = { email: email.trim().toLowerCase() }
+    async signIn() {
+      const session = { email: ADMIN_EMAIL } // modo local: cualquier contraseña entra
       write(SESSION, session)
       emit(session)
       return { session }

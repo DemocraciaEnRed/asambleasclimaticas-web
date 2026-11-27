@@ -96,5 +96,6 @@ create policy "editors delete messages" on public.messages for delete to authent
 revoke insert on public.messages from anon;
 grant insert (name, email, country, reason, message, lang) on public.messages to anon;
 
--- Agregar al equipo (emails en minúscula) e invitar los mismos emails en Authentication > Users:
--- insert into public.editors (email) values ('persona@ejemplo.org');
+-- Cuenta única del equipo (ADMIN_EMAIL en src/lib/admin/store.js). Crearla también en Authentication > Users
+-- con contraseña y "Auto Confirm User":
+-- insert into public.editors (email) values ('admin@resurgentes.org');

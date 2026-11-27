@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { SUPABASE_URL, SUPABASE_KEY } from './store'
+import { SUPABASE_URL, SUPABASE_KEY, ADMIN_EMAIL } from './store'
 import { eventId } from './model'
 
 // Store de Supabase. Las tablas y reglas de acceso están en supabase/schema.sql.
@@ -33,14 +33,11 @@ export function createStore() {
       const { data } = sb.auth.onAuthStateChange((_event, s) => cb(asSession(s)))
       return () => data.subscription.unsubscribe()
     },
-    async signIn(email) {
-      // shouldCreateUser: false: solo quienes ya fueron invitados en Supabase pueden recibir un enlace.
-      const { error } = await sb.auth.signInWithOtp({
-        email: email.trim(),
-        options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}/admin/` },
-      })
-      fail(error)
-      return { sent: true }
+    async signIn(password) {
+      // Contraseña única del equipo: Supabase la verifica contra la cuenta ADMIN_EMAIL.
+      const { data, error } = await sb.auth.signInWithPassword({ email: ADMIN_EMAIL, password })
+      if (error) throw new Error(error.message === 'Invalid login credentials' ? 'Contraseña incorrecta.' : error.message)
+      return { session: asSession(data.session) }
     },
     async signOut() { await sb.auth.signOut() },
 
