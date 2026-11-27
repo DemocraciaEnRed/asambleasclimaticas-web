@@ -2,7 +2,7 @@
 //
 //   session()               -> { email } | null
 //   onAuth(cb)              -> unsubscribe()       cb(session) al entrar/salir
-//   signIn(email)           -> { session } (local) | { sent: true } (Supabase envía un enlace mágico)
+//   signIn(password)        -> { session }         contraseña única del equipo (ver ADMIN_EMAIL)
 //   signOut()
 //   list(table)             -> rows                table: 'events' | 'resources' | 'messages'
 //   save(table, row)        -> saved row           crea si row.id está vacío
@@ -15,6 +15,11 @@
 export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 export const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 export const MODE = SUPABASE_URL && SUPABASE_KEY ? 'supabase' : 'local'
+
+// Cuenta única del equipo en Supabase Auth. El login solo pide la contraseña; Supabase la verifica,
+// así que la contraseña nunca está en el código. Este email tiene que existir en Authentication > Users
+// (creado con contraseña) y en la tabla public.editors. No hace falta que reciba mails.
+export const ADMIN_EMAIL = 'admin@resurgentes.org'
 
 let store
 export function getStore() {

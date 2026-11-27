@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getStore, MODE } from '@/lib/admin/store'
+import { getStore, MODE, ADMIN_EMAIL } from '@/lib/admin/store'
 
 const StoreContext = createContext(null)
 export const useStore = () => useContext(StoreContext)
@@ -15,16 +15,15 @@ const NAV = [
 ]
 
 function Login({ store }) {
-  const [email, setEmail] = useState('')
-  const [state, setState] = useState('idle') // idle | sending | sent | error
+  const [password, setPassword] = useState('')
+  const [state, setState] = useState('idle') // idle | sending | error
   const [error, setError] = useState('')
 
   async function submit(ev) {
     ev.preventDefault()
     setState('sending')
     try {
-      const r = await store.signIn(email)
-      setState(r.sent ? 'sent' : 'idle')
+      await store.signIn(password) // al entrar, onAuth actualiza la sesión y se muestra el panel
     } catch (e) {
       setError(e.message)
       setState('error')
@@ -35,25 +34,22 @@ function Login({ store }) {
     <main className="adm-login">
       <p className="caps">(re)surgentes</p>
       <h1>Backoffice</h1>
-      {state === 'sent' ? (
-        <p className="lead" role="status">Te mandamos un link a <b>{email}</b>. Abrilo desde este navegador para entrar.</p>
-      ) : (
-        <form onSubmit={submit} className="adm-stack">
-          <label className="adm-field">
-            <span className="caps">Email</span>
-            <input type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <button className="adm-btn is-primary" disabled={state === 'sending'}>
-            {MODE === 'local' ? 'Entrar' : state === 'sending' ? 'Enviando…' : 'Recibir link de acceso'}
-          </button>
-          {state === 'error' && <p className="adm-error" role="alert">No pudimos mandar el link: {error}</p>}
-          <p className="muted">
-            {MODE === 'local'
-              ? 'Modo local: cualquier email entra. Todavía no hay Supabase conectado.'
-              : 'Solo pueden entrar las personas invitadas al equipo.'}
-          </p>
-        </form>
-      )}
+      <form onSubmit={submit} className="adm-stack">
+        <input type="hidden" name="username" autoComplete="username" value={ADMIN_EMAIL} readOnly />
+        <label className="adm-field">
+          <span className="caps">Contraseña</span>
+          <input type="password" required autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <button className="adm-btn is-primary" disabled={state === 'sending'}>
+          {state === 'sending' ? 'Entrando…' : 'Entrar'}
+        </button>
+        {state === 'error' && <p className="adm-error" role="alert">No pudimos entrar: {error}</p>}
+        <p className="muted">
+          {MODE === 'local'
+            ? 'Modo local: cualquier contraseña entra. Todavía no hay Supabase conectado.'
+            : 'Contraseña del equipo.'}
+        </p>
+      </form>
     </main>
   )
 }
